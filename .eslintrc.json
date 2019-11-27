@@ -123,7 +123,8 @@
       "react/jsx-wrap-multilines": "error",
       "react/jsx-no-comment-textnodes": "error",
       "react/prefer-stateless-function": [0, { "ignorePureComponents": true }],
-      "react/require-default-props": [0, { "forbidDefaultForRequired": false }]
+      "react/require-default-props": [0, { "forbidDefaultForRequired": false }],
+      "react/prop-types": [0, { "ignore": true }]
   },
   "settings": {
       "react": {
