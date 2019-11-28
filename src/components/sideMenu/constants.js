@@ -1,12 +1,12 @@
 /** @constant */
 export const SIDE_MENU_ITEMS = [
-    { iconType: 'setting', label: 'Overview' },
-    { iconType: 'setting', label: 'Campaigns' },
-    { iconType: 'setting', label: 'Locations' },
-    { iconType: 'setting', label: 'Users' },
-    { iconType: 'setting', label: 'Staff' },
-    { iconType: 'setting', label: 'Transactions' },
-    { iconType: 'setting', label: 'Tickets' },
+    { iconType: 'dashboard', label: 'Overview' },
+    { iconType: 'sound', label: 'Campaigns' },
+    { iconType: 'environment', label: 'Locations' },
+    { iconType: 'team', label: 'Users' },
+    { iconType: 'user', label: 'Staff' },
+    { iconType: 'interaction', label: 'Transactions' },
+    { iconType: 'credit-card', label: 'Tickets' },
     { iconType: 'setting', label: 'Settings' },
 ];
 /** @constant */
