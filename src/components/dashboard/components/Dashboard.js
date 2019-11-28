@@ -1,9 +1,11 @@
 import React from 'react';
 
-import { TEST } from '../constants';
+import sideMenu from '../../sideMenu';
+
+const { SideMenu } = sideMenu.components;
 
 const Dashboard = () => (
-    <h1>{TEST}</h1>
+    <SideMenu />
 );
 
 export default Dashboard;
