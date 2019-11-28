@@ -11,3 +11,9 @@ export const SIDE_MENU_ITEMS = [
 ];
 /** @constant */
 export const INLINE = 'inline';
+
+/** @constant */
+export const SIDE_BAR = 'side-bar';
+
+/** @constant */
+export const SIDE_BAR_ITEM = 'side-bar-item';

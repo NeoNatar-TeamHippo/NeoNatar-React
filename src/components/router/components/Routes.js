@@ -21,7 +21,7 @@ const Routes = () => (
                         path={DASHBOARD}
                         exact
                         strict
-                        component={dashboard.components.DASHBOARD}
+                        component={dashboard.components.Dashboard}
                     />
                     <Route component={NoMatch} />
                 </Switch>
