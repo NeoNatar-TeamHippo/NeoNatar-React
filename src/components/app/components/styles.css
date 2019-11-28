@@ -2,7 +2,25 @@
     background: #ffffff;
 }
 
+.header-menu {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+} 
 
+.left-nav-menu {
+    position: relative;
+    float: left;
+    top: 50%;
+    transform: translateY(-50%);
+}
 
-
-
+.right-nav-menu {
+    position: relative;
+    float: right;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+  
+}
+  
