@@ -2,7 +2,7 @@ import React from 'react';
 
 import sideMenu from '../../sideMenu';
 
-const { SideMenu } = sideMenu.components;
+const { components: { SideMenu } } = sideMenu;
 
 const Dashboard = () => (
     <SideMenu />
