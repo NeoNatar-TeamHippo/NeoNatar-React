@@ -1,9 +1,17 @@
 import React from 'react';
+import { Avatar, Layout, Menu } from 'antd';
+import Logo from '../../../images/Logo.png';
 
-import { NAV_TEST } from '../constants';
-
+const { Item } = Menu;
+const { Header } = Layout;
 const Navabar = () => (
-    <h1>{NAV_TEST}</h1>
+    <Header theme={'light'}>
+        <Menu>
+            <Item>
+                <Avatar src={Logo} />
+            </Item>
+        </Menu>
+    </Header>
 );
 
 export default Navabar;
