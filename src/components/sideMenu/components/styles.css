@@ -1,8 +1,4 @@
 .side-bar {
     height: 100%;
-    min-height: 550px;
-}
-
-.side-bar-item {
-    color: black
+    padding-top: 57px;
 }

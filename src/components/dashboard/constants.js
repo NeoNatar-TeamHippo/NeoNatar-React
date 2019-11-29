@@ -1,2 +1,2 @@
 /** @constant */
-export const TEST = 'Test';
+export const DASHBOARD_CONTENT = 'dashboard-content';
