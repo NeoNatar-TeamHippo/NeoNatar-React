@@ -11,7 +11,7 @@ import app from '../../app';
 
 const { DASHBOARD } = PATHS;
 const { App } = app.components;
-const { components: { Dashboard } } = dashboard;
+const { Dashboard } = dashboard.components;
 
 const Routes = () => (
     <Router history={history}>
