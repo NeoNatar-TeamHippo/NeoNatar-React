@@ -1,0 +1,25 @@
+.header-menu {
+    background: #ffffff;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+} 
+
+.left-nav-menu {
+    border-bottom: transparent;
+    position: relative;
+    float: left;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.right-nav-menu {
+    border-bottom: transparent;
+    position: relative;
+    float: right;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+  
+}
+  
