@@ -11,6 +11,7 @@ import app from '../../app';
 
 const { DASHBOARD } = PATHS;
 const { App } = app.components;
+const { Dashboard } = dashboard.components;
 
 const Routes = () => (
     <Router history={history}>
@@ -21,7 +22,7 @@ const Routes = () => (
                         path={DASHBOARD}
                         exact
                         strict
-                        component={dashboard.components.DASHBOARD}
+                        component={Dashboard}
                     />
                     <Route component={NoMatch} />
                 </Switch>

@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
+import 'antd/dist/antd.css';
 
 import router from './components/router';
-// import app from './components/app';
 
 const { Routes: App } = router.components;
-// const { App } = app.components;
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
