@@ -1,9 +1,17 @@
 /** @constant */
-export const STRINGS = {
+export const ICONS = {
     BARS: 'bars',
+    BELL: 'bell',
+    SEARCH: 'search',
+};
+
+/** @constant */
+export const STRINGS = {
     HORIZONTAL: 'horizontal',
+    NAME: 'Chioma Onyekpere',
     NEONATAR: 'NeoNatar',
     OVERVIEW: 'Overview',
+    VERTICAL: 'vertical',
 };
 
 /** @constant */

@@ -3,9 +3,10 @@ import { Divider, Icon, Avatar, Layout, Menu } from 'antd';
 import Logo from '../../../images/Logo.png';
 import User from '../../../images/Profile_Picture.png';
 
-import { CLASSNAMES, STRINGS } from '../constants';
+import { CLASSNAMES, ICONS, STRINGS } from '../constants';
 
-const { BARS, HORIZONTAL, NEONATAR, OVERVIEW } = STRINGS;
+const { HORIZONTAL, NAME, NEONATAR, OVERVIEW, VERTICAL } = STRINGS;
+const { BARS, BELL, SEARCH } = ICONS;
 const { LEFT_NAV_MENU, HEADER_MENU, RIGHT_NAV_MENU } = CLASSNAMES;
 
 const { Item } = Menu;
@@ -27,16 +28,16 @@ const Navabar = () => (
         </Menu>
         <Menu mode={HORIZONTAL} className={RIGHT_NAV_MENU}>
             <Item>
-                <Icon type={'search'} />
+                <Icon type={SEARCH} />
             </Item>
             <Item>
-                <Icon type={'bell'} />
+                <Icon type={BELL} />
             </Item>
             <Item>
-                <Divider type={'vertical'} />
+                <Divider type={VERTICAL} />
             </Item>
             <Item>
-                {'Chioma Onyekpere'}
+                {NAME}
             </Item>
             <Item>
                 <Avatar src={User} />
