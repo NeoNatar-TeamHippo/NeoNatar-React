@@ -20,7 +20,7 @@ coverage
 .nyc_output
 
 # Dependency directories
-package-lock.json
+/package-lock.json
 
 # Optional npm cache directory
 .npm
