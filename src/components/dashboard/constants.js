@@ -1,27 +1,27 @@
 /** @constant */
 export const CARDS = [
-    { counts: 10, strings: 'Pending Approval' },
-    { counts: '99+', strings: 'Approved Campaigns' },
-    { counts: 54, strings: 'locations' },
-    { counts: 7, strings: 'Staff' },
+    { counts: 10, type: 'Pending Approval' },
+    { counts: '99+', type: 'Approved Campaigns' },
+    { counts: 54, type: 'locations' },
+    { counts: 7, type: 'Staff' },
 ];
 
 /** @constant */
-export const STRINGS = {
-    GROUP_SUPPORT: 'Group: Support',
-    UNRESOLVED_TICKETS: 'Unresolved Tickets',
-    VIEW_DETAILS: 'View details',
-};
+export const DASHBOARD = '/dashboard';
 
 /** @constant */
-export const CLASSNAMES = {
-    CARD_CONTAINER: 'card-container',
-    DASHBOARD_CARD: 'dashboard-card',
-    DASHBOARD_CONTENT: 'dashboard-content',
-    DASHBOARD_TICKET: 'dashboard-ticket',
-    RIGHT_CARD_HEADER: 'right-card-header',
-    TICKET_CARD: 'ticket-card',
-    TICKET_HEADER: 'ticket-header',
-    TICKET_SUB_HEADER: 'ticket-sub-header',
+export const GROUP_SUPPORT = 'Group: Support';
 
-};
+/** @constant */
+export const UNRESOLVED_TICKETS = 'Unresolved Tickets';
+
+/** @constant */
+export const VIEW_DETAILS = 'View details';
+
+/** @constant */
+export const TICKETS = [
+    { counts: 15, id: 1, type: 'Illegal Advert' },
+    { counts: 33, id: 1, type: 'Increase View Locations' },
+    { counts: 25, id: 1, type: 'Content Change' },
+    { counts: 8, id: 1, type: 'Copyright Issues' },
+];

@@ -1,10 +1,9 @@
 import React from 'react';
 import { Badge, Card, Layout, Menu } from 'antd';
 import UnresolvedTickets from './UnresolvedTickets';
-import { CARDS, CLASSNAMES } from '../constants';
+import { CARDS } from '../constants';
 import sideMenu from '../../sideMenu';
 
-const { DASHBOARD_CONTENT, DASHBOARD_CARD, DASHBOARD_TICKET } = CLASSNAMES;
 const { SideMenu } = sideMenu.components;
 const { Content, Sider } = Layout;
 const { Item } = Menu;
@@ -15,18 +14,18 @@ const Dashboard = () => (
             <SideMenu />
         </Sider>
         <Content>
-            <Menu className={DASHBOARD_CONTENT} mode="horizontal">
-                {CARDS.map(({ counts, strings }) => (
-                    <Item key={strings}>
+            <Menu className="dashboard-content" mode="horizontal">
+                {CARDS.map(({ counts, type }) => (
+                    <Item key={type}>
                         <Badge count={counts}>
-                            <Card className={DASHBOARD_CARD}>{strings}</Card>
+                            <Card className="dashboard-card">{type}</Card>
                         </Badge>
                     </Item>
                 ))}
             </Menu>
             <Menu mode="horizontal">
                 <Item>
-                    <UnresolvedTickets className={DASHBOARD_TICKET} />
+                    <UnresolvedTickets className="dashboard-ticket" />
                 </Item>
             </Menu>
         </Content>
