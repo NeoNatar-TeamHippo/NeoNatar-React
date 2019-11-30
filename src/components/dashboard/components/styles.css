@@ -1,3 +1,10 @@
 .dashboard-content {
-    padding-top: 65px;
+    padding-top: 70px;
+    text-align: center;
+    background: #eff2f5;
+}
+.dashboard-card {
+    width: 250px;
+    height: 120px;
+    border-radius: 10px;
 }
