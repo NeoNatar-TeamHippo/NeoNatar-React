@@ -6,13 +6,11 @@ import NoMatch from './NoMatch';
 import history from '../../history/History';
 import { PATHS } from '../constants';
 
-import home from '../../home';
 import dashboard from '../../dashboard';
 import app from '../../app';
 
-const { DASHBOARD, HOME } = PATHS;
+const { DASHBOARD } = PATHS;
 const { App } = app.components;
-const { Home } = home.components;
 const { Dashboard } = dashboard.components;
 
 const Routes = () => (
@@ -20,7 +18,6 @@ const Routes = () => (
         <ScrollToTop>
             <App>
                 <Switch>
-                    <Route path={HOME} exact strict component={Home} />
                     <Route path={DASHBOARD} exact strict component={Dashboard} />
                     <Route component={NoMatch} />
                 </Switch>
