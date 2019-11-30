@@ -1,6 +1,9 @@
 import React from 'react';
 import { Badge, Card, Layout, Menu } from 'antd';
+
 import UnresolvedTickets from './UnresolvedTickets';
+import Tasks from './Tasks';
+
 import { CARDS } from '../constants';
 import sideMenu from '../../sideMenu';
 
@@ -26,6 +29,9 @@ const Dashboard = () => (
             <Menu mode="horizontal">
                 <Item>
                     <UnresolvedTickets className="dashboard-ticket" />
+                </Item>
+                <Item>
+                    <Tasks className="dashboard-ticket" />
                 </Item>
             </Menu>
         </Content>
