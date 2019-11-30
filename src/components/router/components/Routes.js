@@ -18,12 +18,7 @@ const Routes = () => (
         <ScrollToTop>
             <App>
                 <Switch>
-                    <Route
-                        path={DASHBOARD}
-                        exact
-                        strict
-                        component={Dashboard}
-                    />
+                    <Route path={DASHBOARD} exact strict component={Dashboard} />
                     <Route component={NoMatch} />
                 </Switch>
             </App>
