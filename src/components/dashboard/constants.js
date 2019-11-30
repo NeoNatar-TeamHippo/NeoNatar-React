@@ -1,13 +1,13 @@
 /** @constant */
-export const ICONS = {
-};
+export const CARDS = [
+    { counts: 10, strings: 'Pending Approval' },
+    { counts: '99+', strings: 'Approved Campaigns' },
+    { counts: 54, strings: 'locations' },
+    { counts: 7, strings: 'Staff' },
+];
 
 /** @constant */
 export const STRINGS = {
-    APPROVED_CAMPAIGNS: 'Approved Campaigns',
-    LOCATIONS: 'locations',
-    PENDING_APPROVAL: 'Pending Approval',
-    STAFF: 'Staff',
 };
 
 /** @constant */

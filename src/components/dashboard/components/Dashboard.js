@@ -2,11 +2,10 @@ import React from 'react';
 import { Badge, Card, Layout, Menu } from 'antd';
 // import { Chart, Axis, Tooltip, Geom } from 'bizcharts';
 
-import { CLASSNAMES, STRINGS } from '../constants';
+import { CARDS, CLASSNAMES } from '../constants';
 import sideMenu from '../../sideMenu';
 
 const { DASHBOARD_CONTENT, DASHBOARD_CARD } = CLASSNAMES;
-const { APPROVED_CAMPAIGNS, LOCATIONS, PENDING_APPROVAL, STAFF } = STRINGS;
 // const data = [];
 const { SideMenu } = sideMenu.components;
 const { Content, Sider } = Layout;
@@ -19,26 +18,13 @@ const Dashboard = () => (
         </Sider>
         <Content>
             <Menu className={DASHBOARD_CONTENT} mode="horizontal">
-                <Item>
-                    <Badge count={10}>
-                        <Card className={DASHBOARD_CARD}>{PENDING_APPROVAL}</Card>
-                    </Badge>
-                </Item>
-                <Item>
-                    <Badge count="99+">
-                        <Card className={DASHBOARD_CARD}>{APPROVED_CAMPAIGNS}</Card>
-                    </Badge>
-                </Item>
-                <Item>
-                    <Badge count={54}>
-                        <Card className={DASHBOARD_CARD}>{LOCATIONS}</Card>
-                    </Badge>
-                </Item>
-                <Item>
-                    <Badge count={7}>
-                        <Card className={DASHBOARD_CARD}>{STAFF}</Card>
-                    </Badge>
-                </Item>
+                {CARDS.map(({ counts, strings }) => (
+                    <Item key={strings}>
+                        <Badge count={counts}>
+                            <Card className={DASHBOARD_CARD}>{strings}</Card>
+                        </Badge>
+                    </Item>
+                ))}
             </Menu>
         </Content>
         {/* <Chart height={400} data={data} forceFit>
