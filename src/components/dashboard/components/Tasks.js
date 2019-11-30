@@ -17,14 +17,15 @@ class Tasks extends React.Component {
                     border-bottom={0}
                     dataSource={TASKS_SOURCE}
                     renderItem={item => {
-                        const { buttonType, buttonText, type, id } = item;
+                        const { buttonType, buttonText, iconType, date, type, id } = item;
 
                         return (
                             <List.Item key={id}>
                                 <List.Item.Meta
                                     title={<a href={DASHBOARD}>{type}</a>}
+                                    description={date}
                                 />
-                                <Icon type={item.iconType} />
+                                <Icon type={iconType} />
                                 <Button
                                     size="small"
                                     type={buttonType}

@@ -38,7 +38,25 @@ export const TICKETS = [
 /** @constant */
 export const TASKS_SOURCE = [
     { iconType: 'plus-circle', id: 1, type: 'Create new tasks' },
-    { buttonText: 'URGENT', buttonType: 'danger', id: 2, type: 'Finish ticket update' },
-    { buttonText: 'LOW', buttonType: 'primary', id: 3, type: 'Create new ticket example' },
-    { buttonText: 'DEFAULT', buttonType: 'danger', id: 4, type: 'Update ticket report' },
+    {
+        buttonText: 'URGENT',
+        buttonType: 'danger',
+        date: '19 Nov, 2019, 06:41 PM',
+        id: 2,
+        type: 'Finish ticket update',
+    },
+    {
+        buttonText: 'LOW',
+        buttonType: 'primary',
+        date: '19 Nov, 2019, 06:41 PM',
+        id: 3,
+        type: 'Create new ticket example',
+    },
+    {
+        buttonText: 'DEFAULT',
+        buttonType: 'danger',
+        date: '19 Nov, 2019, 06:41 PM',
+        id: 4,
+        type: 'Update ticket report',
+    },
 ];
