@@ -1,12 +1,10 @@
 import React from 'react';
 import { Badge, Card, Layout, Menu } from 'antd';
-// import { Chart, Axis, Tooltip, Geom } from 'bizcharts';
-
+import UnresolvedTickets from './UnresolvedTickets';
 import { CARDS, CLASSNAMES } from '../constants';
 import sideMenu from '../../sideMenu';
 
-const { DASHBOARD_CONTENT, DASHBOARD_CARD } = CLASSNAMES;
-// const data = [];
+const { DASHBOARD_CONTENT, DASHBOARD_CARD, DASHBOARD_TICKET } = CLASSNAMES;
 const { SideMenu } = sideMenu.components;
 const { Content, Sider } = Layout;
 const { Item } = Menu;
@@ -26,14 +24,12 @@ const Dashboard = () => (
                     </Item>
                 ))}
             </Menu>
+            <Menu mode="horizontal">
+                <Item>
+                    <UnresolvedTickets className={DASHBOARD_TICKET} />
+                </Item>
+            </Menu>
         </Content>
-        {/* <Chart height={400} data={data} forceFit>
-            <Axis name="month" />
-            <Axis name="temperature" label={{ formatter: val => `${val}°C` }} />
-            <Tooltip crosshairs={{ type: 'y' }} />
-            <Geom type="line" position="month*temperature" size={2} color="city" />
-            <Geom type="point" position="month*temperature" size={4} color="city" />
-        </Chart> */}
     </Layout>
 );
 

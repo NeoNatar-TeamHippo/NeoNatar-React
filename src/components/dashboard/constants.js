@@ -12,6 +12,13 @@ export const STRINGS = {
 
 /** @constant */
 export const CLASSNAMES = {
+    CARD_CONTAINER: 'card-container',
     DASHBOARD_CARD: 'dashboard-card',
     DASHBOARD_CONTENT: 'dashboard-content',
+    DASHBOARD_TICKET: 'dashboard-ticket',
+    RIGHT_CARD_HEADER: 'right-card-header',
+    TICKET_CARD: 'ticket-card',
+    TICKET_HEADER: 'ticket-header',
+    TICKET_SUB_HEADER: 'ticket-sub-header',
+
 };
