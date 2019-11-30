@@ -1,8 +1,9 @@
 import React from 'react';
 import { List } from 'antd';
 
-import { CLASSNAMES } from '../constants';
+import { CLASSNAMES, STRINGS } from '../constants';
 
+const { DASHBOARD, GROUP_SUPPORT, UNRESOLVED_TICKETS, VIEW_DETAILS } = STRINGS;
 const {
     CARD_CONTAINER,
     TICKET_SUB_HEADER,
@@ -23,10 +24,10 @@ class TabsCard extends React.Component {
         return (
             <div className={TICKET_CARD}>
                 <div className={TICKET_HEADER}>
-                    <h3>Unresolved tickets</h3>
-                    <a href="#" className={RIGHT_CARD_HEADER}>View details</a>
+                    <h3>{UNRESOLVED_TICKETS}</h3>
+                    <a href={DASHBOARD} className={RIGHT_CARD_HEADER}>{VIEW_DETAILS}</a>
                 </div>
-                <p className={TICKET_SUB_HEADER}>Group: Support</p>
+                <p className={TICKET_SUB_HEADER}>{GROUP_SUPPORT}</p>
                 <List
                     className={CARD_CONTAINER}
                     border-bottom={0}

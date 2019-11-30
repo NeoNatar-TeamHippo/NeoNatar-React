@@ -8,6 +8,9 @@ export const CARDS = [
 
 /** @constant */
 export const STRINGS = {
+    GROUP_SUPPORT: 'Group: Support',
+    UNRESOLVED_TICKETS: 'Unresolved Tickets',
+    VIEW_DETAILS: 'View details',
 };
 
 /** @constant */
