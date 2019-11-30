@@ -16,21 +16,25 @@ class Tasks extends React.Component {
                     className="card-container"
                     border-bottom={0}
                     dataSource={TASKS_SOURCE}
-                    renderItem={item => (
-                        <List.Item key={item.id}>
-                            <List.Item.Meta
-                                title={<a href={DASHBOARD}>{item.type}</a>}
-                            />
-                            <Icon type={item.iconType} />
-                            <Button
-                                size="small"
-                                type={item.buttonType}
-                                ghost
-                            >
-                                {item.buttonText}
-                            </Button>
-                        </List.Item>
-                    )}
+                    renderItem={item => {
+                        const { buttonType, buttonText, type, id } = item;
+
+                        return (
+                            <List.Item key={id}>
+                                <List.Item.Meta
+                                    title={<a href={DASHBOARD}>{type}</a>}
+                                />
+                                <Icon type={item.iconType} />
+                                <Button
+                                    size="small"
+                                    type={buttonType}
+                                    ghost
+                                >
+                                    {buttonText}
+                                </Button>
+                            </List.Item>
+                        );
+                    }}
                 />
             </div>
         );

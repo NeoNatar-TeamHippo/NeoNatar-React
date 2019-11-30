@@ -16,14 +16,18 @@ class UnresolvedTickets extends React.Component {
                     className="card-container"
                     border-bottom={0}
                     dataSource={TICKETS}
-                    renderItem={item => (
-                        <List.Item key={item.id}>
-                            <List.Item.Meta
-                                title={<a href={DASHBOARD}>{item.type}</a>}
-                            />
-                            <div>{item.counts}</div>
-                        </List.Item>
-                    )}
+                    renderItem={item => {
+                        const { counts, type, id } = item;
+
+                        return (
+                            <List.Item key={id}>
+                                <List.Item.Meta
+                                    title={<a href={DASHBOARD}>{type}</a>}
+                                />
+                                <div>{counts}</div>
+                            </List.Item>
+                        );
+                    }}
                 />
             </div>
         );
