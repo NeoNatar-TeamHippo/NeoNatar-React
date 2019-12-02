@@ -7,11 +7,13 @@ import history from '../../history/History';
 import { PATHS } from '../constants';
 
 import dashboard from '../../dashboard';
+import campaigns from '../../campaigns';
 import app from '../../app';
 
-const { DASHBOARD } = PATHS;
+const { CAMPAIGNS, DASHBOARD } = PATHS;
 const { App } = app.components;
 const { Dashboard } = dashboard.components;
+const { Campaigns } = campaigns.components;
 
 const Routes = () => (
     <Router history={history}>
@@ -19,6 +21,7 @@ const Routes = () => (
             <App>
                 <Switch>
                     <Route path={DASHBOARD} exact strict component={Dashboard} />
+                    <Route path={CAMPAIGNS} exact strict component={Campaigns} />
                     <Route component={NoMatch} />
                 </Switch>
             </App>

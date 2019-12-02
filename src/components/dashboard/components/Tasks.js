@@ -23,7 +23,7 @@ class Tasks extends React.Component {
                             <List.Item key={id}>
                                 <List.Item.Meta
                                     title={<a href={DASHBOARD}>{type}</a>}
-                                    description={date}
+                                    // description={date}
                                 />
                                 <Icon type={iconType} />
                                 <Button
