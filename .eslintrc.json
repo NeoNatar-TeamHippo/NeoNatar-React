@@ -118,7 +118,6 @@
     "max-len": ["error", {
       "code": 100
     }],
-    // "max-lines-per-function": ["error", 20],
     "sort-keys": ["error", "asc"],
     "react/display-name": [0, {
       "ignoreTranspilerName": true
