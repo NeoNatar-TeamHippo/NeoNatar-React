@@ -24,7 +24,6 @@ const SignIn = () => (
                     </Card>
                 </Col>
             </Row>
-
         </div>
     </HomeLayout>
 );
