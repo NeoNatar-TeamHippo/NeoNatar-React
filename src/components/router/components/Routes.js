@@ -7,21 +7,24 @@ import history from '../../history/History';
 import { PATHS } from '../constants';
 
 import dashboard from '../../dashboard';
-import app from '../../app';
+// import app from '../../app';
+import signup from '../../signup';
 
-const { DASHBOARD } = PATHS;
-const { App } = app.components;
+const { DASHBOARD, SIGNUP } = PATHS;
+// const { App } = app.components;
 const { Dashboard } = dashboard.components;
+const { SignUp } = signup.components;
 
 const Routes = () => (
     <Router history={history}>
         <ScrollToTop>
-            <App>
-                <Switch>
-                    <Route path={DASHBOARD} exact strict component={Dashboard} />
-                    <Route component={NoMatch} />
-                </Switch>
-            </App>
+            {/* <App> */}
+            <Switch>
+                <Route path={SIGNUP} exact strict component={SignUp} />
+                <Route path={DASHBOARD} exact strict component={Dashboard} />
+                <Route component={NoMatch} />
+            </Switch>
+            {/* </App> */}
         </ScrollToTop>
     </Router>
 );
