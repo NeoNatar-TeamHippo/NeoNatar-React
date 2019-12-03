@@ -8,24 +8,24 @@ const AllCampaigns = () => (
         columns={
             [
                 {
-                    dataIndex: "videoDetails",
-                    key: "videoDetails",
-                    title: "Video details",
+                    dataIndex: 'videoDetails',
+                    key: 'videoDetails',
+                    title: 'Video details',
                 },
                 {
-                    dataIndex: "category",
-                    key: "category",
-                    title: "Category",
+                    dataIndex: 'category',
+                    key: 'category',
+                    title: 'Category',
                 },
                 {
-                    dataIndex: "locations",
-                    key: "locations",
-                    title: "Locations",
+                    dataIndex: 'locations',
+                    key: 'locations',
+                    title: 'Locations',
                 },
                 {
-                    dataIndex: "status",
-                    key: "status",
-                    title: "Status",
+                    dataIndex: 'status',
+                    key: 'status',
+                    title: 'Status',
                 },
             ]
         }
