@@ -2,6 +2,7 @@
 export const PATHS = {
     DASHBOARD: '/dashboard',
     HOME: '/',
+    SIGNIN: '/signin',
     SIGNUP: '/signup',
 };
 
