@@ -1,0 +1,19 @@
+.header {
+    min-height: 10vh;
+    background-color: #fff;
+}
+
+.content {
+    min-height: 80vh;
+    text-align: center;
+    background-color: #fff;
+}
+
+.footer {
+    min-height: 10vh;
+    background-color: #fff;
+}
+
+.center_form {
+    margin: auto;
+}
