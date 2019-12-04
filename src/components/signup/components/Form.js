@@ -21,11 +21,11 @@ const SignUpForm = ({ form }) => {
                 console.log(formValues);
                 // dispatch(addUser(formValues));
                 form.resetFields();
-                setTimeout(() => {
-                    setLoading(false);
-                }, 3000);
             }
         });
+        setTimeout(() => {
+            setLoading(false);
+        }, 3000);
     };
 
     const handleConfirmBlur = e => {
@@ -97,7 +97,6 @@ const SignUpForm = ({ form }) => {
                 <Button
                     type="primary"
                     htmlType="submit"
-                    className="login-form-button"
                     loading={loading}
                     block
                 >

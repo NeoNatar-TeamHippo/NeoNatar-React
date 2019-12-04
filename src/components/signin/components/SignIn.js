@@ -1,24 +1,24 @@
 import React from 'react';
 import { Card, Row, Col, Typography, Button } from 'antd';
 import HomeLayout from '../../hoc/homeLayout';
-import SignUpForm from './Form';
-import { SIGN_UP, ACCOUNT_TEXT, SIGN_IN } from '../constants';
+import SignInForm from './Form';
+import { SIGN_UP, ACCOUNT_TEXT, SIGN_IN, CENTER_CARD } from '../constants';
 
 const { Title, Text } = Typography;
-const SignUp = () => (
+const SignIn = () => (
     <HomeLayout>
         <div className="card_background">
             <Row type="flex" justify="center" align="middle">
                 <Col xs={18} md={12} lg={8}>
-                    <Card className="signup_card">
+                    <Card className={CENTER_CARD}>
                         <Title level={2}>
-                            {SIGN_UP}
+                            {SIGN_IN}
                         </Title>
-                        <SignUpForm />
+                        <SignInForm />
                         <Text>
                             {ACCOUNT_TEXT}
                             <Button type="link">
-                                {SIGN_IN}
+                                {SIGN_UP}
                             </Button>
                         </Text>
                     </Card>
@@ -28,4 +28,4 @@ const SignUp = () => (
     </HomeLayout>
 );
 
-export default SignUp;
+export default SignIn;
