@@ -22,6 +22,7 @@ const SignUpForm = ({ form, history }) => {
                     password: values.password,
                 };
                 dispatch(userSignUp(formValues, history));
+                form.resetFields();
             }
         });
     };

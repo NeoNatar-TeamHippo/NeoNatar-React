@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button, Form, Icon, Input } from 'antd';
-import { useSelector, useDispatch } from 'react-redux';
 import { SIGN_IN } from '../constants';
 // import { addUser } from '../actions';
 
