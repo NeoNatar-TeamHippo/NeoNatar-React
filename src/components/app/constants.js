@@ -1,6 +1,5 @@
 /** @constant */
 export const ICONS = {
-    BARS: 'bars',
     BELL: 'bell',
     SEARCH: 'search',
 };
@@ -10,7 +9,6 @@ export const STRINGS = {
     HORIZONTAL: 'horizontal',
     NAME: 'Chioma Onyekpere',
     NEONATAR: 'NeoNatar',
-    OVERVIEW: 'Overview',
     VERTICAL: 'vertical',
 };
 
