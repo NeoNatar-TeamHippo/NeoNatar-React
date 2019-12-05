@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { Button, Form, Icon, Input } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { SIGN_UP } from '../constants';
+import { userSignUp } from '../actions';
 
-const SignUpForm = ({ form }) => {
+const SignUpForm = ({ form, history }) => {
+    const dispatch = useDispatch();
     const [confirmDirty, setconfirmDirty] = useState(false);
-    const [loading, setLoading] = useState(false);
     const { getFieldDecorator } = form;
+    const { loading } = useSelector(state => state.signUp);
     const handleSubmit = e => {
         e.preventDefault();
-        setLoading(true);
         form.validateFields((err, values) => {
             if (!err) {
                 const formValues = {
@@ -18,14 +21,9 @@ const SignUpForm = ({ form }) => {
                     lastName: values.lastName,
                     password: values.password,
                 };
-                console.log(formValues);
-                // dispatch(addUser(formValues));
-                form.resetFields();
+                dispatch(userSignUp(formValues, history));
             }
         });
-        setTimeout(() => {
-            setLoading(false);
-        }, 3000);
     };
 
     const handleConfirmBlur = e => {
@@ -108,4 +106,4 @@ const SignUpForm = ({ form }) => {
 };
 
 const WrappedNormalSignUpForm = Form.create({ name: 'signup' })(SignUpForm);
-export default WrappedNormalSignUpForm;
+export default withRouter(WrappedNormalSignUpForm);
