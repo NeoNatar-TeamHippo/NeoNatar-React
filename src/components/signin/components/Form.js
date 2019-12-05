@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Button, Form, Icon, Input } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -18,7 +18,6 @@ const SignInForm = ({ form, history }) => {
                     email: values.email,
                     password: values.password,
                 };
-                console.log(formValues);
                 dispatch(userSignIn(formValues, history));
                 form.resetFields();
             }
