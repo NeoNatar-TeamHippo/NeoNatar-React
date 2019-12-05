@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Button, Form, Icon, Input } from 'antd';
 import { SIGN_IN } from '../constants';
+// import { addUser } from '../actions';
 
 const SignInForm = ({ form }) => {
+    // const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const { getFieldDecorator } = form;
     const handleSubmit = e => {

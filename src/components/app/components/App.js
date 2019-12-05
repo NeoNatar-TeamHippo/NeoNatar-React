@@ -6,16 +6,14 @@ import Navbar from './Navbar';
 
 const { Content } = Layout;
 
-class App extends React.Component {
-    render() {
-        const { children } = this.props;
-        return (
-            <Layout>
-                <Navbar />
-                <Content>{children}</Content>
-            </Layout>
-        );
-    }
-}
+const App = props => {
+    const { children } = props;
+    return (
+        <Layout>
+            <Navbar />
+            <Content>{children}</Content>
+        </Layout>
+    );
+};
 
 export default withRouter(App);
