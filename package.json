@@ -12,6 +12,7 @@
     "firebase": "^7.5.0",
     "firebase-admin": "^8.8.0",
     "history": "^4.10.1",
+    "jwt-decode": "^2.2.0",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "prop-types": "^15.7.2",
