@@ -9,23 +9,16 @@ function* userSignUp(userData, history) {
         const res = yield call(signUpService, userData);
         if (res.status === 'success') {
             const authorization = `Bearer ${res.data}`;
-            yield [
-                put(setAuthenticated(authorization)),
-                put(clearErrors()),
-            ];
+            yield put(setAuthenticated(authorization));
+            yield put(clearErrors());
             history.push('/signin');
         } else {
-            yield [
-                put(setErrors({ message: res.message })),
-                put(setUnAuthenticated()),
-            ];
+            yield put(setErrors({ message: res.message }));
+            yield put(setUnAuthenticated());
         }
-        return res.data;
     } catch (error) {
-        yield [
-            put(setErrors({ message: 'Something went wrong please try again' })),
-            put(setUnAuthenticated()),
-        ];
+        yield put(setErrors({ message: 'Something went wrong please try again' }));
+        yield put(setUnAuthenticated());
     }
 }
 function* postUserEffect({ payload, history }) {
