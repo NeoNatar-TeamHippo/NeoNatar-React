@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Form, Icon, Input } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { SIGN_IN } from '../constants';
-// import { addUser } from '../actions';
+import { userSignIn } from '../actions';
 
-const SignInForm = ({ form }) => {
-    // const dispatch = useDispatch();
-    const [loading, setLoading] = useState(false);
+const SignInForm = ({ form, history }) => {
+    const dispatch = useDispatch();
+    const { loading } = useSelector(state => state.signIn);
     const { getFieldDecorator } = form;
     const handleSubmit = e => {
         e.preventDefault();
-        setLoading(true);
+
         form.validateFields((err, values) => {
             if (!err) {
                 const formValues = {
@@ -18,13 +19,10 @@ const SignInForm = ({ form }) => {
                     password: values.password,
                 };
                 console.log(formValues);
-                // dispatch(addUser(formValues));
+                dispatch(userSignIn(formValues, history));
                 form.resetFields();
             }
         });
-        setTimeout(() => {
-            setLoading(false);
-        }, 3000);
     };
     return (
         <Form onSubmit={handleSubmit}>
@@ -60,4 +58,4 @@ const SignInForm = ({ form }) => {
 };
 
 const WrappedNormalSignInForm = Form.create({ name: 'signin' })(SignInForm);
-export default WrappedNormalSignInForm;
+export default withRouter(WrappedNormalSignInForm);
