@@ -6,15 +6,15 @@ import NoMatch from './NoMatch';
 import { PATHS } from '../constants';
 
 import history from '../../history/History';
-import dashboard from '../../dashboard';
+import overview from '../../overview';
 import campaigns from '../../campaigns';
 import app from '../../app';
 import signup from '../../signup';
 import signin from '../../signin';
 
-const { CAMPAIGNS, DASHBOARD, SIGNUP, SIGNIN } = PATHS;
+const { CAMPAIGNS, OVERVIEW, SIGNUP, SIGNIN } = PATHS;
 const { App } = app.components;
-const { Dashboard } = dashboard.components;
+const { Overview } = overview.components;
 const { Campaigns } = campaigns.components;
 const { SignUp } = signup.components;
 const { SignIn } = signin.components;
@@ -24,7 +24,7 @@ const Routes = () => (
         <ScrollToTop>
             <App>
                 <Switch>
-                    <Route path={DASHBOARD} exact strict component={Dashboard} />
+                    <Route path={OVERVIEW} exact strict component={Overview} />
                     <Route path={CAMPAIGNS} exact strict component={Campaigns} />
                     <Route path={SIGNIN} exact strict component={SignIn} />
                     <Route path={SIGNUP} exact strict component={SignUp} />
