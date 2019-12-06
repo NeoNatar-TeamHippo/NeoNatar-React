@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Avatar, Drawer, Button } from 'antd';
 
 import RightMenu from './RightNav';
-import { NEONATAR } from '../constants';
+import { NEONATAR } from '../../navbar/constants';
 
 import Logo from '../../../images/Logo.png';
 

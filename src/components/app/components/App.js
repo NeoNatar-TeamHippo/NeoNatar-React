@@ -2,11 +2,10 @@ import React from 'react';
 import { Layout } from 'antd';
 import { withRouter } from 'react-router-dom';
 
-import navbar from '../../navbar';
+import Navbar from './Navbar';
 import FooterComponent from './Footer';
 
 const { Content, Footer } = Layout;
-const { Navbar } = navbar.components;
 
 const App = props => {
     const { children } = props;
