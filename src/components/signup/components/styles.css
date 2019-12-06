@@ -1,0 +1,11 @@
+.signup_card {
+    min-width: 100%;
+    margin-top: 70px;
+}
+
+.card_background {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
