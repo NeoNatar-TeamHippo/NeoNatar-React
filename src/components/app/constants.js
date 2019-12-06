@@ -1,16 +1,16 @@
 /** @constant */
 export const ICONS = {
-    BARS: 'bars',
     BELL: 'bell',
     SEARCH: 'search',
 };
+
+export const FOOTER_TEXT = 'NEONATAR ©2018, TEAM HIPPO';
 
 /** @constant */
 export const STRINGS = {
     HORIZONTAL: 'horizontal',
     NAME: 'Chioma Onyekpere',
     NEONATAR: 'NeoNatar',
-    OVERVIEW: 'Overview',
     VERTICAL: 'vertical',
 };
 

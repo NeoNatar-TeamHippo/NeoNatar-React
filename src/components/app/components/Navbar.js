@@ -5,8 +5,8 @@ import User from '../../../images/Profile_Picture.png';
 
 import { CLASSNAMES, ICONS, STRINGS } from '../constants';
 
-const { HORIZONTAL, NAME, NEONATAR, OVERVIEW, VERTICAL } = STRINGS;
-const { BARS, BELL, SEARCH } = ICONS;
+const { HORIZONTAL, NAME, NEONATAR, VERTICAL } = STRINGS;
+const { BELL, SEARCH } = ICONS;
 const { LEFT_NAV_MENU, HEADER_MENU, RIGHT_NAV_MENU } = CLASSNAMES;
 
 const { Item } = Menu;
@@ -18,12 +18,6 @@ const Navabar = () => (
             <Item>
                 <Avatar src={Logo} />
                 {NEONATAR}
-            </Item>
-            <Item>
-                <Icon type={BARS} />
-            </Item>
-            <Item>
-                {OVERVIEW}
             </Item>
         </Menu>
         <Menu mode={HORIZONTAL} className={RIGHT_NAV_MENU}>

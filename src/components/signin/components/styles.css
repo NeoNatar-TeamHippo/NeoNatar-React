@@ -1,5 +1,7 @@
 .center_card {
     min-width: 100%;
+    margin-top: 70px;
+    text-align: center;
 }
 
 .card_background {
