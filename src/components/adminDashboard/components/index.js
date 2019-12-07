@@ -1,3 +1,3 @@
-// import AdminDashboard from './AdminDashboard';
+import AdminDashboard from './AdminDashboard';
 
-// export { AdminDashboard };
+export { AdminDashboard };

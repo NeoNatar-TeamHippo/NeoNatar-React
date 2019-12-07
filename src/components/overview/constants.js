@@ -2,7 +2,7 @@
 export const CARDS = [
     { counts: 10, type: 'Pending Approval' },
     { counts: '99+', type: 'Approved Campaigns' },
-    { counts: 54, type: 'locations' },
+    { counts: 54, type: 'Locations' },
     { counts: 7, type: 'Staff' },
 ];
 

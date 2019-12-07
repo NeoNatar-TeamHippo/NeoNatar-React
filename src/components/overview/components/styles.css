@@ -1,6 +1,7 @@
 .dashboard-content {
     padding-top: 70px;
     border-bottom: 0 ;
+    background: white;
 }
 .dashboard-card {
     width: 220px;
