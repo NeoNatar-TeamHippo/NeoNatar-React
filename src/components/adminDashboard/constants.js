@@ -8,6 +8,8 @@ export const CARDS = [
 
 /** @constant */
 export const NEW_CAMPAIGNS = 'New Campaigns';
+/** @constant */
+export const ALL_CAMPAIGNS = 'All Campaigns';
 
 /** @constant */
 export const VIDEO_CAMERA = 'video-camera';

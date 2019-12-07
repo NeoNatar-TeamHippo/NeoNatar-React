@@ -1,36 +1,39 @@
 import React from 'react';
-import { Checkbox, Tag, Table, Icon, Badge, Card, Col, Layout, Row } from 'antd';
+import { Tag, Table, Icon, Input, Badge, Card, Col, Layout, Row } from 'antd';
 
-import { CARDS, NEW_CAMPAIGNS, VIDEO_CAMERA } from '../constants';
+import { ALL_CAMPAIGNS, CARDS, NEW_CAMPAIGNS, VIDEO_CAMERA } from '../constants';
 import sideMenu from '../../sideMenu';
 
 const { SideMenu } = sideMenu.components;
 const { Content, Sider } = Layout;
-
+const { Search } = Input;
 const data = [
     {
-        category: 'Transportation',
+        amount: '₦50000000',
+        customerName: 'Innoson',
+        date: 'May 26, 2019',
         key: '1',
-        locations: '10',
-        price: 'free',
-        status: ['pending'],
-        videoDetails: 'The Gods are to be blamed',
+        sn: '1',
+        status: ['live'],
+        transactionDetails: 'MTN Pulse Dec Promo',
     },
     {
-        category: 'Science',
+        amount: '₦20000000',
+        customerName: 'Aliko Dangote',
+        date: 'October 12, 2019',
         key: '2',
-        locations: '5',
-        price: '₦2500',
-        status: ['approved'],
-        videoDetails: 'Saturation Point in Distress',
+        sn: '2',
+        status: ['live'],
+        transactionDetails: 'MTN Hackathon with CCHub',
     },
     {
-        category: 'Telecommunication',
+        amount: '₦25000000',
+        customerName: 'Innoson',
+        date: 'November 15, 2019',
         key: '3',
-        locations: '100',
-        price: '₦50000',
-        status: ['deactivated'],
-        videoDetails: 'Etisalat Naija We Hail Thee',
+        sn: '3',
+        status: ['expired'],
+        transactionDetails: 'Wizkid Concert with MTN',
     },
 ];
 
@@ -60,35 +63,42 @@ const AdminDashboard = () => (
             </Row>
             <Table
                 dataSource={data}
-                title={() => 'All Campaigns'}
+                title={() => (
+                    <div>
+                        {ALL_CAMPAIGNS}
+                        <Search
+                            style={{ marginLeft: 100, width: 400 }}
+                            placeholder="search campaigns"
+                        />
+                    </div>
+                )}
                 bordered
                 columns={
                     [
                         {
-                            dataIndex: 'videoDetails',
-                            key: 'videoDetails',
-                            render: videoDetails => (
-                                <span>
-                                    <Checkbox margin-right={200} />
-                                    {videoDetails}
-                                </span>
-                            ),
-                            title: 'Video details',
+                            dataIndex: 'sn',
+                            key: 'sn',
+                            title: 'S/N',
                         },
                         {
-                            dataIndex: 'category',
-                            key: 'category',
-                            title: 'Category',
+                            dataIndex: 'transactionDetails',
+                            key: 'transactionDetails',
+                            title: 'Transaction Details',
                         },
                         {
-                            dataIndex: 'price',
-                            key: 'price',
-                            title: 'Price',
+                            dataIndex: 'customerName',
+                            key: 'customerName',
+                            title: 'Customer Name',
                         },
                         {
-                            dataIndex: 'locations',
-                            key: 'locations',
-                            title: 'Locations',
+                            dataIndex: 'amount',
+                            key: 'amount',
+                            title: 'Amount',
+                        },
+                        {
+                            dataIndex: 'date',
+                            key: 'date',
+                            title: 'Date',
                         },
                         {
                             dataIndex: 'status',
@@ -97,9 +107,7 @@ const AdminDashboard = () => (
                                 <span>
                                     {status.map(tag => {
                                         let color;
-                                        if (tag === 'pending') {
-                                            color = 'yellow';
-                                        } else if (tag === 'approved') {
+                                        if (tag === 'live') {
                                             color = 'green';
                                         } else {
                                             color = 'red';
