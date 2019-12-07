@@ -1,0 +1,5 @@
+.video-upload {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

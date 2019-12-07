@@ -1,12 +1,19 @@
 .dashboard-content {
     padding-top: 70px;
-    border-bottom: 0 ;
+    border-bottom: 0;
     background: white;
 }
 .dashboard-card {
     width: 220px;
     height: 105px;
     border-radius: 10px;
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 50px;
 }
 .ticket-card {
     margin-top: 20px;
