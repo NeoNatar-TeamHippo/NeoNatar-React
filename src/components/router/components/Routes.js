@@ -5,15 +5,17 @@ import ScrollToTop from './ScrollToTop';
 import NoMatch from './NoMatch';
 import { PATHS } from '../constants';
 
+import app from '../../app';
+import adminDashboard from '../../adminDashboard';
+import campaigns from '../../campaigns';
 import history from '../../history/History';
 import overview from '../../overview';
-import campaigns from '../../campaigns';
-import app from '../../app';
 import signup from '../../signup';
 import signin from '../../signin';
 
-const { CAMPAIGNS, OVERVIEW, SIGNUP, SIGNIN } = PATHS;
+const { ADMIN_DASHBOARD, CAMPAIGNS, OVERVIEW, SIGNUP, SIGNIN } = PATHS;
 const { App } = app.components;
+const { AdminDashboard } = adminDashboard.components;
 const { Overview } = overview.components;
 const { Campaigns } = campaigns.components;
 const { SignUp } = signup.components;
@@ -24,6 +26,7 @@ const Routes = () => (
         <ScrollToTop>
             <App>
                 <Switch>
+                    <Route path={ADMIN_DASHBOARD} exact strict component={AdminDashboard} />
                     <Route path={OVERVIEW} exact strict component={Overview} />
                     <Route path={CAMPAIGNS} exact strict component={Campaigns} />
                     <Route path={SIGNIN} exact strict component={SignIn} />
