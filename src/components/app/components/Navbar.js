@@ -1,49 +1,48 @@
-import React from 'react';
-import { Divider, Icon, Avatar, Layout, Menu } from 'antd';
+import React, { useState } from 'react';
+import { Avatar, Drawer, Button } from 'antd';
+
+import RightMenu from './RightNav';
+import { NEONATAR } from '../constants';
+
 import Logo from '../../../images/Logo.png';
-import User from '../../../images/Profile_Picture.png';
 
-import { CLASSNAMES, ICONS, STRINGS } from '../constants';
+const Navbar = () => {
+    const [visible, setVisible] = useState(false);
 
-const { HORIZONTAL, NAME, NEONATAR, OVERVIEW, VERTICAL } = STRINGS;
-const { BARS, BELL, SEARCH } = ICONS;
-const { LEFT_NAV_MENU, HEADER_MENU, RIGHT_NAV_MENU } = CLASSNAMES;
+    const showDrawer = () => {
+        setVisible(true);
+    };
 
-const { Item } = Menu;
-const { Header } = Layout;
+    const onClose = () => {
+        setVisible(false);
+    };
 
-const Navabar = () => (
-    <Header className={HEADER_MENU}>
-        <Menu mode={HORIZONTAL} className={LEFT_NAV_MENU}>
-            <Item>
+    return (
+        <nav className="menuBar">
+            <div className="logo">
                 <Avatar src={Logo} />
                 {NEONATAR}
-            </Item>
-            <Item>
-                <Icon type={BARS} />
-            </Item>
-            <Item>
-                {OVERVIEW}
-            </Item>
-        </Menu>
-        <Menu mode={HORIZONTAL} className={RIGHT_NAV_MENU}>
-            <Item>
-                <Icon type={SEARCH} />
-            </Item>
-            <Item>
-                <Icon type={BELL} />
-            </Item>
-            <Item>
-                <Divider type={VERTICAL} />
-            </Item>
-            <Item>
-                {NAME}
-            </Item>
-            <Item>
-                <Avatar src={User} />
-            </Item>
-        </Menu>
-    </Header>
-);
+            </div>
+            <div className="menuCon">
+                <div className="rightMenu">
+                    <RightMenu />
+                </div>
+                <Button className="barsMenu" type="primary" onClick={showDrawer}>
+                    <span className="barsBtn" />
+                </Button>
+                <Drawer
+                    title="Menu"
+                    placement="right"
+                    closable={false}
+                    onClose={onClose}
+                    visible={visible}
+                >
+                    <RightMenu />
+                </Drawer>
 
-export default Navabar;
+            </div>
+        </nav>
+    );
+};
+
+export default Navbar;

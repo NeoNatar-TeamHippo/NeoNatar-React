@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { Card, Row, Col, Typography, Button, Alert } from 'antd';
-import HomeLayout from '../../hoc/homeLayout';
+import HomeLayout from '../../hoc/homeLayout/HomeLayout';
 import SignInForm from './Form';
 import { SIGN_UP, ACCOUNT_TEXT, SIGN_IN, CENTER_CARD } from '../constants';
 

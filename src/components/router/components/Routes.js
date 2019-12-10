@@ -10,15 +10,16 @@ import PublicRoute from './PublicRoutes';
 import ScrollToTop from './ScrollToTop';
 import NoMatch from './NoMatch';
 import { PATHS } from '../constants';
-
-import dashboard from '../../dashboard';
+import overview from '../../overview';
+import campaigns from '../../campaigns';
 // import app from '../../app';
 import signup from '../../signup';
 import signin from '../../signin';
 
-const { DASHBOARD, SIGNUP, SIGNIN } = PATHS;
+const { CAMPAIGNS, OVERVIEW, SIGNUP, SIGNIN } = PATHS;
 // const { App } = app.components;
-const { Dashboard } = dashboard.components;
+const { Overview } = overview.components;
+const { Campaigns } = campaigns.components;
 const { SignUp } = signup.components;
 const { SignIn } = signin.components;
 
@@ -45,10 +46,17 @@ const Routes = () => {
                 <Switch>
                     <PrivateRoute
                         authenticated={authenticated}
-                        path={DASHBOARD}
+                        path={CAMPAIGNS}
                         exact
                         strict
-                        component={Dashboard}
+                        component={Campaigns}
+                    />
+                    <PrivateRoute
+                        authenticated={authenticated}
+                        path={OVERVIEW}
+                        exact
+                        strict
+                        component={Overview}
                     />
                     <PublicRoute
                         authenticated={authenticated}

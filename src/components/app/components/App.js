@@ -3,19 +3,21 @@ import { Layout } from 'antd';
 import { withRouter } from 'react-router-dom';
 
 import Navbar from './Navbar';
+import FooterComponent from './Footer';
 
-const { Content } = Layout;
+const { Content, Footer } = Layout;
 
-class App extends React.Component {
-    render() {
-        const { children } = this.props;
-        return (
-            <Layout>
-                <Navbar />
-                <Content>{children}</Content>
-            </Layout>
-        );
-    }
-}
+const App = props => {
+    const { children } = props;
+    return (
+        <Layout>
+            <Navbar />
+            <Content className="content">{children}</Content>
+            <Footer className="footer text-center">
+                <FooterComponent />
+            </Footer>
+        </Layout>
+    );
+};
 
 export default withRouter(App);
