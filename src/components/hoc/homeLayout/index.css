@@ -1,0 +1,19 @@
+.content {
+    min-height: 80vh;
+    text-align: center;
+    background-color: #fff;
+}
+
+header.ant-layout-header {
+    background: #fff;
+    min-height: 10vh;
+}
+
+footer.ant-layout-footer {
+    background: #fff;
+    min-height: 10vh;
+}
+
+.center_form {
+    margin: auto;
+}

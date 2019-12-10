@@ -1,29 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Form, Icon, Input } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import { SIGN_IN } from '../constants';
-// import { addUser } from '../actions';
+import { userSignIn } from '../actions';
 
 const SignInForm = ({ form }) => {
-    // const dispatch = useDispatch();
-    const [loading, setLoading] = useState(false);
-    const { getFieldDecorator } = form;
+    const dispatch = useDispatch();
+    const { loading } = useSelector(state => state.signIn);
+    const { getFieldDecorator, resetFields, validateFields } = form;
     const handleSubmit = e => {
         e.preventDefault();
-        setLoading(true);
-        form.validateFields((err, values) => {
+        validateFields((err, values) => {
             if (!err) {
                 const formValues = {
                     email: values.email,
                     password: values.password,
                 };
-                console.log(formValues);
-                // dispatch(addUser(formValues));
-                form.resetFields();
+                dispatch(userSignIn(formValues));
+                resetFields();
             }
         });
-        setTimeout(() => {
-            setLoading(false);
-        }, 3000);
     };
     return (
         <Form onSubmit={handleSubmit}>
@@ -57,6 +54,12 @@ const SignInForm = ({ form }) => {
         </Form>
     );
 };
-
+SignInForm.propTypes = {
+    form: PropTypes.shape({
+        getFieldDecorator: PropTypes.func,
+        resetFields: PropTypes.func,
+        validateFields: PropTypes.func,
+    }).isRequired,
+};
 const WrappedNormalSignInForm = Form.create({ name: 'signin' })(SignInForm);
 export default WrappedNormalSignInForm;

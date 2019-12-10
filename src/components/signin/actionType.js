@@ -20,12 +20,12 @@ export const SET_UNAUTHENTICATED = 'SET_UNAUTHENTICATED';
  */
 export const SET_USER = 'SET_USER';
 /**
- * Fired by the {@link actions.userSignup }
+ * Fired by the {@link actions.userSignIn }
  * action creator.
  *
  * @type {String}
  */
-export const USER_SIGNUP = 'USER_SIGN_UP';
+export const USER_SIGNIN = 'USER_SIGN_IN';
 /**
  * Fired by the {@link actions.setErrors }
  * action creator.

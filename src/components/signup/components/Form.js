@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { Button, Form, Icon, Input } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import { SIGN_UP } from '../constants';
 import { userSignUp } from '../actions';
 
-const SignUpForm = ({ form, history }) => {
+const SignUpForm = ({ form }) => {
     const dispatch = useDispatch();
     const [confirmDirty, setconfirmDirty] = useState(false);
-    const { getFieldDecorator } = form;
+    const { getFieldDecorator, getFieldValue, validateFields } = form;
     const { loading } = useSelector(state => state.signUp);
     const handleSubmit = e => {
         e.preventDefault();
-        form.validateFields((err, values) => {
+        validateFields((err, values) => {
             if (!err) {
                 const formValues = {
                     confirmPassword: values.confirmPassword,
@@ -21,8 +20,7 @@ const SignUpForm = ({ form, history }) => {
                     lastName: values.lastName,
                     password: values.password,
                 };
-                dispatch(userSignUp(formValues, history));
-                form.resetFields();
+                dispatch(userSignUp(formValues));
             }
         });
     };
@@ -33,7 +31,7 @@ const SignUpForm = ({ form, history }) => {
     };
 
     const compareToFirstPassword = (rule, value, callback) => {
-        if (value && value !== form.getFieldValue('password')) {
+        if (value && value !== getFieldValue('password')) {
             callback('Passwords do not match');
         } else {
             callback();
@@ -42,7 +40,7 @@ const SignUpForm = ({ form, history }) => {
 
     const validateToNextPassword = (rule, value, callback) => {
         if (value && confirmDirty) {
-            form.validateFields(['confirm'], { force: true });
+            validateFields(['confirm'], { force: true });
         }
         callback();
     };
@@ -107,4 +105,4 @@ const SignUpForm = ({ form, history }) => {
 };
 
 const WrappedNormalSignUpForm = Form.create({ name: 'signup' })(SignUpForm);
-export default withRouter(WrappedNormalSignUpForm);
+export default WrappedNormalSignUpForm;

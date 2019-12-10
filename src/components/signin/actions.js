@@ -1,4 +1,5 @@
 import * as TYPES from './actionType';
+
 /**
  * Triggers request to load UI
  *
@@ -58,13 +59,13 @@ export const setUnAuthenticated = payload => ({
     type: TYPES.SET_UNAUTHENTICATED,
 });
 /**
- * Triggers request to signup a user
+ * Triggers request to set signin a user
  *
  * @function
- * @return {void} The {@link actionTypes.USER_SIGNUP } action.
+ * @return {void} The {@link actionTypes.USER_SIGNIN } action.
  */
-export const userSignUp = payload => ({
+export const userSignIn = payload => ({
     payload,
-    type: TYPES.USER_SIGNUP,
+    type: TYPES.USER_SIGNIN,
 });
 

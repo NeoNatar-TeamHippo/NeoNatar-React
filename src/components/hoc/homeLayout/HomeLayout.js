@@ -1,5 +1,6 @@
 import React from 'react';
 import { Layout } from 'antd';
+import './index.css';
 import HeaderComponent from './Header';
 import FooterComponent from './Footer';
 
