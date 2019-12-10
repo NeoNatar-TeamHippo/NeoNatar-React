@@ -25,9 +25,6 @@ const SignUpForm = ({ form, history }) => {
                 form.resetFields();
             }
         });
-        setTimeout(() => {
-            setLoading(false);
-        }, 3000);
     };
 
     const handleConfirmBlur = e => {
