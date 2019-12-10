@@ -2,24 +2,24 @@ import React from 'react';
 import { Button, Form, Icon, Input } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { SIGN_IN } from '../constants';
 import { userSignIn } from '../actions';
 
-const SignInForm = ({ form, history }) => {
+const SignInForm = ({ form }) => {
     const dispatch = useDispatch();
     const { loading } = useSelector(state => state.signIn);
-    const { getFieldDecorator } = form;
+    const { getFieldDecorator, resetFields, validateFields } = form;
     const handleSubmit = e => {
         e.preventDefault();
-
-        form.validateFields((err, values) => {
+        validateFields((err, values) => {
             if (!err) {
                 const formValues = {
                     email: values.email,
                     password: values.password,
                 };
-                dispatch(userSignIn(formValues, history));
-                form.resetFields();
+                dispatch(userSignIn(formValues));
+                resetFields();
             }
         });
     };
@@ -55,6 +55,12 @@ const SignInForm = ({ form, history }) => {
         </Form>
     );
 };
-
+SignInForm.propTypes = {
+    form: PropTypes.shape({
+        getFieldDecorator: PropTypes.func,
+        resetFields: PropTypes.func,
+        validateFields: PropTypes.func,
+    }).isRequired,
+};
 const WrappedNormalSignInForm = Form.create({ name: 'signin' })(SignInForm);
 export default withRouter(WrappedNormalSignInForm);

@@ -25,8 +25,7 @@ export const setUnAuthenticated = payload => ({
     payload,
     type: SET_UNAUTHENTICATED,
 });
-export const userSignIn = (payload, history) => ({
-    history,
+export const userSignIn = payload => ({
     payload,
     type: USER_SIGNIN,
 });
