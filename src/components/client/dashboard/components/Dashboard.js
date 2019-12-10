@@ -1,43 +1,22 @@
 import React from 'react';
-import { Tag, Table, Icon, Input, Badge, Card, Col, Layout, Row } from 'antd';
+import { Modal, Tag, Table, Icon, Input, Badge, Card, Col, Layout, Row } from 'antd';
 
-import { ALL_CAMPAIGNS, CARDS, NEW_CAMPAIGNS, VIDEO_CAMERA } from '../constants';
-import sideMenu from '../../sideMenu';
+import { ALL_CAMPAIGNS, CARDS, DATA, NEW_CAMPAIGNS, VIDEO_CAMERA } from '../constants';
+import sideMenu from '../../../sideMenu';
 
 const { SideMenu } = sideMenu.components;
 const { Content, Sider } = Layout;
 const { Search } = Input;
-const data = [
-    {
-        amount: '₦50000000',
-        customerName: 'Innoson',
-        date: 'May 26, 2019',
-        key: '1',
-        sn: '1',
-        status: ['live'],
-        transactionDetails: 'MTN Pulse Dec Promo',
-    },
-    {
-        amount: '₦20000000',
-        customerName: 'Aliko Dangote',
-        date: 'October 12, 2019',
-        key: '2',
-        sn: '2',
-        status: ['live'],
-        transactionDetails: 'MTN Hackathon with CCHub',
-    },
-    {
-        amount: '₦25000000',
-        customerName: 'Innoson',
-        date: 'November 15, 2019',
-        key: '3',
-        sn: '3',
-        status: ['expired'],
-        transactionDetails: 'Wizkid Concert with MTN',
-    },
-];
-
-const AdminDashboard = () => (
+const { confirm } = Modal;
+function showConfirm() {
+    confirm({
+        content: 'Some descriptions',
+        onOk() {
+        },
+        title: 'Campaign Created Successfully',
+    });
+}
+const Dashboard = () => (
     <Layout>
         <Sider>
             <SideMenu />
@@ -53,16 +32,16 @@ const AdminDashboard = () => (
                 ))}
             </Row>
             <Row>
-                <Col span={8} offset={8}>
+                <Col span={8} offset={9}>
                     <Card className="dashboard-card">
                         {NEW_CAMPAIGNS}
                         <br />
-                        <Icon type={VIDEO_CAMERA} />
+                        <Icon onClick={showConfirm} type={VIDEO_CAMERA} />
                     </Card>
                 </Col>
             </Row>
             <Table
-                dataSource={data}
+                dataSource={DATA}
                 title={() => (
                     <div>
                         {ALL_CAMPAIGNS}
@@ -91,9 +70,9 @@ const AdminDashboard = () => (
                             title: 'Customer Name',
                         },
                         {
-                            dataIndex: 'amount',
-                            key: 'amount',
-                            title: 'Amount',
+                            dataIndex: 'cost',
+                            key: 'cost',
+                            title: 'Cost',
                         },
                         {
                             dataIndex: 'date',
@@ -131,4 +110,4 @@ const AdminDashboard = () => (
     </Layout>
 );
 
-export default AdminDashboard;
+export default Dashboard;

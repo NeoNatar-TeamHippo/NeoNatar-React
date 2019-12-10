@@ -27,9 +27,9 @@ const AllCampaigns = () => (
                     title: 'Category',
                 },
                 {
-                    dataIndex: 'price',
-                    key: 'price',
-                    title: 'Price',
+                    dataIndex: 'cost',
+                    key: 'cost',
+                    title: 'Cost',
                 },
                 {
                     dataIndex: 'locations',
