@@ -16,7 +16,6 @@ const App = props => {
             <Footer className="footer text-center">
                 <FooterComponent />
             </Footer>
-
         </Layout>
     );
 };

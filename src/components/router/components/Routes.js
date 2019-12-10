@@ -1,11 +1,11 @@
 import React from 'react';
-import { Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import ScrollToTop from './ScrollToTop';
 import NoMatch from './NoMatch';
 import { PATHS } from '../constants';
 
-import history from '../../history/History';
+// import history from '../../history/History';
 import overview from '../../overview';
 import campaigns from '../../campaigns';
 import app from '../../app';
@@ -20,7 +20,7 @@ const { SignUp } = signup.components;
 const { SignIn } = signin.components;
 
 const Routes = () => (
-    <Router history={history}>
+    <BrowserRouter>
         <ScrollToTop>
             <App>
                 <Switch>
@@ -32,7 +32,7 @@ const Routes = () => (
                 </Switch>
             </App>
         </ScrollToTop>
-    </Router>
+    </BrowserRouter>
 );
 
 export default Routes;
