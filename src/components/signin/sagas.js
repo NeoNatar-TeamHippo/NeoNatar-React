@@ -12,7 +12,7 @@ function* userSignIn(userData) {
             const authorization = `Bearer ${res.data}`;
             yield put(setAuthenticated(authorization));
             yield put(clearErrors());
-            yield put(push('/dashboard'));
+            yield put(push('/overview'));
         } else {
             yield put(setErrors({ message: res.message }));
             yield put(setUnAuthenticated());

@@ -105,4 +105,4 @@ const SignUpForm = ({ form }) => {
 };
 
 const WrappedNormalSignUpForm = Form.create({ name: 'signup' })(SignUpForm);
-export default withRouter(WrappedNormalSignUpForm);
+export default WrappedNormalSignUpForm;
