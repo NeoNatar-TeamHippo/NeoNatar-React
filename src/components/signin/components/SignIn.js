@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { withRouter, Link } from 'react-router-dom';
 import { Card, Row, Col, Typography, Button, Alert } from 'antd';
 import HomeLayout from '../../hoc/homeLayout';
 import SignInForm from './Form';
@@ -38,9 +39,11 @@ const SignIn = () => {
                             <SignInForm />
                             <Text>
                                 {ACCOUNT_TEXT}
-                                <Button type="link">
-                                    {SIGN_UP}
-                                </Button>
+                                <Link to="/signup">
+                                    <Button type="link">
+                                        {SIGN_UP}
+                                    </Button>
+                                </Link>
                             </Text>
                         </Card>
                     </Col>
@@ -49,4 +52,4 @@ const SignIn = () => {
         </HomeLayout>
     );
 };
-export default SignIn;
+export default withRouter(SignIn);

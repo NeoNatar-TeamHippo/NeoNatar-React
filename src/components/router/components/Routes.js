@@ -1,6 +1,9 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
 import jwtDecode from 'jwt-decode';
+import history from '../../history/History';
 import PrivateRoute from './PrivateRoutes';
 import PublicRoute from './PublicRoutes';
 
@@ -20,10 +23,11 @@ const { SignUp } = signup.components;
 const { SignIn } = signin.components;
 
 const Routes = () => {
-    const checkAuthentication = () => {
-        const token = localStorage.getItem('FBToken');
-        if (token) {
-            const tokeToDecode = token.split(' ')[1];
+    const { token } = useSelector(state => state.signIn);
+    const userToken = token || localStorage.getItem('FBToken');
+    const checkTokenAuthentication = () => {
+        if (userToken) {
+            const tokeToDecode = userToken.split(' ')[1];
             const decodedToken = jwtDecode(tokeToDecode);
             if (decodedToken.exp * 1000 < Date.now()) {
                 localStorage.removeItem('FBToken');
@@ -33,10 +37,9 @@ const Routes = () => {
         }
         return false;
     };
-    const authenticated = checkAuthentication();
-
+    const authenticated = checkTokenAuthentication();
     return (
-        <BrowserRouter>
+        <ConnectedRouter history={history}>
             <ScrollToTop>
                 {/* <App> */}
                 <Switch>
@@ -67,7 +70,7 @@ const Routes = () => {
                 </Switch>
                 {/* </App> */}
             </ScrollToTop>
-        </BrowserRouter>
+        </ConnectedRouter>
     );
 };
 

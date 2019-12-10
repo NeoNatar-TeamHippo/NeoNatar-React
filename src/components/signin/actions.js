@@ -1,32 +1,71 @@
-import {
-    SET_USER, SET_ERRORS, CLEAR_ERRORS, LOADING_UI, SET_AUTHENTICATED, SET_UNAUTHENTICATED,
-    USER_SIGNIN
-} from './actionType';
+import * as TYPES from './actionType';
 
+/**
+ * Triggers request to load UI
+ *
+ * @function
+ * @return {void} The {@link actionTypes.LOADING_UI } action.
+ */
 export const loadingUI = () => ({
-    type: LOADING_UI,
+    type: TYPES.LOADING_UI,
 });
+/**
+ * Triggers request to set user
+ *
+ * @function
+ * @return {void} The {@link actionTypes.SET_USER } action.
+ */
 export const setUser = payload => ({
     payload,
-    type: SET_USER,
+    type: TYPES.SET_USER,
 });
+/**
+ * Triggers request to set errors after a bad request
+ *
+ * @function
+ * @return {void} The {@link actionTypes.SET_ERRORS } action.
+ */
 export const setErrors = payload => ({
     payload,
-    type: SET_ERRORS,
+    type: TYPES.SET_ERRORS,
 });
+/**
+ * Triggers request to clear errors after a success
+ *
+ * @function
+ * @return {void} The {@link actionTypes.CLEAR_ERRORS } action.
+ */
 export const clearErrors = () => ({
-    type: CLEAR_ERRORS,
+    type: TYPES.CLEAR_ERRORS,
 });
+/**
+ * Triggers request to set a user as authenticated
+ *
+ * @function
+ * @return {void} The {@link actionTypes.SET_AUTHENTICATED } action.
+ */
 export const setAuthenticated = payload => ({
     payload,
-    type: SET_AUTHENTICATED,
+    type: TYPES.SET_AUTHENTICATED,
 });
+/**
+ * Triggers request to set a user as unauthenticated
+ *
+ * @function
+ * @return {void} The {@link actionTypes.SET_UNAUTHENTICATED } action.
+ */
 export const setUnAuthenticated = payload => ({
     payload,
-    type: SET_UNAUTHENTICATED,
+    type: TYPES.SET_UNAUTHENTICATED,
 });
+/**
+ * Triggers request to set signin a user
+ *
+ * @function
+ * @return {void} The {@link actionTypes.USER_SIGNIN } action.
+ */
 export const userSignIn = payload => ({
     payload,
-    type: USER_SIGNIN,
+    type: TYPES.USER_SIGNIN,
 });
 

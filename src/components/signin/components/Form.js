@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Form, Icon, Input } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { SIGN_IN } from '../constants';
 import { userSignIn } from '../actions';
@@ -63,4 +62,4 @@ SignInForm.propTypes = {
     }).isRequired,
 };
 const WrappedNormalSignInForm = Form.create({ name: 'signin' })(SignInForm);
-export default withRouter(WrappedNormalSignInForm);
+export default WrappedNormalSignInForm;
