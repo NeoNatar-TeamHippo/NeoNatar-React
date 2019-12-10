@@ -3,8 +3,8 @@ import {
 } from './actionType';
 
 const initialState = {
-    authenticated: false,
     errors: {},
+    isAuthenticated: false,
     loading: false,
     token: '',
     user: {},
@@ -15,10 +15,10 @@ export default (state = initialState, { type, payload }) => {
             return { ...state, loading: false, user: payload };
         case SET_AUTHENTICATED:
             localStorage.setItem('FBToken', payload);
-            return { ...state, authenticated: true, loading: false, token: payload };
+            return { ...state, isAuthenticated: true, loading: false, token: payload };
         case SET_UNAUTHENTICATED:
             localStorage.removeItem('FBToken');
-            return { ...state, authenticated: false, loading: false };
+            return { ...state, isAuthenticated: false, loading: false };
         case LOADING_UI:
             return { ...state, loading: true };
         case SET_ERRORS:

@@ -1,35 +1,11 @@
 import React from 'react';
 import { Checkbox, Tag, Table } from 'antd';
 
-const data = [
-    {
-        category: 'Transportation',
-        key: '1',
-        locations: '10',
-        price: 'free',
-        status: ['pending'],
-        videoDetails: 'The Gods are to be blamed',
-    },
-    {
-        category: 'Science',
-        key: '2',
-        locations: '5',
-        price: '₦2500',
-        status: ['approved'],
-        videoDetails: 'Saturation Point in Distress',
-    },
-    {
-        category: 'Telecommunication',
-        key: '3',
-        locations: '100',
-        price: '₦50000',
-        status: ['deactivated'],
-        videoDetails: 'Etisalat Naija We Hail Thee',
-    },
-];
+import { DATA } from '../constants';
+
 const AllCampaigns = () => (
     <Table
-        dataSource={data}
+        dataSource={DATA}
         title={() => 'All Campaigns'}
         bordered
         columns={
@@ -51,9 +27,9 @@ const AllCampaigns = () => (
                     title: 'Category',
                 },
                 {
-                    dataIndex: 'price',
-                    key: 'price',
-                    title: 'Price',
+                    dataIndex: 'cost',
+                    key: 'cost',
+                    title: 'Cost',
                 },
                 {
                     dataIndex: 'locations',

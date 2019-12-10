@@ -116,3 +116,13 @@
       padding: 10px 20px;
     }
   }
+
+.header.ant-layout-header {
+    background: #fff;
+    min-height: 10vh;
+}
+
+.footer.ant-layout-footer {
+    background: #fff;
+    min-height: 10vh;
+}

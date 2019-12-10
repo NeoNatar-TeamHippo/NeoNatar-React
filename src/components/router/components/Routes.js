@@ -3,21 +3,25 @@ import { useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import jwtDecode from 'jwt-decode';
-import history from '../../history/History';
+
+import NoMatch from './NoMatch';
 import PrivateRoute from './PrivateRoutes';
 import PublicRoute from './PublicRoutes';
 
 import ScrollToTop from './ScrollToTop';
-import NoMatch from './NoMatch';
 import { PATHS } from '../constants';
-import overview from '../../overview';
+
+import app from '../../app';
+import dashboard from '../../dashboard';
 import campaigns from '../../campaigns';
-// import app from '../../app';
+import history from '../../history/History';
+import overview from '../../overview';
 import signup from '../../signup';
 import signin from '../../signin';
 
-const { CAMPAIGNS, OVERVIEW, SIGNUP, SIGNIN } = PATHS;
-// const { App } = app.components;
+const { DASHBOARD, CAMPAIGNS, OVERVIEW, SIGNUP, SIGNIN } = PATHS;
+const { App } = app.components;
+const { Dashboard } = dashboard.components;
 const { Overview } = overview.components;
 const { Campaigns } = campaigns.components;
 const { SignUp } = signup.components;
@@ -42,41 +46,48 @@ const Routes = () => {
     return (
         <ConnectedRouter history={history}>
             <ScrollToTop>
-                {/* <App> */}
-                <Switch>
-                    <PrivateRoute
-                        authenticated={authenticated}
-                        path={CAMPAIGNS}
-                        exact
-                        strict
-                        component={Campaigns}
-                    />
-                    <PrivateRoute
-                        authenticated={authenticated}
-                        path={OVERVIEW}
-                        exact
-                        strict
-                        component={Overview}
-                    />
-                    <PublicRoute
-                        authenticated={authenticated}
-                        path={SIGNIN}
-                        exact
-                        strict
-                        component={SignIn}
-                        restricted
-                    />
-                    <PublicRoute
-                        authenticated={authenticated}
-                        path={SIGNUP}
-                        exact
-                        strict
-                        component={SignUp}
-                        restricted={false}
-                    />
-                    <Route component={NoMatch} />
-                </Switch>
-                {/* </App> */}
+                <App>
+                    <Switch>
+                        <PrivateRoute
+                            authenticated={authenticated}
+                            path={CAMPAIGNS}
+                            exact
+                            strict
+                            component={Campaigns}
+                        />
+                        <PrivateRoute
+                            authenticated={authenticated}
+                            path={DASHBOARD}
+                            exact
+                            strict
+                            component={Dashboard}
+                        />
+                        <PrivateRoute
+                            authenticated={authenticated}
+                            path={OVERVIEW}
+                            exact
+                            strict
+                            component={Overview}
+                        />
+                        <PublicRoute
+                            authenticated={authenticated}
+                            path={SIGNIN}
+                            exact
+                            strict
+                            component={SignIn}
+                            restricted
+                        />
+                        <PublicRoute
+                            authenticated={authenticated}
+                            path={SIGNUP}
+                            exact
+                            strict
+                            component={SignUp}
+                            restricted={false}
+                        />
+                        <Route component={NoMatch} />
+                    </Switch>
+                </App>
             </ScrollToTop>
         </ConnectedRouter>
     );
