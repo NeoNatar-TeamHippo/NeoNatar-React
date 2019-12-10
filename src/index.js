@@ -1,10 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'antd/dist/antd.css';
+import { Provider } from 'react-redux';
+import './index.css';
+import store from './components/redux/store';
 
 import router from './components/router';
 
-const { Routes: App } = router.components;
+const { Routes } = router.components;
+const App = () => (
+    <Provider store={store}>
+        <Routes />
+    </Provider>
+);
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

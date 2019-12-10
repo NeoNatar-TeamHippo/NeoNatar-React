@@ -9,7 +9,7 @@ const { BELL, SEARCH } = ICONS;
 
 const { Item } = Menu;
 
-const RightMenu = () => (
+const AuthRightMenu = () => (
     <Menu mode="horizontal">
         <Item>
             <Icon type={SEARCH} />
@@ -29,4 +29,4 @@ const RightMenu = () => (
     </Menu>
 );
 
-export default RightMenu;
+export default AuthRightMenu;

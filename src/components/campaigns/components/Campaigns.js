@@ -2,7 +2,7 @@ import React from 'react';
 import { Layout } from 'antd';
 
 import AllCampaigns from './AllCampaigns';
-import sideMenu from '../../../sideMenu';
+import sideMenu from '../../sideMenu';
 
 const { SideMenu } = sideMenu.components;
 const { Content, Sider } = Layout;

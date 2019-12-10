@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, Tag, Table, Icon, Input, Badge, Card, Col, Layout, Row } from 'antd';
 
 import { ALL_CAMPAIGNS, CARDS, DATA, NEW_CAMPAIGNS, VIDEO_CAMERA } from '../constants';
-import sideMenu from '../../../sideMenu';
+import sideMenu from '../../sideMenu';
 
 const { SideMenu } = sideMenu.components;
 const { Content, Sider } = Layout;

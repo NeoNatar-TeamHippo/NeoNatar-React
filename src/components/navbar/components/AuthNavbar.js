@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Avatar, Drawer, Button } from 'antd';
 
-import RightMenu from './RightNav';
+import RightMenu from './AuthRightNav';
 import { NEONATAR } from '../constants';
 
 import Logo from '../../../images/Logo.png';
 
-const Navbar = () => {
+const AuthNavbar = () => {
     const [visible, setVisible] = useState(false);
 
     const showDrawer = () => {
@@ -45,4 +45,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default AuthNavbar;

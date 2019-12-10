@@ -5,7 +5,7 @@ import UnresolvedTickets from './UnresolvedTickets';
 import Tasks from './Tasks';
 
 import { CARDS } from '../constants';
-import sideMenu from '../../../sideMenu';
+import sideMenu from '../../sideMenu';
 
 const { SideMenu } = sideMenu.components;
 const { Content, Sider } = Layout;

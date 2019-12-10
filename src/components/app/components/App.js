@@ -2,10 +2,11 @@ import React from 'react';
 import { Layout } from 'antd';
 import { withRouter } from 'react-router-dom';
 
-import Navbar from './Navbar';
+import navbar from '../../navbar';
 import FooterComponent from './Footer';
 
 const { Content, Footer } = Layout;
+const { Navbar } = navbar.components;
 
 const App = props => {
     const { children } = props;
@@ -16,7 +17,6 @@ const App = props => {
             <Footer className="footer text-center">
                 <FooterComponent />
             </Footer>
-
         </Layout>
     );
 };

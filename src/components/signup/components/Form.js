@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { Button, Form, Icon, Input } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
 import { SIGN_UP } from '../constants';
+import { userSignUp } from '../actions';
 
 const SignUpForm = ({ form }) => {
+    const dispatch = useDispatch();
     const [confirmDirty, setconfirmDirty] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const { getFieldDecorator } = form;
+    const { getFieldDecorator, getFieldValue, validateFields } = form;
+    const { loading } = useSelector(state => state.signUp);
     const handleSubmit = e => {
         e.preventDefault();
-        setLoading(true);
-        form.validateFields((err, values) => {
+        validateFields((err, values) => {
             if (!err) {
                 const formValues = {
                     confirmPassword: values.confirmPassword,
@@ -18,14 +20,9 @@ const SignUpForm = ({ form }) => {
                     lastName: values.lastName,
                     password: values.password,
                 };
-                console.log(formValues);
-                // dispatch(addUser(formValues));
-                form.resetFields();
+                dispatch(userSignUp(formValues));
             }
         });
-        setTimeout(() => {
-            setLoading(false);
-        }, 3000);
     };
 
     const handleConfirmBlur = e => {
@@ -34,7 +31,7 @@ const SignUpForm = ({ form }) => {
     };
 
     const compareToFirstPassword = (rule, value, callback) => {
-        if (value && value !== form.getFieldValue('password')) {
+        if (value && value !== getFieldValue('password')) {
             callback('Passwords do not match');
         } else {
             callback();
@@ -43,7 +40,7 @@ const SignUpForm = ({ form }) => {
 
     const validateToNextPassword = (rule, value, callback) => {
         if (value && confirmDirty) {
-            form.validateFields(['confirm'], { force: true });
+            validateFields(['confirm'], { force: true });
         }
         callback();
     };

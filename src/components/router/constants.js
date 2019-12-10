@@ -1,7 +1,7 @@
 /** @constant */
 export const PATHS = {
     CAMPAIGNS: '/campaigns',
-    CLIENT_DASHBOARD: '/client-dashboard',
+    DASHBOARD: '/dashboard',
     HOME: '/',
     OVERVIEW: '/overview',
     SIGNIN: '/signin',
