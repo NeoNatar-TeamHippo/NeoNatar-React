@@ -1,19 +1,23 @@
 .header {
-    min-height: 10vh !important;
     background-color: #fff !important;
 }
 
 .content {
-    min-height: 80vh !important;
-    text-align: center !important;
-    background-color: #fff !important;
+    min-height: 80vh;
+    text-align: center;
+    background-color: #fff;
 }
 
-.footer {
-    min-height: 10vh !important;
-    background-color: #fff !important;
+header.ant-layout-header {
+    background: #fff;
+    min-height: 10vh;
+}
+
+footer.ant-layout-footer {
+    background: #fff;
+    min-height: 10vh;
 }
 
 .center_form {
-    margin: auto !important;
+    margin: auto;
 }
