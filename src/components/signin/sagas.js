@@ -2,6 +2,7 @@ import { takeEvery, call, put } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import * as TYPES from './actionType';
 import { setErrors, loadingUI, setAuthenticated, setUnAuthenticated, clearErrors } from './actions';
+import { loadingUser } from '../navbar/actions'
 import { signInService } from './services';
 
 function* userSignIn(userData) {
@@ -12,6 +13,7 @@ function* userSignIn(userData) {
             const authorization = `Bearer ${res.data}`;
             yield put(setAuthenticated(authorization));
             yield put(clearErrors());
+            yield put(loadingUser(authorization));
             yield put(push('/overview'));
         } else {
             yield put(setErrors({ message: res.message }));

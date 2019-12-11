@@ -6,20 +6,14 @@
  * @type {String}
  */
 export const SET_USER = 'SET_USER';
+
 /**
- * Fired by the {@link actions.setErrors }
+ * Fired by the {@link actions.loadingNavBar }
  * action creator.
  *
  * @type {String}
  */
-export const SET_ERRORS = 'SET_ERRORS';
-/**
- * Fired by the {@link actions.loadingUI }
- * action creator.
- *
- * @type {String}
- */
-export const LOADING_UI = 'LOADING_UI';
+export const LOADING_NAVBAR = 'LOADING_NAVBAR';
 /**
  * Fired by the {@link actions.loadingUser }
  * action creator.
@@ -27,11 +21,5 @@ export const LOADING_UI = 'LOADING_UI';
  * @type {String}
  */
 export const LOADING_USER = 'LOADING_USER';
-/**
- * Fired by the {@link actions.clearErrors }
- * action creator.
- *
- * @type {String}
- */
-export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+
 
