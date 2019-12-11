@@ -1,10 +1,8 @@
 /** @constant */
 export const PATHS = {
     LOCATION: '/locations',
-    CAMPAIGNS: '/campaigns',
     DASHBOARD: '/dashboard',
     HOME: '/',
-    OVERVIEW: '/overview',
     SIGNIN: '/signin',
     SIGNUP: '/signup',
 };

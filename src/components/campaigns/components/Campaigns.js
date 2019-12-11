@@ -1,21 +1,70 @@
 import React from 'react';
-import { Layout } from 'antd';
+import { Checkbox, Tag, Table } from 'antd';
 
-import AllCampaigns from './AllCampaigns';
-import sideMenu from '../../sideMenu';
+import { DATA } from '../constants';
 
-const { SideMenu } = sideMenu.components;
-const { Content, Sider } = Layout;
+const AllCampaigns = () => (
+    <Table
+        dataSource={DATA}
+        title={() => 'All Campaigns'}
+        bordered
+        columns={
+            [
+                {
+                    dataIndex: 'videoDetails',
+                    key: 'videoDetails',
+                    render: videoDetails => (
+                        <span>
+                            <Checkbox margin-right={200} />
+                            {videoDetails}
+                        </span>
+                    ),
+                    title: 'Video details',
+                },
+                {
+                    dataIndex: 'category',
+                    key: 'category',
+                    title: 'Category',
+                },
+                {
+                    dataIndex: 'cost',
+                    key: 'cost',
+                    title: 'Cost',
+                },
+                {
+                    dataIndex: 'locations',
+                    key: 'locations',
+                    title: 'Locations',
+                },
+                {
+                    dataIndex: 'status',
+                    key: 'status',
+                    render: status => (
+                        <span>
+                            {status.map(tag => {
+                                let color;
+                                if (tag === 'pending') {
+                                    color = 'yellow';
+                                } else if (tag === 'approved') {
+                                    color = 'green';
+                                } else {
+                                    color = 'red';
+                                }
+                                return (
+                                    <Tag color={color} key={tag}>
+                                        {tag.toUpperCase()}
+                                    </Tag>
+                                );
+                            })}
+                        </span>
+                    ),
 
-const Campaigns = () => (
-    <Layout>
-        <Sider>
-            <SideMenu />
-        </Sider>
-        <Content className="dashboard-content">
-            <AllCampaigns />
-        </Content>
-    </Layout>
+                    title: 'Status',
+                },
+            ]
+        }
+        rowKey={record => record.id}
+    />
 );
 
-export default Campaigns;
+export default AllCampaigns;

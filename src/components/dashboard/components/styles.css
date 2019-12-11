@@ -1,3 +1,8 @@
-.search-campaigns {
-    width: 200px;
+.side-bar {
+    height: 100%;
+    border-right: 0;
+}
+
+.ant-menu-horizontal {
+    border-bottom: 0; 
 }
