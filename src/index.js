@@ -1,15 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react'
 import './index.css';
-import store from './components/redux/store';
+import reduxStore from './components/redux/store';
 
 import router from './components/router';
-
+const store = reduxStore.store;
+const persistor = reduxStore.persistor;
 const { Routes } = router.components;
 const App = () => (
     <Provider store={store}>
-        <Routes />
+        <PersistGate loading={null} persistor={persistor}>
+            <Routes />
+        </PersistGate>
     </Provider>
 );
 
