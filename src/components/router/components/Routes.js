@@ -12,6 +12,7 @@ import ScrollToTop from './ScrollToTop';
 import { PATHS } from '../constants';
 
 import app from '../../app';
+import locations from '../../locations';
 import dashboard from '../../dashboard';
 import campaigns from '../../campaigns';
 import history from '../../history/History';
@@ -19,8 +20,9 @@ import overview from '../../overview';
 import signup from '../../signup';
 import signin from '../../signin';
 
-const { DASHBOARD, CAMPAIGNS, OVERVIEW, SIGNUP, SIGNIN } = PATHS;
+const { DASHBOARD, LOCATION, CAMPAIGNS, OVERVIEW, SIGNUP, SIGNIN } = PATHS;
 const { App } = app.components;
+const { Location } = locations.components;
 const { Dashboard } = dashboard.components;
 const { Overview } = overview.components;
 const { Campaigns } = campaigns.components;
@@ -48,6 +50,18 @@ const Routes = () => {
             <ScrollToTop>
                 <App>
                     <Switch>
+                        {/* <PrivateRoute
+                            authenticated={authenticated}
+                            path={LOCATION}
+                            exact
+                            strict
+                            component={Location}
+                        /> */}
+                        <Route
+                            path={LOCATION}
+                            exact
+                            strict
+                            component={Location} />
                         <PrivateRoute
                             authenticated={authenticated}
                             path={CAMPAIGNS}
