@@ -5,9 +5,9 @@ import AdminOverview from './AdminOverview';
 import ClientOverview from './ClientOverview';
 
 const Overview = () => {
-    const { loading } = useSelector(state => state.signIn);
+    const { isAdmin } = useSelector(state => state.user.user);
     return (
-        loading ? <AdminOverview /> : <ClientOverview />
+        isAdmin ? <AdminOverview /> : <ClientOverview />
     );
 };
 

@@ -47,8 +47,6 @@ const Routes = () => {
                         <PublicRoute
                             authenticated={authenticated}
                             path={DASHBOARD}
-                            exact
-                            strict
                             component={Dashboard}
                         />
                         <PublicRoute
