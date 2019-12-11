@@ -1,7 +1,7 @@
 /** @constant */
 export const SIDE_MENU_ITEMS = [
-    { iconType: 'dashboard', label: 'Overview', link: '/overview' },
-    { iconType: 'sound', label: 'Campaigns', link: '/campaigns' },
+    { iconType: 'dashboard', label: 'Overview', link: '/dashboard' },
+    { iconType: 'sound', label: 'Campaigns', link: 'dashboard/campaigns' },
     { iconType: 'environment', label: 'Locations' },
     { iconType: 'team', label: 'Users' },
     { iconType: 'user', label: 'Staff' },
