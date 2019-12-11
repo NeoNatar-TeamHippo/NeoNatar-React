@@ -12,15 +12,13 @@ import ScrollToTop from './ScrollToTop';
 import { PATHS } from '../constants';
 
 import app from '../../app';
-import locations from '../../locations';
 import dashboard from '../../dashboard';
 import history from '../../history/History';
 import signup from '../../signup';
 import signin from '../../signin';
 
-const { DASHBOARD, LOCATION, SIGNUP, SIGNIN } = PATHS;
+const { DASHBOARD, SIGNUP, SIGNIN } = PATHS;
 const { App } = app.components;
-const { Location } = locations.components;
 const { Dashboard } = dashboard.components;
 const { SignUp } = signup.components;
 const { SignIn } = signin.components;

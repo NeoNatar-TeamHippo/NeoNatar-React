@@ -3,7 +3,7 @@ import * as TYPES from './actionType';
 const initialState = {
     errors: {},
     isAuthenticated: false,
-    loading: true,
+    loading: false,
     token: '',
 };
 export default (state = initialState, { type, payload }) => {
