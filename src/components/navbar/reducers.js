@@ -1,19 +1,15 @@
-import * as TYPES from './actionType'
+import * as TYPES from './actionType';
 
 const initialState = {
-    authenticated: false,
     errors: {},
     loading: false,
-    token: '',
+    user: {},
 };
 export default (state = initialState, { type, payload }) => {
     switch (type) {
-        case TYPES.SET_AUTHENTICATED:
-            localStorage.setItem('FBToken', payload);
-            return { ...state, authenticated: true, loading: false, token: payload };
-        case TYPES.SET_UNAUTHENTICATED:
-            localStorage.removeItem('FBToken');
-            return { ...state, authenticated: false, loading: false };
+        case TYPES.SET_USER:
+            console.log(payload, 'user reducer');
+            return { ...state, loading: false, user: payload };
         case TYPES.LOADING_UI:
             return { ...state, loading: true };
         case TYPES.SET_ERRORS:

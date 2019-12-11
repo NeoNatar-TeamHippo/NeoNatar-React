@@ -22,8 +22,8 @@ function* userSignUp(userData) {
         yield put(setUnAuthenticated());
     }
 }
-function* postUserEffect({ payload, history }) {
-    yield call(userSignUp, payload, history);
+function* postUserEffect({ payload }) {
+    yield call(userSignUp, payload);
 }
 export default function* actionWatcher() {
     yield takeEvery(TYPES.USER_SIGNUP, postUserEffect);

@@ -4,4 +4,3 @@ export const SIGN_IN = 'Sign In';
 
 const baseUrl = 'http://localhost:5000/neonatar/europe-west1/api';
 export const SIGN_UP_URL = `${baseUrl}/v1/auth/signup`;
-export const USER_PROFILE = `${baseUrl}/v1/auth`;
