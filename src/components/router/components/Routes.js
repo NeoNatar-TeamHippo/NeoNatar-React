@@ -44,7 +44,7 @@ const Routes = () => {
             <ScrollToTop>
                 <App>
                     <Switch>
-                        <PublicRoute
+                        <PrivateRoute
                             authenticated={authenticated}
                             path={DASHBOARD}
                             component={Dashboard}
