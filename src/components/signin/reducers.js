@@ -5,7 +5,7 @@ import {
 const initialState = {
     errors: {},
     isAuthenticated: false,
-    loading: false,
+    loading: true,
     token: '',
     user: {},
 };
