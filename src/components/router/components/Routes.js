@@ -29,7 +29,7 @@ const { SignIn } = signin.components;
 
 const Routes = () => {
     const { token } = useSelector(state => state.signIn);
-    const userToken = token || localStorage.getItem('FBToken');
+    const userToken = token;
     const checkTokenAuthentication = () => {
         if (userToken) {
             const tokeToDecode = userToken.split(' ')[1];

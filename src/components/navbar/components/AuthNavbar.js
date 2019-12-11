@@ -23,7 +23,7 @@ const AuthNavbar = () => {
                 <Avatar src={Logo} />
                 {NEONATAR}
             </div>
-            <div className="menuCon">
+            <div className="menuCon ">
                 <div className="rightMenu">
                     <RightMenu />
                 </div>

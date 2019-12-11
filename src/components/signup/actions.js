@@ -9,16 +9,6 @@ export const loadingUI = () => ({
     type: TYPES.LOADING_UI,
 });
 /**
- * Triggers request to set user
- *
- * @function
- * @return {void} The {@link actionTypes.SET_USER } action.
- */
-export const setUser = payload => ({
-    payload,
-    type: TYPES.SET_USER,
-});
-/**
  * Triggers request to set errors after a bad request
  *
  * @function

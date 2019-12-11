@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-
 import AuthNavbar from './AuthNavbar';
 import UnAuthNavbar from './UnAuthNavbar';
 
