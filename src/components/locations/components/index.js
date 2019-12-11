@@ -1,4 +1,4 @@
 import './styles.css';
-import Location from './Location';
+import Locations from './Locations';
 
-export { Location };
+export { Locations };
