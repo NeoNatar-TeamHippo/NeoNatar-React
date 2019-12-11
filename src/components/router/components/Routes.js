@@ -13,17 +13,13 @@ import { PATHS } from '../constants';
 
 import app from '../../app';
 import dashboard from '../../dashboard';
-import campaigns from '../../campaigns';
 import history from '../../history/History';
-import overview from '../../overview';
 import signup from '../../signup';
 import signin from '../../signin';
 
-const { DASHBOARD, CAMPAIGNS, OVERVIEW, SIGNUP, SIGNIN } = PATHS;
+const { DASHBOARD, SIGNUP, SIGNIN } = PATHS;
 const { App } = app.components;
 const { Dashboard } = dashboard.components;
-const { Overview } = overview.components;
-const { Campaigns } = campaigns.components;
 const { SignUp } = signup.components;
 const { SignIn } = signin.components;
 
@@ -50,24 +46,8 @@ const Routes = () => {
                     <Switch>
                         <PrivateRoute
                             authenticated={authenticated}
-                            path={CAMPAIGNS}
-                            exact
-                            strict
-                            component={Campaigns}
-                        />
-                        <PrivateRoute
-                            authenticated={authenticated}
                             path={DASHBOARD}
-                            exact
-                            strict
                             component={Dashboard}
-                        />
-                        <PrivateRoute
-                            authenticated={authenticated}
-                            path={OVERVIEW}
-                            exact
-                            strict
-                            component={Overview}
                         />
                         <PublicRoute
                             authenticated={authenticated}

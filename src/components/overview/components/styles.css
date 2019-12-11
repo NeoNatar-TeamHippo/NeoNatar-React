@@ -1,7 +1,7 @@
 .dashboard-content {
-    padding-top: 70px;
     border-bottom: 0;
     background: white;
+    padding-top: 10px;
 }
 .dashboard-card {
     width: 220px;
@@ -39,4 +39,8 @@
     overflow: auto;
     padding: 8px 24px;
     width: 480px;
+}
+
+.search-campaigns {
+    width: 200px;
 }
