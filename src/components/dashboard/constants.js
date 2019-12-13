@@ -1,5 +1,5 @@
 /** @constant */
-export const SIDE_MENU_ITEMS = [
+export const ADMIN_SIDE_MENU_ITEMS = [
     { iconType: 'dashboard', label: 'Overview', link: '/dashboard' },
     { iconType: 'sound', label: 'Campaigns', link: 'dashboard/campaigns' },
     { iconType: 'environment', label: 'Locations' },
@@ -9,6 +9,18 @@ export const SIDE_MENU_ITEMS = [
     { iconType: 'credit-card', label: 'Tickets' },
     { iconType: 'setting', label: 'Settings' },
 ];
+
+/** @constant */
+export const CLIENT_SIDE_MENU_ITEMS = [
+    { iconType: 'dashboard', label: 'Overview', link: '/dashboard' },
+    { iconType: 'sound', label: 'Campaigns', link: 'dashboard/campaigns' },
+    { iconType: 'notification', label: 'Commercials' },
+    { iconType: 'environment', label: 'Locations' },
+    { iconType: 'pushpin', label: 'Saved Locations' },
+    { iconType: 'credit-card', label: 'Tickets' },
+    { iconType: 'setting', label: 'Settings' },
+];
+
 /** @constant */
 export const INLINE = 'inline';
 
