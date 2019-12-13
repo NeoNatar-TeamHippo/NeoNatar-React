@@ -3,7 +3,7 @@ import { Checkbox, Tag, Table } from 'antd';
 
 import { DATA } from '../constants';
 
-const AllCampaigns = () => (
+const Campaigns = () => (
     <Table
         dataSource={DATA}
         title={() => 'All Campaigns'}
@@ -67,4 +67,4 @@ const AllCampaigns = () => (
     />
 );
 
-export default AllCampaigns;
+export default Campaigns;

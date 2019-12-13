@@ -10,7 +10,7 @@
     "connected-react-router": "^6.6.1",
     "customize-cra": "^0.9.1",
     "dotenv": "^7.0.0",
-    "firebase": "^7.5.0",
+    "firebase": "^7.6.0",
     "firebase-admin": "^8.8.0",
     "history": "^4.10.1",
     "jwt-decode": "^2.2.0",
