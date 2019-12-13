@@ -1,9 +1,9 @@
+/* eslint-disable react/jsx-no-literals */
 import React from 'react';
 import { Layout } from 'antd';
 import { Route } from 'react-router-dom';
 
 import SideMenu from './SideMenu';
-import { CAMPAIGNS } from '../constants';
 import overview from '../../overview';
 import campaigns from '../../campaigns';
 
@@ -22,7 +22,7 @@ const Dashboard = props => {
             </Sider>
             <Content className="dashboard-content">
                 <Route path={path} exact strict component={Overview} />
-                <Route path={CAMPAIGNS} component={Campaigns} />
+                <Route path={`${path}/campaigns`} component={Campaigns} />
             </Content>
         </Layout>
     );
