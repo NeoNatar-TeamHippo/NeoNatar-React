@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-literals */
 import React from 'react';
 import { Layout } from 'antd';
 import { Route } from 'react-router-dom';
