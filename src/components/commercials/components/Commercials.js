@@ -9,7 +9,7 @@ const Commercials = () => (
         title={() => (
             <div>
                 {ALL_COMMERCIALS}
-                <Button style={{ marginLeft: 100, backgroundColor: '#BE1D7B', color: 'white' }}>
+                <Button type="primary" style={{ marginLeft: 100,  color: 'white' }}>
                     <Icon type="plus-circle" style={{ marginBottom: 100 }} />
                     New
                 </Button>
