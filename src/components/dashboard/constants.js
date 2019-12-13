@@ -13,8 +13,8 @@ export const ADMIN_SIDE_MENU_ITEMS = [
 /** @constant */
 export const CLIENT_SIDE_MENU_ITEMS = [
     { iconType: 'dashboard', label: 'Overview', link: '/dashboard' },
-    { iconType: 'sound', label: 'Campaigns', link: 'dashboard/campaigns' },
-    { iconType: 'notification', label: 'Commercials' },
+    { iconType: 'sound', label: 'Campaigns', link: '/dashboard/campaigns' },
+    { iconType: 'notification', label: 'Commercials', link: '/dashboard/commercials' },
     { iconType: 'environment', label: 'Locations' },
     { iconType: 'pushpin', label: 'Saved Locations' },
     { iconType: 'credit-card', label: 'Tickets' },

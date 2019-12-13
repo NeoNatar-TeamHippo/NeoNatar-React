@@ -44,7 +44,7 @@ const Campaigns = () => (
                             {status.map(tag => {
                                 let color;
                                 if (tag === 'pending') {
-                                    color = 'yellow';
+                                    color = 'orange';
                                 } else if (tag === 'approved') {
                                     color = 'green';
                                 } else {

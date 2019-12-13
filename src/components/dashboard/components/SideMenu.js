@@ -5,10 +5,11 @@ import AdminSideMenu from './AdminSideMenu';
 import ClientSideMenu from './ClientSideMenu';
 
 const SideMenu = () => {
-    const { isAdmin } = useSelector(state => state.user.user);
+    // const { isAdmin } = useSelector(state => state.user.user);
+    const { isAuthenticated } = useSelector(state => state.signIn);
 
     return (
-        isAdmin ? <AdminSideMenu /> : <ClientSideMenu />
+        isAuthenticated ? <AdminSideMenu /> : <ClientSideMenu />
     );
 };
 
