@@ -15,3 +15,5 @@ export const INLINE = 'inline';
 /** @constant */
 export const SIDE_BAR = 'side-bar';
 
+/** @constant */
+export const CAMPAIGNS = '/campaigns';
