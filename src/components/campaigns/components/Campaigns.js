@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkbox, Tag, Table } from 'antd';
+import { Tag, Table } from 'antd';
 
 import { DATA } from '../constants';
 
@@ -13,12 +13,6 @@ const Campaigns = () => (
                 {
                     dataIndex: 'videoDetails',
                     key: 'videoDetails',
-                    render: videoDetails => (
-                        <span>
-                            <Checkbox margin-right={200} />
-                            {videoDetails}
-                        </span>
-                    ),
                     title: 'Video details',
                 },
                 {

@@ -4,27 +4,21 @@ export const ALL_COMMERCIALS = 'All Commercials';
 /** @constant */
 export const DATA = [
     {
-        category: 'Transportation',
-        cost: 'free',
+        briefDescription: 'Promo for subscribers to recharge N200 and get N2000...',
         key: '1',
-        locations: '10',
-        status: ['pending'],
-        videoDetails: 'The Gods are to be blamed',
+        size: '10',
+        videoDetails: 'MTN Pulse Dec Promo',
     },
     {
-        category: 'Science',
-        cost: '₦250000',
+        briefDescription: 'Hackathon to discover mobile payment solutions for telecos subscribers',
         key: '2',
-        locations: '5',
-        status: ['approved'],
-        videoDetails: 'Saturation Point in Distress',
+        size: '10',
+        videoDetails: 'MTN Hackathon with ccHub',
     },
     {
-        category: 'Telecommunication',
-        cost: '₦50000',
+        briefDescription: 'Wizkid concert at Eko Hotel scheduled for Dec 23rd, 2019...',
         key: '3',
-        locations: '100',
-        status: ['deactivated'],
-        videoDetails: 'Etisalat Naija We Hail Thee',
+        size: '100',
+        videoDetails: 'Wizkid Concert with MTN',
     },
 ];
