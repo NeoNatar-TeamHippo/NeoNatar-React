@@ -25,3 +25,7 @@ export const DATA = [
 
 /** @constant */
 export const NEW = 'New';
+
+/** @constant */
+export const NAME = 'commercials';
+
