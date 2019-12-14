@@ -20,6 +20,16 @@ export const setLocation = payload => ({
     type: TYPES.SET_LOCATION,
 });
 /**
+ * Triggers request to set LOCATION
+ *
+ * @function
+ * @return {void} The {@link actionTypes.SET_LOCATION_BY_ID } action.
+ */
+export const setLocationById = payload => ({
+    payload,
+    type: TYPES.SET_LOCATION_BY_ID,
+});
+/**
  * Triggers request to set errors after a bad request
  *
  * @function
