@@ -1,64 +1,16 @@
 import React from 'react';
-import { Tag, Table } from 'antd';
+import { useSelector } from 'react-redux';
 
-import { DATA } from '../constants';
+import AdminCampaigns from './AdminCampaigns';
+import ClientCampaigns from './ClientCampaigns';
 
-const Campaigns = () => (
-    <Table
-        dataSource={DATA}
-        title={() => 'All Campaigns'}
-        bordered
-        columns={
-            [
-                {
-                    dataIndex: 'videoDetails',
-                    key: 'videoDetails',
-                    title: 'Video details',
-                },
-                {
-                    dataIndex: 'category',
-                    key: 'category',
-                    title: 'Category',
-                },
-                {
-                    dataIndex: 'cost',
-                    key: 'cost',
-                    title: 'Cost',
-                },
-                {
-                    dataIndex: 'locations',
-                    key: 'locations',
-                    title: 'Locations',
-                },
-                {
-                    dataIndex: 'status',
-                    key: 'status',
-                    render: status => (
-                        <span>
-                            {status.map(tag => {
-                                let color;
-                                if (tag === 'pending') {
-                                    color = 'orange';
-                                } else if (tag === 'approved') {
-                                    color = 'green';
-                                } else {
-                                    color = 'red';
-                                }
-                                return (
-                                    <Tag color={color} key={tag}>
-                                        {tag.toUpperCase()}
-                                    </Tag>
-                                );
-                            })}
-                        </span>
-                    ),
+const Overview = () => {
+    // const { isAdmin } = useSelector(state => state.user.user);
+    const { isAuthenticated } = useSelector(state => state.signIn);
 
-                    title: 'Status',
-                },
-            ]
-        }
-        rowKey={record => record.id}
-    />
-);
+    return (
+        isAuthenticated ? <AdminCampaigns /> : <ClientCampaigns />
+    );
+};
 
-export default Campaigns;
+export default Overview;
