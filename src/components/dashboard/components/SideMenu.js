@@ -1,34 +1,15 @@
 import React from 'react';
-import { Icon, Menu, Tooltip } from 'antd';
+import { useSelector } from 'react-redux';
 
-import { SIDE_BAR, SIDE_MENU_ITEMS, INLINE } from '../constants';
+import AdminSideMenu from './AdminSideMenu';
+import ClientSideMenu from './ClientSideMenu';
 
-import app from '../../app';
+const SideMenu = () => {
+    const { isAdmin } = useSelector(state => state.user.user);
 
-const { AppLink } = app.components;
-const { Item } = Menu;
-const SideMenu = () => (
-    <Menu className={SIDE_BAR} mode={INLINE}>
-        {SIDE_MENU_ITEMS.map(({ iconType, label, link }) => (
-            <Item key={link || label}>
-                {link ? (
-                    <AppLink to={link}>
-                        <span>
-                            <Icon type={iconType} />
-                            {label}
-                        </span>
-                    </AppLink>
-                ) : (
-                    <Tooltip title="under construction">
-                        <span>
-                            <Icon type={iconType} />
-                            {label}
-                        </span>
-                    </Tooltip>
-                )}
-            </Item>
-        ))}
-    </Menu>
-);
+    return (
+        isAdmin ? <AdminSideMenu /> : <ClientSideMenu />
+    );
+};
 
 export default SideMenu;
