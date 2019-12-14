@@ -56,3 +56,6 @@ export const CLIENT_CAMPAIGNS = [
         transactionDetails: 'The parable sage',
     },
 ];
+
+/** @constant */
+export const NAME = 'campaigns';

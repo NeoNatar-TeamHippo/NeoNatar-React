@@ -6,10 +6,9 @@ import ClientSideMenu from './ClientSideMenu';
 
 const SideMenu = () => {
     // const { isAdmin } = useSelector(state => state.user.user);
-    const { isAuthenticated } = useSelector(state => state.signIn);
 
     return (
-        isAuthenticated ? <AdminSideMenu /> : <ClientSideMenu />
+        true ? <AdminSideMenu /> : <ClientSideMenu />
     );
 };
 

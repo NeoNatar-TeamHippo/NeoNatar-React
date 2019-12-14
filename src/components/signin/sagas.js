@@ -2,7 +2,7 @@ import { takeEvery, call, put } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import * as TYPES from './actionType';
 import { setErrors, loadingUI, setAuthenticated, setUnAuthenticated, clearErrors } from './actions';
-import { loadingUser } from '../navbar/actions'
+import { loadingUser } from '../navbar/actions';
 import { signInService } from './services';
 
 function* userSignIn(userData) {
