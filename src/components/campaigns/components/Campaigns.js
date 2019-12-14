@@ -23,7 +23,7 @@ const Campaigns = () => (
                 {
                     dataIndex: 'cost',
                     key: 'cost',
-                    title: 'Cost',
+                    title: 'Cost(₦)',
                 },
                 {
                     dataIndex: 'locations',

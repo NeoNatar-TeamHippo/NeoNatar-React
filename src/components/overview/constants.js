@@ -80,7 +80,7 @@ export const CLIENT_CARDS = [
 /** @constant */
 export const DATA = [
     {
-        cost: '₦50000000',
+        cost: '50,000,000',
         customerName: 'Innoson',
         date: 'May 26, 2019',
         key: '1',
@@ -89,7 +89,7 @@ export const DATA = [
         transactionDetails: 'MTN Pulse Dec Promo',
     },
     {
-        cost: '₦20000000',
+        cost: '20,000,000',
         customerName: 'Aliko Dangote',
         date: 'October 12, 2019',
         key: '2',
@@ -98,7 +98,7 @@ export const DATA = [
         transactionDetails: 'MTN Hackathon with CCHub',
     },
     {
-        cost: '₦25000000',
+        cost: '25,000,000',
         customerName: 'Innoson',
         date: 'November 15, 2019',
         key: '3',
