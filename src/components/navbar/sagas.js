@@ -5,7 +5,7 @@ import { getUserProfile } from './services';
 
 function* userProfile(token) {
     try {
-        yield put(loadingNavBar())
+        yield put(loadingNavBar());
         const res = yield call(getUserProfile, token);
         if (res.status === 'success') {
             const userDetails = res.data;

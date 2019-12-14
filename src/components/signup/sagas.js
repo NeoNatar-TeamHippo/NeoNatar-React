@@ -3,7 +3,7 @@ import { push } from 'connected-react-router';
 import * as TYPES from './actionType';
 import { setErrors, loadingUI, setAuthenticated, setUnAuthenticated, clearErrors } from './actions';
 import { signUpService } from './services';
-import { loadingUser } from '../navbar/actions'
+import { loadingUser } from '../navbar/actions';
 
 function* userSignUp(userData) {
     try {

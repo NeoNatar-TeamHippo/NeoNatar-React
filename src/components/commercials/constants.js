@@ -22,3 +22,6 @@ export const DATA = [
         videoDetails: 'Wizkid Concert with MTN',
     },
 ];
+
+/** @constant */
+export const NEW = 'New';
