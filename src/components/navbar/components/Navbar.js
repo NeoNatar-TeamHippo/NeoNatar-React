@@ -1,12 +1,14 @@
 import React from 'react';
 import { Avatar, Divider, Icon, Menu, Button, Typography, Badge } from 'antd';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { ICONS, VERTICAL, LOGOUT_TEXT } from '../constants';
+import { logoutUser } from '../actions';
 import UserLogo from '../../../images/user.svg';
 
 const { BELL } = ICONS;
 
 const Navbar = () => {
+    const dispatch = useDispatch();
     const { user, navLoading } = useSelector(state => state.user);
     const fullName = `${user.firstName} ${user.lastName}`;
     return (
@@ -25,7 +27,7 @@ const Navbar = () => {
                 {navLoading ? (<Avatar src={UserLogo} />)
                     : (<Avatar src={user.avatar} />)}
                 <Divider type={VERTICAL} />
-                <Button type="link">
+                <Button onClick={() => dispatch(logoutUser())} type="link">
                     <Typography.Text type="danger">
                         {LOGOUT_TEXT}
                     </Typography.Text>

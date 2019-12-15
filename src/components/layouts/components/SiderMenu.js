@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Icon, Menu, Tooltip, Avatar, Divider, Button, Typography } from 'antd';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import history from '../../history/History';
+import { logoutUser } from '../../navbar/actions';
+import UserLogo from '../../../images/user.svg';
 import {
     ADMIN_SIDE_MENU_ITEMS, CLIENT_SIDE_MENU_ITEMS,
     INLINE, THEME, LOGOUT_TEXT
@@ -10,7 +12,8 @@ import {
 
 const SideMenu = () => {
     const currentPath = history.location.pathname;
-    const { user } = useSelector(state => state.user);
+    const { user, navLoading } = useSelector(state => state.user);
+    const dispatch = useDispatch();
     const [current, setCurrent] = useState(currentPath);
     const menuItems = user.isAdmin ? ADMIN_SIDE_MENU_ITEMS : CLIENT_SIDE_MENU_ITEMS;
     const renderTemplate = ({ iconType, label, link }) => {
@@ -54,12 +57,13 @@ const SideMenu = () => {
             <Divider />
             <Menu.Item>
                 <div className="d-flex justify-content-center">
-                    <Avatar size="large" src={user.avatar} />
+                    {navLoading ? (<Avatar src={UserLogo} />)
+                        : (<Avatar src={user.avatar} />)}
                 </div>
             </Menu.Item>
             <Menu.Item>
                 <div className="d-flex justify-content-center">
-                    <Button type="link">
+                    <Button onClick={() => dispatch(logoutUser())} type="link">
                         <Typography.Text type="danger">
                             {LOGOUT_TEXT}
                         </Typography.Text>
