@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Divider, Icon, Menu, Button, Typography } from 'antd';
+import { Avatar, Divider, Icon, Menu, Button, Typography, Badge } from 'antd';
 import { useSelector } from 'react-redux';
 import { ICONS, VERTICAL, LOGOUT_TEXT } from '../constants';
 import UserLogo from '../../../images/user.svg';
@@ -12,9 +12,11 @@ const Navbar = () => {
     return (
         <div className="d-flex justify-content-end">
             <Menu mode="horizontal">
-                <Button type="link">
-                    <Icon type={BELL} />
-                </Button>
+                <Badge count={0} dot>
+                    <Button type="link">
+                        <Icon type={BELL} />
+                    </Button>
+                </Badge>
                 <Divider type={VERTICAL} />
                 <Typography.Text strong>
                     {!navLoading ? fullName.toLowerCase() : 'User'}

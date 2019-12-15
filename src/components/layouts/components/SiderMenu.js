@@ -3,12 +3,16 @@ import { Icon, Menu, Tooltip, Avatar, Divider, Button, Typography } from 'antd';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import history from '../../history/History';
-import { SIDE_MENU_ITEMS, INLINE, THEME, LOGOUT_TEXT } from '../constants';
+import {
+    ADMIN_SIDE_MENU_ITEMS, CLIENT_SIDE_MENU_ITEMS,
+    INLINE, THEME, LOGOUT_TEXT
+} from '../constants';
 
 const SideMenu = () => {
-    const currentSlug = history.location.pathname;
+    const currentPath = history.location.pathname;
     const { user } = useSelector(state => state.user);
-    const [current, setCurrent] = useState(currentSlug);
+    const [current, setCurrent] = useState(currentPath);
+    const menuItems = user.isAdmin ? ADMIN_SIDE_MENU_ITEMS : CLIENT_SIDE_MENU_ITEMS;
     const renderTemplate = ({ iconType, label, link }) => {
         let template = '';
         if (link) {
@@ -41,7 +45,7 @@ const SideMenu = () => {
             onClick={e => setCurrent(e.key)}
         >
             {
-                SIDE_MENU_ITEMS.map(({ iconType, label, link }) => (
+                menuItems.map(({ iconType, label, link }) => (
                     <Menu.Item key={link}>
                         {renderTemplate({ iconType, label, link })}
                     </Menu.Item>
