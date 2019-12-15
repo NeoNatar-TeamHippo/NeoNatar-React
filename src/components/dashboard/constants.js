@@ -2,7 +2,7 @@
 export const ADMIN_SIDE_MENU_ITEMS = [
     { iconType: 'dashboard', label: 'Overview', link: '/dashboard' },
     { iconType: 'sound', label: 'Campaigns', link: 'dashboard/campaigns' },
-    { iconType: 'environment', label: 'Locations' },
+    { iconType: 'environment', label: 'Locations', link: 'dashboard/locations' },
     { iconType: 'team', label: 'Users' },
     { iconType: 'user', label: 'Staff' },
     { iconType: 'interaction', label: 'Transactions' },

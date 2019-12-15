@@ -44,6 +44,13 @@ const Routes = () => {
             <ScrollToTop>
                 <App>
                     <Switch>
+                        {/* <PrivateRoute
+                            authenticated={authenticated}
+                            path={LOCATION}
+                            exact
+                            strict
+                            component={Location}
+                        /> */}
                         <PrivateRoute
                             authenticated={authenticated}
                             path={DASHBOARD}

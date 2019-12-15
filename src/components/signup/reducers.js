@@ -1,10 +1,10 @@
-import * as TYPES from './actionType'
+import * as TYPES from './actionType';
 
 const initialState = {
     authenticated: false,
     errors: {},
     loading: false,
-    token: '',
+    token: null,
 };
 export default (state = initialState, { type, payload }) => {
     switch (type) {

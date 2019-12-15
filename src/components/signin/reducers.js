@@ -3,8 +3,8 @@ import * as TYPES from './actionType';
 const initialState = {
     errors: {},
     isAuthenticated: false,
-    loading: true,
-    token: '',
+    loading: false,
+    token: null,
 };
 export default (state = initialState, { type, payload }) => {
     switch (type) {
