@@ -5,7 +5,7 @@ import { ADD_SELECTED, OUR_LOCATION } from '../constants';
 
 const { Title } = Typography;
 const Locations = () => (
-    <div className="container">
+    <div>
         <Row>
             <Col sm={8} md={6} lg={4}>
                 <Title level={4}>
@@ -19,7 +19,6 @@ const Locations = () => (
             </Col>
         </Row>
         <LocationTable />
-        <Row />
     </div>
 );
 export default Locations;

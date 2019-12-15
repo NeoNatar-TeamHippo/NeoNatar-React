@@ -41,13 +41,6 @@ const Routes = () => {
         <ConnectedRouter history={history}>
             <ScrollToTop>
                 <Switch>
-                    {/* <PrivateRoute
-                            authenticated={authenticated}
-                            path={LOCATION}
-                            exact
-                            strict
-                            component={Location}
-                        /> */}
                     <PrivateRoute
                         authenticated={authenticated}
                         path={DASHBOARD}
