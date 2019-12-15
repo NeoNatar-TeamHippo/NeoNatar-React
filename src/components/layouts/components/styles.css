@@ -1,0 +1,22 @@
+.content {
+    min-height: 80vh;
+    background-color: #fff;
+}
+
+header.ant-layout-header {
+    background: #fff;
+    min-height: 10vh;
+}
+
+footer.ant-layout-footer {
+    background: #fff;
+    min-height: 10vh;
+}
+
+aside.ant-layout-sider {
+    background-color: #fff;
+}
+
+.center_form {
+    margin: auto;
+}
