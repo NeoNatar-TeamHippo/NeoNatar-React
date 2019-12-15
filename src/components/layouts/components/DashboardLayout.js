@@ -30,17 +30,17 @@ const DashboardLayout = props => {
                 <Divider />
                 <SideMenu />
             </Sider>
-            <Content className="content">
+            <Layout>
                 <Header>
                     <Navbar />
                 </Header>
-                <Content className="container">
+                <Content className="content container">
                     {children}
                 </Content>
                 <Footer className="text-center">
                     <FooterComponent />
                 </Footer>
-            </Content>
+            </Layout>
         </Layout>
     );
 };
