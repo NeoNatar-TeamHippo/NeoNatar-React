@@ -1,30 +1,24 @@
 import React from 'react';
-import { Typography, Button, Row, Col, Input, Icon } from 'antd';
-import { ADD_SELECTED, OUR_LOCATION, SORT, FILTER } from '../constants';
+import { Typography, Button, Row, Col } from 'antd';
+import LocationTable from './Table';
+import { ADD_SELECTED, OUR_LOCATION } from '../constants';
 
-const { Text, Title } = Typography;
+const { Title } = Typography;
 const Locations = () => (
-    <div className="container-fluid">
+    <div>
         <Row>
-            <Col span={8}>
+            <Col sm={8} md={6} lg={4}>
                 <Title level={4}>
                     {OUR_LOCATION}
-                    <Button className="ml-2" type="primary">
-                        {ADD_SELECTED}
-                    </Button>
                 </Title>
             </Col>
-            <Col span={8}>
-                <Input
-                    prefix={<Icon type="search" />}
-                    placeholder="Search..."
-                />
-            </Col>
-            <Col span={8}>
-                <Text type="warning">{SORT}</Text>
-                <Text type="danger">{FILTER}</Text>
+            <Col sm={16} md={18} lg={20}>
+                <Button className="mb-2" size="default" type="primary">
+                    {ADD_SELECTED}
+                </Button>
             </Col>
         </Row>
+        <LocationTable />
     </div>
 );
 export default Locations;

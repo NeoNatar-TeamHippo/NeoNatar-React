@@ -14,7 +14,7 @@ export const loadingNavBar = () => ({
  * @function
  * @return {void} The {@link actionTypes.LOADING_USER } action.
  */
-export const loadingUser = (payload) => ({
+export const loadingUser = payload => ({
     payload,
     type: TYPES.LOADING_USER,
 });
@@ -27,4 +27,14 @@ export const loadingUser = (payload) => ({
 export const setUser = payload => ({
     payload,
     type: TYPES.SET_USER,
+});
+/**
+ * Triggers request to logout user
+ *
+ * @function
+ * @return {void} The {@link actionTypes.LOGOUT_USER } action.
+ */
+export const logoutUser = payload => ({
+    payload,
+    type: TYPES.LOGOUT_USER,
 });
