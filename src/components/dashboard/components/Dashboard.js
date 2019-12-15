@@ -13,12 +13,12 @@ const { Locations } = locations.components;
 const { DashboardLayout } = layouts.components;
 const Dashboard = props => {
     const { path } = props.match;
-
+    const getPathWay = pathRoute => `${path}/${pathRoute}`;
     return (
         <DashboardLayout>
             <Route path={path} exact strict component={Overview} />
-            <Route path={`${path}/campaigns`} component={Campaigns} />
-            <Route path={`${path}/locations`} component={Locations} />
+            <Route path={getPathWay('campaigns')} component={Campaigns} />
+            <Route path={getPathWay('locations')} component={Locations} />
         </DashboardLayout>
     );
 };
