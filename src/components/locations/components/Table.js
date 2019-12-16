@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Table, Button, Tag, Typography, Icon, Divider, Tooltip, Modal, Card, Avatar, Carousel } from 'antd';
-import { RELOAD } from '../constants';
-import { getLocations, setLocationById } from '../actions';
+import {
+    Table, Button, Tag, Typography, Icon, Divider,
+    Tooltip, Modal, Card, Avatar, Carousel
+} from 'antd';
+import { RELOAD, FILTER } from '../constants';
+import { getLocations, getLocationsByID } from '../actions';
 
 const { Meta } = Card;
 
-const LocationTable = () => {
+const LocationTable = ({ history }) => {
     const dispatch = useDispatch();
     const { location, locationLoading } = useSelector(state => state.location);
     console.log(location, 'from tables');
@@ -18,8 +21,11 @@ const LocationTable = () => {
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const handleViewLocation = locationId => {
         console.log(locationId, 'handle view');
-        dispatch(setLocationById(locationId));
+        dispatch(getLocationsByID(locationId));
         setViewModal(true);
+        // setTimeout(() => {
+        //     history.push(`/dashboard/location/${locationId}`)
+        // }, 2000);
     };
     const addToSavedLocation = locationId => {
         console.log(locationId, 'handle savedLocation');
@@ -150,10 +156,20 @@ const LocationTable = () => {
                 <Card
                     style={{ width: '100%' }}
                     cover={(
-                        <img
-                            alt="example"
-                            src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                        />
+                        <Carousel autoplay>
+                            <div>
+                                <h3>{RELOAD}</h3>
+                            </div>
+                            <div>
+                                <h3>{FILTER}</h3>
+                            </div>
+                            <div>
+                                <h3>{RELOAD}</h3>
+                            </div>
+                            <div>
+                                <h3>{FILTER}</h3>
+                            </div>
+                        </Carousel>
                     )}
                     actions={[
                         <Icon type="setting" key="setting" />,
@@ -166,20 +182,6 @@ const LocationTable = () => {
                         title="Golden Hills"
                         description="Plot 436 arab road kubwa"
                     />
-                    {/* <Carousel autoplay>
-                        <div>
-                            <h3>1</h3>
-                        </div>
-                        <div>
-                            <h3>2</h3>
-                        </div>
-                        <div>
-                            <h3>3</h3>
-                        </div>
-                        <div>
-                            <h3>4</h3>
-                        </div>
-                    </Carousel> */}
                 </Card>
             </Modal>
             <Table

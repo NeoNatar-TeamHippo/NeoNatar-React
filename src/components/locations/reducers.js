@@ -11,13 +11,13 @@ export default (state = initialState, { type, payload }) => {
         case TYPES.LOADING_LOCATION:
             return { ...state, locationLoading: true };
         case TYPES.SET_LOCATION:
-            return { ...state, location: payload, locationLoading: false };
+            return { ...state, locationLoading: false, locations: payload };
         case TYPES.SET_LOCATION_BY_ID:
             return { ...state, locationById: payload, locationLoading: false };
         case TYPES.SET_ERRORS:
-            return { ...state, errors: payload, locationLoading: true };
+            return { ...state, errors: payload, locationLoading: false };
         case TYPES.CLEAR_ERRORS:
-            return { ...state, errors: {}, locationLoading: true };
+            return { ...state, errors: {}, locationLoading: false };
         default:
             return state;
     }
