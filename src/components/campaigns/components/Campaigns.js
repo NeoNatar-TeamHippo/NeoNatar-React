@@ -23,6 +23,12 @@ const Campaigns = () => (
                 {
                     dataIndex: 'cost',
                     key: 'cost',
+                    render: cost => (
+                        <div style={{ fontFamily: 'monospace', textAlign: 'right' }}>
+                            {cost}
+                        </div>
+                    ),
+
                     title: 'Cost(₦)',
                 },
                 {
@@ -52,7 +58,6 @@ const Campaigns = () => (
                             })}
                         </span>
                     ),
-
                     title: 'Status',
                 },
             ]
