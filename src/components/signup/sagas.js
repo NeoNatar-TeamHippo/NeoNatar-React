@@ -16,7 +16,7 @@ function* userSignUp(userData) {
             yield put(loadingUser(authorization));
             yield put(push('/signin'));
         } else {
-            yield put(setErrors({ message: res.message }));
+            yield put(setErrors({ message: 'Something went wrong please try again' }));
             yield put(setUnAuthenticated());
         }
     } catch (error) {

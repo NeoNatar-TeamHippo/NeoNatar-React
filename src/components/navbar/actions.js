@@ -28,3 +28,13 @@ export const setUser = payload => ({
     payload,
     type: TYPES.SET_USER,
 });
+/**
+ * Triggers request to logout user
+ *
+ * @function
+ * @return {void} The {@link actionTypes.LOGOUT_USER } action.
+ */
+export const logoutUser = payload => ({
+    payload,
+    type: TYPES.LOGOUT_USER,
+});

@@ -4,7 +4,7 @@ const initialState = {
     authenticated: false,
     errors: {},
     loading: false,
-    token: '',
+    token: null,
 };
 export default (state = initialState, { type, payload }) => {
     switch (type) {
@@ -13,7 +13,8 @@ export default (state = initialState, { type, payload }) => {
             return { ...state, authenticated: true, loading: false, token: payload };
         case TYPES.SET_UNAUTHENTICATED:
             localStorage.removeItem('FBToken');
-            return { ...state, authenticated: false, loading: false };
+            localStorage.removeItem('persist:root');
+            return { ...state, authenticated: false, loading: false, token: null };
         case TYPES.LOADING_UI:
             return { ...state, loading: true };
         case TYPES.SET_ERRORS:

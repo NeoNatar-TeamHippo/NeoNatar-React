@@ -11,14 +11,12 @@ import PublicRoute from './PublicRoutes';
 import ScrollToTop from './ScrollToTop';
 import { PATHS } from '../constants';
 
-import app from '../../app';
 import dashboard from '../../dashboard';
 import history from '../../history/History';
 import signup from '../../signup';
 import signin from '../../signin';
 
 const { DASHBOARD, SIGNUP, SIGNIN } = PATHS;
-const { App } = app.components;
 const { Dashboard } = dashboard.components;
 const { SignUp } = signup.components;
 const { SignIn } = signin.components;
@@ -42,32 +40,30 @@ const Routes = () => {
     return (
         <ConnectedRouter history={history}>
             <ScrollToTop>
-                <App>
-                    <Switch>
-                        <PublicRoute
-                            authenticated={authenticated}
-                            path={DASHBOARD}
-                            component={Dashboard}
-                        />
-                        <PublicRoute
-                            authenticated={authenticated}
-                            path={SIGNIN}
-                            exact
-                            strict
-                            component={SignIn}
-                            restricted
-                        />
-                        <PublicRoute
-                            authenticated={authenticated}
-                            path={SIGNUP}
-                            exact
-                            strict
-                            component={SignUp}
-                            restricted={false}
-                        />
-                        <Route component={NoMatch} />
-                    </Switch>
-                </App>
+                <Switch>
+                    <PublicRoute
+                        authenticated={authenticated}
+                        path={DASHBOARD}
+                        component={Dashboard}
+                    />
+                    <PublicRoute
+                        authenticated={authenticated}
+                        path={SIGNIN}
+                        exact
+                        strict
+                        component={SignIn}
+                        restricted
+                    />
+                    <PublicRoute
+                        authenticated={authenticated}
+                        path={SIGNUP}
+                        exact
+                        strict
+                        component={SignUp}
+                        restricted={false}
+                    />
+                    <Route component={NoMatch} />
+                </Switch>
             </ScrollToTop>
         </ConnectedRouter>
     );

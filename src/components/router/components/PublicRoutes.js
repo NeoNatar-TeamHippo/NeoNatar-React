@@ -6,7 +6,7 @@ const PublicRoutes = ({ authenticated, component: Comp, ...rest }) => {
         let template = '';
         if (rest.restricted) {
             if (authenticated) {
-                template = (<Redirect to="/overview" />);
+                template = (<Redirect to="/dashboard" />);
             } else {
                 template = (<Comp {...props} />);
             }
