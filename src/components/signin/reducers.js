@@ -14,7 +14,7 @@ export default (state = initialState, { type, payload }) => {
         case TYPES.SET_UNAUTHENTICATED:
             localStorage.removeItem('FBToken');
             localStorage.removeItem('persist:root');
-            return { ...state, isAuthenticated: false, loading: false, token: null };
+            return { ...state, error: {}, isAuthenticated: false, loading: false, token: null };
         case TYPES.LOADING_UI:
             return { ...state, loading: true };
         case TYPES.SET_ERRORS:

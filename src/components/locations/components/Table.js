@@ -1,37 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-    Table, Button, Tag, Typography, Icon, Divider,
-    Tooltip, Modal, Card, Avatar, Carousel
-} from 'antd';
-import { RELOAD, FILTER } from '../constants';
-import { getLocations, getLocationsByID } from '../actions';
-
-const { Meta } = Card;
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { Table, Button, Tag, Typography, Divider, Tooltip } from 'antd';
+import { RELOAD } from '../constants';
 
 const LocationTable = ({ history }) => {
-    const dispatch = useDispatch();
-    const { location, locationLoading } = useSelector(state => state.location);
-    console.log(location, 'from tables');
-    // useEffect(() => {
-    //     dispatch(getLocations());
-    // }, [dispatch]);
+    const { locations, locationLoading } = useSelector(state => state.location);
     const [loading, setLoading] = useState(false);
-    const [viewModal, setViewModal] = useState(false);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const handleViewLocation = locationId => {
-        console.log(locationId, 'handle view');
-        dispatch(getLocationsByID(locationId));
-        setViewModal(true);
-        // setTimeout(() => {
-        //     history.push(`/dashboard/location/${locationId}`)
-        // }, 2000);
+        history.push(`/dashboard/locations/${locationId}`);
     };
     const addToSavedLocation = locationId => {
         console.log(locationId, 'handle savedLocation');
-    };
-    const handleLocationData = () => {
-        console.log('handled it');
     };
     const columns = [
         {
@@ -79,16 +60,20 @@ const LocationTable = ({ history }) => {
             key: 'trafficRate',
             render: text => {
                 let color;
+                let rateText;
                 if (parseInt(text, 10) <= 200) {
                     color = 'volcano';
+                    rateText = 'LOW';
                 } else if (parseInt(text, 10) <= 500) {
                     color = 'orange';
+                    rateText = 'MEDIUM';
                 } else {
                     color = 'green';
+                    rateText = 'HIGH';
                 }
                 return (
                     <Tag color={color}>
-                        {text}
+                        {rateText}
                     </Tag>
                 );
             },
@@ -146,51 +131,13 @@ const LocationTable = ({ history }) => {
                     {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
                 </span>
             </div>
-            <Modal
-                title="Golden Hills"
-                centered
-                visible={viewModal}
-                onOk={() => handleLocationData()}
-                onCancel={() => setViewModal(false)}
-            >
-                <Card
-                    style={{ width: '100%' }}
-                    cover={(
-                        <Carousel autoplay>
-                            <div>
-                                <h3>{RELOAD}</h3>
-                            </div>
-                            <div>
-                                <h3>{FILTER}</h3>
-                            </div>
-                            <div>
-                                <h3>{RELOAD}</h3>
-                            </div>
-                            <div>
-                                <h3>{FILTER}</h3>
-                            </div>
-                        </Carousel>
-                    )}
-                    actions={[
-                        <Icon type="setting" key="setting" />,
-                        <Icon type="edit" key="edit" />,
-                        <Icon type="ellipsis" key="ellipsis" />,
-                    ]}
-                >
-                    <Meta
-                        avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                        title="Golden Hills"
-                        description="Plot 436 arab road kubwa"
-                    />
-                </Card>
-            </Modal>
             <Table
-                // loading={locationLoading}
+                loading={locationLoading}
                 rowSelection={rowSelection}
                 columns={columns}
-                dataSource={location}
+                dataSource={locations}
             />
         </div>
     );
 };
-export default LocationTable;
+export default withRouter(LocationTable);
