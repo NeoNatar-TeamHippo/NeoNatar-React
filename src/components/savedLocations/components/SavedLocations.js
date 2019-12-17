@@ -92,7 +92,7 @@ const SavedLocations = ({ history }) => {
     }
 
     return (
-        <div>
+        <>
             <PageHeader
                 style={{
                     border: '1px solid rgb(235, 237, 240)',
@@ -120,7 +120,7 @@ const SavedLocations = ({ history }) => {
             )
                 : renderList()
             }
-        </div>
+        </>
     );
 };
 export default SavedLocations;
