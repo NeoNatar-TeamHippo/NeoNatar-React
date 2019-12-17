@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Table, Button, Tag, Typography, Divider, Tooltip } from 'antd';
 import { RELOAD } from '../constants';
+import { renderRateFormat } from '../../utils/functions';
 
 const LocationTable = ({ history }) => {
     const { locations, locationLoading } = useSelector(state => state.location);
@@ -59,18 +60,7 @@ const LocationTable = ({ history }) => {
             dataIndex: 'trafficRate',
             key: 'trafficRate',
             render: text => {
-                let color;
-                let rateText;
-                if (parseInt(text, 10) <= 200) {
-                    color = 'volcano';
-                    rateText = 'LOW';
-                } else if (parseInt(text, 10) <= 500) {
-                    color = 'orange';
-                    rateText = 'MEDIUM';
-                } else {
-                    color = 'green';
-                    rateText = 'HIGH';
-                }
+                const { color, rateText } = renderRateFormat(text);
                 return (
                     <Tag color={color}>
                         {rateText}

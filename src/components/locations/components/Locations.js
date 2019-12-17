@@ -12,7 +12,7 @@ const Locations = () => {
         dispatch(getLocations());
     }, [dispatch]);
     return (
-        <div>
+        <>
             <Row>
                 <Col sm={8} md={6} lg={4}>
                     <Title level={4}>
@@ -26,7 +26,7 @@ const Locations = () => {
                 </Col>
             </Row>
             <LocationTable />
-        </div>
+        </>
     );
 };
 export default Locations;

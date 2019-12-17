@@ -5,6 +5,7 @@ import {
 } from 'antd';
 import { perWeek, naira, LOCAL_GOVERNMENT, ADDRESS, STATE } from '../constants';
 import { getLocationsByID } from '../actions';
+import { renderRateFormat } from '../../utils/functions';
 
 const LocationById = ({ match, history }) => {
     const dispatch = useDispatch();
@@ -40,18 +41,7 @@ const LocationById = ({ match, history }) => {
 
     ));
     const renderTag = text => {
-        let color;
-        let rateText;
-        if (parseInt(text, 10) <= 200) {
-            color = 'volcano';
-            rateText = 'LOW';
-        } else if (parseInt(text, 10) <= 500) {
-            color = 'orange';
-            rateText = 'MEDIUM';
-        } else {
-            color = 'green';
-            rateText = 'HIGH';
-        }
+        const { color, rateText } = renderRateFormat(text);
         return (
             <Tag color={color}>
                 {rateText}
