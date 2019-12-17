@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import {
     Icon, Card, Carousel, Row, Col, Button, Typography, Tag, Descriptions, Skeleton
 } from 'antd';
-import { perWeek, naira, LOCAL_GOVERNMENT, ADDRESS, STATE } from '../constants';
+import { PERWEEK, LOCAL_GOVERNMENT, ADDRESS, STATE, NAIRA } from '../constants';
 import { getLocationsByID } from '../actions';
 import { renderRateFormat } from '../../utils/functions';
 
@@ -19,12 +19,12 @@ const LocationById = ({ match, history }) => {
     }, [dispatch, locationId]);
     const renderAmount = text => (
         <Typography.Text type="secondary">
-            <del>{naira}</del>
+            <del>{NAIRA}</del>
             <strong>
                 {text}
             </strong>
             <span>
-                {perWeek}
+                {PERWEEK}
             </span>
         </Typography.Text>
     );
