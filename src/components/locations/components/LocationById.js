@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-    Icon, Card, Carousel, Row, Col, Button, Typography, Tag
+    Icon, Card, Carousel, Row, Col, Button, Typography, Tag, Descriptions
 } from 'antd';
 import { perWeek, naira, LOCAL_GOVERNMENT, ADDRESS, STATE } from '../constants';
 import { getLocationsByID } from '../actions';
@@ -49,6 +49,7 @@ const LocationById = ({ match, history }) => {
         );
     };
     const renderDescription = (Locaddress, Locstate, Loclga) => {
+        const column = 2;
         const userObj = [{ key: Locaddress }, { key: Loclga }, { key: Locstate }];
         return userObj.map((element, i) => {
             let label = '';
@@ -60,18 +61,9 @@ const LocationById = ({ match, history }) => {
                 label = LOCAL_GOVERNMENT;
             }
             return (
-                <Row key={element.key}>
-                    <Col sm={10} md={8} lg={6}>
-                        <Typography.Text strong>
-                            {label}
-                        </Typography.Text>
-                    </Col>
-                    <Col sm={14} md={16} lg={18}>
-                        <Typography.Text type="secondary">
-                            {element.key}
-                        </Typography.Text>
-                    </Col>
-                </Row>
+                <Descriptions key={element.key} size="small" column={column}>
+                    <Descriptions.Item label={label}>{element.key}</Descriptions.Item>
+                </Descriptions>
             );
         });
     };

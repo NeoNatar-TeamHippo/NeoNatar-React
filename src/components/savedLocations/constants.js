@@ -1,1 +1,1 @@
-export const TESTING = 'we here boss, 2020 bro';
+export const LOCATION_NUMBER_LABEL = 'Number of Locations: ';
