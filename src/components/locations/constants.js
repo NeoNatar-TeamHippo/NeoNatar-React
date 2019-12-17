@@ -11,9 +11,9 @@ export const FILTER = 'FILTER';
 /** @constant */
 export const RELOAD = 'Reload';
 /** @constant */
-export const perWeek = '/week';
+export const PERWEEK = '/week';
 /** @constant */
-export const naira = 'N';
+export const NAIRA = 'N';
 /** @constant */
 export const STATE = 'State:';
 /** @constant */
