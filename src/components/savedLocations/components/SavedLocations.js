@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { PageHeader, Button, Typography, Empty } from 'antd';
 import DataList from './Lists';
 import { DESCRIPTION_CREATE, CREATE_NOW, EMPTY_ICON_URL } from '../constants';
+import { getSavedLocations } from '../actions';
 
 const SavedLocations = ({ history }) => {
+    const dispatch = useDispatch();
+    const { savedLocations } = useSelector(state => state.savedLocation);
     const handleCreateList = () => {
         console.log('handling it');
     };
-    const listData = [];
+    useEffect(() => {
+        dispatch(getSavedLocations());
+    }, [dispatch]);
     return (
         <>
             <PageHeader
@@ -20,7 +26,7 @@ const SavedLocations = ({ history }) => {
                 subTitle="All Locations saved by you"
                 className="mb-2"
             />
-            {listData.length === 0 ? (
+            {savedLocations.length === 0 ? (
                 <Empty
                     image={EMPTY_ICON_URL}
                     imageStyle={{

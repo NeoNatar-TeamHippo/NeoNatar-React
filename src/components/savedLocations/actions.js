@@ -67,4 +67,14 @@ export const getSavedLocationsByID = payload => ({
     payload,
     type: TYPES.GET_SAVED_LOCATIONS_BY_ID,
 });
+/**
+ * Triggers request to get all locations
+ *
+ * @function
+ * @return {void} The {@link actionTypes.DELETE_SAVED_LOCATION } action.
+ */
+export const deleteSavedLocationByID = payload => ({
+    payload,
+    type: TYPES.DELETE_SAVED_LOCATION,
+});
 

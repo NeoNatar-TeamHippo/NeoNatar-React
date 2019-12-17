@@ -1,23 +1,42 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { List, Tooltip, Button, Tag, Typography } from 'antd';
-import { useDispatch } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
+import { List, Tooltip, Button, Tag, Typography, Modal } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 import { LOCATION_NUMBER_LABEL } from '../constants';
+import { getSavedLocationsByID, deleteSavedLocationByID } from '../actions';
 
-const Lists = () => {
-    const listData = [];
+const { confirm } = Modal;
+const Lists = ({ history }) => {
+    const dispatch = useDispatch();
+    const { savedLocations, savedLocationLoading } = useSelector(state => state.savedLocation);
+    const renderPathUrl = savedLocationId => `/dashboard/savedLocations/${savedLocationId}`;
+    const listData = savedLocations;
     const viewSavedLocation = savedLocationId => {
-        console.log(savedLocationId);
+        dispatch(getSavedLocationsByID(savedLocationId));
+        history.push(renderPathUrl(savedLocationId));
+    };
+    const showConfirm = savedLocationId => {
+        confirm({
+            cancelText: 'No',
+            content: 'It can not be reversed, do you wish to proceed?',
+            okText: 'Yes',
+            okType: 'danger',
+            onCancel() { },
+            onOk() {
+                dispatch(deleteSavedLocationByID(savedLocationId));
+            },
+            title: 'Do you want to delete this List of Saved Location?',
+        });
     };
     const deleteSavedLocation = savedLocationId => {
-        console.log(savedLocationId);
+        showConfirm(savedLocationId);
     };
     const editSavedLocation = savedLocationId => {
         console.log(savedLocationId);
     };
-    const renderPathUrl = savedLocationId => `/dashboard/savedLocations/${savedLocationId}`;
     return (
         <List
+            // loading={savedLocationLoading}
             itemLayout="vertical"
             size="small"
             pagination={{
@@ -77,4 +96,4 @@ const Lists = () => {
         />
     );
 };
-export default Lists;
+export default withRouter(Lists);

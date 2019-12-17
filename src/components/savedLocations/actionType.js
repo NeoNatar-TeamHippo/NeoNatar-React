@@ -48,4 +48,11 @@ export const CLEAR_ERRORS = 'CLEAR_ERRORS';
  * @type {String}
  */
 export const SET_ERRORS = 'SET_ERRORS';
+/**
+ * Fired by the {@link actions.deleteSavedLocation }
+ * action creator.
+ *
+ * @type {String}
+ */
+export const DELETE_SAVED_LOCATION = 'DELETE_SAVED_LOCATION';
 
