@@ -17,35 +17,24 @@ const Dashboard = props => {
     const { path } = props.match;
     const getPathWay = pathRoute => `${path}/${pathRoute}`;
     const getNestedPath = (pathRoute, child) => `${path}/${pathRoute}/${child}`;
+    const routes = [
+        { component: Overview, path },
+        { component: Campaigns, path: getPathWay('campaigns') },
+        { component: SavedLocations, path: getPathWay('savedLocations') },
+        { component: SavedLocationById, path: getNestedPath('savedLocations', ':id') },
+        { component: Locations, path: getPathWay('locations') },
+        { component: LocationById, path: getNestedPath('locations', ':id') },
+    ];
+    const renderRoutes = routeComponent => routeComponent.map(route => {
+        const { path: routePath, component } = route;
+        return (
+            <Route key={routePath} path={routePath} exact strict component={component} />
+        );
+    });
     return (
         <DashboardLayout>
             <Switch>
-                <Route path={path} exact strict component={Overview} />
-                <Route path={getPathWay('campaigns')} exact strict component={Campaigns} />
-                <Route
-                    path={getPathWay('savedLocations')}
-                    exact
-                    strict
-                    component={SavedLocations}
-                />
-                <Route
-                    path={getNestedPath('savedLocations', ':id')}
-                    exact
-                    strict
-                    component={SavedLocationById}
-                />
-                <Route
-                    path={getPathWay('locations')}
-                    exact
-                    strict
-                    component={Locations}
-                />
-                <Route
-                    path={getNestedPath('locations', ':id')}
-                    exact
-                    strict
-                    component={LocationById}
-                />
+                {renderRoutes(routes)}
             </Switch>
         </DashboardLayout>
     );
