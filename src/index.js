@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react'
+import { PersistGate } from 'redux-persist/integration/react';
 import './index.css';
 import reduxStore from './components/redux/store';
 
 import router from './components/router';
-const store = reduxStore.store;
-const persistor = reduxStore.persistor;
+
+const { store } = reduxStore;
+const { persistor } = reduxStore;
 const { Routes } = router.components;
 const App = () => (
     <Provider store={store}>

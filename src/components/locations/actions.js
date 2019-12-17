@@ -57,4 +57,14 @@ export const clearErrors = () => ({
 export const getLocations = () => ({
     type: TYPES.GET_LOCATIONS,
 });
+/**
+ * Triggers request to get all locations
+ *
+ * @function
+ * @return {void} The {@link actionTypes.GET_LOCATIONS_BY_ID } action.
+ */
+export const getLocationsByID = payload => ({
+    payload,
+    type: TYPES.GET_LOCATIONS_BY_ID,
+});
 
