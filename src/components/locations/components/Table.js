@@ -112,7 +112,7 @@ const LocationTable = ({ history }) => {
     };
     const hasSelected = selectedRowKeys.length > 0;
     return (
-        <div>
+        <>
             <div style={{ marginBottom: 16 }}>
                 <Button type="primary" onClick={start} disabled={!hasSelected} loading={loading}>
                     {RELOAD}
@@ -127,7 +127,7 @@ const LocationTable = ({ history }) => {
                 columns={columns}
                 dataSource={locations}
             />
-        </div>
+        </>
     );
 };
 export default withRouter(LocationTable);
