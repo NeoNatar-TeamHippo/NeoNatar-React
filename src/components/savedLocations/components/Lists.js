@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { List, Tooltip, Button, Tag, Typography, Modal } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOCATION_NUMBER_LABEL } from '../constants';
-import { getSavedLocationsByID, deleteSavedLocationByID } from '../actions';
+import { deleteSavedLocationByID } from '../actions';
 
 const { confirm } = Modal;
 const Lists = ({ history }) => {
@@ -12,7 +12,6 @@ const Lists = ({ history }) => {
     const renderPathUrl = savedLocationId => `/dashboard/savedLocations/${savedLocationId}`;
     const listData = savedLocations;
     const viewSavedLocation = savedLocationId => {
-        dispatch(getSavedLocationsByID(savedLocationId));
         history.push(renderPathUrl(savedLocationId));
     };
     const showConfirm = savedLocationId => {
@@ -55,6 +54,7 @@ const Lists = ({ history }) => {
                                 onClick={() => editSavedLocation(item.savedLocationId)}
                                 type="link"
                                 icon="edit-o"
+                                className="text-success"
                             />
                         </Tooltip>,
                         <Tooltip placement="top" title="View details" key="list-vertical-eye-o">
@@ -69,6 +69,7 @@ const Lists = ({ history }) => {
                                 onClick={() => deleteSavedLocation(item.savedLocationId)}
                                 type="link"
                                 icon="delete-o"
+                                className="text-danger"
                             />
                         </Tooltip>,
                     ]}

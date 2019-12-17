@@ -10,7 +10,7 @@ import savedLocations from '../../savedLocations';
 const { Overview } = overview.components;
 const { Campaigns } = campaigns.components;
 const { Locations, LocationById } = locations.components;
-const { SavedLocations } = savedLocations.components;
+const { SavedLocations, SavedLocationById } = savedLocations.components;
 
 const { DashboardLayout } = layouts.components;
 const Dashboard = props => {
@@ -27,6 +27,12 @@ const Dashboard = props => {
                     exact
                     strict
                     component={SavedLocations}
+                />
+                <Route
+                    path={getNestedPath('savedLocations', ':id')}
+                    exact
+                    strict
+                    component={SavedLocationById}
                 />
                 <Route
                     path={getPathWay('locations')}

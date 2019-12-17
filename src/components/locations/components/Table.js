@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Table, Button, Tag, Typography, Divider, Tooltip } from 'antd';
 import { RELOAD } from '../constants';
-import { renderRateFormat } from '../../utils/functions';
+import { renderRateFormat, renderPrice } from '../../utils/functions';
 
 const LocationTable = ({ history }) => {
     const { locations, locationLoading } = useSelector(state => state.location);
@@ -40,14 +40,7 @@ const LocationTable = ({ history }) => {
             dataIndex: 'price',
             key: 'price',
             render: text => {
-                let type;
-                if (parseInt(text, 10) <= 200) {
-                    type = 'danger';
-                } else if (parseInt(text, 10) <= 500) {
-                    type = 'warning';
-                } else {
-                    type = 'secondary';
-                }
+                const { type } = renderPrice(text);
                 return (
                     <Typography.Text type={type}>
                         {text}
@@ -112,7 +105,7 @@ const LocationTable = ({ history }) => {
     };
     const hasSelected = selectedRowKeys.length > 0;
     return (
-        <div>
+        <>
             <div style={{ marginBottom: 16 }}>
                 <Button type="primary" onClick={start} disabled={!hasSelected} loading={loading}>
                     {RELOAD}
@@ -122,12 +115,12 @@ const LocationTable = ({ history }) => {
                 </span>
             </div>
             <Table
-                loading={locationLoading}
+                // loading={locationLoading}
                 rowSelection={rowSelection}
                 columns={columns}
                 dataSource={locations}
             />
-        </div>
+        </>
     );
 };
 export default withRouter(LocationTable);

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { PageHeader, Button, Typography, Empty } from 'antd';
+import { PageHeader, Button, Typography, Empty, Row, Col } from 'antd';
 import DataList from './Lists';
 import { DESCRIPTION_CREATE, CREATE_NOW, EMPTY_ICON_URL } from '../constants';
 import { getSavedLocations } from '../actions';
@@ -17,14 +17,10 @@ const SavedLocations = ({ history }) => {
     return (
         <>
             <PageHeader
-                style={{
-                    border: '1px solid rgb(235, 237, 240)',
-                    borderRadius: '4px',
-                }}
-                onBack={() => history.goBack()}
+                onBack={() => history.push('/dashboard')}
                 title="Saved Locations"
                 subTitle="All Locations saved by you"
-                className="mb-2"
+                className="mb-2 page_header"
             />
             {savedLocations.length === 0 ? (
                 <Empty
@@ -41,7 +37,13 @@ const SavedLocations = ({ history }) => {
                     <Button onClick={() => handleCreateList()} type="primary">{CREATE_NOW}</Button>
                 </Empty>
             )
-                : (<DataList />)
+                : (
+                    <Row type="flex" justify="center" align="middle">
+                        <Col className="mt-2" sm={24} md={16} lg={12}>
+                            <DataList />
+                        </Col>
+                    </Row>
+                )
             }
         </>
     );

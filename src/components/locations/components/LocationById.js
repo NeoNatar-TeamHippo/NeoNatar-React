@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import {
-    Icon, Card, Carousel, Row, Col, Button, Typography, Tag, Descriptions
+    Icon, Card, Carousel, Row, Col, Button, Typography, Tag, Descriptions, Skeleton
 } from 'antd';
 import { perWeek, naira, LOCAL_GOVERNMENT, ADDRESS, STATE } from '../constants';
 import { getLocationsByID } from '../actions';
@@ -9,10 +10,10 @@ import { renderRateFormat } from '../../utils/functions';
 
 const LocationById = ({ match, history }) => {
     const dispatch = useDispatch();
-    const { locationById, locationLoading } = useSelector(state => state.location);
-    const { name, price, lga, trafficRate, address, state, images } = locationById;
     const { params } = match;
     const { id: locationId } = params;
+    const { locationById, locationLoading } = useSelector(state => state.location);
+    const { name, price, lga, trafficRate, address, state, images } = locationById;
     useEffect(() => {
         dispatch(getLocationsByID(locationId));
     }, [dispatch, locationId]);
@@ -77,7 +78,7 @@ const LocationById = ({ match, history }) => {
                         className="w-100"
                         cover={(
                             <Carousel autoplay>
-                                {renderImages(images)}
+                                {images ? renderImages(images) : (<Skeleton />)}
                             </Carousel>
                         )}
                         actions={[
@@ -106,4 +107,4 @@ const LocationById = ({ match, history }) => {
         </div>
     );
 };
-export default LocationById;
+export default withRouter(LocationById);
