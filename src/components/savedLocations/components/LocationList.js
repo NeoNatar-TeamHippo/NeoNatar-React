@@ -3,11 +3,11 @@ import { Link, withRouter } from 'react-router-dom';
 import { List, Tooltip, Button, Tag, Typography, Modal } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { PRICE, TRAFFIC_RATE } from '../constants';
-import { deleteSavedLocationByID } from '../actions';
+import { locationOperation } from '../actions';
 import { renderRateFormat, renderPrice } from '../../utils/functions';
 
 const { confirm } = Modal;
-const LocationList = ({ history }) => {
+const LocationList = ({ history, savedLocationId }) => {
     const dispatch = useDispatch();
     const { savedLocationById, savedLocationLoading } = useSelector(state => state.savedLocation);
     const renderPathUrl = locationId => `/dashboard/Locations/${locationId}`;
@@ -24,8 +24,12 @@ const LocationList = ({ history }) => {
             okType: 'danger',
             onCancel() { },
             onOk() {
-                console.log('okay to delete');
-                // dispatch(deleteSavedLocationByID(locationId));
+                const payload = {
+                    locations: [locationId],
+                    queryType: 'remove',
+                    savedLocationId,
+                };
+                dispatch(locationOperation(payload));
             },
             title: 'Do you want to delete this location?',
         });

@@ -8,7 +8,7 @@ const SaveLocationById = ({ match, history }) => {
     const { params } = match;
     const { id: savedLocationId } = params;
     const { savedLocationById, savedLocationLoading } = useSelector(state => state.savedLocation);
-    const { title, description, createdAt } = savedLocationById;
+    const { title } = savedLocationById;
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getSavedLocationsByID(savedLocationId));
@@ -33,9 +33,8 @@ const SaveLocationById = ({ match, history }) => {
                                     {title}
                                 </Typography.Title>
                             )}
-                        // description={description}
                         />
-                        <LocationList />
+                        <LocationList savedLocationId={savedLocationId} />
                     </Card>
                 </Col>
             </Row>

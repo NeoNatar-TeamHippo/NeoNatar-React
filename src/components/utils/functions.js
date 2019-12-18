@@ -1,3 +1,5 @@
+import { notification } from 'antd';
+
 export const renderRateFormat = text => {
     let color;
     let rateText;
@@ -23,5 +25,11 @@ export const renderPrice = text => {
         type = 'secondary';
     }
     return { type };
-}
-;
+};
+
+export const openNotification = (description, message) => {
+    notification.success({
+        description,
+        message,
+    });
+};

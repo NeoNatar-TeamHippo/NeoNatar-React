@@ -79,7 +79,7 @@ const Lists = ({ history }) => {
                                 {LOCATION_NUMBER_LABEL}
                             </Typography.Text>
                             <Tag color="volcano" className="ml-3">
-                                {item.locations.length}
+                                {item.locations ? item.locations.length : 0}
                             </Tag>
                         </div>
                     )}

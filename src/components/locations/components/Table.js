@@ -1,19 +1,69 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Table, Button, Tag, Typography, Divider, Tooltip } from 'antd';
-import { RELOAD } from '../constants';
-import { renderRateFormat, renderPrice } from '../../utils/functions';
+import { Table, Button, Tag, Typography, Divider, Tooltip, Menu, Dropdown, Icon } from 'antd';
+import { RELOAD, ADD_SELECTED } from '../constants';
+import { renderRateFormat, renderPrice, openNotification } from '../../utils/functions';
+import { locationOperation } from '../../savedLocations/actions';
 
 const LocationTable = ({ history }) => {
+    const dispatch = useDispatch();
     const { locations, locationLoading } = useSelector(state => state.location);
+    const { savedLocations } = useSelector(state => state.savedLocation);
     const [loading, setLoading] = useState(false);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+    const [locationToAdd, setlocationToAdd] = useState(null);
+
+    const addBulkState = savedLocationId => {
+        const bulkLocationId = [];
+        selectedRowKeys.forEach(elem => locations.map((element, i) => (elem === i
+            ? bulkLocationId.push(element.locationId) : bulkLocationId)));
+        const payload = {
+            locations: bulkLocationId,
+            queryType: 'add',
+            savedLocationId,
+        };
+        dispatch(locationOperation(payload));
+        openNotification(
+            `${selectedRowKeys.length} Location${selectedRowKeys.length > 1 ? 's' : ''}`,
+            'Successfully added'
+        );
+    };
+    const addSingleState = savedLocationId => {
+        const payload = {
+            locations: [locationToAdd],
+            queryType: 'add',
+            savedLocationId,
+        };
+        dispatch(locationOperation(payload));
+        openNotification('Location added', 'Success');
+    };
+    const handleMenuClick = ({ key }) => {
+        addBulkState(key);
+    };
+    const handleMenuClick2 = ({ key }) => {
+        addSingleState(key);
+    };
+    const renderMenu = () => savedLocations.map(savedLoc => (
+        <Menu.Item key={savedLoc.savedLocationId}>
+            {savedLoc.title}
+        </Menu.Item>
+    ));
+    const menu = (
+        <Menu onClick={handleMenuClick}>
+            {renderMenu()}
+        </Menu>
+    );
+    const menu2 = (
+        <Menu onClick={handleMenuClick2}>
+            {renderMenu()}
+        </Menu>
+    );
     const handleViewLocation = locationId => {
         history.push(`/dashboard/locations/${locationId}`);
     };
     const addToSavedLocation = locationId => {
-        console.log(locationId, 'handle savedLocation');
+        setlocationToAdd(locationId);
     };
     const columns = [
         {
@@ -75,12 +125,15 @@ const LocationTable = ({ history }) => {
                     </Tooltip>
                     <Divider type="vertical" />
                     <Tooltip placement="top" title="Add to saved location">
-                        <Button
-                            onClick={() => { addToSavedLocation(record.locationId); }}
-                            className="text-success"
-                            type="link"
-                            icon="plus"
-                        />
+                        <Dropdown overlay={menu2}>
+                            <Button
+                                onMouseOver={() => { addToSavedLocation(record.locationId); }}
+                                className="text-success"
+                                type="link"
+                                icon="plus"
+                            />
+                        </Dropdown>
+
                     </Tooltip>
                 </div>
             ),
@@ -96,7 +149,6 @@ const LocationTable = ({ history }) => {
     };
 
     const onSelectChange = selectedKeys => {
-        console.log('selectedRowKeys changed: ', selectedKeys);
         setSelectedRowKeys(selectedKeys);
     };
     const rowSelection = {
@@ -107,12 +159,22 @@ const LocationTable = ({ history }) => {
     return (
         <>
             <div style={{ marginBottom: 16 }}>
-                <Button type="primary" onClick={start} disabled={!hasSelected} loading={loading}>
+                <Button type="ghost" onClick={start} disabled={!hasSelected} loading={loading}>
                     {RELOAD}
                 </Button>
                 <span style={{ marginLeft: 8 }}>
                     {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
                 </span>
+                <Dropdown overlay={menu}>
+                    <Button
+                        className="ml-2"
+                        size="default"
+                        type="primary"
+                    >
+                        {ADD_SELECTED}
+                        <Icon type="down" />
+                    </Button>
+                </Dropdown>
             </div>
             <Table
                 // loading={locationLoading}
