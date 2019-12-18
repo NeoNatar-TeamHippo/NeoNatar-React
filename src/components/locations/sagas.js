@@ -1,6 +1,6 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
 import * as TYPES from './actionType';
-import { setErrors, setLocation, loadingLocation, clearErrors, setLocationById } from './actions';
+import { setErrors, setLocation, loadingLocation, setLocationById } from './actions';
 import { allLocation, locationById } from './services';
 
 function* getAllLocations() {
@@ -9,7 +9,6 @@ function* getAllLocations() {
         const res = yield call(allLocation);
         if (res.status === 'success') {
             yield put(setLocation(res.data));
-            yield put(clearErrors());
         } else {
             yield put(setErrors({ message: res.message }));
         }
@@ -24,13 +23,9 @@ function* getLocationsEffect() {
 function* getSingleLocation(id) {
     try {
         yield put(loadingLocation());
-        console.log('id from sagas', id);
         const res = yield call(locationById, id);
-        console.log(id, 'id from sags');
         if (res.status === 'success') {
-            console.log(res.data, 'data from location y id sagas');
             yield put(setLocationById(res.data));
-            yield put(clearErrors());
         } else {
             yield put(setErrors({ message: res.message }));
         }

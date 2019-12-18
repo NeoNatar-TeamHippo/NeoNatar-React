@@ -1,31 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Table, Button, Tag, Typography, Icon, Divider, Tooltip, Modal, Card, Avatar, Carousel } from 'antd';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { Table, Button, Tag, Typography, Divider, Tooltip } from 'antd';
 import { RELOAD } from '../constants';
-import { getLocations, setLocationById } from '../actions';
+import { renderRateFormat } from '../../utils/functions';
 
-const { Meta } = Card;
-
-const LocationTable = () => {
-    const dispatch = useDispatch();
-    const { location, locationLoading } = useSelector(state => state.location);
-    console.log(location, 'from tables');
-    // useEffect(() => {
-    //     dispatch(getLocations());
-    // }, [dispatch]);
+const LocationTable = ({ history }) => {
+    const { locations, locationLoading } = useSelector(state => state.location);
     const [loading, setLoading] = useState(false);
-    const [viewModal, setViewModal] = useState(false);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const handleViewLocation = locationId => {
-        console.log(locationId, 'handle view');
-        dispatch(setLocationById(locationId));
-        setViewModal(true);
+        history.push(`/dashboard/locations/${locationId}`);
     };
     const addToSavedLocation = locationId => {
         console.log(locationId, 'handle savedLocation');
-    };
-    const handleLocationData = () => {
-        console.log('handled it');
     };
     const columns = [
         {
@@ -72,17 +60,10 @@ const LocationTable = () => {
             dataIndex: 'trafficRate',
             key: 'trafficRate',
             render: text => {
-                let color;
-                if (parseInt(text, 10) <= 200) {
-                    color = 'volcano';
-                } else if (parseInt(text, 10) <= 500) {
-                    color = 'orange';
-                } else {
-                    color = 'green';
-                }
+                const { color, rateText } = renderRateFormat(text);
                 return (
                     <Tag color={color}>
-                        {text}
+                        {rateText}
                     </Tag>
                 );
             },
@@ -140,55 +121,13 @@ const LocationTable = () => {
                     {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
                 </span>
             </div>
-            <Modal
-                title="Golden Hills"
-                centered
-                visible={viewModal}
-                onOk={() => handleLocationData()}
-                onCancel={() => setViewModal(false)}
-            >
-                <Card
-                    style={{ width: '100%' }}
-                    cover={(
-                        <img
-                            alt="example"
-                            src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                        />
-                    )}
-                    actions={[
-                        <Icon type="setting" key="setting" />,
-                        <Icon type="edit" key="edit" />,
-                        <Icon type="ellipsis" key="ellipsis" />,
-                    ]}
-                >
-                    <Meta
-                        avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                        title="Golden Hills"
-                        description="Plot 436 arab road kubwa"
-                    />
-                    {/* <Carousel autoplay>
-                        <div>
-                            <h3>1</h3>
-                        </div>
-                        <div>
-                            <h3>2</h3>
-                        </div>
-                        <div>
-                            <h3>3</h3>
-                        </div>
-                        <div>
-                            <h3>4</h3>
-                        </div>
-                    </Carousel> */}
-                </Card>
-            </Modal>
             <Table
-                // loading={locationLoading}
+                loading={locationLoading}
                 rowSelection={rowSelection}
                 columns={columns}
-                dataSource={location}
+                dataSource={locations}
             />
         </div>
     );
 };
-export default LocationTable;
+export default withRouter(LocationTable);
