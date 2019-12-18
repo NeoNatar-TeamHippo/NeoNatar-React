@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Icon, Table } from 'antd';
+import { Button, Table } from 'antd';
 
 import { ALL_COMMERCIALS, DATA, NEW } from '../constants';
 
@@ -9,8 +9,7 @@ const Commercials = () => (
         title={() => (
             <div>
                 {ALL_COMMERCIALS}
-                <Button type="primary" style={{ color: 'white', marginLeft: 100 }}>
-                    <Icon type="plus-circle" style={{ marginBottom: 100 }} />
+                <Button className="mb-2" style={{ marginLeft: 100 }} size="default" type="primary">
                     {NEW}
                 </Button>
             </div>
