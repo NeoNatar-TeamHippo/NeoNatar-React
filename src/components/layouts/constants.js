@@ -26,7 +26,7 @@ export const ADMIN_SIDE_MENU_ITEMS = [
 /** @constant */
 export const CLIENT_SIDE_MENU_ITEMS = [
     { iconType: 'dashboard', label: 'Overview', link: '/dashboard' },
-    { iconType: 'notification', label: 'Commercials' },
+    { iconType: 'notification', label: 'Commercials', link: '/dashboard/commercials' },
     { iconType: 'environment', label: 'Locations', link: '/dashboard/locations' },
     { iconType: 'pushpin', label: 'Saved Locations' },
     { iconType: 'sound', label: 'Campaigns', link: '/dashboard/campaigns' },

@@ -5,9 +5,11 @@ import overview from '../../overview';
 import campaigns from '../../campaigns';
 import locations from '../../locations';
 import layouts from '../../layouts';
+import commercials from '../../commercials';
 
 const { Overview } = overview.components;
 const { Campaigns } = campaigns.components;
+const { Commercials } = commercials.components;
 const { Locations, LocationById } = locations.components;
 
 const { DashboardLayout } = layouts.components;
@@ -20,6 +22,7 @@ const Dashboard = props => {
             <Switch>
                 <Route path={path} exact strict component={Overview} />
                 <Route path={getPathWay('campaigns')} exact component={Campaigns} />
+                <Route path={getPathWay('commercials')} exact component={Commercials} />
                 <Route path={getPathWay('locations')} exact component={Locations} />
                 <Route path={getNestedPath('locations', ':id')} exact component={LocationById} />
             </Switch>
