@@ -13,7 +13,7 @@ const LocationTable = ({ history }) => {
     const [loading, setLoading] = useState(false);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [locationToAdd, setlocationToAdd] = useState(null);
-
+    const noSavedLoc = savedLocations.length === 0;
     const addBulkState = savedLocationId => {
         const bulkLocationId = [];
         selectedRowKeys.forEach(elem => locations.map((element, i) => (elem === i
@@ -65,6 +65,22 @@ const LocationTable = ({ history }) => {
     const addToSavedLocation = locationId => {
         setlocationToAdd(locationId);
     };
+    const start = () => {
+        setLoading(true);
+        setTimeout(() => {
+            setSelectedRowKeys([]);
+            setLoading(false);
+        }, 1000);
+    };
+
+    const onSelectChange = selectedKeys => {
+        setSelectedRowKeys(selectedKeys);
+    };
+    const rowSelection = {
+        onChange: onSelectChange,
+        selectedRowKeys,
+    };
+    const hasSelected = selectedRowKeys.length > 0;
     const columns = [
         {
             dataIndex: 'name',
@@ -128,34 +144,19 @@ const LocationTable = ({ history }) => {
                         <Dropdown overlay={menu2}>
                             <Button
                                 onMouseOver={() => { addToSavedLocation(record.locationId); }}
+                                onFocus={() => { addToSavedLocation(record.locationId); }}
                                 className="text-success"
                                 type="link"
                                 icon="plus"
+                                disabled={noSavedLoc}
                             />
                         </Dropdown>
-
                     </Tooltip>
                 </div>
             ),
             title: 'Action',
         },
     ];
-    const start = () => {
-        setLoading(true);
-        setTimeout(() => {
-            setSelectedRowKeys([]);
-            setLoading(false);
-        }, 1000);
-    };
-
-    const onSelectChange = selectedKeys => {
-        setSelectedRowKeys(selectedKeys);
-    };
-    const rowSelection = {
-        onChange: onSelectChange,
-        selectedRowKeys,
-    };
-    const hasSelected = selectedRowKeys.length > 0;
     return (
         <>
             <div style={{ marginBottom: 16 }}>
@@ -170,6 +171,7 @@ const LocationTable = ({ history }) => {
                         className="ml-2"
                         size="default"
                         type="primary"
+                        disabled={noSavedLoc}
                     >
                         {ADD_SELECTED}
                         <Icon type="down" />

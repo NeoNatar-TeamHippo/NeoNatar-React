@@ -55,6 +55,8 @@ const Lists = ({ history }) => {
                                 type="link"
                                 icon="edit-o"
                                 className="text-success"
+                                // @TODO: work on this and remove it
+                                disabled
                             />
                         </Tooltip>,
                         <Tooltip placement="top" title="View details" key="list-vertical-eye-o">
