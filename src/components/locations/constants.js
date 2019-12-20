@@ -21,5 +21,7 @@ export const LOCAL_GOVERNMENT = 'Local Government:';
 /** @constant */
 export const ADDRESS = 'Address:';
 /** @constant */
+export const NO_SAVED_LOCATION = 'No saved locations';
+/** @constant */
 const baseUrl = 'http://localhost:5000/neonatar/europe-west1/api';
 export const LOCATION_URL = `${baseUrl}/v1/locations`;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Table, Button, Tag, Typography, Divider, Tooltip, Menu, Dropdown, Icon } from 'antd';
-import { RELOAD, ADD_SELECTED } from '../constants';
+import { RELOAD, ADD_SELECTED, NO_SAVED_LOCATION } from '../constants';
 import { renderRateFormat, renderPrice, openNotification } from '../../utils/functions';
 import { locationOperation } from '../../savedLocations/actions';
 
@@ -44,11 +44,23 @@ const LocationTable = ({ history }) => {
     const handleMenuClick2 = ({ key }) => {
         addSingleState(key);
     };
-    const renderMenu = () => savedLocations.map(savedLoc => (
-        <Menu.Item key={savedLoc.savedLocationId}>
-            {savedLoc.title}
-        </Menu.Item>
-    ));
+    const renderMenu = () => {
+        let menuItem = '';
+        if (!noSavedLoc) {
+            menuItem = savedLocations.map(savedLoc => (
+                <Menu.Item key={savedLoc.savedLocationId}>
+                    {savedLoc.title}
+                </Menu.Item>
+            ));
+        } else {
+            menuItem = (
+                <Menu.Item disabled>
+                    {NO_SAVED_LOCATION}
+                </Menu.Item>
+            );
+        }
+        return menuItem;
+    };
     const menu = (
         <Menu onClick={handleMenuClick}>
             {renderMenu()}
