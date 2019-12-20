@@ -48,6 +48,9 @@ export const setUnAuthenticated = payload => ({
     payload,
     type: TYPES.SET_UNAUTHENTICATED,
 });
+export const authTrue = () => ({
+    type: TYPES.AUTH_TRUE,
+});
 /**
  * Triggers request to set signin a user
  *
