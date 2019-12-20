@@ -20,7 +20,7 @@ export const MAIL = 'mail';
 export const HORIZONTAL = 'horizontal';
 
 /** @constant */
-const baseUrl = 'https://europe-west1-neonatar.cloudfunctions.net/api/v1';
+const baseUrl = 'https://europe-west1-neonatar.cloudfunctions.net/api';
 export const TICKET_URL = `${baseUrl}/v1/tickets`;
 export const NEW_TICKET_URL = `${baseUrl}/v1/tickets/new`;
 export const PENDING_TICKET_URL = `${baseUrl}/v1/tickets/pending`;
