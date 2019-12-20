@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Avatar, Tag, Table, Menu, Icon } from 'antd';
+import { Avatar, Tag, Table, Menu } from 'antd';
 
 import { getTickets, getNewTickets, getPendingTickets, getResolvedTickets } from '../actions';
-import { ALL, PENDING, NEW, RESOLVED, MAIL, HORIZONTAL } from '../constants';
+import { ALL, PENDING, NEW, RESOLVED, HORIZONTAL } from '../constants';
 
 const menuItems = [ALL, PENDING, NEW, RESOLVED];
 const Tickets = () => {
