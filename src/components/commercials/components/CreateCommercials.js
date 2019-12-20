@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input, Modal, Button, Upload, Icon } from 'antd';
 
-import { FORM_ITEM_LAYOUT } from '../constants';
+import { FORM_ITEM_LAYOUT, UPLOAD, FILE_TYPE } from '../constants';
 
 const { Item } = Form;
 const { Dragger } = Upload;
@@ -19,31 +19,39 @@ class CommercialsForm extends React.Component {
                 onOk={onCreate}
             >
                 <Form {...FORM_ITEM_LAYOUT} layout="vertical">
-                    <Item label="Title">
+                    <Item>
                         {getFieldDecorator('title', {
                             rules: [{
                                 message: 'Please input the title of collection!',
                                 required: true,
                             }],
-                        })(<Input />)}
-                    </Item>
-                    <Item label="Description">
-                        {getFieldDecorator('title', {
-                            rules: [{
-                                message: 'Please input the title of collection!',
-                                required: true,
-                            }],
-                        })(<Input />)}
+                        })(<Input placeholder="title" />)}
                     </Item>
                     <Item>
-                        <Dragger>
-                            <p className="ant-upload-drag-icon">
-                                <Icon type="inbox" />
-                            </p>
-                            <Button className="ant-upload-text" type="primary">Upload</Button>
-                            <p className="ant-upload-hint">File types accepted include: .mp4</p>
-                        </Dragger>
+                        {getFieldDecorator('description', {
+                            rules: [{
+                                message: 'Please input the title of collection!',
+                                required: true,
+                            }],
+                        })(<Input placeholder="description" />)}
                     </Item>
+                    {/* <Item>
+                        {getFieldDecorator('upload', {
+                            rules: [{
+                                message: 'Please input the title of collection!',
+                                required: true,
+                            }],
+                        })(
+                            <Dragger>
+                                <p className="ant-upload-drag-icon">
+                                    <Icon type="inbox" />
+                                </p>
+                                <Button className="ant-upload-text" type="primary">{UPLOAD}</Button>
+                                <p className="ant-upload-hint">{FILE_TYPE}</p>
+                            </Dragger>
+                        )}
+
+                    </Item> */}
                 </Form>
             </Modal>
         );

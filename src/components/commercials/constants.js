@@ -2,6 +2,12 @@
 export const ALL_COMMERCIALS = 'All Commercials';
 
 /** @constant */
+export const UPLOAD = 'Upload';
+
+/** @constant */
+export const FILE_TYPE = 'File types accepted include: .mp4';
+
+/** @constant */
 export const DATA = [
     {
         briefDescription: 'Promo for subscribers to recharge N200 and get N2000...',
@@ -31,7 +37,7 @@ export const NAME = 'commercials';
 
 /** @constant */
 const baseUrl = 'https://europe-west1-neonatar.cloudfunctions.net/api';
-export const LOCATION_URL = `${baseUrl}/v1/commercials`;
+export const COMMERCIALS_URL = `${baseUrl}/v1/commercials`;
 
 /** @constant */
 export const FORM_ITEM_LAYOUT = {

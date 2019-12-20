@@ -1,30 +1,29 @@
-import { takeLatest, put, all } from 'redux-saga/effects';
-import axios from 'axios';
+import { takeLatest, call, put, all } from 'redux-saga/effects';
 
 import { createCommercials, updateCommercials } from './actions';
 import { REQUEST_COMMERCIALS, REQUEST_CREATE_COMMERCIALS } from './actionTypes';
-import { LOCATION_URL } from './constants';
+import { allCommercials, addCommercialsService } from './services';
 
 /**
  * Handles requesting the list of commercials from the database
  *
  * @return {Void} - void
  */
+
 function* requestAllCommercials() {
     try {
-        const response = yield fetch(LOCATION_URL).then(res => res.json());
-
-        const data = yield Object.keys(response.commercials).map(
-            key => response.commercials[key]
+        const res = yield call(allCommercials);
+        const payload = yield Object.keys(res.data).map(
+            key => res.data[key]
         );
 
-        const length = data.length - 1;
+        const length = payload.length - 1;
 
-        if (data[length].id) {
-            yield put(updateCommercials(data));
+        if (payload[length].id) {
+            yield put(updateCommercials(payload));
         } else {
             // eslint-disable-next-line no-console
-            console.log('ERROR', data);
+            console.log('ERROR', { message: res.message });
         }
     } catch (error) {
         // eslint-disable-next-line no-console
@@ -40,13 +39,15 @@ function* requestAllCommercials() {
  */
 function* requestCreateCommercials(action) {
     try {
-        yield axios({
-            data: action.payload,
-            method: 'post',
-            url: LOCATION_URL,
-        });
-
-        yield put(createCommercials(action));
+        const res = yield call(addCommercialsService, action.payload);
+        if (res.status === 'success') {
+            // const authorization = `Bearer ${res.data}`;
+            // yield put(setAuthenticated(authorization));
+            yield put(createCommercials(res.data));
+        } else {
+            // eslint-disable-next-line no-console
+            console.log('ERROR', { message: 'Something went wrong please try again' });
+        }
     } catch (error) {
         // eslint-disable-next-line no-console
         console.log(error);

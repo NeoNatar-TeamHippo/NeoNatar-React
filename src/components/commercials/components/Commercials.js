@@ -32,6 +32,7 @@ const Commercials = () => {
             const commercial = {
                 description: values.description,
                 title: values.age,
+                upload: values.upload,
             };
             dispatch(requestCreateCommercials(commercial));
         });
