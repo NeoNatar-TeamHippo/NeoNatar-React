@@ -10,7 +10,7 @@ import history from '../history/History';
 const persistConfig = {
     key: 'root',
     storage,
-}
+};
 const initializeSagaMiddleware = createSagaMiddleware();
 const routerWare = routerMiddleware(history);
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -19,7 +19,7 @@ const store = createStore(
     persistedReducer,
     storeEnhancers(applyMiddleware(initializeSagaMiddleware, routerWare))
 );
-const persistor = persistStore(store)
+const persistor = persistStore(store);
 initializeSagaMiddleware.run(rootSaga);
 
 export default { store, persistor };

@@ -4,11 +4,13 @@ import { Route, Switch } from 'react-router-dom';
 import overview from '../../overview';
 import campaigns from '../../campaigns';
 import locations from '../../locations';
+import tickets from '../../tickets';
 import layouts from '../../layouts';
 import savedLocations from '../../savedLocations';
 
 const { Overview } = overview.components;
 const { Campaigns } = campaigns.components;
+const { Tickets } = tickets.components;
 const { Locations, LocationById } = locations.components;
 const { SavedLocations, SavedLocationById } = savedLocations.components;
 
@@ -23,6 +25,7 @@ const Dashboard = props => {
         { component: SavedLocations, path: getPathWay('savedLocations') },
         { component: SavedLocationById, path: getNestedPath('savedLocations', ':id') },
         { component: Locations, path: getPathWay('locations') },
+        { component: Tickets, path: getPathWay('tickets') },
         { component: LocationById, path: getNestedPath('locations', ':id') },
     ];
     const renderRoutes = routeComponent => routeComponent.map(route => {
