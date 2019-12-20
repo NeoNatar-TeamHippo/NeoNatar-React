@@ -35,8 +35,7 @@ export const NEW = 'New';
 /** @constant */
 export const NAME = 'commercials';
 
-/** @constant */
-const baseUrl = 'https://europe-west1-neonatar.cloudfunctions.net/api';
+const baseUrl = 'https://europe-west1-neonatar.cloudfunctions.net';
 export const COMMERCIALS_URL = `${baseUrl}/v1/commercials`;
 
 /** @constant */

@@ -7,7 +7,7 @@ import { NAME } from './constants';
  * @type {Array}
  */
 
-export const UPDATE_COMMERCIALS = `${NAME}/UPDATE_COMMERCIALS`;
+export const UPDATE_COMMERCIALS = 'UPDATE_COMMERCIALS';
 
 /**
  * Fired by the {@link actions.requestCommercials requestCommercials}

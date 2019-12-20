@@ -1,40 +1,23 @@
-import { takeLatest, put, all } from 'redux-saga/effects';
+import { takeLatest, put, all, call } from 'redux-saga/effects';
 
 import { createCommercials, updateCommercials } from './actions';
 import { REQUEST_COMMERCIALS, REQUEST_CREATE_COMMERCIALS } from './actionTypes';
 import { COMMERCIALS_URL } from './constants';
+import { allCommercials } from './services';
 
 /**
  * Handles requesting the list of commercials from the database
  *
  * @return {Void} - void
  */
-
 function* requestAllCommercials() {
-    const token = localStorage.getItem('FBToken');
     try {
-        const parameters = {
-            headers: {
-                Authorization: token,
-                'Content-Type': 'application/json',
-            },
-            method: 'GET',
-            mode: 'cors',
-        };
-        const response = yield fetch(COMMERCIALS_URL, parameters)
-            .then(res => res.json());
-
-        const payload = yield Object.keys(response.data).map(
-            key => response.data[key]
-        );
-
-        const length = payload.length - 1;
-
-        if (payload[length].id) {
-            yield put(updateCommercials(payload));
+        const res = yield call(allCommercials);
+        if (res.status === 'success') {
+            yield put(updateCommercials(res.data));
         } else {
             // eslint-disable-next-line no-console
-            console.log('ERROR', { message: response.message });
+            console.log('ERROR', { message: res.message });
         }
     } catch (error) {
         // eslint-disable-next-line no-console
@@ -51,19 +34,20 @@ function* requestAllCommercials() {
 function* requestCreateCommercials(action) {
     const token = localStorage.getItem('FBToken');
     const { payload } = action;
+    // console.log(payload);
     try {
         const parameters = {
             body: JSON.stringify(payload),
             headers: {
                 Authorization: token,
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/form-data',
             },
             method: 'POST',
             mode: 'cors',
         };
         const response = yield fetch(COMMERCIALS_URL, parameters)
             .then(res => res.json());
-
+            // console.log(response);
         if (response.status === 'success') {
             yield put(createCommercials(response.data));
         } else {

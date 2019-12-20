@@ -4,26 +4,32 @@ import { Button, Table } from 'antd';
 
 import CreateCommercials from './CreateCommercials';
 
-import { requestCreateCommercials, resetCommercialsState } from '../actions';
+import * as actions from '../actions';
 import { ALL_COMMERCIALS, NEW } from '../constants';
 
 const Commercials = () => {
     const [visible, setVisible] = useState(false);
     const [formRef, setFormRef] = useState(null);
 
-    const { commercials, isCommercialsCreated } = useSelector(state => state.commercials);
+    const { commercials, isCommercials } = useSelector(state => state.commercials);
+
+    console.log(isCommercials);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (visible && isCommercialsCreated) {
+        const { resetCommercialsState, requestCommercials } = actions;
+        dispatch(requestCommercials());
+        if (visible && isCommercials) {
             setVisible(false);
             dispatch(resetCommercialsState());
+            console.log('Im here');
         }
-    }, [dispatch, isCommercialsCreated, visible]);
+    }, [dispatch, isCommercials, visible]);
 
     const handleCreate = () => {
         const { form } = formRef.props;
+        const { requestCreateCommercials } = actions;
         form.validateFields((error, values) => {
             if (error) {
                 return error;
@@ -31,8 +37,8 @@ const Commercials = () => {
             form.resetFields();
             const commercial = {
                 description: values.description,
-                title: values.age,
-                upload: values.upload,
+                title: values.title,
+                upload: values.upload.file,
             };
             dispatch(requestCreateCommercials(commercial));
         });
@@ -81,9 +87,9 @@ const Commercials = () => {
                             title: 'Brief Description',
                         },
                         {
-                            dataIndex: 'size',
-                            key: 'size',
-                            title: 'Size',
+                            dataIndex: 'duration',
+                            key: 'duration',
+                            title: 'Duration(weeks)',
                         },
                     ]
                 }
