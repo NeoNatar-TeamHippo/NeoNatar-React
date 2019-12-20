@@ -14,11 +14,13 @@ import dashboard from '../../dashboard';
 import history from '../../history/History';
 import signup from '../../signup';
 import signin from '../../signin';
+import home from '../../home';
 
-const { DASHBOARD, SIGNUP, SIGNIN } = PATHS;
+const { DASHBOARD, SIGNUP, SIGNIN, HOME } = PATHS;
 const { Dashboard } = dashboard.components;
 const { SignUp } = signup.components;
 const { SignIn } = signin.components;
+const { Home } = home.components;
 
 const Routes = () => {
     const { authenticated } = useSelector(state => state.signIn);
@@ -45,6 +47,14 @@ const Routes = () => {
                         exact
                         strict
                         component={SignUp}
+                        restricted={false}
+                    />
+                    <PublicRoute
+                        authenticated={authenticated}
+                        path={HOME}
+                        exact
+                        strict
+                        component={Home}
                         restricted={false}
                     />
                     <Route component={NoMatch} />
