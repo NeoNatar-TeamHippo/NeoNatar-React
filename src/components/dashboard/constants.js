@@ -6,7 +6,7 @@ export const ADMIN_SIDE_MENU_ITEMS = [
     { iconType: 'team', label: 'Users' },
     { iconType: 'user', label: 'Staff' },
     { iconType: 'interaction', label: 'Transactions' },
-    { iconType: 'credit-card', label: 'Tickets' },
+    { iconType: 'credit-card', label: 'Tickets', link: '/dashboard/tickets' },
     { iconType: 'setting', label: 'Settings' },
 ];
 
@@ -18,7 +18,7 @@ export const CLIENT_SIDE_MENU_ITEMS = [
     { iconType: 'pushpin', label: 'Saved Locations' },
     { iconType: 'sound', label: 'Campaigns', link: '/dashboard/campaigns' },
     { iconType: 'interaction', label: 'Transactions' },
-    { iconType: 'credit-card', label: 'Tickets' },
+    { iconType: 'credit-card', label: 'Tickets', link: '/dashboard/tickets' },
     { iconType: 'setting', label: 'Settings' },
 ];
 
