@@ -6,15 +6,15 @@ import { ConnectedRouter } from 'connected-react-router';
 import NoMatch from './NoMatch';
 import PrivateRoute from './PrivateRoutes';
 import PublicRoute from './PublicRoutes';
-
 import ScrollToTop from './ScrollToTop';
+
 import { PATHS } from '../constants';
 
+import home from '../../home';
 import dashboard from '../../dashboard';
 import history from '../../history/History';
 import signup from '../../signup';
 import signin from '../../signin';
-import home from '../../home';
 
 const { DASHBOARD, SIGNUP, SIGNIN, HOME } = PATHS;
 const { Dashboard } = dashboard.components;
@@ -28,6 +28,14 @@ const Routes = () => {
         <ConnectedRouter history={history}>
             <ScrollToTop>
                 <Switch>
+                    <PublicRoute
+                        authenticated={authenticated}
+                        path={HOME}
+                        exact
+                        strict
+                        component={Home}
+                        restricted={false}
+                    />
                     <PrivateRoute
                         authenticated={authenticated}
                         path={DASHBOARD}
