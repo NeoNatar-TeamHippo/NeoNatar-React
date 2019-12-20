@@ -35,7 +35,7 @@ class CommercialsForm extends React.Component {
                             }],
                         })(<Input placeholder="description" />)}
                     </Item>
-                    {/* <Item>
+                    <Item>
                         {getFieldDecorator('upload', {
                             rules: [{
                                 message: 'Please input the title of collection!',
@@ -51,7 +51,7 @@ class CommercialsForm extends React.Component {
                             </Dragger>
                         )}
 
-                    </Item> */}
+                    </Item>
                 </Form>
             </Modal>
         );

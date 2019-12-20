@@ -23,6 +23,7 @@ const Dashboard = props => {
         { component: Overview, path },
         { component: Campaigns, path: getPathWay('campaigns') },
         { component: SavedLocations, path: getPathWay('savedLocations') },
+        { component: Commercials, path: getPathWay('commercials') },
         { component: Locations, path: getPathWay('locations') },
         { component: LocationById, path: getNestedPath('locations', ':id') },
     ];
@@ -35,11 +36,6 @@ const Dashboard = props => {
     return (
         <DashboardLayout>
             <Switch>
-                <Route path={path} exact strict component={Overview} />
-                <Route path={getPathWay('campaigns')} exact component={Campaigns} />
-                <Route path={getPathWay('commercials')} exact component={Commercials} />
-                <Route path={getPathWay('locations')} exact component={Locations} />
-                <Route path={getNestedPath('locations', ':id')} exact component={LocationById} />
                 {renderRoutes(routes)}
             </Switch>
         </DashboardLayout>
