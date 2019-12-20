@@ -1,9 +1,9 @@
 import React from 'react';
-import { Checkbox, Tag, Table } from 'antd';
+import { Tag, Table } from 'antd';
 
 import { DATA } from '../constants';
 
-const AllCampaigns = () => (
+const Campaigns = () => (
     <Table
         dataSource={DATA}
         title={() => 'All Campaigns'}
@@ -13,12 +13,6 @@ const AllCampaigns = () => (
                 {
                     dataIndex: 'videoDetails',
                     key: 'videoDetails',
-                    render: videoDetails => (
-                        <span>
-                            <Checkbox margin-right={200} />
-                            {videoDetails}
-                        </span>
-                    ),
                     title: 'Video details',
                 },
                 {
@@ -29,7 +23,13 @@ const AllCampaigns = () => (
                 {
                     dataIndex: 'cost',
                     key: 'cost',
-                    title: 'Cost',
+                    render: cost => (
+                        <div style={{ fontFamily: 'monospace', textAlign: 'right' }}>
+                            {cost}
+                        </div>
+                    ),
+
+                    title: 'Cost(₦)',
                 },
                 {
                     dataIndex: 'locations',
@@ -44,7 +44,7 @@ const AllCampaigns = () => (
                             {status.map(tag => {
                                 let color;
                                 if (tag === 'pending') {
-                                    color = 'yellow';
+                                    color = 'orange';
                                 } else if (tag === 'approved') {
                                     color = 'green';
                                 } else {
@@ -58,7 +58,6 @@ const AllCampaigns = () => (
                             })}
                         </span>
                     ),
-
                     title: 'Status',
                 },
             ]
@@ -67,4 +66,4 @@ const AllCampaigns = () => (
     />
 );
 
-export default AllCampaigns;
+export default Campaigns;

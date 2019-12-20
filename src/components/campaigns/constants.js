@@ -2,7 +2,7 @@
 export const DATA = [
     {
         category: 'Transportation',
-        cost: 'free',
+        cost: '0',
         key: '1',
         locations: '10',
         status: ['pending'],
@@ -10,7 +10,7 @@ export const DATA = [
     },
     {
         category: 'Science',
-        cost: '₦250000',
+        cost: '250000',
         key: '2',
         locations: '5',
         status: ['approved'],
@@ -18,7 +18,7 @@ export const DATA = [
     },
     {
         category: 'Telecommunication',
-        cost: '₦50000',
+        cost: '50000',
         key: '3',
         locations: '100',
         status: ['deactivated'],

@@ -1,7 +1,7 @@
-import { USER_PROFILE } from './constants';
+import { COMMERCIALS_URL } from './constants';
 
-export const getUserProfile = token => {
-    // const token = localStorage.getItem('FBToken');
+export const allCommercials = () => {
+    const token = localStorage.getItem('FBToken');
     const parameters = {
         headers: {
             Authorization: token,
@@ -10,7 +10,7 @@ export const getUserProfile = token => {
         method: 'GET',
         mode: 'cors',
     };
-    return fetch(USER_PROFILE, parameters)
+    return fetch(COMMERCIALS_URL, parameters)
         .then(response => response.json())
         .then(json => json);
 };
