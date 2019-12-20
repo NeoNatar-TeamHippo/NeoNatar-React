@@ -25,3 +25,26 @@ export const NO_SAVED_LOCATION = 'No saved locations';
 /** @constant */
 const baseUrl = 'http://localhost:5000/neonatar/europe-west1/api';
 export const LOCATION_URL = `${baseUrl}/v1/locations`;
+
+export const TABLE_VALUES = [
+    {
+        dataIndex: 'name',
+        key: 'name',
+        title: 'Name',
+    },
+    {
+        dataIndex: 'address',
+        key: 'address',
+        title: 'Address',
+    },
+    {
+        dataIndex: 'state',
+        key: 'state',
+        title: 'State',
+    },
+    {
+        dataIndex: 'lga',
+        key: 'lga',
+        title: 'Local Govt',
+    },
+];

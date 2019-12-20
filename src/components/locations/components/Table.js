@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Table, Button, Tag, Typography, Divider, Tooltip, Menu, Dropdown, Icon } from 'antd';
-import { RELOAD, ADD_SELECTED, NO_SAVED_LOCATION } from '../constants';
+import { RELOAD, ADD_SELECTED, NO_SAVED_LOCATION, TABLE_VALUES } from '../constants';
 import { renderRateFormat, renderPrice, openNotification } from '../../utils/functions';
 import { locationOperation } from '../../savedLocations/actions';
 
@@ -94,26 +94,7 @@ const LocationTable = ({ history }) => {
     };
     const hasSelected = selectedRowKeys.length > 0;
     const columns = [
-        {
-            dataIndex: 'name',
-            key: 'name',
-            title: 'Name',
-        },
-        {
-            dataIndex: 'address',
-            key: 'address',
-            title: 'Address',
-        },
-        {
-            dataIndex: 'state',
-            key: 'state',
-            title: 'State',
-        },
-        {
-            dataIndex: 'lga',
-            key: 'lga',
-            title: 'Local Govt',
-        },
+        ...TABLE_VALUES,
         {
             dataIndex: 'price',
             key: 'price',
