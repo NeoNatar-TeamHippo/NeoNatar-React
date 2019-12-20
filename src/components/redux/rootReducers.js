@@ -5,6 +5,7 @@ import signIn from '../signin';
 import navBar from '../navbar';
 import locations from '../locations';
 import commercials from '../commercials';
+import savedLocations from '../savedLocations';
 import history from '../history/History';
 
 const { reducers: singUpReducer } = signUp;
@@ -12,11 +13,13 @@ const { reducers: singInReducer } = signIn;
 const { reducers: navBarReducer } = navBar;
 const { reducers: locationsReducer } = locations;
 const { reducers: commercialsReducer } = commercials;
+const { reducers: savedLocationsReducer } = savedLocations;
 
 const rootReducers = {
     commercials: commercialsReducer,
     location: locationsReducer,
     router: connectRouter(history),
+    savedLocation: savedLocationsReducer,
     signIn: singInReducer,
     signUp: singUpReducer,
     user: navBarReducer,
