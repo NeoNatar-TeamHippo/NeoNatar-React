@@ -1,6 +1,6 @@
-import { SAVED_LOCATION_URL, TYPE } from './constants';
+import { NEW_TICKET_URL, PENDING_TICKET_URL, RESOLVED_TICKET_URL, TICKET_URL } from './constants';
 
-export const allSavedLocation = () => {
+export const allTickets = () => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
         headers: {
@@ -10,11 +10,12 @@ export const allSavedLocation = () => {
         method: 'GET',
         mode: 'cors',
     };
-    return fetch(SAVED_LOCATION_URL, parameters)
+    return fetch(TICKET_URL, parameters)
         .then(response => response.json())
         .then(json => json);
 };
-export const savedlocationById = id => {
+
+export const newTickets = () => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
         headers: {
@@ -24,51 +25,37 @@ export const savedlocationById = id => {
         method: 'GET',
         mode: 'cors',
     };
-    return fetch(`${SAVED_LOCATION_URL}/${id}`, parameters)
+    return fetch(NEW_TICKET_URL, parameters)
         .then(response => response.json())
         .then(json => json);
 };
-export const deleteSavedlocationById = id => {
+
+export const pendingTickets = () => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
         headers: {
             Authorization: token,
             'Content-Type': 'application/json',
         },
-        method: 'DELETE',
+        method: 'GET',
         mode: 'cors',
     };
-    return fetch(`${SAVED_LOCATION_URL}/${id}`, parameters)
+    return fetch(PENDING_TICKET_URL, parameters)
         .then(response => response.json())
         .then(json => json);
 };
-export const newSavedLocation = data => {
+
+export const resolvedTickets = () => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
-        body: JSON.stringify(data),
         headers: {
             Authorization: token,
             'Content-Type': 'application/json',
         },
-        method: 'POST',
+        method: 'GET',
         mode: 'cors',
     };
-    return fetch(`${SAVED_LOCATION_URL}`, parameters)
-        .then(response => response.json())
-        .then(json => json);
-};
-export const locationOperationService = (data, id, queryType) => {
-    const token = localStorage.getItem('FBToken');
-    const parameters = {
-        body: JSON.stringify({ locations: data }),
-        headers: {
-            Authorization: token,
-            'Content-Type': 'application/json',
-        },
-        method: 'PATCH',
-        mode: 'cors',
-    };
-    return fetch(`${SAVED_LOCATION_URL}/${id}${TYPE}${queryType}`, parameters)
+    return fetch(RESOLVED_TICKET_URL, parameters)
         .then(response => response.json())
         .then(json => json);
 };

@@ -22,4 +22,4 @@ const store = createStore(
 const persistor = persistStore(store);
 initializeSagaMiddleware.run(rootSaga);
 
-export default { persistor, store };
+export default { store, persistor };
