@@ -4,11 +4,12 @@ import { List, Tooltip, Button, Tag, Typography, Modal } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOCATION_NUMBER_LABEL } from '../constants';
 import { deleteSavedLocationByID } from '../actions';
+import { openNotification } from '../../utils/functions';
 
 const { confirm } = Modal;
 const Lists = ({ history }) => {
     const dispatch = useDispatch();
-    const { savedLocations, savedLocationLoading } = useSelector(state => state.savedLocation);
+    const { savedLocations } = useSelector(state => state.savedLocation);
     const renderPathUrl = savedLocationId => `/dashboard/savedLocations/${savedLocationId}`;
     const listData = savedLocations;
     const viewSavedLocation = savedLocationId => {
@@ -23,6 +24,9 @@ const Lists = ({ history }) => {
             onCancel() { },
             onOk() {
                 dispatch(deleteSavedLocationByID(savedLocationId));
+                setTimeout(() => {
+                    openNotification('Deleted Successfully', 'Saved List');
+                }, 3000);
             },
             title: 'Do you want to delete this List of Saved Location?',
         });
@@ -35,7 +39,6 @@ const Lists = ({ history }) => {
     };
     return (
         <List
-            // loading={savedLocationLoading}
             itemLayout="vertical"
             size="small"
             pagination={{

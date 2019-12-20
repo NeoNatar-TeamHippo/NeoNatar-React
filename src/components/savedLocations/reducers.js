@@ -13,6 +13,17 @@ export default (state = initialState, { type, payload }) => {
             return { ...state, savedLocationLoading: true };
         case TYPES.SET_SAVED_LOCATION:
             return { ...state, savedLocationLoading: false, savedLocations: payload };
+        case TYPES.SAVED_LOCATION_RESULT:
+            return {
+                ...state,
+                savedLocations: [...state.savedLocations, ...[payload]],
+            };
+        case TYPES.DELETE_LOCATION_RESULT:
+            return {
+                ...state,
+                savedLocations: state.savedLocations
+                    .filter(savedLocation => savedLocation.savedLocationId !== payload),
+            };
         case TYPES.SET_SAVED_LOCATION_BY_ID:
             return { ...state, savedLocationById: payload, savedLocationLoading: false };
         case TYPES.SET_ERRORS:

@@ -88,6 +88,26 @@ export const newSavedLocation = payload => ({
     type: TYPES.NEW_SAVED_LOCATION,
 });
 /**
+ * Triggers request to add a new saved list
+ *
+ * @function
+ * @return {void} The {@link actionTypes.SAVED_LOCATION_RESULT } action.
+ */
+export const savedLocationResult = payload => ({
+    payload,
+    type: TYPES.SAVED_LOCATION_RESULT,
+});
+/**
+ * Triggers request to delete a saved list
+ *
+ * @function
+ * @return {void} The {@link actionTypes.DELETE_LOCATION_RESULT } action.
+ */
+export const deleteLocationResult = payload => ({
+    payload,
+    type: TYPES.DELETE_LOCATION_RESULT,
+});
+/**
  * Triggers request to add a new location list
  *
  * @function

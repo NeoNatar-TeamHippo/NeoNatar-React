@@ -63,6 +63,20 @@ export const DELETE_SAVED_LOCATION = 'DELETE_SAVED_LOCATION';
  */
 export const NEW_SAVED_LOCATION = 'NEW_SAVED_LOCATION';
 /**
+ * Fired by the {@link actions.savedLocationResult }
+ * action creator.
+ *
+ * @type {String}
+ */
+export const SAVED_LOCATION_RESULT = 'SAVED_LOCATION_RESULT';
+/**
+ * Fired by the {@link actions.deleteLocationResult }
+ * action creator.
+ *
+ * @type {String}
+ */
+export const DELETE_LOCATION_RESULT = 'DELETE_LOCATION_RESULT';
+/**
  * Fired by the {@link actions.addLocation }
  * action creator.
  *

@@ -1,8 +1,8 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
 import * as TYPES from './actionType';
 import {
-    setErrors, setSavedLocation, loadingSavedLocation,
-    setSavedLocationById, submittingForm, submitedForm
+    setErrors, setSavedLocation, loadingSavedLocation, savedLocationResult,
+    setSavedLocationById, submittingForm, submitedForm, deleteLocationResult
 } from './actions';
 import {
     allSavedLocation, savedlocationById, deleteSavedlocationById, locationOperationService,
@@ -44,7 +44,8 @@ function* deleteLocation(id) {
         yield put(loadingSavedLocation());
         const res = yield call(deleteSavedlocationById, id);
         if (res.status === 'success') {
-            yield call(getAllSavedLocations);
+            yield put(submitedForm());
+            yield put(deleteLocationResult(id));
         } else {
             yield put(setErrors({ message: res.message }));
         }
@@ -58,7 +59,7 @@ function* createNewLocation(data) {
         const res = yield call(newSavedLocation, data);
         if (res.status === 'success') {
             yield put(submitedForm());
-            yield call(getAllSavedLocations);
+            yield put(savedLocationResult(res.data));
         } else {
             yield put(setErrors({ message: res.message }));
         }

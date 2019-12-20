@@ -55,7 +55,7 @@ const LocationList = ({ history, savedLocationId }) => {
     };
     return (
         <List
-            // loading={savedLocationLoading}
+            loading={savedLocationLoading}
             itemLayout="vertical"
             size="small"
             pagination={{

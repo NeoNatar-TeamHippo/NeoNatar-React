@@ -30,6 +30,7 @@ export const renderPrice = text => {
 export const openNotification = (description, message) => {
     notification.success({
         description,
+        duration: 5,
         message,
     });
 };

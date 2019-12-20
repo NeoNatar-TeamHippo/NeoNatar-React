@@ -7,7 +7,7 @@ import LocationList from './LocationList';
 const SaveLocationById = ({ match, history }) => {
     const { params } = match;
     const { id: savedLocationId } = params;
-    const { savedLocationById, savedLocationLoading } = useSelector(state => state.savedLocation);
+    const { savedLocationById } = useSelector(state => state.savedLocation);
     const { title } = savedLocationById;
     const dispatch = useDispatch();
     useEffect(() => {
@@ -18,7 +18,6 @@ const SaveLocationById = ({ match, history }) => {
             <Row className="d-sm-flex justify-content-sm-center">
                 <Col sm={20} md={16} lg={12}>
                     <Card
-                        // loading={locationLoading}
                         hoverable
                         className="w-100"
                         actions={[

@@ -8,18 +8,15 @@ import { locationOperation } from '../../savedLocations/actions';
 
 const LocationTable = ({ history }) => {
     const dispatch = useDispatch();
-    const { locations, locationLoading } = useSelector(state => state.location);
+    const { locations } = useSelector(state => state.location);
     const { savedLocations } = useSelector(state => state.savedLocation);
     const [loading, setLoading] = useState(false);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [locationToAdd, setlocationToAdd] = useState(null);
     const noSavedLoc = savedLocations.length === 0;
     const addBulkState = savedLocationId => {
-        const bulkLocationId = [];
-        selectedRowKeys.forEach(elem => locations.map((element, i) => (elem === i
-            ? bulkLocationId.push(element.locationId) : bulkLocationId)));
         const payload = {
-            locations: bulkLocationId,
+            locations: selectedRowKeys,
             queryType: 'add',
             savedLocationId,
         };
@@ -38,10 +35,10 @@ const LocationTable = ({ history }) => {
         dispatch(locationOperation(payload));
         openNotification('Location added', 'Success');
     };
-    const handleMenuClick = ({ key }) => {
+    const handleMenuClick2 = ({ key }) => {
         addBulkState(key);
     };
-    const handleMenuClick2 = ({ key }) => {
+    const handleMenuClick = ({ key }) => {
         addSingleState(key);
     };
     const renderMenu = () => {
@@ -82,7 +79,7 @@ const LocationTable = ({ history }) => {
         setTimeout(() => {
             setSelectedRowKeys([]);
             setLoading(false);
-        }, 1000);
+        }, 1500);
     };
 
     const onSelectChange = selectedKeys => {
@@ -134,7 +131,7 @@ const LocationTable = ({ history }) => {
                     </Tooltip>
                     <Divider type="vertical" />
                     <Tooltip placement="top" title="Add to saved location">
-                        <Dropdown overlay={menu2}>
+                        <Dropdown disabled={noSavedLoc} overlay={menu}>
                             <Button
                                 onMouseOver={() => { addToSavedLocation(record.locationId); }}
                                 onFocus={() => { addToSavedLocation(record.locationId); }}
@@ -159,7 +156,7 @@ const LocationTable = ({ history }) => {
                 <span style={{ marginLeft: 8 }}>
                     {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
                 </span>
-                <Dropdown overlay={menu}>
+                <Dropdown disabled={noSavedLoc || !hasSelected} overlay={menu2}>
                     <Button
                         className="ml-2"
                         size="default"
@@ -172,10 +169,10 @@ const LocationTable = ({ history }) => {
                 </Dropdown>
             </div>
             <Table
-                // loading={locationLoading}
                 rowSelection={rowSelection}
                 columns={columns}
                 dataSource={locations}
+                rowKey={record => record.locationId}
             />
         </>
     );
