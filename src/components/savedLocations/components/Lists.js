@@ -3,16 +3,16 @@ import { Link, withRouter } from 'react-router-dom';
 import { List, Tooltip, Button, Tag, Typography, Modal } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOCATION_NUMBER_LABEL } from '../constants';
-import { getSavedLocationsByID, deleteSavedLocationByID } from '../actions';
+import { deleteSavedLocationByID } from '../actions';
+import { openNotification } from '../../utils/functions';
 
 const { confirm } = Modal;
 const Lists = ({ history }) => {
     const dispatch = useDispatch();
-    const { savedLocations, savedLocationLoading } = useSelector(state => state.savedLocation);
+    const { savedLocations } = useSelector(state => state.savedLocation);
     const renderPathUrl = savedLocationId => `/dashboard/savedLocations/${savedLocationId}`;
     const listData = savedLocations;
     const viewSavedLocation = savedLocationId => {
-        dispatch(getSavedLocationsByID(savedLocationId));
         history.push(renderPathUrl(savedLocationId));
     };
     const showConfirm = savedLocationId => {
@@ -24,6 +24,9 @@ const Lists = ({ history }) => {
             onCancel() { },
             onOk() {
                 dispatch(deleteSavedLocationByID(savedLocationId));
+                setTimeout(() => {
+                    openNotification('Deleted Successfully', 'Saved List');
+                }, 3000);
             },
             title: 'Do you want to delete this List of Saved Location?',
         });
@@ -36,7 +39,6 @@ const Lists = ({ history }) => {
     };
     return (
         <List
-            // loading={savedLocationLoading}
             itemLayout="vertical"
             size="small"
             pagination={{
@@ -55,6 +57,9 @@ const Lists = ({ history }) => {
                                 onClick={() => editSavedLocation(item.savedLocationId)}
                                 type="link"
                                 icon="edit-o"
+                                className="text-success"
+                                // @TODO: work on this and remove it
+                                disabled
                             />
                         </Tooltip>,
                         <Tooltip placement="top" title="View details" key="list-vertical-eye-o">
@@ -69,6 +74,7 @@ const Lists = ({ history }) => {
                                 onClick={() => deleteSavedLocation(item.savedLocationId)}
                                 type="link"
                                 icon="delete-o"
+                                className="text-danger"
                             />
                         </Tooltip>,
                     ]}
@@ -78,7 +84,7 @@ const Lists = ({ history }) => {
                                 {LOCATION_NUMBER_LABEL}
                             </Typography.Text>
                             <Tag color="volcano" className="ml-3">
-                                {item.locations.length}
+                                {item.locations ? item.locations.length : 0}
                             </Tag>
                         </div>
                     )}

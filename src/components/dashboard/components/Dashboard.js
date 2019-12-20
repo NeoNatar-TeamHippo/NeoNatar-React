@@ -12,7 +12,7 @@ const { Overview } = overview.components;
 const { Campaigns } = campaigns.components;
 const { Tickets } = tickets.components;
 const { Locations, LocationById } = locations.components;
-const { SavedLocations } = savedLocations.components;
+const { SavedLocations, SavedLocationById } = savedLocations.components;
 
 const { DashboardLayout } = layouts.components;
 const Dashboard = props => {
@@ -23,6 +23,7 @@ const Dashboard = props => {
         { component: Overview, path },
         { component: Campaigns, path: getPathWay('campaigns') },
         { component: SavedLocations, path: getPathWay('savedLocations') },
+        { component: SavedLocationById, path: getNestedPath('savedLocations', ':id') },
         { component: Locations, path: getPathWay('locations') },
         { component: Tickets, path: getPathWay('tickets') },
         { component: LocationById, path: getNestedPath('locations', ':id') },

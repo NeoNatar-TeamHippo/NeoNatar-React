@@ -1,3 +1,4 @@
+import { notification } from 'antd';
 
 export const renderRateFormat = text => {
     let color;
@@ -13,4 +14,23 @@ export const renderRateFormat = text => {
         rateText = 'HIGH';
     }
     return { color, rateText };
+};
+export const renderPrice = text => {
+    let type;
+    if (parseInt(text, 10) <= 200) {
+        type = 'danger';
+    } else if (parseInt(text, 10) <= 500) {
+        type = 'warning';
+    } else {
+        type = 'secondary';
+    }
+    return { type };
+};
+
+export const openNotification = (description, message) => {
+    notification.success({
+        description,
+        duration: 5,
+        message,
+    });
 };

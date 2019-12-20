@@ -68,7 +68,7 @@ export const getSavedLocationsByID = payload => ({
     type: TYPES.GET_SAVED_LOCATIONS_BY_ID,
 });
 /**
- * Triggers request to get all locations
+ * Triggers request to delete location by id
  *
  * @function
  * @return {void} The {@link actionTypes.DELETE_SAVED_LOCATION } action.
@@ -76,5 +76,75 @@ export const getSavedLocationsByID = payload => ({
 export const deleteSavedLocationByID = payload => ({
     payload,
     type: TYPES.DELETE_SAVED_LOCATION,
+});
+/**
+ * Triggers request to add a new saved list
+ *
+ * @function
+ * @return {void} The {@link actionTypes.NEW_SAVED_LOCATION } action.
+ */
+export const newSavedLocation = payload => ({
+    payload,
+    type: TYPES.NEW_SAVED_LOCATION,
+});
+/**
+ * Triggers request to add a new saved list
+ *
+ * @function
+ * @return {void} The {@link actionTypes.SAVED_LOCATION_RESULT } action.
+ */
+export const savedLocationResult = payload => ({
+    payload,
+    type: TYPES.SAVED_LOCATION_RESULT,
+});
+/**
+ * Triggers request to delete a saved list
+ *
+ * @function
+ * @return {void} The {@link actionTypes.DELETE_LOCATION_RESULT } action.
+ */
+export const deleteLocationResult = payload => ({
+    payload,
+    type: TYPES.DELETE_LOCATION_RESULT,
+});
+/**
+ * Triggers request to add a new location list
+ *
+ * @function
+ * @return {void} The {@link actionTypes.ADD_SAVED_LOCATION } action.
+ */
+export const addLocation = payload => ({
+    payload,
+    type: TYPES.ADD_SAVED_LOCATION,
+});
+/**
+ * Triggers request to remove location list
+ *
+ * @function
+ * @return {void} The {@link actionTypes.LOCATION_OPERATION } action.
+ */
+export const locationOperation = payload => ({
+    payload,
+    type: TYPES.LOCATION_OPERATION,
+});
+/**
+ * Triggers request to remove location list
+ *
+ * @function
+ * @return {void} The {@link actionTypes.SUBMITTING_FORM } action.
+ */
+export const submittingForm = payload => ({
+    payload,
+    type: TYPES.SUBMITTING_FORM,
+});
+/**
+ * Triggers request to remove location list
+ *
+ * @function
+ * @return {void} The {@link actionTypes.SUBMITED_FORM } action.
+ */
+export const submitedForm = payload => ({
+    payload,
+    type: TYPES.SUBMITED_FORM,
 });
 

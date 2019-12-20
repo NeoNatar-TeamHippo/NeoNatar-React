@@ -41,3 +41,4 @@ export const LOADING_UI = 'LOADING_UI';
  */
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
+export const AUTH_TRUE = 'AUTH_TRUE';
