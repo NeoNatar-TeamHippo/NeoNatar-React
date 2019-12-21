@@ -11,21 +11,18 @@ const Commercials = () => {
     const [visible, setVisible] = useState(false);
     const [formRef, setFormRef] = useState(null);
 
-    const { commercials, isCommercials } = useSelector(state => state.commercials);
-
-    console.log(isCommercials);
+    const { commercials, isCommercialsCreated } = useSelector(state => state.commercials);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         const { resetCommercialsState, requestCommercials } = actions;
         dispatch(requestCommercials());
-        if (visible && isCommercials) {
+        if (visible && isCommercialsCreated) {
             setVisible(false);
             dispatch(resetCommercialsState());
-            console.log('Im here');
         }
-    }, [dispatch, isCommercials, visible]);
+    }, [dispatch, isCommercialsCreated, visible]);
 
     const handleCreate = () => {
         const { form } = formRef.props;

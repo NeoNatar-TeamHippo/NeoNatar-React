@@ -13,6 +13,7 @@ import { allCommercials } from './services';
 function* requestAllCommercials() {
     try {
         const res = yield call(allCommercials);
+        console.log(res);
         if (res.status === 'success') {
             yield put(updateCommercials(res.data));
         } else {
