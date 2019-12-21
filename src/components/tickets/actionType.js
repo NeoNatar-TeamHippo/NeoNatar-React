@@ -34,12 +34,33 @@ export const GET_RESOLVED_TICKETS = 'GET_RESOLVED_TICKETS';
  */
 export const SET_ERRORS = 'SET_ERRORS';
 /**
+ * Fired by the {@link actions.postSuccess }
+ * action creator.
+ *
+ * @type {String}
+ */
+export const POST_SUCCESS = 'POST_SUCCESS';
+/**
+ * Fired by the {@link actions.postTicket }
+ * action creator.
+ *
+ * @type {String}
+ */
+export const POST_TICKET = 'POST_TICKET';
+/**
  * Fired by the {@link actions.loadingTickets }
  * action creator.
  *
  * @type {String}
  */
 export const LOADING_TICKETS = 'LOADING_TICKETS';
+/**
+ * Fired by the {@link actions.postingTicket }
+ * action creator.
+ *
+ * @type {String}
+ */
+export const POSTING_TICKET = 'POSTING_TICKET';
 /**
  * Fired by the {@link actions.loadingNewTickets }
  * action creator.

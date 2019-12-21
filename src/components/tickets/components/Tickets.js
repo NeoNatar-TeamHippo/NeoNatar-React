@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Avatar, Tag, Table, Menu } from 'antd';
+import { Avatar, Button, Tag, Table, Menu } from 'antd';
 
 import { getTickets, getNewTickets, getPendingTickets, getResolvedTickets } from '../actions';
+import CreateTickets from './CreateTickets';
 import { ALL, PENDING, NEW, RESOLVED, HORIZONTAL } from '../constants';
 
 const menuItems = [ALL, PENDING, NEW, RESOLVED];
 const Tickets = () => {
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(getTickets());
         dispatch(getNewTickets());
         dispatch(getPendingTickets());
         dispatch(getResolvedTickets());
     }, [dispatch]);
+
     const { newTickets,
         pendingTickets,
         resolvedTickets,
         tickets } = useSelector(state => state.ticket);
+
+    const [visible, setVisible] = useState(false);
     const [ticketData, setTicketData] = useState(tickets);
+
     const handleChangeTab = ({ key }) => {
         let tableData;
         switch (key) {
@@ -40,6 +46,7 @@ const Tickets = () => {
         }
         return tableData;
     };
+
     const columns = [
         {
             dataIndex: 'avatar',
@@ -97,8 +104,24 @@ const Tickets = () => {
             }
             </Menu>
             <br />
+            <CreateTickets
+                visible={visible}
+                onCancel={() => setVisible(false)}
+                // onCreate={() => handleCreate()}
+            />
             <Table
-                // loading={ticketsLoading}
+                title={() => (
+                    <div>
+                        <Button
+                            onClick={() => setVisible(true)}
+                            className="mb-2"
+                            style={{ marginLeft: 100 }}
+                            type="primary"
+                        >
+                            {NEW}
+                        </Button>
+                    </div>
+                )}
                 columns={columns}
                 dataSource={ticketData}
                 rowKey={record => record.id}

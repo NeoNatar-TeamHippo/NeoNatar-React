@@ -6,12 +6,14 @@ import {
     setNewTicket,
     setPendingTicket,
     setResolvedTicket,
+    postingTicket,
+    postSuccess,
     loadingTickets,
     loadingNewTickets,
     loadingPendingTickets,
     loadingResolvedTickets
 } from './actions';
-import { allTickets, newTickets, pendingTickets, resolvedTickets } from './services';
+import { allTickets, postTicket, newTickets, pendingTickets, resolvedTickets } from './services';
 
 function* getAllTickets() {
     try {
@@ -29,6 +31,24 @@ function* getAllTickets() {
 
 function* getTicketsEffect() {
     yield call(getAllTickets);
+}
+
+function* postNewTicket(payload) {
+    try {
+        yield put(postingTicket());
+        const res = yield call(postTicket(payload));
+        if (res.status === 'success') {
+            yield put(postSuccess({ message: 'ticket Created succesfully' }));
+        } else {
+            yield put(setErrors({ message: res.message }));
+        }
+    } catch (error) {
+        yield put(setErrors({ message: 'Something went wrong please try again' }));
+    }
+}
+
+function* postTicketEffect({ payload }) {
+    yield call(postNewTicket, payload);
 }
 
 function* getNewTickets() {
@@ -84,6 +104,7 @@ function* getResolvedTicketsEffect() {
 
 export default function* actionWatcher() {
     yield takeEvery(TYPES.GET_TICKETS, getTicketsEffect);
+    yield takeEvery(TYPES.POST_TICKET, postTicketEffect);
     yield takeEvery(TYPES.GET_NEW_TICKETS, getNewTicketsEffect);
     yield takeEvery(TYPES.GET_PENDING_TICKETS, getPendingTicketsEffect);
     yield takeEvery(TYPES.GET_RESOLVED_TICKETS, getResolvedTicketsEffect);
