@@ -15,6 +15,21 @@ export const allTickets = () => {
         .then(json => json);
 };
 
+export const postTicket = payload => {
+    const token = localStorage.getItem('FBToken');
+    const parameters = {
+        body: JSON.stringify(payload),
+        headers: {
+            Authorization: token,
+            'Content-Type': 'application/json',
+        },
+        method: 'POST',
+    };
+    return fetch(TICKET_URL, parameters)
+        .then(response => response.json())
+        .then(json => json);
+};
+
 export const newTickets = () => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
