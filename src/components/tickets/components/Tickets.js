@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Avatar, Button, Tag, Table, Menu } from 'antd';
+import { Avatar, Button, Tag, Table, Row, Col, Menu } from 'antd';
 
 import { getTickets, getNewTickets, getPendingTickets, getResolvedTickets } from '../actions';
 import CreateTickets from './CreateTickets';
@@ -55,14 +55,14 @@ const Tickets = () => {
             title: '',
         },
         {
-            dataIndex: 'title',
-            key: 'title',
-            title: 'Title',
-        },
-        {
             dataIndex: 'customerName',
             key: 'customerName',
             title: 'Customer Name',
+        },
+        {
+            dataIndex: 'title',
+            key: 'title',
+            title: 'Title',
         },
         {
             dataIndex: 'date',
@@ -94,36 +94,38 @@ const Tickets = () => {
     ];
     return (
         <div>
-            <Menu mode={HORIZONTAL} onClick={handleChangeTab}>
-                {
+            <Row type="flex" style={{ marginBottom: 5 }}>
+                <Col span={14}>
+                    <Menu mode={HORIZONTAL} onClick={handleChangeTab}>
+                        {
                 menuItems.map(key => (
                     <Menu.Item key={key}>
                         {key}
                     </Menu.Item>
                 ))
             }
-            </Menu>
-            <br />
+                    </Menu>
+                </Col>
+                <Col span={2} offset={8}>
+                    <Button
+                        onClick={() => setVisible(true)}
+                        className="mb-2"
+                        type="primary"
+                    >
+                        {NEW}
+                    </Button>
+                </Col>
+            </Row>
             <CreateTickets
                 visible={visible}
                 onCancel={() => setVisible(false)}
-                // onCreate={() => handleCreate()}
             />
             <Table
-                title={() => (
-                    <div>
-                        <Button
-                            onClick={() => setVisible(true)}
-                            className="mb-2"
-                            style={{ marginLeft: 100 }}
-                            type="primary"
-                        >
-                            {NEW}
-                        </Button>
-                    </div>
-                )}
                 columns={columns}
                 dataSource={ticketData}
+                onRow={record => ({
+                    onClick: () => { console.log(record.ticketId); },
+                })}
                 rowKey={record => record.id}
             />
         </div>

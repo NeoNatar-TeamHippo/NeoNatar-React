@@ -2,9 +2,9 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Form, Input, Modal, Row, Col, Select } from 'antd';
 
-import { FORMITEMLAYOUT,
-    CREATE,
+import { CREATE,
     CREATETICKET,
+    FORMITEMLAYOUT,
     HIGHOPTION,
     LOWOPTION,
     MEDIUMOPTION,
@@ -41,8 +41,8 @@ const TicketForm = props => {
             onCancel={onCancel}
             onOk={handleCreate}
         >
-            <Row type="flex" justify="center" align="middle">
-                <Col span={10}>
+            <Row type="flex" justify="center">
+                <Col span={15}>
                     <Form {...FORMITEMLAYOUT} layout={VERTICAL}>
                         <Item>
                             {getFieldDecorator(TITLE, {
