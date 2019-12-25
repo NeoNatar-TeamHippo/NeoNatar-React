@@ -4,7 +4,6 @@ import { Form, Input, Modal, Row, Col, Select } from 'antd';
 
 import { CREATE,
     CREATETICKET,
-    FORMITEMLAYOUT,
     HIGHOPTION,
     LOWOPTION,
     MEDIUMOPTION,
@@ -43,7 +42,7 @@ const TicketForm = props => {
         >
             <Row type="flex" justify="center">
                 <Col span={15}>
-                    <Form {...FORMITEMLAYOUT} layout={VERTICAL}>
+                    <Form layout={VERTICAL}>
                         <Item>
                             {getFieldDecorator(TITLE, {
                                 rules: [{

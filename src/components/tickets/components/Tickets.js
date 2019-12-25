@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Button, Tag, Table, Row, Col, Menu } from 'antd';
 
-import { getTickets, getNewTickets, getPendingTickets, getResolvedTickets } from '../actions';
+import { getTickets,
+    getNewTickets,
+    getPendingTickets,
+    getResolvedTickets } from '../actions';
 import CreateTickets from './CreateTickets';
 import { ALL, PENDING, NEW, RESOLVED, HORIZONTAL } from '../constants';
 
 const menuItems = [ALL, PENDING, NEW, RESOLVED];
-const Tickets = () => {
+const Tickets = ({ history }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -24,6 +27,10 @@ const Tickets = () => {
 
     const [visible, setVisible] = useState(false);
     const [ticketData, setTicketData] = useState(tickets);
+
+    const handleViewTicket = ticketId => {
+        history.push(`/dashboard/tickets/${ticketId}`);
+    };
 
     const handleChangeTab = ({ key }) => {
         let tableData;
@@ -124,9 +131,10 @@ const Tickets = () => {
                 columns={columns}
                 dataSource={ticketData}
                 onRow={record => ({
-                    onClick: () => { console.log(record.ticketId); },
+                    onClick: () => {
+                        handleViewTicket(record.ticketId);
+                    },
                 })}
-                rowKey={record => record.id}
             />
         </div>
     );
