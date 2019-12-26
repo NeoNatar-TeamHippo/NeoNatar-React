@@ -137,6 +137,7 @@ const Tickets = ({ history }) => {
                         handleViewTicket(record.ticketId);
                     },
                 })}
+                rowKey={record => record.ticketId}
             />
         </div>
     );
