@@ -1,8 +1,8 @@
 import * as TYPES from './actionType';
 
 const initialState = {
-    errors: {},
     authenticated: false,
+    errors: {},
     loading: false,
     token: null,
 };

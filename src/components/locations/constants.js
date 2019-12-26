@@ -23,6 +23,14 @@ export const ADDRESS = 'Address:';
 /** @constant */
 export const NO_SAVED_LOCATION = 'No saved locations';
 /** @constant */
+export const NEW_LOCATION = 'New Location';
+/** @constant */
+export const CREATE_LOCATION = 'Create';
+/** @constant */
+export const UPLOAD_TEXT = 'Upload Images';
+/** @constant */
+export const CREATE_NEW_LOCATION = 'Create New Location';
+/** @constant */
 const baseUrl = 'https://europe-west1-neonatar.cloudfunctions.net/api';
 export const LOCATION_URL = `${baseUrl}/v1/locations`;
 
@@ -46,5 +54,56 @@ export const TABLE_VALUES = [
         dataIndex: 'lga',
         key: 'lga',
         title: 'Local Govt',
+    },
+];
+export const FORM_ITEMS = [
+    {
+        formControlName: 'name',
+        message: 'Name cannot be empty',
+        placeholder: 'Name',
+        required: true,
+        type: 'text',
+    },
+    {
+        formControlName: 'address',
+        message: 'Address cannot be empty',
+        placeholder: 'Address',
+        required: true,
+        type: 'text',
+    },
+    {
+        formControlName: 'lga',
+        message: 'Local Government area cannot be empty',
+        placeholder: 'Local Government',
+        required: true,
+        type: 'text',
+    },
+    {
+        formControlName: 'state',
+        message: 'State cannot be empty',
+        placeholder: 'State',
+        required: true,
+        type: 'text',
+    },
+    {
+        formControlName: 'Country',
+        message: 'Country cannot be empty',
+        placeholder: 'Country',
+        required: true,
+        type: 'text',
+    },
+    {
+        formControlName: 'trafficRate',
+        message: 'please input a valid rate',
+        placeholder: 'Traffic Rate',
+        required: true,
+        type: 'number',
+    },
+    {
+        formControlName: 'price',
+        message: 'please input a valid price',
+        placeholder: 'Price',
+        required: true,
+        type: 'number',
     },
 ];
