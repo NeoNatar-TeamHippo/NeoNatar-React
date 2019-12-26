@@ -10,6 +10,15 @@ export const loadingTickets = () => ({
     type: TYPES.LOADING_TICKETS,
 });
 /**
+ * Triggers request to post a TICKET
+ *
+ * @function
+ * @return {void} The {@link actionTypes.POSTING_TICKET } action.
+ */
+export const postingTicket = () => ({
+    type: TYPES.POSTING_TICKET,
+});
+/**
  * Triggers request to load new TICKETS
  *
  * @function
@@ -45,6 +54,16 @@ export const loadingResolvedTickets = () => ({
 export const setTicket = payload => ({
     payload,
     type: TYPES.SET_TICKET,
+});
+/**
+ * Triggers request to post TICKET
+ *
+ * @function
+ * @return {void} The {@link actionTypes.POST_TICKET } action.
+ */
+export const postTicket = payload => ({
+    payload,
+    type: TYPES.POST_TICKET,
 });
 /**
  * Triggers request to set new TICKET
@@ -85,6 +104,16 @@ export const setResolvedTicket = payload => ({
 export const setErrors = payload => ({
     payload,
     type: TYPES.SET_ERRORS,
+});
+/**
+ * Triggers request to set message after a ticket is sucessfully posted
+ *
+ * @function
+ * @return {void} The {@link actionTypes.POST_SUCCESS } action.
+ */
+export const postSuccess = payload => ({
+    payload,
+    type: TYPES.POST_SUCCESS,
 });
 /**
  * Triggers request to clear errors after a success

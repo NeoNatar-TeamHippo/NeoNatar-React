@@ -20,6 +20,48 @@ export const MAIL = 'mail';
 export const HORIZONTAL = 'horizontal';
 
 /** @constant */
+export const VERTICAL = 'vertical';
+
+/** @constant */
+export const CREATETICKET = 'Create Ticket';
+
+/** @constant */
+export const CREATE = 'Create';
+
+/** @constant */
+export const TITLEMESSAGE = 'Please input the title for your ticket';
+
+/** @constant */
+export const TITLE = 'title';
+
+/** @constant */
+export const PRIORITYMESSAGE = 'Please select the priority of your ticket';
+
+/** @constant */
+export const PRIORITY = 'priority';
+
+/** @constant */
+export const HIGHOPTION = 'high';
+
+/** @constant */
+export const LOWOPTION = 'low';
+
+/** @constant */
+export const MEDIUMOPTION = 'medium';
+
+/** @constant */
+export const FORMITEMLAYOUT = {
+    labelCol: {
+        sm: { span: 8 },
+        xs: { span: 24 },
+    },
+    wrapperCol: {
+        sm: { span: 16 },
+        xs: { span: 24 },
+    },
+};
+
+/** @constant */
 const baseUrl = 'https://europe-west1-neonatar.cloudfunctions.net/api';
 export const TICKET_URL = `${baseUrl}/v1/tickets`;
 export const NEW_TICKET_URL = `${baseUrl}/v1/tickets/new`;
