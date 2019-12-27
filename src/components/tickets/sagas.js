@@ -8,15 +8,19 @@ import {
     setResolvedTicket,
     setTicketById,
     postingTicket,
+    postingTicketMessage,
     postSuccess,
     loadingTickets,
     loadingNewTickets,
     loadingPendingTickets,
-    loadingResolvedTickets
+    loadingResolvedTickets,
+    resolvingTicket
 } from './actions';
 import {
     allTickets,
     postTicket,
+    postTicketMessages,
+    markTicketAsResolved,
     newTickets,
     pendingTickets,
     ticketById,
@@ -55,10 +59,32 @@ function* postNewTicket(payload) {
     }
 }
 
+function* postTicketEffect({ payload }) {
+    yield call(postNewTicket, payload);
+}
+
+function* postTicketMessage(payload, id) {
+    try {
+        yield put(postingTicketMessage());
+        console.log(payload, id);
+        const res = yield call(postTicketMessages(payload, id));
+        if (res.status === 'success') {
+            yield put(postSuccess({ message: ' New Ticket Message Created succesfully' }));
+        } else {
+            yield put(setErrors({ message: res.message }));
+        }
+    } catch (error) {
+        yield put(setErrors({ message: 'Something went wrong please try again' }));
+    }
+}
+
+function* postTicketMessageEffect({ payload, id }) {
+    yield call(postTicketMessage, payload, id);
+}
+
 function* getSingleTicket(id) {
     try {
         yield put(loadingTickets());
-        console.log('happy');
         const res = yield call(ticketById, id);
         if (res.status === 'success') {
             yield put(setTicketById(res.data));
@@ -73,8 +99,21 @@ function* getTicketsByIdEffect({ payload }) {
     yield call(getSingleTicket, payload);
 }
 
-function* postTicketEffect({ payload }) {
-    yield call(postNewTicket, payload);
+function* markTicketResolved(id) {
+    try {
+        yield put(resolvingTicket());
+        const res = yield call(markTicketAsResolved, id);
+        if (res.status === 'success') {
+            yield put(postSuccess({ message: 'Ticket Marked as Resolved' }));
+        } else {
+            yield put(setErrors({ message: res.message }));
+        }
+    } catch (error) {
+        yield put(setErrors({ message: 'Something went wrong please try again' }));
+    }
+}
+function* markTicketResolvedEffect({ payload }) {
+    yield call(markTicketResolved, payload);
 }
 
 function* getNewTickets() {
@@ -132,6 +171,8 @@ export default function* actionWatcher() {
     yield takeEvery(TYPES.GET_TICKETS, getTicketsEffect);
     yield takeEvery(TYPES.GET_TICKETS_BY_ID, getTicketsByIdEffect);
     yield takeEvery(TYPES.POST_TICKET, postTicketEffect);
+    yield takeEvery(TYPES.RESOLVE_TICKET, markTicketResolvedEffect);
+    yield takeEvery(TYPES.POST_TICKET_MESSAGE, postTicketMessageEffect);
     yield takeEvery(TYPES.GET_NEW_TICKETS, getNewTicketsEffect);
     yield takeEvery(TYPES.GET_PENDING_TICKETS, getPendingTicketsEffect);
     yield takeEvery(TYPES.GET_RESOLVED_TICKETS, getResolvedTicketsEffect);

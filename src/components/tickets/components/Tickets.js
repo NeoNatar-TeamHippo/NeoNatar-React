@@ -14,6 +14,7 @@ import { ALL, PENDING, NEW, RESOLVED, HORIZONTAL } from '../constants';
 const menuItems = [ALL, PENDING, NEW, RESOLVED];
 const Tickets = ({ history }) => {
     const dispatch = useDispatch();
+    const { user: { isAdmin } } = useSelector(state => state.user);
 
     useEffect(() => {
         dispatch(getTickets());
@@ -120,6 +121,7 @@ const Tickets = ({ history }) => {
                         onClick={() => setVisible(true)}
                         className="mb-2"
                         type="primary"
+                        hidden={isAdmin}
                     >
                         {NEW}
                     </Button>

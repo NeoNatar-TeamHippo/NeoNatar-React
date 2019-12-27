@@ -89,3 +89,32 @@ export const ticketById = id => {
         .then(response => response.json())
         .then(json => json);
 };
+
+export const postTicketMessages = (payload, id) => {
+    const token = localStorage.getItem('FBToken');
+    const parameters = {
+        body: JSON.stringify(payload),
+        headers: {
+            Authorization: token,
+            'Content-Type': 'application/json',
+        },
+        method: 'POST',
+    };
+    return fetch(`${TICKET_URL}/${id}`, parameters)
+        .then(response => response.json())
+        .then(json => json);
+};
+
+export const markTicketAsResolved = id => {
+    const token = localStorage.getItem('FBToken');
+    const parameters = {
+        headers: {
+            Authorization: token,
+            'Content-Type': 'application/json',
+        },
+        method: 'PATCH',
+    };
+    return fetch(`${TICKET_URL}/${id}`, parameters)
+        .then(response => response.json())
+        .then(json => json);
+};

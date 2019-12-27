@@ -50,6 +50,15 @@ export const LOWOPTION = 'low';
 export const MEDIUMOPTION = 'medium';
 
 /** @constant */
+export const IS_RESOLVED = 'resolved';
+
+/** @constant */
+export const ADDCOMMENT = 'Add Comment';
+
+/** @constant */
+export const MARKED_AS_RESOLVED = 'Marked As Resolved';
+
+/** @constant */
 export const FORMITEMLAYOUT = {
     labelCol: {
         sm: { span: 8 },

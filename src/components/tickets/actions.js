@@ -19,6 +19,24 @@ export const postingTicket = () => ({
     type: TYPES.POSTING_TICKET,
 });
 /**
+ * Triggers request to post a TICKET MESSAGE
+ *
+ * @function
+ * @return {void} The {@link actionTypes.POSTING_TICKET_MESSAGE } action.
+ */
+export const postingTicketMessage = () => ({
+    type: TYPES.POSTING_TICKET_MESSAGE,
+});
+/**
+ * Triggers request to mark a TICKET Resolved
+ *
+ * @function
+ * @return {void} The {@link actionTypes.RESOLVING_TICKET } action.
+ */
+export const resolvingTicket = () => ({
+    type: TYPES.RESOLVING_TICKET,
+});
+/**
  * Triggers request to load new TICKETS
  *
  * @function
@@ -154,6 +172,17 @@ export const getTicketsById = payload => ({
     type: TYPES.GET_TICKETS_BY_ID,
 });
 /**
+ * Triggers request to post ticket's message
+ *
+ * @function
+ * @return {void} The {@link actionTypes.POST_TICKET_MESSAGE } action.
+ */
+export const postTicketMessage = (payload, id) => ({
+    id,
+    payload,
+    type: TYPES.POST_TICKET_MESSAGE,
+});
+/**
  * Triggers request to get all new tickets
  *
  * @function
@@ -179,5 +208,15 @@ export const getPendingTickets = () => ({
  */
 export const getResolvedTickets = () => ({
     type: TYPES.GET_RESOLVED_TICKETS,
+});
+/**
+ * Triggers request to mark ticket as resolved
+ *
+ * @function
+ * @return {void} The {@link actionTypes.RESOLVE_TICKET } action.
+ */
+export const resolveTicket = payload => ({
+    payload,
+    type: TYPES.RESOLVE_TICKET,
 });
 

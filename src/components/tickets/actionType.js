@@ -55,6 +55,20 @@ export const POST_SUCCESS = 'POST_SUCCESS';
  */
 export const POST_TICKET = 'POST_TICKET';
 /**
+ * Fired by the {@link actions.resolveTicket }
+ * action creator.
+ *
+ * @type {String}
+ */
+export const RESOLVE_TICKET = 'RESOLVE_TICKET';
+/**
+ * Fired by the {@link actions.postTicketMesaage }
+ * action creator.
+ *
+ * @type {String}
+ */
+export const POST_TICKET_MESSAGE = 'POST_TICKET_MESSAGE';
+/**
  * Fired by the {@link actions.loadingTickets }
  * action creator.
  *
@@ -68,6 +82,20 @@ export const LOADING_TICKETS = 'LOADING_TICKETS';
  * @type {String}
  */
 export const POSTING_TICKET = 'POSTING_TICKET';
+/**
+ * Fired by the {@link actions.resolvingTicket }
+ * action creator.
+ *
+ * @type {String}
+ */
+export const RESOLVING_TICKET = 'RESOLVING_TICKET';
+/**
+ * Fired by the {@link actions.postingTicketMessage }
+ * action creator.
+ *
+ * @type {String}
+ */
+export const POSTING_TICKET_MESSAGE = 'POSTING_TICKET_MESSAGE';
 /**
  * Fired by the {@link actions.loadingNewTickets }
  * action creator.
