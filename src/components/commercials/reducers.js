@@ -5,11 +5,6 @@ const initialState = {
     isCommercialsCreated: false,
 };
 
-const addCommercials = (items, newItem) => {
-    items.push(newItem);
-    return items;
-};
-
 export default (state = { ...initialState }, action) => {
     switch (action.type) {
         case UPDATE_COMMERCIALS: {
@@ -22,12 +17,12 @@ export default (state = { ...initialState }, action) => {
         }
 
         case CREATE_COMMERCIALS: {
-            const { users } = state;
+            const { commercials } = state;
             const { payload: item } = action;
             return {
                 ...state,
+                commercials: [...item, ...commercials],
                 isCommercialsCreated: true,
-                users: addCommercials(users, item),
             };
         }
 

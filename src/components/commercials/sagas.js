@@ -2,8 +2,7 @@ import { takeLatest, put, all, call } from 'redux-saga/effects';
 
 import { createCommercials, updateCommercials } from './actions';
 import { REQUEST_COMMERCIALS, REQUEST_CREATE_COMMERCIALS } from './actionTypes';
-import { COMMERCIALS_URL } from './constants';
-import { allCommercials } from './services';
+import { allCommercials, postCommercials } from './services';
 
 /**
  * Handles requesting the list of commercials from the database
@@ -13,7 +12,6 @@ import { allCommercials } from './services';
 function* requestAllCommercials() {
     try {
         const res = yield call(allCommercials);
-        console.log(res);
         if (res.status === 'success') {
             yield put(updateCommercials(res.data));
         } else {
@@ -32,23 +30,10 @@ function* requestAllCommercials() {
  * @param {Object} action - the data sent from the action creator
  * @return {Void} - void
  */
-function* requestCreateCommercials(action) {
-    const token = localStorage.getItem('FBToken');
-    const { payload } = action;
-    // console.log(payload);
+function* requestCreateCommercials(data) {
     try {
-        const parameters = {
-            body: JSON.stringify(payload),
-            headers: {
-                Authorization: token,
-                'Content-Type': 'application/form-data',
-            },
-            method: 'POST',
-            mode: 'cors',
-        };
-        const response = yield fetch(COMMERCIALS_URL, parameters)
-            .then(res => res.json());
-            // console.log(response);
+        const response = yield call(postCommercials, data);
+        console.log(response);
         if (response.status === 'success') {
             yield put(createCommercials(response.data));
         } else {

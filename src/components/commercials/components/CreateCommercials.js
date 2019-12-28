@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input, Modal, Button, Upload, Icon } from 'antd';
 
-import { FORM_ITEM_LAYOUT, UPLOAD, FILE_TYPE } from '../constants';
+import { FORM_ITEM_LAYOUT, COMMERCIALS_URL, UPLOAD, FILE_TYPE } from '../constants';
 
 const { Item } = Form;
 const { Dragger } = Upload;
@@ -10,6 +10,17 @@ class CommercialsForm extends React.Component {
     render() {
         const { visible, onCancel, onCreate, form } = this.props;
         const { getFieldDecorator } = form;
+        const props = {
+            action: COMMERCIALS_URL,
+            multiple: false,
+            name: 'file',
+            onChange(info) {
+                const { status } = info.file;
+                if (status !== 'uploading') {
+                    console.log(info.file, info.fileList);
+                }
+            },
+        };
         return (
             <Modal
                 visible={visible}
@@ -22,7 +33,7 @@ class CommercialsForm extends React.Component {
                     <Item>
                         {getFieldDecorator('title', {
                             rules: [{
-                                message: 'Please input the title of collection!',
+                                message: 'Please a title!',
                                 required: true,
                             }],
                         })(<Input placeholder="title" />)}
@@ -30,7 +41,7 @@ class CommercialsForm extends React.Component {
                     <Item>
                         {getFieldDecorator('description', {
                             rules: [{
-                                message: 'Please input the title of collection!',
+                                message: 'Please add a description!',
                                 required: true,
                             }],
                         })(<Input placeholder="description" />)}
@@ -38,11 +49,11 @@ class CommercialsForm extends React.Component {
                     <Item>
                         {getFieldDecorator('upload', {
                             rules: [{
-                                message: 'Please input the title of collection!',
+                                message: 'Please add a video!',
                                 required: true,
                             }],
                         })(
-                            <Dragger>
+                            <Dragger {...props}>
                                 <p className="ant-upload-drag-icon">
                                     <Icon type="inbox" />
                                 </p>

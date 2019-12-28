@@ -14,3 +14,20 @@ export const allCommercials = () => {
         .then(response => response.json())
         .then(json => json);
 };
+
+export const postCommercials = action => {
+    const token = localStorage.getItem('FBToken');
+    const { payload } = action;
+    const parameters = {
+        body: JSON.stringify(payload),
+        headers: {
+            Authorization: token,
+            'Content-Type': 'application/form-data',
+        },
+        method: 'POST',
+        mode: 'cors',
+    };
+    return fetch(COMMERCIALS_URL, parameters)
+        .then(response => response.json())
+        .then(json => json);
+};

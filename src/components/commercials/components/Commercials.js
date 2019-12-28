@@ -35,7 +35,7 @@ const Commercials = () => {
             const commercial = {
                 description: values.description,
                 title: values.title,
-                upload: values.upload.file,
+                upload: values.upload.fileList,
             };
             dispatch(requestCreateCommercials(commercial));
         });
