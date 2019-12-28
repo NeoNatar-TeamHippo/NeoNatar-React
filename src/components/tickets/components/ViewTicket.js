@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
     Row, Col, Avatar, Tooltip, Comment, Form, Button, List, Input,
-    Typography, Icon
+    Typography, Icon, Spin
 } from 'antd';
 import moment from 'moment';
 import { getTicketsById, postTicketMessage, resolveTicket } from '../actions';
@@ -14,14 +14,22 @@ const ViewTicket = ({ match, form }) => {
     const { params } = match;
     const { id: ticketId } = params;
     const dispatch = useDispatch();
+
+    const { user } = useSelector(state => state.user);
+    const { ticketsById, ticketIdLoading } = useSelector(state => state.ticket);
+
     useEffect(() => {
         dispatch(getTicketsById(ticketId));
+        console.log('running');
     }, [dispatch, ticketId]);
-    const { ticketsById, ticketsLoading } = useSelector(state => state.ticket);
-    const { user } = useSelector(state => state.user);
+
     const userIsAdmin = user.isAdmin;
     const { title, avatar, customerName, messages, status } = ticketsById;
-    const remessage = messages.map(message => {
+
+    const [submitting, setsubmitting] = useState(false);
+    const commentsEndRef = useRef(null);
+
+    const remessage = ticketIdLoading ? messages : messages.map(message => {
         const { author, avatar, content, isAdmin, createdAt } = message;
         return ({
             author,
@@ -30,15 +38,14 @@ const ViewTicket = ({ match, form }) => {
             datetime: moment(createdAt).fromNow(),
             isAdmin,
         });
-    });
+    }); console.log(remessage);
     const [comments, setcomments] = useState(remessage);
-    const [submitting, setsubmitting] = useState(false);
-    const commentsEndRef = useRef(null);
+
     useEffect(() => {
         commentsEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }, [comments]);
-    const { getFieldDecorator, resetFields, validateFields } = form;
 
+    const { getFieldDecorator, resetFields, validateFields } = form;
     const actions = [
         <span key="delete_message">
             <Tooltip title="delete message">
@@ -72,11 +79,11 @@ const ViewTicket = ({ match, form }) => {
                 setTimeout(() => {
                     setsubmitting(false);
                     setcomments([...comments, {
-                        author: 'Han Solo',
-                        avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+                        author: customerName,
+                        avatar,
                         content: <p>{values.body}</p>,
                         datetime: moment().fromNow(),
-                        isAdmin: false,
+                        isAdmin: userIsAdmin,
                     }]);
                     dispatch(postTicketMessage({ body: values.body }, ticketId));
                 }, 1000);
@@ -88,72 +95,74 @@ const ViewTicket = ({ match, form }) => {
         dispatch(resolveTicket(ticketId));
     };
     return (
-        <Row type="flex" justify="center" align="middle" loading={ticketsLoading}>
-            <Col sm={24} md={22} lg={20}>
-                <div className="text-center">
-                    <Typography.Title level={4} type="secondary">
-                        {title}
-                    </Typography.Title>
-                </div>
-                <div className="d-flex flex-column">
-                    <div className="scroll_container h-25 ">
-                        {comments.length > 0 && <CommentList commentValue={comments} />}
+        <Spin spinning={ticketIdLoading}>
+            <Row type="flex" justify="center" align="middle">
+                <Col sm={24} md={22} lg={20}>
+                    <div className="text-center">
+                        <Typography.Title level={4} type="secondary">
+                            {title}
+                        </Typography.Title>
                     </div>
-                    <div ref={commentsEndRef} />
-                    <Comment
-                        className="h-75"
-                        hidden={status === IS_RESOLVED}
-                        avatar={(
-                            <Avatar
-                                src={avatar}
-                                alt={customerName}
-                            />
+                    <div className="d-flex flex-column">
+                        <div className="scroll_container h-25 ">
+                            {comments.length > 0 && <CommentList commentValue={comments} />}
+                        </div>
+                        <div ref={commentsEndRef} />
+                        <Comment
+                            className="h-75"
+                            hidden={status === IS_RESOLVED}
+                            avatar={(
+                                <Avatar
+                                    src={avatar}
+                                    alt={customerName}
+                                />
                         )}
-                        content={(
-                            <Form onSubmit={handleSubmit}>
-                                <Form.Item>
-                                    {getFieldDecorator('body', {
-                                        rules: [
-                                            {
-                                                message: 'You can\'t send an empty message',
-                                                required: true,
-                                            },
-                                        ],
-                                    })(<TextArea
-                                        rows={4}
-                                        placeholder="Message to admin..."
-                                    />)}
-                                </Form.Item>
-                                <Form.Item>
-                                    <Row type="flex" justify="end">
-                                        <Col span={8}>
-                                            <Button
-                                                htmlType="submit"
-                                                loading={submitting}
-                                                onClick={handleSubmit}
-                                                type="primary"
-                                            >
-                                                {ADDCOMMENT}
-                                            </Button>
-                                        </Col>
-                                        <Col span={5} offset={11}>
-                                            <Button
-                                                type="primary"
-                                                icon="check"
-                                                onClick={markAsResolved}
-                                                hidden={!userIsAdmin}
-                                            >
-                                                {MARKED_AS_RESOLVED}
-                                            </Button>
-                                        </Col>
-                                    </Row>
-                                </Form.Item>
-                            </Form>
+                            content={(
+                                <Form onSubmit={handleSubmit}>
+                                    <Form.Item>
+                                        {getFieldDecorator('body', {
+                                            rules: [
+                                                {
+                                                    message: 'You can\'t send an empty message',
+                                                    required: true,
+                                                },
+                                            ],
+                                        })(<TextArea
+                                            rows={4}
+                                            placeholder="Message to admin..."
+                                        />)}
+                                    </Form.Item>
+                                    <Form.Item>
+                                        <Row type="flex" justify="end">
+                                            <Col span={8}>
+                                                <Button
+                                                    htmlType="submit"
+                                                    loading={submitting}
+                                                    onClick={handleSubmit}
+                                                    type="primary"
+                                                >
+                                                    {ADDCOMMENT}
+                                                </Button>
+                                            </Col>
+                                            <Col span={5} offset={11}>
+                                                <Button
+                                                    type="primary"
+                                                    icon="check"
+                                                    onClick={markAsResolved}
+                                                    hidden={!userIsAdmin}
+                                                >
+                                                    {MARKED_AS_RESOLVED}
+                                                </Button>
+                                            </Col>
+                                        </Row>
+                                    </Form.Item>
+                                </Form>
                         )}
-                    />
-                </div>
-            </Col>
-        </Row>
+                        />
+                    </div>
+                </Col>
+            </Row>
+        </Spin>
     );
 };
 const WrappedViewTicketForm = Form.create({ name: 'messageForm' })(ViewTicket);

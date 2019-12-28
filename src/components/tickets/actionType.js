@@ -76,6 +76,13 @@ export const POST_TICKET_MESSAGE = 'POST_TICKET_MESSAGE';
  */
 export const LOADING_TICKETS = 'LOADING_TICKETS';
 /**
+ * Fired by the {@link actions.loadingTicketById }
+ * action creator.
+ *
+ * @type {String}
+ */
+export const LOADING_TICKET_BY_Id = 'LOADING_TICKET_BY_Id';
+/**
  * Fired by the {@link actions.postingTicket }
  * action creator.
  *

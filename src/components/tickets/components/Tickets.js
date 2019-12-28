@@ -4,6 +4,7 @@ import { Avatar, Button, Tag, Table, Row, Col, Menu } from 'antd';
 
 import {
     getTickets,
+    getTicketsById,
     getNewTickets,
     getPendingTickets,
     getResolvedTickets
@@ -137,6 +138,7 @@ const Tickets = ({ history }) => {
                 onRow={record => ({
                     onClick: () => {
                         handleViewTicket(record.ticketId);
+                        // dispatch(getTicketsById(record.ticketId));
                     },
                 })}
                 rowKey={record => record.ticketId}

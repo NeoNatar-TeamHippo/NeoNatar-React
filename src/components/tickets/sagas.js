@@ -10,6 +10,7 @@ import {
     postingTicket,
     postingTicketMessage,
     postSuccess,
+    loadingTicketById,
     loadingTickets,
     loadingNewTickets,
     loadingPendingTickets,
@@ -66,7 +67,6 @@ function* postTicketEffect({ payload }) {
 function* postTicketMessage(payload, id) {
     try {
         yield put(postingTicketMessage());
-        console.log(payload, id);
         const res = yield call(postTicketMessages(payload, id));
         if (res.status === 'success') {
             yield put(postSuccess({ message: ' New Ticket Message Created succesfully' }));
@@ -84,8 +84,9 @@ function* postTicketMessageEffect({ payload, id }) {
 
 function* getSingleTicket(id) {
     try {
-        yield put(loadingTickets());
+        yield put(loadingTicketById());
         const res = yield call(ticketById, id);
+        console.log(res);
         if (res.status === 'success') {
             yield put(setTicketById(res.data));
         } else {

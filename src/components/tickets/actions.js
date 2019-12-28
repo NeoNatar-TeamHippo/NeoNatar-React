@@ -10,6 +10,15 @@ export const loadingTickets = () => ({
     type: TYPES.LOADING_TICKETS,
 });
 /**
+ * Triggers request to load TICKETS
+ *
+ * @function
+ * @return {void} The {@link actionTypes.LOADING_TICKETS } action.
+ */
+export const loadingTicketById = () => ({
+    type: TYPES.LOADING_TICKET_BY_Id,
+});
+/**
  * Triggers request to post a TICKET
  *
  * @function
