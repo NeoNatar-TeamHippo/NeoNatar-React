@@ -11,7 +11,11 @@ const Commercials = () => {
     const [visible, setVisible] = useState(false);
     const [formRef, setFormRef] = useState(null);
 
-    const { commercials, isCommercialsCreated } = useSelector(state => state.commercials);
+    const {
+        commercials,
+        errorMessage,
+        isCommercialsCreated,
+    } = useSelector(state => state.commercials);
 
     const dispatch = useDispatch();
 

@@ -1,6 +1,6 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 
-import { createCommercials, updateCommercials } from './actions';
+import { createCommercials, updateCommercials, throwError } from './actions';
 import { REQUEST_COMMERCIALS, REQUEST_CREATE_COMMERCIALS } from './actionTypes';
 import { allCommercials, postCommercials } from './services';
 
@@ -15,8 +15,7 @@ function* requestAllCommercials() {
         if (res.status === 'success') {
             yield put(updateCommercials(res.data));
         } else {
-            // eslint-disable-next-line no-console
-            console.log('ERROR', { message: res.message });
+            yield put(throwError(res.message));
         }
     } catch (error) {
         // eslint-disable-next-line no-console
