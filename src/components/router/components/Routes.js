@@ -16,7 +16,7 @@ import history from '../../history/History';
 import signup from '../../signup';
 import signin from '../../signin';
 
-const { DASHBOARD, HOME, SIGNUP, SIGNIN } = PATHS;
+const { DASHBOARD, SIGNUP, SIGNIN, HOME } = PATHS;
 const { Dashboard } = dashboard.components;
 const { SignUp } = signup.components;
 const { SignIn } = signin.components;
@@ -55,6 +55,14 @@ const Routes = () => {
                         exact
                         strict
                         component={SignUp}
+                        restricted={false}
+                    />
+                    <PublicRoute
+                        authenticated={authenticated}
+                        path={HOME}
+                        exact
+                        strict
+                        component={Home}
                         restricted={false}
                     />
                     <Route component={NoMatch} />

@@ -1,13 +1,12 @@
-import React, { Fragment } from 'react';
-import { NavLink } from 'react-router-dom';
-
+import React from 'react';
+import { Link } from 'react-router-dom';
 import Logo from '../../../images/neoNatar Logo.svg';
 
 const navHeader = () => (
-    <Fragment>
-        <NavLink to="/dashboard">
+    <>
+        <Link to="/">
             <img src={Logo} width="120px" height="60px" alt="NeoNatar Logo" />
-        </NavLink>
-    </Fragment>
+        </Link>
+    </>
 );
 export default navHeader;
