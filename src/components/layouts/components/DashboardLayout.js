@@ -28,7 +28,7 @@ const DashboardLayout = props => {
                 <NavLink to="/dashboard" className="my-2 d-flex justify-content-center">
                     <img src={Logo} width="100%" height="30px" alt="NeoNatar Logo" />
                 </NavLink>
-                <Divider />
+                {/* <Divider /> */}
                 <SideMenu />
             </Sider>
             <Layout>

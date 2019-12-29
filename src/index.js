@@ -19,6 +19,7 @@ if (token) {
     const tokeToDecode = token.split(' ')[1];
     const decodedToken = jwtDecode(tokeToDecode);
     if (decodedToken.exp * 1000 < Date.now()) {
+        console.log('expired token');
         localStorage.removeItem('FBToken');
         store.dispatch(setUnAuthenticated());
         store.dispatch(logoutUser());

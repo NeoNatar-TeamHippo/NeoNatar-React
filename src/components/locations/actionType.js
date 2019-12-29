@@ -47,4 +47,11 @@ export const SET_LOCATION_BY_ID = 'SET_LOCATION_BY_ID';
  * @type {String}
  */
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+/**
+ * Fired by the {@link actions.newLocations }
+ * action creator.
+ *
+ * @type {String}
+ */
+export const NEW_LOCATIONS = 'NEW_LOCATIONS';
 
