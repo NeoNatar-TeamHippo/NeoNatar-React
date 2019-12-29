@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Alert, Button, Table } from 'antd';
+import { Button, Table } from 'antd';
 
 import CreateCommercials from './CreateCommercials';
 
@@ -15,7 +15,7 @@ const Commercials = () => {
 
     const {
         commercials,
-        errorMessage,
+        // errorMessage,
     } = useSelector(state => state.commercials);
 
     const dispatch = useDispatch();
@@ -58,7 +58,7 @@ const Commercials = () => {
                 onCancel={() => setVisible(false)}
                 onCreate={() => handleCreate()}
             />
-            { errorMessage
+            {/* { errorMessage
                 && (
                 <Alert
                     message={errorMessage}
@@ -68,7 +68,7 @@ const Commercials = () => {
                     closeText="close"
                 />
                 )
-            }
+            } */}
             <Table
                 dataSource={commercials}
                 title={() => (

@@ -1,9 +1,10 @@
 import React from 'react';
 import { Form, Input, Modal, Button, Upload, Icon } from 'antd';
 
-import { FORM_ITEM_LAYOUT, COMMERCIALS_URL, UPLOAD, FILE_TYPE } from '../constants';
+import { COMMERCIALS_URL, UPLOAD, FILE_TYPE } from '../constants';
 
 const { Item } = Form;
+const { TextArea } = Input;
 const { Dragger } = Upload;
 
 class CommercialsForm extends React.Component {
@@ -29,7 +30,7 @@ class CommercialsForm extends React.Component {
                 onCancel={onCancel}
                 onOk={onCreate}
             >
-                <Form {...FORM_ITEM_LAYOUT} layout="vertical">
+                <Form layout="vertical" className="new-commercial">
                     <Item>
                         {getFieldDecorator('title', {
                             rules: [{
@@ -44,7 +45,7 @@ class CommercialsForm extends React.Component {
                                 message: 'Please add a description!',
                                 required: true,
                             }],
-                        })(<Input placeholder="description" />)}
+                        })(<TextArea />)}
                     </Item>
                     <Item>
                         {getFieldDecorator('upload', {
