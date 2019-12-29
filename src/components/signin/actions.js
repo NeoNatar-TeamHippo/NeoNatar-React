@@ -44,8 +44,7 @@ export const setAuthenticated = payload => ({
  * @function
  * @return {void} The {@link actionTypes.SET_UNAUTHENTICATED } action.
  */
-export const setUnAuthenticated = payload => ({
-    payload,
+export const setUnAuthenticated = () => ({
     type: TYPES.SET_UNAUTHENTICATED,
 });
 export const authTrue = () => ({

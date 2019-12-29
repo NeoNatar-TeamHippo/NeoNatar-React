@@ -6,6 +6,13 @@
  */
 export const GET_TICKETS = 'GET_TICKETS';
 /**
+ * Fired by the {@link actions.getTicketsById }
+ * action creator.
+ *
+ * @type {String}
+ */
+export const GET_TICKETS_BY_ID = 'GET_TICKETS_BY_ID';
+/**
  * Fired by the {@link actions.getNewTickets }
  * action creator.
  *
@@ -89,6 +96,13 @@ export const LOADING_RESOLVED_TICKETS = 'LOADING_RESOLVED_TICKETS';
  * @type {String}
  */
 export const SET_TICKET = 'SET_TICKET';
+/**
+ * Fired by the {@link actions.setTicketById }
+ * action creator.
+ *
+ * @type {String}
+ */
+export const SET_TICKET_BY_ID = 'SET_TICKET_BY_ID';
 /**
  * Fired by the {@link actions.setNewTicket }
  * action creator.

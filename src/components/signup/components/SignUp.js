@@ -19,7 +19,6 @@ const SignUp = () => {
                     type="error"
                     showIcon
                     banner
-                    closeText="close"
                 />
             );
         }

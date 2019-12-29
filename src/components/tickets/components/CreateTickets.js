@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Form, Input, Modal, Row, Col, Select } from 'antd';
 
-import { FORMITEMLAYOUT,
+import {
     CREATE,
     CREATETICKET,
     HIGHOPTION,
@@ -12,7 +12,8 @@ import { FORMITEMLAYOUT,
     PRIORITYMESSAGE,
     TITLEMESSAGE,
     VERTICAL,
-    TITLE } from '../constants';
+    TITLE
+} from '../constants';
 import { postTicket } from '../actions';
 
 const { Item } = Form;
@@ -41,9 +42,9 @@ const TicketForm = props => {
             onCancel={onCancel}
             onOk={handleCreate}
         >
-            <Row type="flex" justify="center" align="middle">
-                <Col span={10}>
-                    <Form {...FORMITEMLAYOUT} layout={VERTICAL}>
+            <Row type="flex" justify="center">
+                <Col span={15}>
+                    <Form layout={VERTICAL}>
                         <Item>
                             {getFieldDecorator(TITLE, {
                                 rules: [{
@@ -61,12 +62,12 @@ const TicketForm = props => {
                             })(
                                 <Select>
                                     {
-                                    option.map(key => (
-                                        <Option key={key}>
-                                            {key.toUpperCase()}
-                                        </Option>
-                                    ))
-                                }
+                                        option.map(key => (
+                                            <Option key={key}>
+                                                {key.toUpperCase()}
+                                            </Option>
+                                        ))
+                                    }
                                 </Select>
                             )}
                         </Item>

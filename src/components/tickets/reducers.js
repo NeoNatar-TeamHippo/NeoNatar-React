@@ -6,6 +6,7 @@ const initialState = {
     pendingTickets: [],
     resolvedTickets: [],
     tickets: [],
+    ticketsById: {},
     ticketsLoading: false,
 };
 export default (state = initialState, { type, payload }) => {
@@ -20,6 +21,8 @@ export default (state = initialState, { type, payload }) => {
             return { ...state, ticketsLoading: true };
         case TYPES.SET_TICKET:
             return { ...state, tickets: payload, ticketsLoading: false };
+        case TYPES.SET_TICKET_BY_ID:
+            return { ...state, ticketsById: payload, ticketsLoading: false };
         case TYPES.SET_NEW_TICKET:
             return { ...state, newTickets: payload, ticketsLoading: false };
         case TYPES.SET_PENDING_TICKET:
