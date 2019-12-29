@@ -1,7 +1,6 @@
 import {
     CREATE_COMMERCIALS,
     UPDATE_COMMERCIALS,
-    RESET_COMMERCIALS_STATE,
     THROW_ERROR
 } from './actionTypes';
 
@@ -32,13 +31,6 @@ export default (state = { ...initialState }, action) => {
             };
         }
 
-        case RESET_COMMERCIALS_STATE: {
-            return {
-                ...state,
-                isCommercialsCreated: false,
-            };
-        }
-
         case THROW_ERROR: {
             const { payload: errorInfo } = action;
             return {
@@ -46,6 +38,7 @@ export default (state = { ...initialState }, action) => {
                 errorMessage: errorInfo,
             };
         }
+
         default:
             return state;
     }

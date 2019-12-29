@@ -18,8 +18,7 @@ function* requestAllCommercials() {
             yield put(throwError(res.message));
         }
     } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
+        yield put(throwError({ message: 'Something went wrong please try again' }, error));
     }
 }
 
@@ -36,12 +35,10 @@ function* requestCreateCommercials(data) {
         if (response.status === 'success') {
             yield put(createCommercials(response.data));
         } else {
-            // eslint-disable-next-line no-console
-            console.log('ERROR', { message: 'Something went wrong please try again' });
+            yield put(throwError(response.message));
         }
     } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
+        yield put(throwError({ message: 'Something went wrong please try again' }, error));
     }
 }
 
@@ -54,12 +51,7 @@ function* requestCreateCommercials(data) {
  */
 
 function* watchRequestAllCommercials() {
-    try {
-        yield takeLatest(REQUEST_COMMERCIALS, requestAllCommercials);
-    } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
-    }
+    yield takeLatest(REQUEST_COMMERCIALS, requestAllCommercials);
 }
 
 /**
@@ -70,12 +62,7 @@ function* watchRequestAllCommercials() {
  * @return {void}
  */
 function* watchRequestCreateCommercials() {
-    try {
-        yield takeLatest(REQUEST_CREATE_COMMERCIALS, requestCreateCommercials);
-    } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
-    }
+    yield takeLatest(REQUEST_CREATE_COMMERCIALS, requestCreateCommercials);
 }
 
 export default function* () {

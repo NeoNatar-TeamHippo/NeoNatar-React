@@ -28,15 +28,6 @@ export const REQUEST_COMMERCIALS = `${NAME}/REQUEST_COMMERCIALS`;
 export const CREATE_COMMERCIALS = `${NAME}/CREATE_COMMERCIALS`;
 
 /**
- * Fired by the {@link actions.resetCommercialsState resetCommercialsState}
- * action creator.
- *
- * @type {String}
- */
-
-export const RESET_COMMERCIALS_STATE = `${NAME}/RESET_COMMERCIALS_STATE`;
-
-/**
  * Fired by the {@link actions.requestCreateCommercials requestCreateCommercials}
  * action creator.
  *

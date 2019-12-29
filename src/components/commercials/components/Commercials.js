@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Table } from 'antd';
+import { Alert, Button, Table } from 'antd';
 
 import CreateCommercials from './CreateCommercials';
 
-import * as actions from '../actions';
+import { requestCommercials, requestCreateCommercials } from '../actions';
 import { ALL_COMMERCIALS, NEW } from '../constants';
+
+import { openNotification } from '../../utils/functions';
 
 const Commercials = () => {
     const [visible, setVisible] = useState(false);
@@ -14,34 +16,31 @@ const Commercials = () => {
     const {
         commercials,
         errorMessage,
-        isCommercialsCreated,
     } = useSelector(state => state.commercials);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const { resetCommercialsState, requestCommercials } = actions;
         dispatch(requestCommercials());
-        if (visible && isCommercialsCreated) {
-            setVisible(false);
-            dispatch(resetCommercialsState());
-        }
-    }, [dispatch, isCommercialsCreated, visible]);
+    }, [dispatch]);
 
     const handleCreate = () => {
-        const { form } = formRef.props;
-        const { requestCreateCommercials } = actions;
-        form.validateFields((error, values) => {
+        const { form: { validateFields, resetFields } } = formRef.props;
+        validateFields((error, values) => {
             if (error) {
                 return error;
             }
-            form.resetFields();
             const commercial = {
                 description: values.description,
                 title: values.title,
                 upload: values.upload.fileList,
             };
             dispatch(requestCreateCommercials(commercial));
+            setTimeout(() => {
+                resetFields();
+                setVisible(false);
+                openNotification('Your Commercial was successfully created', 'Create Commercial');
+            }, 3000);
         });
     };
 
@@ -59,6 +58,17 @@ const Commercials = () => {
                 onCancel={() => setVisible(false)}
                 onCreate={() => handleCreate()}
             />
+            { errorMessage
+                && (
+                <Alert
+                    message={errorMessage}
+                    type="error"
+                    showIcon
+                    banner
+                    closeText="close"
+                />
+                )
+            }
             <Table
                 dataSource={commercials}
                 title={() => (

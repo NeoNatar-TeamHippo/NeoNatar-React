@@ -2,9 +2,8 @@ import {
     UPDATE_COMMERCIALS,
     REQUEST_COMMERCIALS,
     CREATE_COMMERCIALS,
-    RESET_COMMERCIALS_STATE,
     REQUEST_CREATE_COMMERCIALS,
-    THROW_ERROR,
+    THROW_ERROR
 } from './actionTypes';
 
 /**
@@ -41,17 +40,6 @@ export const requestCommercials = payload => ({
 export const createCommercials = payload => ({
     payload,
     type: CREATE_COMMERCIALS,
-});
-
-/**
- * Triggers request to reset commercials state
- *
- * @function
- * @param {Object} payload An object of captured commercials
- * @return {void} The {@link actionTypes.RESET_COMMERCIALS_STATE RESET_COMMERCIALS_STATE} action.
- */
-export const resetCommercialsState = () => ({
-    type: RESET_COMMERCIALS_STATE,
 });
 
 /**
