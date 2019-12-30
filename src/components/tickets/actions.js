@@ -28,6 +28,16 @@ export const loadingNewTickets = () => ({
     type: TYPES.LOADING_NEW_TICKETS,
 });
 /**
+ * Triggers request to set Single TCIKET
+ *
+ * @function
+ * @return {void} The {@link actionTypes.SET_TICKET_BY_ID } action.
+ */
+export const setTicketById = payload => ({
+    payload,
+    type: TYPES.SET_TICKET_BY_ID,
+});
+/**
  * Triggers request to load pending TICKETS
  *
  * @function
@@ -132,6 +142,16 @@ export const clearErrors = () => ({
  */
 export const getTickets = () => ({
     type: TYPES.GET_TICKETS,
+});
+/**
+ * Triggers request to get single tickets
+ *
+ * @function
+ * @return {void} The {@link actionTypes.GET_TICKETS } action.
+ */
+export const getTicketsById = payload => ({
+    payload,
+    type: TYPES.GET_TICKETS_BY_ID,
 });
 /**
  * Triggers request to get all new tickets

@@ -22,7 +22,6 @@ const SignIn = () => {
                     type="error"
                     showIcon
                     banner
-                    closeText="close"
                 />
             );
         }

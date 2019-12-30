@@ -8,7 +8,7 @@ import './index.css';
 import reduxStore from './components/redux/store';
 import router from './components/router';
 
-import { authTrue } from './components/signin/actions';
+import { authTrue, setUnAuthenticated } from './components/signin/actions';
 import { logoutUser, loadingUser } from './components/navbar/actions';
 
 const { store } = reduxStore;
@@ -20,6 +20,7 @@ if (token) {
     const decodedToken = jwtDecode(tokeToDecode);
     if (decodedToken.exp * 1000 < Date.now()) {
         localStorage.removeItem('FBToken');
+        store.dispatch(setUnAuthenticated());
         store.dispatch(logoutUser());
     } else {
         store.dispatch(authTrue());
