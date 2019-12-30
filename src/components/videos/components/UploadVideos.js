@@ -7,7 +7,7 @@ const { Item } = Form;
 const { TextArea } = Input;
 const { Dragger } = Upload;
 
-class CommercialsForm extends React.Component {
+class UploadVideosForm extends React.Component {
     render() {
         const { visible, onCancel, onCreate, form } = this.props;
         const { getFieldDecorator } = form;
@@ -24,19 +24,18 @@ class CommercialsForm extends React.Component {
                 } = info;
                 if (status !== 'uploading') {
                     return fileList;
-                    // console.log(info.file, info.fileList);
                 }
             },
         };
         return (
             <Modal
                 visible={visible}
-                title="Upload Commercial"
+                title="Upload Video"
                 okText="Upload"
                 onCancel={onCancel}
                 onOk={onCreate}
             >
-                <Form layout="vertical" className="new-commercial">
+                <Form layout="vertical" className="new-video">
                     <Item label="title">
                         {getFieldDecorator('title', {
                             rules: [{
@@ -76,6 +75,6 @@ class CommercialsForm extends React.Component {
     }
 }
 
-const CreateCommercials = Form.create()(CommercialsForm);
+const UploadVideos = Form.create()(UploadVideosForm);
 
-export default CreateCommercials;
+export default UploadVideos;

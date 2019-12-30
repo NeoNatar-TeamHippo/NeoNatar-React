@@ -2,26 +2,25 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Table } from 'antd';
 
-import CreateCommercials from './CreateCommercials';
+import UploadVideos from './UploadVideos';
 
-import { requestCommercials, requestCreateCommercials } from '../actions';
-import { ALL_COMMERCIALS, NEW } from '../constants';
+import { requestVideos, requestVideoUpload } from '../actions';
+import { ALL_VIDEOS, NEW } from '../constants';
 
 import { openNotification } from '../../utils/functions';
 
-const Commercials = () => {
+const Videos = () => {
     const [visible, setVisible] = useState(false);
     const [formRef, setFormRef] = useState(null);
 
     const {
-        commercials,
-        // errorMessage,
-    } = useSelector(state => state.commercials);
+        videos,
+    } = useSelector(state => state.videos);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(requestCommercials());
+        dispatch(requestVideos());
     }, [dispatch]);
 
     const handleCreate = () => {
@@ -30,16 +29,16 @@ const Commercials = () => {
             if (error) {
                 return error;
             }
-            const commercial = {
+            const videoUpload = {
                 description: values.description,
                 title: values.title,
                 upload: values.upload.fileList,
             };
-            dispatch(requestCreateCommercials(commercial));
+            dispatch(requestVideoUpload(videoUpload));
             setTimeout(() => {
                 resetFields();
                 setVisible(false);
-                openNotification('Your Commercial was successfully created', 'Create Commercial');
+                openNotification('Your video was successfully created', 'Create Video');
             }, 3000);
         });
     };
@@ -52,17 +51,17 @@ const Commercials = () => {
 
     return (
         <div>
-            <CreateCommercials
+            <UploadVideos
                 wrappedComponentRef={saveFormRef}
                 visible={visible}
                 onCancel={() => setVisible(false)}
                 onCreate={() => handleCreate()}
             />
             <Table
-                dataSource={commercials}
+                dataSource={videos}
                 title={() => (
                     <div>
-                        {ALL_COMMERCIALS}
+                        {ALL_VIDEOS}
                         <Button
                             onClick={() => setVisible(true)}
                             className="mb-2"
@@ -99,4 +98,4 @@ const Commercials = () => {
     );
 };
 
-export default Commercials;
+export default Videos;

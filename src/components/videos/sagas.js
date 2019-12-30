@@ -1,19 +1,20 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 
-import { createCommercials, updateCommercials } from './actions';
-import { REQUEST_COMMERCIALS, REQUEST_CREATE_COMMERCIALS } from './actionTypes';
-import { allCommercials, postCommercials } from './services';
+import { uploadVideos, updateVideos } from './actions';
+import { REQUEST_VIDEOS, REQUEST_VIDEO_UPLOAD } from './actionTypes';
+import { allVideos, postVideos } from './services';
 
 /**
- * Handles requesting the list of commercials from the database
+ * Handles requesting the list of videos from the database
  *
  * @return {Void} - void
  */
-function* requestAllCommercials() {
+function* requestAllVideos() {
     try {
-        const res = yield call(allCommercials);
+        const res = yield call(allVideos);
+        console.log(res);
         if (res.status === 'success') {
-            yield put(updateCommercials(res.data));
+            yield put(updateVideos(res.data));
         } else {
             // eslint-disable-next-line no-console
             console.log(res.message);
@@ -25,18 +26,18 @@ function* requestAllCommercials() {
 }
 
 /**
- * Handles requesting commercials updates to the backend
+ * Handles requesting to post videos to the backend
  *
  * @param {Object} action - the data sent from the action creator
  * @return {Void} - void
  */
-function* requestCreateCommercials(data) {
+function* requesVideoUpload(data) {
     try {
-        const response = yield call(postCommercials, data);
+        const response = yield call(postVideos, data);
         console.log(response);
         console.log(data);
         if (response.status === 'success') {
-            yield put(createCommercials(response.data));
+            yield put(uploadVideos(response.data));
         } else {
             // eslint-disable-next-line no-console
             console.log(response.message);
@@ -49,14 +50,14 @@ function* requestCreateCommercials(data) {
 
 /**
  * @function
- * Watches for the {@link actionTypes.REQUEST_COMMERCIALS REQUEST_COMMERCIALS} action.
- * Triggers request to pull the commercials from database
+ * Watches for the {@link actionTypes.REQUEST_VIDEOS REQUEST_VIDEOS} action.
+ * Triggers request to pull the videos from database
  *
  * @return {void}
  */
 
-function* watchRequestAllCommercials() {
-    yield takeLatest(REQUEST_COMMERCIALS, requestAllCommercials);
+function* watchRequestAllVideos() {
+    yield takeLatest(REQUEST_VIDEOS, requestAllVideos);
 }
 
 /**
@@ -66,13 +67,13 @@ function* watchRequestAllCommercials() {
  *
  * @return {void}
  */
-function* watchRequestCreateCommercials() {
-    yield takeLatest(REQUEST_CREATE_COMMERCIALS, requestCreateCommercials);
+function* watchRequesToUploadVideo() {
+    yield takeLatest(REQUEST_VIDEO_UPLOAD, requesVideoUpload);
 }
 
 export default function* () {
     yield all([
-        watchRequestAllCommercials(),
-        watchRequestCreateCommercials(),
+        watchRequestAllVideos(),
+        watchRequesToUploadVideo(),
     ]);
 }

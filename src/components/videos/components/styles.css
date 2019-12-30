@@ -1,0 +1,10 @@
+.new-video {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.ant-upload.ant-upload-drag {
+    width: 50%;
+    margin: auto;
+}

@@ -1,6 +1,6 @@
 import { COMMERCIALS_URL } from './constants';
 
-export const allCommercials = () => {
+export const allVideos = () => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
         headers: {
@@ -15,7 +15,7 @@ export const allCommercials = () => {
         .then(json => json);
 };
 
-export const postCommercials = action => {
+export const postVideos = action => {
     const token = localStorage.getItem('FBToken');
     const { payload } = action;
     const parameters = {
