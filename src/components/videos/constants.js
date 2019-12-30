@@ -8,7 +8,7 @@ export const UPLOAD = 'Upload';
 export const FILE_TYPE = 'File types accepted include: .mp4';
 
 /** @constant */
-export const NEW = 'New';
+export const NEW_VIDEO = 'New Video';
 
 /** @constant */
 export const NAME = 'videos';

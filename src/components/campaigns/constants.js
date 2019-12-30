@@ -10,7 +10,7 @@ export const DATA = [
     },
     {
         category: 'Science',
-        cost: '250000',
+        cost: '250',
         key: '2',
         locations: '5',
         status: ['approved'],
@@ -18,7 +18,7 @@ export const DATA = [
     },
     {
         category: 'Telecommunication',
-        cost: '50000',
+        cost: '500',
         key: '3',
         locations: '100',
         status: ['deactivated'],

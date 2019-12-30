@@ -1,29 +1,29 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Table } from 'antd';
+import { Button, Table, Tooltip, PageHeader } from 'antd';
 
 import UploadVideos from './UploadVideos';
 
 import { requestVideos, requestVideoUpload } from '../actions';
-import { ALL_VIDEOS, NEW } from '../constants';
+import { ALL_VIDEOS, NEW_VIDEO } from '../constants';
 
 import { openNotification } from '../../utils/functions';
 
-const Videos = () => {
+const Videos = ({ history }) => {
     const [visible, setVisible] = useState(false);
     const [formRef, setFormRef] = useState(null);
-
-    const {
-        videos,
-    } = useSelector(state => state.videos);
-
     const dispatch = useDispatch();
+
+    const { videos } = useSelector(state => state.videos);
 
     useEffect(() => {
         dispatch(requestVideos());
     }, [dispatch]);
 
-    const handleCreate = () => {
+    const handleViewVideo = () => {
+    };
+
+    const handleVideoUpload = () => {
         const { form: { validateFields, resetFields } } = formRef.props;
         validateFields((error, values) => {
             if (error) {
@@ -49,52 +49,56 @@ const Videos = () => {
         }
     }, []);
 
+    const columns = [
+        {
+            dataIndex: 'title',
+            key: 'title',
+            title: 'Video Title',
+        },
+        {
+            dataIndex: 'duration',
+            key: 'duration',
+            title: 'Duration(weeks)',
+        },
+        {
+            key: 'action',
+            render: (text, record) => (
+                <Tooltip title="View details">
+                    <Button
+                        onClick={() => { handleViewVideo(record.locationId); }}
+                        type="link"
+                        icon="eye"
+                    />
+                </Tooltip>
+            ),
+            title: 'Action',
+        },
+    ];
+
     return (
-        <div>
+        <>
+            <PageHeader
+                onBack={() => history.goBack()}
+                title={ALL_VIDEOS}
+                className="mb-2 page_header"
+            />
             <UploadVideos
                 wrappedComponentRef={saveFormRef}
                 visible={visible}
                 onCancel={() => setVisible(false)}
-                onCreate={() => handleCreate()}
+                onCreate={() => handleVideoUpload()}
             />
+            <div style={{ marginBottom: 16 }} className="d-flex justify-content-between">
+                <Button type="primary" icon="plus" onClick={() => setVisible(true)}>
+                    {NEW_VIDEO}
+                </Button>
+            </div>
             <Table
                 dataSource={videos}
-                title={() => (
-                    <div>
-                        {ALL_VIDEOS}
-                        <Button
-                            onClick={() => setVisible(true)}
-                            className="mb-2"
-                            style={{ marginLeft: 100 }}
-                            type="primary"
-                        >
-                            {NEW}
-                        </Button>
-                    </div>
-                )}
-                bordered
-                columns={
-                    [
-                        {
-                            dataIndex: 'title',
-                            key: 'title',
-                            title: 'Video Details',
-                        },
-                        {
-                            dataIndex: 'description',
-                            key: 'description',
-                            title: 'Brief Description',
-                        },
-                        {
-                            dataIndex: 'duration',
-                            key: 'duration',
-                            title: 'Duration(weeks)',
-                        },
-                    ]
-                }
+                columns={columns}
                 rowKey={record => record.id}
             />
-        </div>
+        </>
     );
 };
 

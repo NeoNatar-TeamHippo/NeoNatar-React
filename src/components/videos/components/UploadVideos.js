@@ -35,7 +35,7 @@ class UploadVideosForm extends React.Component {
                 onCancel={onCancel}
                 onOk={onCreate}
             >
-                <Form layout="vertical" className="new-video">
+                <Form layout="vertical">
                     <Item label="title">
                         {getFieldDecorator('title', {
                             rules: [{
