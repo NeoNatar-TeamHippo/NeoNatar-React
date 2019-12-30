@@ -1,4 +1,5 @@
-import { takeEvery, call, put } from 'redux-saga/effects';
+import { takeEvery, call, put, take, fork } from 'redux-saga/effects';
+import { eventChannel } from 'redux-saga';
 import * as TYPES from './actionType';
 import {
     setErrors,
@@ -27,6 +28,8 @@ import {
     ticketById,
     resolvedTickets
 } from './services';
+
+import { firebaseTickets } from './firebase';
 
 function* getAllTickets() {
     try {
@@ -86,7 +89,6 @@ function* getSingleTicket(id) {
     try {
         yield put(loadingTicketById());
         const res = yield call(ticketById, id);
-        console.log(res);
         if (res.status === 'success') {
             yield put(setTicketById(res.data));
         } else {
@@ -168,6 +170,25 @@ function* getResolvedTicketsEffect() {
     yield call(getResolvedTickets);
 }
 
+function* startListener() {
+    console.log('running');
+    const channel = new eventChannel(emiter => {
+        firebaseTickets.on('value', snapshot => {
+            emiter({ data: snapshot.val() || {} });
+        });
+
+        return () => {
+            firebaseTickets.off();
+        };
+    });
+
+    while (true) {
+        const { data } = yield take(channel);
+        console.log(data);
+        yield put({ type: TYPES.UPDATE_STORE, payload: data });
+    }
+}
+
 export default function* actionWatcher() {
     yield takeEvery(TYPES.GET_TICKETS, getTicketsEffect);
     yield takeEvery(TYPES.GET_TICKETS_BY_ID, getTicketsByIdEffect);
@@ -177,4 +198,5 @@ export default function* actionWatcher() {
     yield takeEvery(TYPES.GET_NEW_TICKETS, getNewTicketsEffect);
     yield takeEvery(TYPES.GET_PENDING_TICKETS, getPendingTicketsEffect);
     yield takeEvery(TYPES.GET_RESOLVED_TICKETS, getResolvedTicketsEffect);
+    yield fork(startListener);
 }

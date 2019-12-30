@@ -41,6 +41,13 @@ export const GET_RESOLVED_TICKETS = 'GET_RESOLVED_TICKETS';
  */
 export const SET_ERRORS = 'SET_ERRORS';
 /**
+ * Fired by the {@link actions.setErrors }
+ * action creator.
+ *
+ * @type {String}
+ */
+export const UPDATE_STORE = 'UPDATE_STORE';
+/**
  * Fired by the {@link actions.postSuccess }
  * action creator.
  *
