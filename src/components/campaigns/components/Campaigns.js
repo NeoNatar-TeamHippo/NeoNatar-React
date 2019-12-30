@@ -1,69 +1,63 @@
-import React from 'react';
-import { Tag, Table } from 'antd';
+import React, { useState } from 'react';
+import { Tag, Table, Steps, Button, message, Icon } from 'antd';
 
-import { DATA } from '../constants';
+import { NEXT, DONE, PREVIOUS } from '../constants';
 
-const Campaigns = () => (
-    <Table
-        dataSource={DATA}
-        title={() => 'All Campaigns'}
-        bordered
-        columns={
-            [
-                {
-                    dataIndex: 'videoDetails',
-                    key: 'videoDetails',
-                    title: 'Video details',
-                },
-                {
-                    dataIndex: 'category',
-                    key: 'category',
-                    title: 'Category',
-                },
-                {
-                    dataIndex: 'cost',
-                    key: 'cost',
-                    render: cost => (
-                        <div style={{ fontFamily: 'monospace', textAlign: 'right' }}>
-                            {cost}
-                        </div>
-                    ),
+const { Step } = Steps;
 
-                    title: 'Cost(₦)',
-                },
-                {
-                    dataIndex: 'locations',
-                    key: 'locations',
-                    title: 'Locations',
-                },
-                {
-                    dataIndex: 'status',
-                    key: 'status',
-                    render: status => (
-                        <span>
-                            {status.map(tag => {
-                                let color;
-                                if (tag === 'pending') {
-                                    color = 'orange';
-                                } else if (tag === 'approved') {
-                                    color = 'green';
-                                } else {
-                                    color = 'red';
-                                }
-                                return (
-                                    <Tag color={color} key={tag}>
-                                        {tag.toUpperCase()}
-                                    </Tag>
-                                );
-                            })}
-                        </span>
-                    ),
-                    title: 'Status',
-                },
-            ]
-        }
-        rowKey={record => record.id}
-    />
-);
+const steps = [
+    {
+        content: 'First-content',
+        title: 'Upload Video',
+    },
+    {
+        content: 'Second-content',
+        title: 'Select Location',
+    },
+    {
+        content: '2nd to Last-content',
+        title: 'Schedule Campaign',
+    },
+    {
+        content: 'Last-content',
+        title: 'Summary and Payment',
+    },
+];
+const Campaigns = () => {
+    const [current, setCurrent] = useState(0);
+    const next = () => {
+        setCurrent(current + 1);
+    };
+    const prev = () => {
+        setCurrent(current - 1);
+    };
+    return (
+        <div>
+            <Steps current={current}>
+                {steps.map(item => (
+                    <Step key={item.title} title={item.title} />
+                ))}
+            </Steps>
+            <div className="steps-content">{steps[current].content}</div>
+            <div className="steps-action">
+                {current < steps.length - 1 && (
+                    <Button type="primary" onClick={() => next()}>
+                        {NEXT}
+                    </Button>
+                )}
+                {current === steps.length - 1 && (
+                    <Button type="primary" onClick={() => message.success('Processing complete!')}>
+                        {DONE}
+                    </Button>
+                )}
+                {current > 0 && (
+                    <Button style={{ marginLeft: 8 }} onClick={() => prev()}>
+                        {PREVIOUS}
+                    </Button>
+                )}
+            </div>
+        </div>
+    );
+};
 
 export default Campaigns;
