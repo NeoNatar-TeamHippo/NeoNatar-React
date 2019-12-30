@@ -1,6 +1,6 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 
-import { createCommercials, updateCommercials, throwError } from './actions';
+import { createCommercials, updateCommercials } from './actions';
 import { REQUEST_COMMERCIALS, REQUEST_CREATE_COMMERCIALS } from './actionTypes';
 import { allCommercials, postCommercials } from './services';
 
@@ -15,10 +15,12 @@ function* requestAllCommercials() {
         if (res.status === 'success') {
             yield put(updateCommercials(res.data));
         } else {
-            yield put(throwError(res.message));
+            // eslint-disable-next-line no-console
+            console.log(res.message);
         }
     } catch (error) {
-        yield put(throwError({ message: 'Something went wrong please try again' }, error));
+        // eslint-disable-next-line no-console
+        console.log({ message: 'Something went wrong please try again' }, error);
     }
 }
 
@@ -32,13 +34,16 @@ function* requestCreateCommercials(data) {
     try {
         const response = yield call(postCommercials, data);
         console.log(response);
+        console.log(data);
         if (response.status === 'success') {
             yield put(createCommercials(response.data));
         } else {
-            yield put(throwError(response.message));
+            // eslint-disable-next-line no-console
+            console.log(response.message);
         }
     } catch (error) {
-        yield put(throwError({ message: 'Something went wrong please try again' }, error));
+        // eslint-disable-next-line no-console
+        console.log({ message: 'Something went wrong please try again' }, error);
     }
 }
 

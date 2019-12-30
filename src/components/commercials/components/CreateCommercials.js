@@ -16,9 +16,15 @@ class CommercialsForm extends React.Component {
             multiple: false,
             name: 'file',
             onChange(info) {
-                const { status } = info.file;
+                const {
+                    fileList,
+                    file: {
+                        status,
+                    },
+                } = info;
                 if (status !== 'uploading') {
-                    console.log(info.file, info.fileList);
+                    return fileList;
+                    // console.log(info.file, info.fileList);
                 }
             },
         };
@@ -31,15 +37,15 @@ class CommercialsForm extends React.Component {
                 onOk={onCreate}
             >
                 <Form layout="vertical" className="new-commercial">
-                    <Item>
+                    <Item label="title">
                         {getFieldDecorator('title', {
                             rules: [{
-                                message: 'Please a title!',
+                                message: 'Please add a title!',
                                 required: true,
                             }],
-                        })(<Input placeholder="title" />)}
+                        })(<Input />)}
                     </Item>
-                    <Item>
+                    <Item label="description">
                         {getFieldDecorator('description', {
                             rules: [{
                                 message: 'Please add a description!',

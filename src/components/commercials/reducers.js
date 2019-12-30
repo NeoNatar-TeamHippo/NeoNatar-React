@@ -1,12 +1,7 @@
-import {
-    CREATE_COMMERCIALS,
-    UPDATE_COMMERCIALS,
-    THROW_ERROR
-} from './actionTypes';
+import { CREATE_COMMERCIALS, UPDATE_COMMERCIALS } from './actionTypes';
 
 const initialState = {
     commercials: [],
-    errorMessage: null,
     isCommercialsCreated: false,
 };
 
@@ -28,14 +23,6 @@ export default (state = { ...initialState }, action) => {
                 ...state,
                 commercials: [...item, ...commercials],
                 isCommercialsCreated: true,
-            };
-        }
-
-        case THROW_ERROR: {
-            const { payload: errorInfo } = action;
-            return {
-                ...state,
-                errorMessage: errorInfo,
             };
         }
 

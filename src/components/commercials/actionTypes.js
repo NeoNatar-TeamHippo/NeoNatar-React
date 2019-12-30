@@ -35,12 +35,3 @@ export const CREATE_COMMERCIALS = `${NAME}/CREATE_COMMERCIALS`;
  */
 
 export const REQUEST_CREATE_COMMERCIALS = `${NAME}/REQUEST_CREATE_COMMERCIALS`;
-
-/**
- * Fired by the {@link actions.throwError throwError}
- * action creator.
- *
- * @type {String}
- */
-
-export const THROW_ERROR = `${NAME}/THROW_ERROR`;

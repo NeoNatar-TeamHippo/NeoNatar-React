@@ -58,17 +58,6 @@ const Commercials = () => {
                 onCancel={() => setVisible(false)}
                 onCreate={() => handleCreate()}
             />
-            {/* { errorMessage
-                && (
-                <Alert
-                    message={errorMessage}
-                    type="error"
-                    showIcon
-                    banner
-                    closeText="close"
-                />
-                )
-            } */}
             <Table
                 dataSource={commercials}
                 title={() => (

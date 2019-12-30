@@ -2,8 +2,7 @@ import {
     UPDATE_COMMERCIALS,
     REQUEST_COMMERCIALS,
     CREATE_COMMERCIALS,
-    REQUEST_CREATE_COMMERCIALS,
-    THROW_ERROR
+    REQUEST_CREATE_COMMERCIALS
 } from './actionTypes';
 
 /**
@@ -54,18 +53,4 @@ export const createCommercials = payload => ({
 export const requestCreateCommercials = payload => ({
     payload,
     type: REQUEST_CREATE_COMMERCIALS,
-});
-
-/**
- * Triggers request to update commercials item details in the database
- *
- * @function
- *
- * @param {Object} payload - the data sent with the action
- * @return {Object} The {@link actionTypes.THROW_ERROR THROW_ERROR}
- * action.
- */
-export const throwError = payload => ({
-    payload,
-    type: THROW_ERROR,
 });

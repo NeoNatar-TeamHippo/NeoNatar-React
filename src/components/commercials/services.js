@@ -22,7 +22,7 @@ export const postCommercials = action => {
         body: JSON.stringify(payload),
         headers: {
             Authorization: token,
-            'Content-Type': 'application/form-data',
+            'Content-Type': 'application/json',
         },
         method: 'POST',
         mode: 'cors',
