@@ -2,11 +2,12 @@ import { takeEvery, call, put } from 'redux-saga/effects';
 import * as TYPES from './actionType';
 import { setErrors, setLocation, loadingLocation, setLocationById } from './actions';
 import { allLocation, locationById, postNewLocation } from './services';
+import { openNotification } from '../utils/functions';
 
-function* postNewLocationWithData(data) {
+function* getAllLocations() {
     try {
         yield put(loadingLocation());
-        const res = yield call(postNewLocation, data);
+        const res = yield call(allLocation);
         if (res.status === 'success') {
             yield put(setLocation(res.data));
         } else {
@@ -16,12 +17,14 @@ function* postNewLocationWithData(data) {
         yield put(setErrors({ message: 'Something went wrong please try again' }));
     }
 }
-function* getAllLocations() {
+function* postNewLocationWithData(data) {
     try {
         yield put(loadingLocation());
-        const res = yield call(allLocation);
+        const res = yield call(postNewLocation, data);
+        console.log(res);
         if (res.status === 'success') {
-            yield put(setLocation(res.data));
+            yield call(getAllLocations);
+            openNotification('Created Succesfully', 'New location');
         } else {
             console.log('error getting data');
         }

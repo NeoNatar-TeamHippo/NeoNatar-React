@@ -6,6 +6,7 @@ import {
     UPLOAD_TEXT, FORM_ITEM_LAYOUT, WRAPPER_COL
 } from '../constants';
 import { newLocations } from '../actions';
+import { normFile } from '../../utils/functions';
 
 const NewLocation = ({ form }) => {
     const dispatch = useDispatch();
@@ -13,16 +14,14 @@ const NewLocation = ({ form }) => {
     const { getFieldDecorator, resetFields, validateFields } = form;
     const handleFormData = formValues => {
         const formData = new FormData();
-        formData.append('name', formValues.name);
-        formData.append('address', formValues.address);
-        formData.append('lga', formValues.lga);
-        formData.append('state', formValues.state);
-        formData.append('country', formValues.country);
-        formValues.images.forEach(element => {
-            formData.append('images', element.originFileObj);
+        Object.keys(formValues).forEach(key => {
+            formData.append(key, formValues[key]);
+            if (key === 'images') {
+                formValues[key].forEach(element => {
+                    formData.append('images', element.originFileObj);
+                });
+            }
         });
-        formData.append('price', formValues.price);
-        formData.append('trafficRate', formValues.trafficRate);
         return formData;
     };
     const handleSubmit = e => {
@@ -31,15 +30,11 @@ const NewLocation = ({ form }) => {
             if (!err) {
                 const newFormData = handleFormData(values);
                 dispatch(newLocations(newFormData));
-                resetFields();
+                setTimeout(() => {
+                    resetFields();
+                }, 3000);
             }
         });
-    };
-    const normFile = e => {
-        if (Array.isArray(e)) {
-            return e;
-        }
-        return e && e.fileList;
     };
     const props = {
         listType: 'picture',

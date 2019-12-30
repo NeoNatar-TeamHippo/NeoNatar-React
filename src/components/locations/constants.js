@@ -31,7 +31,7 @@ export const UPLOAD_TEXT = 'Images';
 /** @constant */
 export const CREATE_NEW_LOCATION = 'Create New Location';
 /** @constant */
-const baseUrl = 'http://localhost:5000/neonatar/europe-west1/api';
+const baseUrl = 'https://europe-west1-neonatar.cloudfunctions.net/api';
 export const LOCATION_URL = `${baseUrl}/v1/locations`;
 
 export const TABLE_VALUES = [
