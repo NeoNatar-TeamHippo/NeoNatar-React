@@ -2,3 +2,9 @@
     width: 50%;
     margin: auto;
 }
+
+.video-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

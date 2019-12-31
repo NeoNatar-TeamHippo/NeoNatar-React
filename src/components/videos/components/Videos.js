@@ -63,13 +63,31 @@ const Videos = ({ history }) => {
         {
             key: 'action',
             render: (text, record) => (
-                <Tooltip title="View details">
-                    <Button
-                        onClick={() => { handleViewVideo(record.locationId); }}
-                        type="link"
-                        icon="eye"
-                    />
-                </Tooltip>
+                <div className="video-actions">
+                    <Tooltip placement="top" title="View details">
+                        <Button
+                            onClick={() => { handleViewVideo(record.id); }}
+                            type="link"
+                            icon="eye"
+                        />
+                    </Tooltip>
+                    <Tooltip placement="top" title="Edit">
+                        <Button
+                            onClick={() => { handleViewVideo(record.id); }}
+                            className="text-success"
+                            type="link"
+                            icon="edit"
+                        />
+                    </Tooltip>
+                    <Tooltip placement="top" title="Delete Video">
+                        <Button
+                            onClick={() => { handleViewVideo(record.id); }}
+                            className="text-danger"
+                            type="link"
+                            icon="delete"
+                        />
+                    </Tooltip>
+                </div>
             ),
             title: 'Action',
         },
