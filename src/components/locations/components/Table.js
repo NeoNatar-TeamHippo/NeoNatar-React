@@ -107,7 +107,7 @@ const LocationTable = ({ history }) => {
                     </Typography.Text>
                 );
             },
-            title: 'Price',
+            title: 'Price/day',
         },
         {
             dataIndex: 'trafficRate',

@@ -5,6 +5,9 @@
 
 .video-actions {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+}
+
+.ant-modal-footer {
+  border-top: 0;
 }

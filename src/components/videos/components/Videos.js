@@ -1,17 +1,28 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Table, Tooltip, PageHeader } from 'antd';
+import { Button, Table, Tooltip, PageHeader, Modal } from 'antd';
 
-import UploadVideos from './UploadVideos';
+import UploadVideo from './UploadVideo';
+import EditVideo from './EditVideo';
+import ViewUpload from './ViewUpload';
 
-import { requestVideos, requestVideoUpload } from '../actions';
+import { requestVideos } from '../actions';
 import { ALL_VIDEOS, NEW_VIDEO } from '../constants';
 
-import { openNotification } from '../../utils/functions';
+const { confirm } = Modal;
+function showConfirm() {
+    confirm({
+        content: 'Are you sure? This action cannot be reversed!',
+        onOk() {
+        },
+        title: 'Delete Video',
+    });
+}
 
 const Videos = ({ history }) => {
     const [visible, setVisible] = useState(false);
-    const [formRef, setFormRef] = useState(null);
+    const [seeable, setSeeable] = useState(false);
+    const [preview, setPreview] = useState(false);
     const dispatch = useDispatch();
 
     const { videos } = useSelector(state => state.videos);
@@ -19,35 +30,6 @@ const Videos = ({ history }) => {
     useEffect(() => {
         dispatch(requestVideos());
     }, [dispatch]);
-
-    const handleViewVideo = () => {
-    };
-
-    const handleVideoUpload = () => {
-        const { form: { validateFields, resetFields } } = formRef.props;
-        validateFields((error, values) => {
-            if (error) {
-                return error;
-            }
-            const videoUpload = {
-                description: values.description,
-                title: values.title,
-                upload: values.upload.fileList,
-            };
-            dispatch(requestVideoUpload(videoUpload));
-            setTimeout(() => {
-                resetFields();
-                setVisible(false);
-                openNotification('Your video was successfully created', 'Create Video');
-            }, 3000);
-        });
-    };
-
-    const saveFormRef = useCallback(node => {
-        if (node !== null) {
-            setFormRef(node);
-        }
-    }, []);
 
     const columns = [
         {
@@ -58,7 +40,7 @@ const Videos = ({ history }) => {
         {
             dataIndex: 'duration',
             key: 'duration',
-            title: 'Duration(weeks)',
+            title: 'Video Length (s)',
         },
         {
             key: 'action',
@@ -66,14 +48,14 @@ const Videos = ({ history }) => {
                 <div className="video-actions">
                     <Tooltip placement="top" title="View details">
                         <Button
-                            onClick={() => { handleViewVideo(record.id); }}
+                            onClick={() => setPreview(true)}
                             type="link"
                             icon="eye"
                         />
                     </Tooltip>
                     <Tooltip placement="top" title="Edit">
                         <Button
-                            onClick={() => { handleViewVideo(record.id); }}
+                            onClick={() => setSeeable(true)}
                             className="text-success"
                             type="link"
                             icon="edit"
@@ -81,7 +63,7 @@ const Videos = ({ history }) => {
                     </Tooltip>
                     <Tooltip placement="top" title="Delete Video">
                         <Button
-                            onClick={() => { handleViewVideo(record.id); }}
+                            onClick={showConfirm}
                             className="text-danger"
                             type="link"
                             icon="delete"
@@ -90,21 +72,28 @@ const Videos = ({ history }) => {
                 </div>
             ),
             title: 'Action',
+            width: '20%',
         },
     ];
 
     return (
         <>
+            <EditVideo
+                visible={seeable}
+                onCancel={() => setSeeable(false)}
+            />
+            <UploadVideo
+                visible={visible}
+                onCancel={() => setVisible(false)}
+            />
+            <ViewUpload
+                visible={preview}
+                onCancel={() => setPreview(false)}
+            />
             <PageHeader
                 onBack={() => history.goBack()}
                 title={ALL_VIDEOS}
                 className="mb-2 page_header"
-            />
-            <UploadVideos
-                wrappedComponentRef={saveFormRef}
-                visible={visible}
-                onCancel={() => setVisible(false)}
-                onCreate={() => handleVideoUpload()}
             />
             <div style={{ marginBottom: 16 }} className="d-flex justify-content-between">
                 <Button type="primary" icon="plus" onClick={() => setVisible(true)}>
