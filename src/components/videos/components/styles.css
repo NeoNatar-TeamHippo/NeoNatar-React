@@ -11,3 +11,8 @@
 .ant-modal-footer {
   border-top: 0;
 }
+
+.uploaded-video{
+    height: 240px;
+    width: 100%;
+}

@@ -41,6 +41,7 @@ const Videos = ({ history }) => {
             dataIndex: 'duration',
             key: 'duration',
             title: 'Video Length (s)',
+            width: '20%',
         },
         {
             key: 'action',
