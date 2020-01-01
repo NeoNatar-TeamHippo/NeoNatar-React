@@ -1,33 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Avatar, Button, Tag, Table, Row, Col, Menu } from 'antd';
 
-import {
-    getTickets,
-    getTicketsById,
-    getNewTickets,
-    getPendingTickets,
-    getResolvedTickets
-} from '../actions';
 import CreateTickets from './CreateTickets';
 import { ALL, PENDING, NEW, RESOLVED, HORIZONTAL } from '../constants';
 
 const menuItems = [ALL, PENDING, NEW, RESOLVED];
 const Tickets = ({ history }) => {
-    const dispatch = useDispatch();
     const { user: { isAdmin } } = useSelector(state => state.user);
 
-    useEffect(() => {
-        dispatch(getTickets());
-        dispatch(getNewTickets());
-        dispatch(getPendingTickets());
-        dispatch(getResolvedTickets());
-    }, [dispatch]);
-
-    const { newTickets,
-        pendingTickets,
-        resolvedTickets,
-        tickets } = useSelector(state => state.ticket);
+    const { tickets } = useSelector(state => state.ticket);
 
     const [visible, setVisible] = useState(false);
     const [ticketData, setTicketData] = useState(tickets);
@@ -43,13 +25,13 @@ const Tickets = ({ history }) => {
                 setTicketData(tickets);
                 break;
             case NEW:
-                setTicketData(newTickets);
+                setTicketData(tickets.filter(ticket => ticket.status === 'new'));
                 break;
             case PENDING:
-                setTicketData(pendingTickets);
+                setTicketData(tickets.filter(ticket => ticket.status === 'pending'));
                 break;
             case RESOLVED:
-                setTicketData(resolvedTickets);
+                setTicketData(tickets.filter(ticket => ticket.status === 'resolved'));
                 break;
             default:
                 setTicketData(tickets);
@@ -138,7 +120,6 @@ const Tickets = ({ history }) => {
                 onRow={record => ({
                     onClick: () => {
                         handleViewTicket(record.ticketId);
-                        // dispatch(getTicketsById(record.ticketId));
                     },
                 })}
                 rowKey={record => record.ticketId}

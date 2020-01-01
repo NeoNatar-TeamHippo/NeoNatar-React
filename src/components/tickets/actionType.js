@@ -13,27 +13,6 @@ export const GET_TICKETS = 'GET_TICKETS';
  */
 export const GET_TICKETS_BY_ID = 'GET_TICKETS_BY_ID';
 /**
- * Fired by the {@link actions.getNewTickets }
- * action creator.
- *
- * @type {String}
- */
-export const GET_NEW_TICKETS = 'GET_NEW_TICKETS';
-/**
- * Fired by the {@link actions.getPendingTickets }
- * action creator.
- *
- * @type {String}
- */
-export const GET_PENDING_TICKETS = 'GET_PENDING_TICKETS';
-/**
- * Fired by the {@link actions.getResolvedTickets }
- * action creator.
- *
- * @type {String}
- */
-export const GET_RESOLVED_TICKETS = 'GET_RESOLVED_TICKETS';
-/**
  * Fired by the {@link actions.setErrors }
  * action creator.
  *
@@ -88,7 +67,7 @@ export const LOADING_TICKETS = 'LOADING_TICKETS';
  *
  * @type {String}
  */
-export const LOADING_TICKET_BY_Id = 'LOADING_TICKET_BY_Id';
+export const LOADING_TICKET_BY_ID = 'LOADING_TICKET_BY_ID';
 /**
  * Fired by the {@link actions.postingTicket }
  * action creator.
@@ -110,27 +89,6 @@ export const RESOLVING_TICKET = 'RESOLVING_TICKET';
  * @type {String}
  */
 export const POSTING_TICKET_MESSAGE = 'POSTING_TICKET_MESSAGE';
-/**
- * Fired by the {@link actions.loadingNewTickets }
- * action creator.
- *
- * @type {String}
- */
-export const LOADING_NEW_TICKETS = 'LOADING_NEW_TICKETS';
-/**
- * Fired by the {@link actions.loadingPendingTickets }
- * action creator.
- *
- * @type {String}
- */
-export const LOADING_PENDING_TICKETS = 'LOADING_PENDING_TICKETS';
-/**
- * Fired by the {@link actions.loadingResolvedTickets }
- * action creator.
- *
- * @type {String}
- */
-export const LOADING_RESOLVED_TICKETS = 'LOADING_RESOLVED_TICKETS';
 /**
  * Fired by the {@link actions.setTicket }
  * action creator.

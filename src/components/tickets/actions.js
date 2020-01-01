@@ -16,7 +16,7 @@ export const loadingTickets = () => ({
  * @return {void} The {@link actionTypes.LOADING_TICKETS } action.
  */
 export const loadingTicketById = () => ({
-    type: TYPES.LOADING_TICKET_BY_Id,
+    type: TYPES.LOADING_TICKET_BY_ID,
 });
 /**
  * Triggers request to post a TICKET
@@ -46,15 +46,6 @@ export const resolvingTicket = () => ({
     type: TYPES.RESOLVING_TICKET,
 });
 /**
- * Triggers request to load new TICKETS
- *
- * @function
- * @return {void} The {@link actionTypes.LOADING_NEW_TICKETS } action.
- */
-export const loadingNewTickets = () => ({
-    type: TYPES.LOADING_NEW_TICKETS,
-});
-/**
  * Triggers request to set Single TCIKET
  *
  * @function
@@ -63,24 +54,6 @@ export const loadingNewTickets = () => ({
 export const setTicketById = payload => ({
     payload,
     type: TYPES.SET_TICKET_BY_ID,
-});
-/**
- * Triggers request to load pending TICKETS
- *
- * @function
- * @return {void} The {@link actionTypes.LOADING_PENDING_TICKETS } action.
- */
-export const loadingPendingTickets = () => ({
-    type: TYPES.LOADING_PENDING_TICKETS,
-});
-/**
- * Triggers request to load resolved TICKETS
- *
- * @function
- * @return {void} The {@link actionTypes.LOADING_RESOLVED_TICKETS } action.
- */
-export const loadingResolvedTickets = () => ({
-    type: TYPES.LOADING_RESOLVED_TICKETS,
 });
 /**
  * Triggers request to set TICKET
@@ -101,36 +74,6 @@ export const setTicket = payload => ({
 export const postTicket = payload => ({
     payload,
     type: TYPES.POST_TICKET,
-});
-/**
- * Triggers request to set new TICKET
- *
- * @function
- * @return {void} The {@link actionTypes.SET_NEW_TICKET } action.
- */
-export const setNewTicket = payload => ({
-    payload,
-    type: TYPES.SET_NEW_TICKET,
-});
-/**
- * Triggers request to set pending TICKET
- *
- * @function
- * @return {void} The {@link actionTypes.SET_PENDING_TICKET } action.
- */
-export const setPendingTicket = payload => ({
-    payload,
-    type: TYPES.SET_PENDING_TICKET,
-});
-/**
- * Triggers request to set resolved TICKET
- *
- * @function
- * @return {void} The {@link actionTypes.SET_RESOLVED_TICKET } action.
- */
-export const setResolvedTicket = payload => ({
-    payload,
-    type: TYPES.SET_RESOLVED_TICKET,
 });
 /**
  * Triggers request to set errors after a bad request
@@ -190,33 +133,6 @@ export const postTicketMessage = (payload, id) => ({
     id,
     payload,
     type: TYPES.POST_TICKET_MESSAGE,
-});
-/**
- * Triggers request to get all new tickets
- *
- * @function
- * @return {void} The {@link actionTypes.GET_NEW_TICKETS } action.
- */
-export const getNewTickets = () => ({
-    type: TYPES.GET_NEW_TICKETS,
-});
-/**
- * Triggers request to get all pending tickets
- *
- * @function
- * @return {void} The {@link actionTypes.GET_PENDING_TICKETS } action.
- */
-export const getPendingTickets = () => ({
-    type: TYPES.GET_PENDING_TICKETS,
-});
-/**
- * Triggers request to get all resolved tickets
- *
- * @function
- * @return {void} The {@link actionTypes.GET_RESOLVED_TICKETS } action.
- */
-export const getResolvedTickets = () => ({
-    type: TYPES.GET_RESOLVED_TICKETS,
 });
 /**
  * Triggers request to mark ticket as resolved
