@@ -1,69 +1,83 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Tag, Table } from 'antd';
 
-import { DATA } from '../constants';
+import { getCampaigns } from '../actions';
 
-const Campaigns = () => (
-    <Table
-        dataSource={DATA}
-        title={() => 'All Campaigns'}
-        bordered
-        columns={
+const Campaigns = () => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getCampaigns());
+    }, [dispatch]);
+
+    const { campaigns } = useSelector(state => state.campaigns);
+    return (
+        <Table
+            dataSource={campaigns}
+            title={() => 'All Campaigns'}
+            columns={
             [
                 {
-                    dataIndex: 'videoDetails',
-                    key: 'videoDetails',
+                    dataIndex: 'title',
+                    key: 'title',
                     title: 'Video details',
                 },
                 {
-                    dataIndex: 'category',
-                    key: 'category',
-                    title: 'Category',
+                    dataIndex: 'customerName',
+                    key: 'customerName',
+                    title: 'Customer Name',
                 },
                 {
-                    dataIndex: 'cost',
-                    key: 'cost',
-                    render: cost => (
-                        <div style={{ fontFamily: 'monospace', textAlign: 'right' }}>
-                            {cost}
+                    dataIndex: 'amount',
+                    key: 'amount',
+                    render: amount => (
+                        <div style={{ fontFamily: 'monospace', textAlign: 'center' }}>
+                            {amount}
                         </div>
                     ),
 
-                    title: 'Cost(₦)',
+                    title: 'Amount(₦)',
                 },
                 {
-                    dataIndex: 'locations',
-                    key: 'locations',
+                    dataIndex: 'numberOfLocations',
+                    key: 'numberOfLocations',
+                    render: numberOfLocations => (
+                        <div style={{ fontFamily: 'monospace', textAlign: 'center' }}>
+                            {numberOfLocations}
+                        </div>
+                    ),
                     title: 'Locations',
                 },
                 {
                     dataIndex: 'status',
                     key: 'status',
-                    render: status => (
-                        <span>
-                            {status.map(tag => {
-                                let color;
-                                if (tag === 'pending') {
-                                    color = 'orange';
-                                } else if (tag === 'approved') {
-                                    color = 'green';
-                                } else {
-                                    color = 'red';
-                                }
-                                return (
-                                    <Tag color={color} key={tag}>
-                                        {tag.toUpperCase()}
-                                    </Tag>
-                                );
-                            })}
-                        </span>
-                    ),
+                    render: status => {
+                        let color;
+                        if (status === 'disapproved') {
+                            color = 'red';
+                        }
+                        if (status === 'live') {
+                            color = 'green';
+                        }
+                        if (status === 'pending') {
+                            color = 'yellow';
+                        }
+                        if (status === 'ended') {
+                            color = 'grey';
+                        }
+                        return (
+                            <Tag color={color} key={status}>
+                                {status.toUpperCase()}
+                            </Tag>
+                        );
+                    },
                     title: 'Status',
                 },
             ]
         }
-        rowKey={record => record.id}
-    />
-);
+            rowKey={record => record.id}
+        />
+    );
+};
 
 export default Campaigns;
