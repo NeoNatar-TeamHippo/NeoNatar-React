@@ -40,3 +40,20 @@ export const normFile = e => {
     }
     return e && e.fileList;
 };
+export const handleFormData = formValues => {
+    const formData = new FormData();
+    Object.keys(formValues).forEach(key => {
+        formData.append(key, formValues[key]);
+        if (key === 'video') {
+            formValues[key].forEach(element => {
+                formData.append('video', element.originFileObj);
+            });
+        }
+        else if (key === 'images') {
+            formValues[key].forEach(element => {
+                formData.append('images', element.originFileObj);
+            });
+        }
+    });
+    return formData;
+};

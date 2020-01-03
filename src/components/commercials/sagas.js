@@ -1,101 +1,61 @@
-import { takeLatest, put, all, call } from 'redux-saga/effects';
+import { takeEvery, call, put } from 'redux-saga/effects';
+import * as TYPES from './actionTypes';
+import { getCommercial, deleteCommercialRequest, setCommercial, loadingCommercial } from './actions';
+import { getCommercialService, postCommercialService, deleteCommercialById } from './services';
+import { openNotification } from '../utils/functions';
 
-import { createCommercials, updateCommercials } from './actions';
-import { REQUEST_COMMERCIALS, REQUEST_CREATE_COMMERCIALS } from './actionTypes';
-import { COMMERCIALS_URL } from './constants';
-import { allCommercials } from './services';
-
-/**
- * Handles requesting the list of commercials from the database
- *
- * @return {Void} - void
- */
-function* requestAllCommercials() {
+function* getAllCommercials() {
     try {
-        const res = yield call(allCommercials);
+        yield put(loadingCommercial());
+        const res = yield call(getCommercialService);
         if (res.status === 'success') {
-            yield put(updateCommercials(res.data));
+            yield put(setCommercial(res.data));
         } else {
-            // eslint-disable-next-line no-console
-            console.log('ERROR', { message: res.message });
+            console.log('error getting data');
         }
     } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
+        console.log('error getting data');
     }
 }
-
-/**
- * Handles requesting commercials updates to the backend
- *
- * @param {Object} action - the data sent from the action creator
- * @return {Void} - void
- */
-function* requestCreateCommercials(action) {
-    const token = localStorage.getItem('FBToken');
-    const { payload } = action;
-    // console.log(payload);
+function* postNewCommercial(data) {
     try {
-        const parameters = {
-            body: JSON.stringify(payload),
-            headers: {
-                Authorization: token,
-                'Content-Type': 'application/form-data',
-            },
-            method: 'POST',
-            mode: 'cors',
-        };
-        const response = yield fetch(COMMERCIALS_URL, parameters)
-            .then(res => res.json());
-            // console.log(response);
-        if (response.status === 'success') {
-            yield put(createCommercials(response.data));
+        yield put(loadingCommercial());
+        const res = yield call(postCommercialService, data);
+        if (res.status === 'success') {
+            yield call(getAllCommercials);
+            openNotification('Uploaded successfully', 'Video');
         } else {
-            // eslint-disable-next-line no-console
-            console.log('ERROR', { message: 'Something went wrong please try again' });
+            console.log('error getting data');
         }
     } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
+        console.log('something went wrong');
     }
 }
-
-/**
- * @function
- * Watches for the {@link actionTypes.REQUEST_COMMERCIALS REQUEST_COMMERCIALS} action.
- * Triggers request to pull the commercials from database
- *
- * @return {void}
- */
-
-function* watchRequestAllCommercials() {
+function* deleteCommercial(id) {
     try {
-        yield takeLatest(REQUEST_COMMERCIALS, requestAllCommercials);
+        yield put(loadingCommercial());
+        const res = yield call(deleteCommercialById, id);
+        if (res.status === 'success') {
+            yield put(deleteCommercialRequest(id));
+            openNotification('Deleted Sucessfully', 'Video');
+        } else {
+            console.log('error getting data');
+        }
     } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
+        console.log('something went wrong');
     }
 }
-
-/**
- * @function
- * Watches for the {@link actionTypes.REQUEST_ADD_USER REQUEST_ADD_USER} action.
- * Triggers request to update product item
- *
- * @return {void}
- */
-function* watchRequestCreateCommercials() {
-    try {
-        yield takeLatest(REQUEST_CREATE_COMMERCIALS, requestCreateCommercials);
-    } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
-    }
+function* getCommercialsEffect() {
+    yield call(getAllCommercials);
 }
-
-export default function* () {
-    yield all([
-        watchRequestAllCommercials(),
-        watchRequestCreateCommercials(),
-    ]);
+function* postNewCommercialEffect({ payload }) {
+    yield call(postNewCommercial, payload);
+}
+function* deleteCommercialEffect({ payload }) {
+    yield call(deleteCommercial, payload);
+}
+export default function* actionWatcher() {
+    yield takeEvery(TYPES.GET_COMMERCIALS, getCommercialsEffect);
+    yield takeEvery(TYPES.POST_COMMERCIALS, postNewCommercialEffect);
+    yield takeEvery(TYPES.REMOVE_COMMERCIALS, deleteCommercialEffect);
 }
