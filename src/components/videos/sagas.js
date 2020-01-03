@@ -1,8 +1,8 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 
-import { uploadVideos, updateVideos } from './actions';
-import { REQUEST_VIDEOS, REQUEST_VIDEO_UPLOAD } from './actionTypes';
-import { allVideos, postVideos } from './services';
+import { uploadVideos, updateVideos, deleteVideo } from './actions';
+import { REQUEST_VIDEOS, REQUEST_VIDEO_UPLOAD, REQUEST_DELETE_VIDEO } from './actionTypes';
+import { allVideos, postVideos, deleteVideoById } from './services';
 
 /**
  * Handles requesting the list of videos from the database
@@ -12,7 +12,6 @@ import { allVideos, postVideos } from './services';
 function* requestAllVideos() {
     try {
         const res = yield call(allVideos);
-        console.log(res);
         if (res.status === 'success') {
             yield put(updateVideos(res.data));
         } else {
@@ -31,16 +30,35 @@ function* requestAllVideos() {
  * @param {Object} action - the data sent from the action creator
  * @return {Void} - void
  */
-function* requesVideoUpload(data) {
+function* requestVideoUpload(data) {
     try {
         const response = yield call(postVideos, data);
-        console.log(response);
-        console.log(data);
         if (response.status === 'success') {
             yield put(uploadVideos(response.data));
         } else {
             // eslint-disable-next-line no-console
             console.log(response.message);
+        }
+    } catch (error) {
+        // eslint-disable-next-line no-console
+        console.log({ message: 'Something went wrong please try again' }, error);
+    }
+}
+
+/**
+ * Handles requesting to post videos to the backend
+ *
+ * @param {Object} action - the data sent from the action creator
+ * @return {Void} - void
+ */
+function* requestDeleteVideoById(id) {
+    try {
+        const res = yield call(deleteVideoById, id);
+        if (res.status === 'success') {
+            yield put(deleteVideo(id));
+        } else {
+            // eslint-disable-next-line no-console
+            console.log(res.message);
         }
     } catch (error) {
         // eslint-disable-next-line no-console
@@ -62,18 +80,30 @@ function* watchRequestAllVideos() {
 
 /**
  * @function
- * Watches for the {@link actionTypes.REQUEST_ADD_USER REQUEST_ADD_USER} action.
+ * Watches for the {@link actionTypes.REQUEST_VIDEO_UPLOAD REQUEST_VIDEO_UPLOAD} action.
  * Triggers request to update product item
  *
  * @return {void}
  */
 function* watchRequesToUploadVideo() {
-    yield takeLatest(REQUEST_VIDEO_UPLOAD, requesVideoUpload);
+    yield takeLatest(REQUEST_VIDEO_UPLOAD, requestVideoUpload);
+}
+
+/**
+ * @function
+ * Watches for the {@link actionTypes.REQUEST_ADD_USER REQUEST_ADD_USER} action.
+ * Triggers request to update product item
+ *
+ * @return {void}
+ */
+function* watchRequesToDeleteVideo() {
+    yield takeLatest(REQUEST_DELETE_VIDEO, requestDeleteVideoById);
 }
 
 export default function* () {
     yield all([
         watchRequestAllVideos(),
         watchRequesToUploadVideo(),
+        watchRequesToDeleteVideo(),
     ]);
 }

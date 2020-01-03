@@ -15,3 +15,5 @@ export const NAME = 'videos';
 
 const baseUrl = 'https://europe-west1-neonatar.cloudfunctions.net/api';
 export const COMMERCIALS_URL = `${baseUrl}/v1/commercials`;
+
+export const TYPE = '?type=';

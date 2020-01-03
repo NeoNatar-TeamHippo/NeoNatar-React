@@ -1,8 +1,10 @@
 import {
+    DELETE_VIDEO,
     UPDATE_VIDEOS,
     REQUEST_VIDEOS,
     UPLOAD_VIDEOS,
-    REQUEST_VIDEO_UPLOAD
+    REQUEST_VIDEO_UPLOAD,
+    REQUEST_DELETE_VIDEO
 } from './actionTypes';
 
 /**
@@ -53,4 +55,32 @@ export const uploadVideos = payload => ({
 export const requestVideoUpload = payload => ({
     payload,
     type: REQUEST_VIDEO_UPLOAD,
+});
+
+/**
+ * Triggers request to delete videos item
+ *
+ * @function
+ *
+ * @param {Object} payload - the data sent with the action
+ * @return {Object} The {@link actionTypes.DELETE_VIDEO DELETE_VIDEO}
+ * action.
+ */
+export const deleteVideo = payload => ({
+    payload,
+    type: DELETE_VIDEO,
+});
+
+/**
+ * Triggers request to delete video item details in the database
+ *
+ * @function
+ *
+ * @param {Object} payload - the data sent with the action
+ * @return {Object} The {@link actionTypes.REQUEST_DELETE_VIDEO REQUEST_DELETE_VIDEO}
+ * action.
+ */
+export const requestDeleteVideo = payload => ({
+    payload,
+    type: REQUEST_DELETE_VIDEO,
 });

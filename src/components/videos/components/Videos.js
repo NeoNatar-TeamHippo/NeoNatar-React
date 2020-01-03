@@ -3,26 +3,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Table, Tooltip, PageHeader, Modal } from 'antd';
 
 import UploadVideo from './UploadVideo';
-import EditVideo from './EditVideo';
+import EditVideo from './EditVideoById';
 import ViewUpload from './ViewUpload';
 
-import { requestVideos } from '../actions';
+import { requestVideos, requestDeleteVideo } from '../actions';
 import { ALL_VIDEOS, NEW_VIDEO } from '../constants';
 
+import { openNotification } from '../../utils/functions';
+
 const { confirm } = Modal;
-function showConfirm() {
-    confirm({
-        content: 'Are you sure? This action cannot be reversed!',
-        onOk() {
-        },
-        title: 'Delete Video',
-    });
-}
 
 const Videos = ({ history }) => {
     const [visible, setVisible] = useState(false);
     const [seeable, setSeeable] = useState(false);
-    const [preview, setPreview] = useState(false);
+    const [selectedModal, setSelectedModal] = useState(null);
     const dispatch = useDispatch();
 
     const { videos } = useSelector(state => state.videos);
@@ -30,6 +24,27 @@ const Videos = ({ history }) => {
     useEffect(() => {
         dispatch(requestVideos());
     }, [dispatch]);
+    console.log(videos);
+    const showConfirm = id => {
+        confirm({
+            cancelText: 'No',
+            content: 'This action cannot be reversed! Are you sure?',
+            okText: 'Yes',
+            okType: 'danger',
+            onCancel() { },
+            onOk() {
+                dispatch(requestDeleteVideo(id));
+                setTimeout(() => {
+                    openNotification('Deleted Successfully', 'Delete Video');
+                }, 3000);
+            },
+            title: 'Do you want to delete this Video?',
+        });
+    };
+
+    const deleteVideo = id => {
+        showConfirm(id);
+    };
 
     const columns = [
         {
@@ -45,11 +60,11 @@ const Videos = ({ history }) => {
         },
         {
             key: 'action',
-            render: (text, record) => (
+            render: item => (
                 <div className="video-actions">
                     <Tooltip placement="top" title="View details">
                         <Button
-                            onClick={() => setPreview(true)}
+                            onClick={() => setSelectedModal(item.id)}
                             type="link"
                             icon="eye"
                         />
@@ -64,7 +79,7 @@ const Videos = ({ history }) => {
                     </Tooltip>
                     <Tooltip placement="top" title="Delete Video">
                         <Button
-                            onClick={showConfirm}
+                            onClick={() => deleteVideo(item.id)}
                             className="text-danger"
                             type="link"
                             icon="delete"
@@ -79,18 +94,6 @@ const Videos = ({ history }) => {
 
     return (
         <>
-            <EditVideo
-                visible={seeable}
-                onCancel={() => setSeeable(false)}
-            />
-            <UploadVideo
-                visible={visible}
-                onCancel={() => setVisible(false)}
-            />
-            <ViewUpload
-                visible={preview}
-                onCancel={() => setPreview(false)}
-            />
             <PageHeader
                 onBack={() => history.goBack()}
                 title={ALL_VIDEOS}
@@ -101,6 +104,21 @@ const Videos = ({ history }) => {
                     {NEW_VIDEO}
                 </Button>
             </div>
+            <EditVideo
+                visible={seeable}
+                onCancel={() => setSeeable(false)}
+            />
+            <UploadVideo
+                visible={visible}
+                onCancel={() => setVisible(false)}
+                onOk={() => setVisible(false)}
+            />
+            <ViewUpload
+                selectedModal={selectedModal}
+                onCancel={() => setSelectedModal(null)}
+                data={videos}
+                onOk={() => setSelectedModal(null)}
+            />
             <Table
                 dataSource={videos}
                 columns={columns}

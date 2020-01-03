@@ -35,3 +35,21 @@ export const UPLOAD_VIDEOS = `${NAME}/UPLOAD_VIDEOS`;
  */
 
 export const REQUEST_VIDEO_UPLOAD = `${NAME}/REQUEST_VIDEO_UPLOAD`;
+
+/**
+ * Fired by the {@link actions.deleteVideo deleteVideo}
+ * action creator.
+ *
+ * @type {Object}
+ */
+
+export const DELETE_VIDEO = `${NAME}/DELETE_VIDEO`;
+
+/**
+ * Fired by the {@link actions.requestDeleteVideo requestDeleteVideo}
+ * action creator.
+ *
+ * @type {Object}
+ */
+
+export const REQUEST_DELETE_VIDEO = `${NAME}/REQUEST_DELETE_VIDEO`;

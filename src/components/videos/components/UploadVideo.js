@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Form, Input, Modal, Button, Upload, Icon } from 'antd';
 import { useDispatch } from 'react-redux';
 
 import { COMMERCIALS_URL, UPLOAD, FILE_TYPE } from '../constants';
-import { requestVideos, requestVideoUpload } from '../actions';
+import { requestVideoUpload } from '../actions';
 
 import { openNotification } from '../../utils/functions';
 
@@ -12,10 +12,6 @@ const { Dragger } = Upload;
 
 const UploadVideoForm = props => {
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(requestVideos());
-    }, [dispatch]);
 
     const { visible, onCancel, form: { getFieldDecorator, resetFields, validateFields } } = props;
     const uploadProps = {

@@ -1,4 +1,4 @@
-import { UPDATE_VIDEOS, UPLOAD_VIDEOS } from './actionTypes';
+import { UPDATE_VIDEOS, UPLOAD_VIDEOS, DELETE_VIDEO } from './actionTypes';
 
 const initialState = {
     isVideoUploaded: false,
@@ -23,6 +23,16 @@ export default (state = { ...initialState }, action) => {
                 ...state,
                 isVideoUploaded: true,
                 videos: [...newVideo, ...videos],
+            };
+        }
+
+        case DELETE_VIDEO: {
+            const { videos } = state;
+            const { payload: id } = action;
+            return {
+                ...state,
+                isVideoUploaded: false,
+                videos: videos.filter(video => video.id !== id),
             };
         }
 
