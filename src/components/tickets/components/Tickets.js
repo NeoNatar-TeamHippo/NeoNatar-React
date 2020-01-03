@@ -4,6 +4,7 @@ import { Avatar, Button, Tag, Table, Row, Col, Menu } from 'antd';
 
 import CreateTickets from './CreateTickets';
 import { ALL, PENDING, NEW, RESOLVED, HORIZONTAL } from '../constants';
+import { priorityColor } from '../../utils/functions';
 
 const menuItems = [ALL, PENDING, NEW, RESOLVED];
 const Tickets = ({ history }) => {
@@ -66,16 +67,7 @@ const Tickets = ({ history }) => {
             dataIndex: 'priority',
             key: 'priority',
             render: priority => {
-                let color;
-                if (priority === 'high') {
-                    color = 'red';
-                }
-                if (priority === 'medium') {
-                    color = 'green';
-                }
-                if (priority === 'low') {
-                    color = 'yellow';
-                }
+                const color = priorityColor(priority);
                 return (
                     <Tag color={color} key={priority}>
                         {priority.toUpperCase()}

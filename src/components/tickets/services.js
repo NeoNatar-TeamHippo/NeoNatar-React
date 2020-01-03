@@ -45,10 +45,11 @@ export const ticketById = async id => {
     return data;
 };
 
-export const postTicketMessages = async (payload, id) => {
+export const postTicketMessages = async payload => {
+    const { id, body } = payload;
     const token = localStorage.getItem('FBToken');
     const parameters = {
-        body: JSON.stringify(payload),
+        body: JSON.stringify({ body }),
         headers: {
             Authorization: token,
             'Content-Type': 'application/json',

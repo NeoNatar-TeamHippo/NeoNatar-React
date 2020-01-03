@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Tag, Table } from 'antd';
 
 import { getCampaigns } from '../actions';
+import { statusColor } from '../../utils/functions';
 
 const Campaigns = () => {
     const dispatch = useDispatch();
@@ -52,19 +53,7 @@ const Campaigns = () => {
                     dataIndex: 'status',
                     key: 'status',
                     render: status => {
-                        let color;
-                        if (status === 'disapproved') {
-                            color = 'red';
-                        }
-                        if (status === 'live') {
-                            color = 'green';
-                        }
-                        if (status === 'pending') {
-                            color = 'yellow';
-                        }
-                        if (status === 'ended') {
-                            color = 'grey';
-                        }
+                        const color = statusColor(status);
                         return (
                             <Tag color={color} key={status}>
                                 {status.toUpperCase()}

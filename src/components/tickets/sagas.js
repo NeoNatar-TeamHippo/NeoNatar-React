@@ -58,10 +58,10 @@ function* postTicketEffect({ payload }) {
     yield call(postNewTicket, payload);
 }
 
-function* postTicketMessage(payload, id) {
+function* postTicketMessage(payload) {
     try {
         yield put(postingTicketMessage());
-        const res = yield call(postTicketMessages, payload, id);
+        const res = yield call(postTicketMessages, payload);
         if (res.status === 'success') {
             yield put(postSuccess({ message: ' New Ticket Message Created succesfully' }));
         } else {
@@ -72,8 +72,8 @@ function* postTicketMessage(payload, id) {
     }
 }
 
-function* postTicketMessageEffect({ payload, id }) {
-    yield call(postTicketMessage, payload, id);
+function* postTicketMessageEffect({ payload }) {
+    yield call(postTicketMessage, payload);
 }
 
 function* getSingleTicket(id) {

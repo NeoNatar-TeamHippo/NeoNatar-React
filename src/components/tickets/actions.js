@@ -129,8 +129,7 @@ export const getTicketsById = payload => ({
  * @function
  * @return {void} The {@link actionTypes.POST_TICKET_MESSAGE } action.
  */
-export const postTicketMessage = (payload, id) => ({
-    id,
+export const postTicketMessage = payload => ({
     payload,
     type: TYPES.POST_TICKET_MESSAGE,
 });

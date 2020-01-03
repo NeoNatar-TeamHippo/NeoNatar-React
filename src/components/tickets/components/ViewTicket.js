@@ -74,7 +74,7 @@ const ViewTicket = ({ match, form }) => {
                         datetime: moment().fromNow(),
                         isAdmin: userIsAdmin,
                     }]);
-                    dispatch(postTicketMessage({ body: values.body }, ticketId));
+                    dispatch(postTicketMessage({ body: values.body, id: ticketId }));
                 }, 1000);
                 resetFields();
             }
