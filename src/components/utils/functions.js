@@ -34,3 +34,34 @@ export const openNotification = (description, message) => {
         message,
     });
 };
+
+export const priorityColor = priority => {
+    let color;
+    if (priority === 'high') {
+        color = 'red';
+    }
+    if (priority === 'medium') {
+        color = 'green';
+    }
+    if (priority === 'low') {
+        color = 'yellow';
+    }
+    return color;
+};
+
+export const statusColor = status => {
+    let color;
+    if (status === 'disapproved') {
+        color = 'red';
+    }
+    if (status === 'live') {
+        color = 'green';
+    }
+    if (status === 'pending') {
+        color = 'yellow';
+    }
+    if (status === 'ended') {
+        color = 'grey';
+    }
+    return color;
+};
