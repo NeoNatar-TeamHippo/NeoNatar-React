@@ -44,7 +44,12 @@ const NewCampaigns = () => {
                 ))}
             </Steps>
             <div className="steps-content">{steps[current].content}</div>
-            <div className="steps-action">
+            <div className="steps-action d-flex justify-content-between">
+                {current > 0 && (
+                    <Button style={{ marginLeft: 8 }} onClick={() => prev()}>
+                        {PREVIOUS}
+                    </Button>
+                )}
                 {current < steps.length - 1 && (
                     <Button type="primary" onClick={() => next()}>
                         {NEXT}
@@ -55,11 +60,7 @@ const NewCampaigns = () => {
                         {DONE}
                     </Button>
                 )}
-                {current > 0 && (
-                    <Button style={{ marginLeft: 8 }} onClick={() => prev()}>
-                        {PREVIOUS}
-                    </Button>
-                )}
+
             </div>
         </div>
     );

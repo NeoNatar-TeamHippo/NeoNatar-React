@@ -1,8 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
-//  process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-
 const config = {
     apiKey: process.env.REACT_APP_APIKEY,
     appId: process.env.REACT_APP_APPID,
