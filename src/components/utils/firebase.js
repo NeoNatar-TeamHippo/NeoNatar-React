@@ -17,5 +17,14 @@ export default firebase.initializeApp(config);
 const firebaseDB = firebase.firestore();
 const firebaseTickets = firebaseDB.collection('tickets');
 const firebaseCampaigns = firebaseDB.collection('campaigns');
+const firebaseCommercials = firebaseDB.collection('commercials');
+const firebaseLocations = firebaseDB.collection('locations');
+const firebaseSavedLocations = firebaseDB.collection('savedLocations');
 
-export { firebase, firebaseCampaigns, firebaseDB, firebaseTickets };
+export {
+    firebase, firebaseCampaigns,
+    firebaseDB, firebaseTickets,
+    firebaseCommercials,
+    firebaseLocations,
+    firebaseSavedLocations
+};

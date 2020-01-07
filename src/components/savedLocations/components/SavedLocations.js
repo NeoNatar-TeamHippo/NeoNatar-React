@@ -30,7 +30,7 @@ const SavedLocations = ({ history, form }) => {
                 setTimeout(() => {
                     resetFields();
                     setvisible(false);
-                    openNotification('Add locations to your new list', 'New List Created');
+                    openNotification('Add locations to your new list', 'New List Created', 'success');
                 }, 5000);
             }
         });

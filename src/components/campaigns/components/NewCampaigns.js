@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 import { Steps, Button, message } from 'antd';
 import UploadVideo from './UploadVideo';
 import SummaryPayment from './SummaryPayment';
 import SelectLocation from './SelectLocation';
 import ScheduleCampaign from './ScheduleCampaign';
+import { next, previous as prev, resetFormState } from '../actions'
 
 import { NEXT, DONE, PREVIOUS } from '../constants';
 
@@ -28,40 +30,33 @@ const steps = [
     },
 ];
 const NewCampaigns = () => {
-    const [current, setCurrent] = useState(0);
-    const next = () => {
-        setCurrent(current + 1);
-    };
-    const prev = () => {
-        setCurrent(current - 1);
-    };
+    const dispatch = useDispatch()
+    const { campaignDetails: { current } } = useSelector(state => state.campaigns);
+    const handleDone = () => {
+        message.success('Processing complete!');
+        dispatch(resetFormState())
+    }
     return (
-        <div>
+        <>
             <Steps current={current}>
                 {steps.map(item => (
                     <Step key={item.title} title={item.title} />
                 ))}
             </Steps>
             <div className="steps-content">{steps[current].content}</div>
-            <div className="steps-action">
-                {current > 0 && (
-                    <Button style={{ marginLeft: 8 }} onClick={() => prev()}>
+            <div className="steps-action d-flex justify-content-center">
+                {current > 0 && current !== steps.length - 1 && (
+                    <Button style={{ marginLeft: 8 }} onClick={() => dispatch(prev())}>
                         {PREVIOUS}
                     </Button>
                 )}
-                {current < steps.length - 1 && (
-                    <Button type="primary" onClick={() => next()}>
-                        {NEXT}
-                    </Button>
-                )}
                 {current === steps.length - 1 && (
-                    <Button type="primary" onClick={() => message.success('Processing complete!')}>
+                    <Button type="primary" onClick={() => handleDone()}>
                         {DONE}
                     </Button>
                 )}
-
             </div>
-        </div>
+        </>
     );
 };
 

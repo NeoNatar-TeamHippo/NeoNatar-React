@@ -2,16 +2,17 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Select, Button, Tabs, List, Table, Typography, Tag, Col, Row } from 'antd';
 import { renderRateFormat, renderPrice, openNotification } from '../../utils/functions';
+import { setCampaignLocation, next, setAmount } from "../actions";
 import { TABLE_VALUES } from '../constants'
 const { TabPane } = Tabs;
 const { Option } = Select;
 const SelectLocation = () => {
+    const dispatch = useDispatch();
     const { savedLocations } = useSelector(state => state.savedLocation);
     const { locations } = useSelector(state => state.location);
     const [loading, setLoading] = useState(false);
-    const [displayLocation, setdisplayLocation] = useState([]);
+    const [formLocations, setformLocations] = useState([]);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-    console.log(selectedRowKeys);
     const calculateAmount = () => {
         const amounts = [];
         locations.forEach((location) => {
@@ -21,7 +22,8 @@ const SelectLocation = () => {
                 }
             })
         })
-        const total = amounts.reduce((acc, cur) => acc + cur)
+        const total = amounts.reduce((acc, cur) => acc + cur);
+        dispatch(setAmount(total));
         return (<><span>Total:</span> <span> &#8358;</span>{total}</>);
     }
     const start = () => {
@@ -29,7 +31,7 @@ const SelectLocation = () => {
         setTimeout(() => {
             setSelectedRowKeys([]);
             setLoading(false);
-        }, 500);
+        }, 200);
     };
 
     const onSelectChange = selectedKeys => {
@@ -40,7 +42,7 @@ const SelectLocation = () => {
         selectedRowKeys,
     };
     const onChange = (value) => {
-        setdisplayLocation(value)
+        setformLocations(value);
     }
 
     const onBlur = () => {
@@ -56,16 +58,23 @@ const SelectLocation = () => {
     }
     const callback = (key) => {
         console.log(key);
+        if (key === '1') {
+            setSelectedRowKeys([]);
+        }
     }
-    const renderDisplayLocation = () => {
+    const renderformLocations = () => {
         const savedLocationsitem = [];
-        displayLocation.map(locationId => {
+        const amount = [];
+        formLocations.map(locationId => {
             return locations.map(location => {
                 if (location.locationId === locationId) {
                     savedLocationsitem.push(location)
+                    amount.push(parseInt(location.price));
                 }
             })
         });
+        const total = amount.reduce((acc, curr) => acc + curr);
+        dispatch(setAmount(total));
         return (<List
             itemLayout="horizontal"
             dataSource={savedLocationsitem}
@@ -85,7 +94,7 @@ const SelectLocation = () => {
                 <div className='d-flex justify-content-between'>
                     <Typography.Text>{savedLocation.title}</Typography.Text>
                     <Typography.Text className='ml-2' type='secondary'>
-                        {savedLocation.locations.length}
+                        {savedLocation.locations ? savedLocation.locations.length : 0}
                     </Typography.Text>
                 </div>
             </Option>)
@@ -121,21 +130,32 @@ const SelectLocation = () => {
             title: 'Traffic Rate',
         },
     ];
+    const handleProceed = (type) => {
+        type === 'locations' ? dispatch(setCampaignLocation(selectedRowKeys))
+            : dispatch(setCampaignLocation(formLocations));
+        dispatch(next());
+    }
     return (
         <div className="my-4">
             <Tabs defaultActiveKey="1" onChange={callback}>
                 <TabPane tab="Locations" key="1">
                     <div className="d-flex justify-content-between">
                         <div>
-                            <Button className='mb-1' type="ghost" onClick={start} disabled={!hasSelected} loading={loading}>
+                            <Button className='mb-1'
+                                type="ghost" onClick={start}
+                                disabled={!hasSelected} loading={loading}>
                                 reload
                         </Button>
                             <span className='mb-1 ml-2'>
                                 {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
                             </span>
-                            <Button className='ml-4 mb-1' type='primary' disabled={!hasSelected}>Use Selected</Button>
+                            <Button className='ml-4 mb-1' type='primary' disabled={!hasSelected}
+                                onClick={() => handleProceed('locations')}
+                            >
+                                Proceed
+                            </Button>
                         </div>
-                        {!hasSelected ? (<Typography.Text type='secondary' strong>Please select locations to get a total</Typography.Text>)
+                        {!hasSelected ? (<Typography.Text type='danger' strong>Please select locations to get a total</Typography.Text>)
                             : (<div>
                                 <Typography.Title type='secondary' level={4}>
                                     {hasSelected ? calculateAmount() : ''}
@@ -173,15 +193,16 @@ const SelectLocation = () => {
                                         {rendersavedLocations()}
                                     </Select>
                                 </div>
-                                {displayLocation.length !== 0 ? (
-                                    <Button className='mt-4' type='primary'>
+                                {formLocations.length !== 0 ? (
+                                    <Button className='mt-4' type='primary'
+                                        onClick={() => handleProceed('savedLocations')}>
                                         Proceed
                             </Button>
                                 ) : ''}
                             </Col>
                             <Col xs={24} md={12} lg={12}>
-                                {displayLocation.length !== 0 ? (
-                                    renderDisplayLocation()
+                                {formLocations.length !== 0 ? (
+                                    renderformLocations()
                                 ) : ''}
                             </Col>
                         </Row>

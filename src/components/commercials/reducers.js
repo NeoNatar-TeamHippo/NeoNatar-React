@@ -11,7 +11,6 @@ export default (state = initialState, { type, payload }) => {
         case TYPES.SET_COMMERCIALS:
             return { ...state, loadingCommercials: false, commercials: payload };
         case TYPES.DELETE_COMMERCIALS:
-            console.log(payload);
             return {
                 ...state,
                 loadingCommercials: false,

@@ -27,8 +27,8 @@ export const renderPrice = text => {
     return { type };
 };
 
-export const openNotification = (description, message) => {
-    notification.success({
+export const openNotification = (description, message, type) => {
+    notification[type]({
         description,
         duration: 5,
         message,
