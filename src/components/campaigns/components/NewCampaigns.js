@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Tag, Table, Steps, Button, message, Icon } from 'antd';
-import Campaigns from './Campaigns';
+import { Steps, Button, message } from 'antd';
 import UploadVideo from './UploadVideo';
 import SummaryPayment from './SummaryPayment';
 import SelectLocation from './SelectLocation';
@@ -44,7 +43,7 @@ const NewCampaigns = () => {
                 ))}
             </Steps>
             <div className="steps-content">{steps[current].content}</div>
-            <div className="steps-action d-flex justify-content-between">
+            <div className="steps-action">
                 {current > 0 && (
                     <Button style={{ marginLeft: 8 }} onClick={() => prev()}>
                         {PREVIOUS}

@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Descriptions, Col, Row, Button, Tooltip, Typography, Select, Divider } from "antd";
 import { SELECT_OPTIONS } from '../constants';
 import { openNotification } from '../../utils/functions'
-const { Option } = Select
+import PaystackButton from 'react-paystack';
+const { Option } = Select;
+const apiKey = process.env.REACT_APP_PAYSTACK_KEY;
 const ScheduleCampaign = () => {
+    const [selectOption, setselectOption] = useState(null)
     const onChange = (value) => {
+        setselectOption(value);
         openNotification(`New Price Updated to ${1500 * value}`, 'Update')
     }
     const renderSelectOptions = () => {
@@ -12,9 +16,30 @@ const ScheduleCampaign = () => {
             return (<Option key={option.value} value={option.value}>{option.title}</Option>)
         })
     }
+    const state = {
+        email: "foobar1@example.com",
+        amount: 100000 //equals NGN100 add 2 zero behind it,
+    }
+
+    const callback = (response) => {
+        // move to the next page
+        console.log(response);
+    }
+
+    const close = () => {
+        console.log("Payment closed");
+    }
+
+    const getReference = () => {
+        let text = "";
+        let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-.=";
+        for (let i = 0; i < 20; i++) text += possible.charAt(Math.floor(Math.random() * possible.length));
+        console.log(text);
+        return text;
+    }
     return (
         <div className="mt-4">
-            <Row type="flex" justify='center' align='center'>
+            <Row type="flex" justify='center' align='middle'>
                 <Col xs={24} md={16}>
                     <Descriptions title="Campaign Info" layout="vertical" bordered>
                         <Descriptions.Item label="Title">Exactly as depicted</Descriptions.Item>
@@ -51,13 +76,21 @@ const ScheduleCampaign = () => {
                             </div>
                         </Col>
                     </Row>
-
-                    <Button className='mt-4' type='primary'>
-                        Proceed To Payment
-                    </Button>
+                    <PaystackButton
+                        text="Proceed To Payment"
+                        class="ant-btn ant-btn-primary mt-4"
+                        callback={callback}
+                        close={close}
+                        disabled={!selectOption}
+                        embed={false}
+                        reference={getReference()}
+                        email={state.email}
+                        amount={state.amount}
+                        paystackkey={apiKey}
+                        tag="button"
+                    />
                 </Col>
             </Row>
-
         </div>
     )
 }
