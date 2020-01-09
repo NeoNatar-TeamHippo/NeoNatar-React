@@ -1,68 +1,60 @@
-import {
-    UPDATE_COMMERCIALS,
-    REQUEST_COMMERCIALS,
-    CREATE_COMMERCIALS,
-    RESET_COMMERCIALS_STATE,
-    REQUEST_CREATE_COMMERCIALS
-} from './actionTypes';
+import * as TYPES from './actionTypes';
 
 /**
- * Triggers request to update commercials items
+ * Triggers request to load Commercial
  *
  * @function
- * @param {Object} payload An array of commercials
- * @return {void} The {@link actionTypes.UPDATE_COMMERCIALS UPDATE_COMMERCIALS} action.
+ * @return {void} The {@link actionTypes.LOADING_COMMERCIAL } action.
  */
-export const updateCommercials = payload => ({
-    payload,
-    type: UPDATE_COMMERCIALS,
+export const loadingCommercial = () => ({
+    type: TYPES.LOADING_COMMERCIAL,
 });
-
 /**
- * Triggers request to retrieve all commercials from the database
+ * Triggers request to get Commercial
  *
  * @function
- * @param {Object} payload An array of commercials
- * @return {void} The {@link actionTypes.REQUEST_COMMERCIALS REQUEST_COMMERCIALS} action.
+ * @return {void} The {@link actionTypes.GET_COMMERCIALS } action.
  */
-export const requestCommercials = payload => ({
-    payload,
-    type: REQUEST_COMMERCIALS,
+export const getCommercial = () => ({
+    type: TYPES.GET_COMMERCIALS,
 });
-
 /**
- * Triggers request to create a commercial
+ * Triggers request to get Commercial
  *
  * @function
- * @param {Object} payload An object of captured commercials
- * @return {void} The {@link actionTypes.CREATE_COMMERCIALS CREATE_COMMERCIALS} action.
+ * @return {void} The {@link actionTypes.SET_COMMERCIALS } action.
  */
-export const createCommercials = payload => ({
+export const setCommercial = (payload) => ({
     payload,
-    type: CREATE_COMMERCIALS,
+    type: TYPES.SET_COMMERCIALS,
 });
-
 /**
- * Triggers request to reset commercials state
+ * Triggers request to post Commercial
  *
  * @function
- * @param {Object} payload An object of captured commercials
- * @return {void} The {@link actionTypes.RESET_COMMERCIALS_STATE RESET_COMMERCIALS_STATE} action.
+ * @return {void} The {@link actionTypes.POST_COMMERCIALS } action.
  */
-export const resetCommercialsState = () => ({
-    type: RESET_COMMERCIALS_STATE,
-});
-
-/**
- * Triggers request to update commercials item details in the database
- *
- * @function
- *
- * @param {Object} payload - the data sent with the action
- * @return {Object} The {@link actionTypes.REQUEST_CREATE_COMMERCIALS REQUEST_CREATE_COMMERCIALS}
- * action.
- */
-export const requestCreateCommercials = payload => ({
+export const postCommercial = (payload) => ({
     payload,
-    type: REQUEST_CREATE_COMMERCIALS,
+    type: TYPES.POST_COMMERCIALS,
+});
+/**
+ * Triggers request to delete a Commercial
+ *
+ * @function
+ * @return {void} The {@link actionTypes.DELETE_COMMERCIALS } action.
+ */
+export const deleteCommercialRequest = (payload) => ({
+    payload,
+    type: TYPES.DELETE_COMMERCIALS,
+});
+/**
+ * Triggers request to delete a Commercial
+ *
+ * @function
+ * @return {void} The {@link actionTypes.REMOVE_COMMERCIALS } action.
+ */
+export const removeCommercial = (payload) => ({
+    payload,
+    type: TYPES.REMOVE_COMMERCIALS,
 });

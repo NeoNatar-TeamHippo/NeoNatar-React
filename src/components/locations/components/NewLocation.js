@@ -6,33 +6,18 @@ import {
     UPLOAD_TEXT, FORM_ITEM_LAYOUT, WRAPPER_COL
 } from '../constants';
 import { newLocations } from '../actions';
-import { normFile } from '../../utils/functions';
-
+import { normFile, handleFormData } from '../../utils/functions';
 const NewLocation = ({ form }) => {
     const dispatch = useDispatch();
     const { loading } = useSelector(state => state.signIn);
     const { getFieldDecorator, resetFields, validateFields } = form;
-    const handleFormData = formValues => {
-        const formData = new FormData();
-        Object.keys(formValues).forEach(key => {
-            formData.append(key, formValues[key]);
-            if (key === 'images') {
-                formValues[key].forEach(element => {
-                    formData.append('images', element.originFileObj);
-                });
-            }
-        });
-        return formData;
-    };
     const handleSubmit = e => {
         e.preventDefault();
         validateFields(async (err, values) => {
             if (!err) {
                 const newFormData = handleFormData(values);
                 dispatch(newLocations(newFormData));
-                setTimeout(() => {
-                    resetFields();
-                }, 3000);
+                resetFields();
             }
         });
     };
@@ -50,9 +35,7 @@ const NewLocation = ({ form }) => {
         </Form.Item>
     ));
     const dummyRequest = ({ onSuccess }) => {
-        setTimeout(() => {
-            onSuccess('ok');
-        }, 100);
+        onSuccess('ok');
     };
     return (
         <div className="card_background">

@@ -1,71 +1,62 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Tag, Table } from 'antd';
+import React, { useState } from 'react';
+import { Tag, Table, Steps, Button, message, Icon } from 'antd';
 
-import { getCampaigns } from '../actions';
-import { statusColor } from '../../utils/functions';
+import { NEXT, DONE, PREVIOUS } from '../constants';
 
+const { Step } = Steps;
+
+const steps = [
+    {
+        content: 'First-content',
+        title: 'Upload Video',
+    },
+    {
+        content: 'Second-content',
+        title: 'Select Location',
+    },
+    {
+        content: '2nd to Last-content',
+        title: 'Schedule Campaign',
+    },
+    {
+        content: 'Last-content',
+        title: 'Summary and Payment',
+    },
+];
 const Campaigns = () => {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getCampaigns());
-    }, [dispatch]);
-
-    const { campaigns } = useSelector(state => state.campaigns);
+    const [current, setCurrent] = useState(0);
+    const next = () => {
+        setCurrent(current + 1);
+    };
+    const prev = () => {
+        setCurrent(current - 1);
+    };
     return (
-        <Table
-            dataSource={campaigns}
-            title={() => 'All Campaigns'}
-            columns={
-            [
-                {
-                    dataIndex: 'title',
-                    key: 'title',
-                    title: 'Video details',
-                },
-                {
-                    dataIndex: 'customerName',
-                    key: 'customerName',
-                    title: 'Customer Name',
-                },
-                {
-                    dataIndex: 'amount',
-                    key: 'amount',
-                    render: amount => (
-                        <div style={{ fontFamily: 'monospace', textAlign: 'center' }}>
-                            {amount}
-                        </div>
-                    ),
-
-                    title: 'Amount(₦)',
-                },
-                {
-                    dataIndex: 'numberOfLocations',
-                    key: 'numberOfLocations',
-                    render: numberOfLocations => (
-                        <div style={{ fontFamily: 'monospace', textAlign: 'center' }}>
-                            {numberOfLocations}
-                        </div>
-                    ),
-                    title: 'Locations',
-                },
-                {
-                    dataIndex: 'status',
-                    key: 'status',
-                    render: status => {
-                        const color = statusColor(status);
-                        return (
-                            <Tag color={color} key={status}>
-                                {status.toUpperCase()}
-                            </Tag>
-                        );
-                    },
-                    title: 'Status',
-                },
-            ]
-        }
-            rowKey={record => record.id}
-        />
+        <div>
+            <Steps current={current}>
+                {steps.map(item => (
+                    <Step key={item.title} title={item.title} />
+                ))}
+            </Steps>
+            <div className="steps-content">{steps[current].content}</div>
+            <div className="steps-action">
+                {current < steps.length - 1 && (
+                    <Button type="primary" onClick={() => next()}>
+                        {NEXT}
+                    </Button>
+                )}
+                {current === steps.length - 1 && (
+                    <Button type="primary" onClick={() => message.success('Processing complete!')}>
+                        {DONE}
+                    </Button>
+                )}
+                {current > 0 && (
+                    <Button style={{ marginLeft: 8 }} onClick={() => prev()}>
+                        {PREVIOUS}
+                    </Button>
+                )}
+            </div>
+        </div>
     );
 };
 

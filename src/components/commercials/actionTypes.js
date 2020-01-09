@@ -1,46 +1,42 @@
-import { NAME } from './constants';
-
 /**
- * Fired by the {@link actions.updateCommercials updateCommercials}
- * action creator.
- *
- * @type {Array}
- */
-
-export const UPDATE_COMMERCIALS = 'UPDATE_COMMERCIALS';
-
-/**
- * Fired by the {@link actions.requestCommercials requestCommercials}
- * action creator.
- *
- * @type {Array}
- */
-
-export const REQUEST_COMMERCIALS = `${NAME}/REQUEST_COMMERCIALS`;
-
-/**
- * Fired by the {@link actions.createCommercials createCommercials}
+ * Fired by the {@link actions.getCommercials }
  * action creator.
  *
  * @type {String}
  */
-
-export const CREATE_COMMERCIALS = `${NAME}/CREATE_COMMERCIALS`;
-
+export const GET_COMMERCIALS = 'GET_COMMERCIALS';
 /**
- * Fired by the {@link actions.resetCommercialsState resetCommercialsState}
+ * Fired by the {@link actions.setCommercials }
  * action creator.
  *
  * @type {String}
  */
-
-export const RESET_COMMERCIALS_STATE = `${NAME}/RESET_COMMERCIALS_STATE`;
-
+export const SET_COMMERCIALS = 'SET_COMMERCIALS';
 /**
- * Fired by the {@link actions.requestCreateCommercials requestCreateCommercials}
+ * Fired by the {@link actions.postCommercials }
  * action creator.
  *
  * @type {String}
  */
-
-export const REQUEST_CREATE_COMMERCIALS = `${NAME}/REQUEST_CREATE_COMMERCIALS`;
+export const POST_COMMERCIALS = 'POST_COMMERCIALS';
+/**
+ * Fired by the {@link actions.loadingCommercials }
+ * action creator.
+ *
+ * @type {String}
+ */
+export const LOADING_COMMERCIAL = 'LOADING_COMMERCIAL';
+/**
+ * Fired by the {@link actions.deleteCommercials }
+ * action creator.
+ *
+ * @type {String}
+ */
+export const DELETE_COMMERCIALS = 'DELETE_COMMERCIALS';
+/**
+ * Fired by the {@link actions.removeCommercials }
+ * action creator.
+ *
+ * @type {String}
+ */
+export const REMOVE_COMMERCIALS = 'REMOVE_COMMERCIALS';
