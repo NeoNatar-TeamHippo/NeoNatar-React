@@ -5,9 +5,7 @@ import {
     setCampaign,
     setErrors
 } from './actions';
-import {
-    allCampaigns
-} from './services';
+import { allCampaigns } from './services';
 
 function* getAllCampaigns() {
     try {

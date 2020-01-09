@@ -24,7 +24,7 @@ export const getCommercial = () => ({
  * @function
  * @return {void} The {@link actionTypes.SET_COMMERCIALS } action.
  */
-export const setCommercial = (payload) => ({
+export const setCommercial = payload => ({
     payload,
     type: TYPES.SET_COMMERCIALS,
 });
@@ -34,7 +34,7 @@ export const setCommercial = (payload) => ({
  * @function
  * @return {void} The {@link actionTypes.POST_COMMERCIALS } action.
  */
-export const postCommercial = (payload) => ({
+export const postCommercial = payload => ({
     payload,
     type: TYPES.POST_COMMERCIALS,
 });
@@ -44,7 +44,7 @@ export const postCommercial = (payload) => ({
  * @function
  * @return {void} The {@link actionTypes.DELETE_COMMERCIALS } action.
  */
-export const deleteCommercialRequest = (payload) => ({
+export const deleteCommercialRequest = payload => ({
     payload,
     type: TYPES.DELETE_COMMERCIALS,
 });
@@ -54,7 +54,7 @@ export const deleteCommercialRequest = (payload) => ({
  * @function
  * @return {void} The {@link actionTypes.REMOVE_COMMERCIALS } action.
  */
-export const removeCommercial = (payload) => ({
+export const removeCommercial = payload => ({
     payload,
     type: TYPES.REMOVE_COMMERCIALS,
 });

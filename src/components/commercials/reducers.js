@@ -9,13 +9,13 @@ export default (state = initialState, { type, payload }) => {
         case TYPES.LOADING_COMMERCIAL:
             return { ...state, loadingCommercials: true };
         case TYPES.SET_COMMERCIALS:
-            return { ...state, loadingCommercials: false, commercials: payload };
+            return { ...state, commercials: payload, loadingCommercials: false };
         case TYPES.DELETE_COMMERCIALS:
             return {
                 ...state,
-                loadingCommercials: false,
                 commercials: state.commercials
                     .filter(commercial => commercial.commercialId !== payload),
+                loadingCommercials: false,
             };
         default:
             return state;

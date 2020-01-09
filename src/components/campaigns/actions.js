@@ -53,23 +53,23 @@ export const getCampaigns = () => ({
  * @function
  * @return {void} The {@link actionTypes.SET_TITLE } action.
  */
-export const setTitle = (payload) => ({
+export const setTitle = payload => ({
     payload,
     type: TYPES.SET_TITLE,
 });
-export const setVideoDetails = (payload) => ({
+export const setVideoDetails = payload => ({
     payload,
     type: TYPES.SET_VIDEO_DETAILS,
 });
-export const setCampaignLocation = (payload) => ({
+export const setCampaignLocation = payload => ({
     payload,
     type: TYPES.SET_CAMPAIGN_LOCATIONS,
 });
-export const setAmount = (payload) => ({
+export const setAmount = payload => ({
     payload,
     type: TYPES.SET_AMOUNT,
 });
-export const setDuration = (payload) => ({
+export const setDuration = payload => ({
     payload,
     type: TYPES.SET_DURATION,
 });

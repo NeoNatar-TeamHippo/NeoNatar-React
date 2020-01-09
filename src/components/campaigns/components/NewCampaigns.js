@@ -1,41 +1,41 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Steps, Button, message } from 'antd';
 import UploadVideo from './UploadVideo';
 import SummaryPayment from './SummaryPayment';
 import SelectLocation from './SelectLocation';
 import ScheduleCampaign from './ScheduleCampaign';
-import { next, previous as prev, resetFormState } from '../actions'
+import { previous as prev, resetFormState } from '../actions';
 
-import { NEXT, DONE, PREVIOUS } from '../constants';
+import { DONE, PREVIOUS } from '../constants';
 
 const { Step } = Steps;
 
 const steps = [
     {
-        content: <UploadVideo></UploadVideo>,
+        content: <UploadVideo />,
         title: 'Upload Video',
     },
     {
-        content: <SelectLocation></SelectLocation>,
+        content: <SelectLocation />,
         title: 'Select Location',
     },
     {
-        content: <ScheduleCampaign></ScheduleCampaign>,
+        content: <ScheduleCampaign />,
         title: 'Schedule Campaign',
     },
     {
-        content: <SummaryPayment></SummaryPayment>,
+        content: <SummaryPayment />,
         title: 'Summary and Payment',
     },
 ];
 const NewCampaigns = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const { campaignDetails: { current } } = useSelector(state => state.campaigns);
     const handleDone = () => {
         message.success('Processing complete!');
-        dispatch(resetFormState())
-    }
+        dispatch(resetFormState());
+    };
     return (
         <>
             <Steps current={current}>

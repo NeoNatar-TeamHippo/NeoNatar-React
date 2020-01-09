@@ -1,20 +1,20 @@
 import * as TYPES from './actionType';
 
 const initialState = {
-    campaigns: [],
-    campaignsLoading: false,
-    errors: {},
     campaignDetails: {
+        amount: null,
         current: 0,
+        duration: null,
+        locations: [],
         title: null,
         videoDetails: {
             title: null,
-            url: null
+            url: null,
         },
-        locations: [],
-        amount: null,
-        duration: null,
-    }
+    },
+    campaigns: [],
+    campaignsLoading: false,
+    errors: {},
 };
 export default (state = initialState, { type, payload }) => {
     switch (type) {
@@ -35,32 +35,42 @@ export default (state = initialState, { type, payload }) => {
         case TYPES.SET_CAMPAIGN_LOCATIONS:
             return { ...state, campaignDetails: { ...state.campaignDetails, locations: payload } };
         case TYPES.NEXT:
-            return { ...state, campaignDetails: { ...state.campaignDetails, current: state.campaignDetails.current + 1 } };
+            return {
+                ...state,
+                campaignDetails:
+                    { ...state.campaignDetails, current: state.campaignDetails.current + 1 },
+            };
         case TYPES.PREVIOUS:
-            return { ...state, campaignDetails: { ...state.campaignDetails, current: state.campaignDetails.current - 1 } };
+            return {
+                ...state,
+                campaignDetails:
+                    { ...state.campaignDetails, current: state.campaignDetails.current - 1 },
+            };
         case TYPES.RESET_FORM_STATE:
             return {
-                ...state, campaignDetails: {
+                ...state,
+                campaignDetails: {
+                    amount: null,
                     current: 0,
+                    duration: null,
+                    locations: [],
                     title: null,
                     videoDetails: {
                         title: null,
-                        url: null
+                        url: null,
                     },
-                    locations: [],
-                    amount: null,
-                    duration: null,
-                }
+                },
             };
         case TYPES.SET_VIDEO_DETAILS:
             return {
-                ...state, campaignDetails: {
+                ...state,
+                campaignDetails: {
                     ...state.campaignDetails,
                     videoDetails: {
                         title: payload.title,
-                        url: payload.url
-                    }
-                }
+                        url: payload.url,
+                    },
+                },
             };
         default:
             return state;

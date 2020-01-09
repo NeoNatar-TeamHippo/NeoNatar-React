@@ -6,7 +6,7 @@ export const UPLOAD = 'Video Upload';
 
 /** @constant */
 export const FILE_TYPE = 'File types accepted include: .mp4';
-
+export const NEW_VIDEO = 'New Video';
 /** @constant */
 export const TABLE_VALUES = [
     {
