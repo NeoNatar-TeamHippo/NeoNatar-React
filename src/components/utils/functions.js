@@ -35,6 +35,13 @@ export const openNotification = (description, message) => {
     });
 };
 
+export const normFile = e => {
+    if (Array.isArray(e)) {
+        return e;
+    }
+    return e && e.fileList;
+}
+
 export const priorityColor = priority => {
     let color;
     if (priority === 'high') {

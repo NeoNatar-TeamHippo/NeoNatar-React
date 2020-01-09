@@ -27,7 +27,7 @@ export const NEW_LOCATION = 'New Location';
 /** @constant */
 export const CREATE_LOCATION = 'Create';
 /** @constant */
-export const UPLOAD_TEXT = 'Upload Images';
+export const UPLOAD_TEXT = 'Images';
 /** @constant */
 export const CREATE_NEW_LOCATION = 'Create New Location';
 /** @constant */
@@ -69,7 +69,7 @@ export const FORM_ITEMS = [
         message: 'Address cannot be empty',
         placeholder: 'Address',
         required: true,
-        type: 'text',
+        type: 'textarea',
     },
     {
         formControlName: 'lga',
@@ -86,8 +86,8 @@ export const FORM_ITEMS = [
         type: 'text',
     },
     {
-        formControlName: 'Country',
-        message: 'Country cannot be empty',
+        formControlName: 'country',
+        message: 'country cannot be empty',
         placeholder: 'Country',
         required: true,
         type: 'text',
@@ -107,3 +107,17 @@ export const FORM_ITEMS = [
         type: 'number',
     },
 ];
+export const FORM_ITEM_LAYOUT = {
+    labelCol: {
+        sm: { span: 8 },
+        xs: { span: 24 },
+    },
+    wrapperCol: {
+        sm: { span: 16 },
+        xs: { span: 24 },
+    },
+};
+export const WRAPPER_COL = {
+    sm: { offset: 8, span: 16 },
+    xs: { offset: 0, span: 24 },
+};

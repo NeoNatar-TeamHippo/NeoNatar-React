@@ -14,6 +14,20 @@ export const allLocation = () => {
         .then(response => response.json())
         .then(json => json);
 };
+export const postNewLocation = async data => {
+    const token = localStorage.getItem('FBToken');
+    const parameters = {
+        body: data,
+        headers: {
+            Authorization: token,
+        },
+        method: 'POST',
+        mode: 'cors',
+    };
+    const response = await fetch(LOCATION_URL, parameters);
+    const resData = await response.json();
+    return resData;
+};
 export const locationById = id => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
