@@ -21,7 +21,8 @@ const { Option } = Select;
 const option = [HIGHOPTION, MEDIUMOPTION, LOWOPTION];
 
 const TicketForm = props => {
-    const { visible, onCancel, form } = props;
+    const { onCancel, form } = props;
+    let { visible } = props;
     const { getFieldDecorator } = form;
     const dispatch = useDispatch();
 
@@ -33,6 +34,7 @@ const TicketForm = props => {
             dispatch(postTicket(value));
             form.resetFields();
         });
+        visible = false;
     };
     return (
         <Modal
