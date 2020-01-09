@@ -50,6 +50,15 @@ export const LOWOPTION = 'low';
 export const MEDIUMOPTION = 'medium';
 
 /** @constant */
+export const IS_RESOLVED = 'resolved';
+
+/** @constant */
+export const ADDCOMMENT = 'Add Comment';
+
+/** @constant */
+export const MARKED_AS_RESOLVED = 'Marked As Resolved';
+
+/** @constant */
 export const FORMITEMLAYOUT = {
     labelCol: {
         sm: { span: 8 },
@@ -64,7 +73,4 @@ export const FORMITEMLAYOUT = {
 /** @constant */
 const baseUrl = 'https://europe-west1-neonatar.cloudfunctions.net/api';
 export const TICKET_URL = `${baseUrl}/v1/tickets`;
-export const NEW_TICKET_URL = `${baseUrl}/v1/tickets/new`;
-export const PENDING_TICKET_URL = `${baseUrl}/v1/tickets/pending`;
-export const RESOLVED_TICKET_URL = `${baseUrl}/v1/tickets/resolved`;
 

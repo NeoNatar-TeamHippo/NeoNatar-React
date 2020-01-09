@@ -1,6 +1,6 @@
-import { NEW_TICKET_URL, PENDING_TICKET_URL, RESOLVED_TICKET_URL, TICKET_URL } from './constants';
+import { TICKET_URL } from './constants';
 
-export const allTickets = () => {
+export const allTickets = async () => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
         headers: {
@@ -10,12 +10,12 @@ export const allTickets = () => {
         method: 'GET',
         mode: 'cors',
     };
-    return fetch(TICKET_URL, parameters)
-        .then(response => response.json())
-        .then(json => json);
+    const response = await fetch(TICKET_URL, parameters);
+    const data = await response.json();
+    return data;
 };
 
-export const postTicket = payload => {
+export const postTicket = async payload => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
         body: JSON.stringify(payload),
@@ -25,12 +25,12 @@ export const postTicket = payload => {
         },
         method: 'POST',
     };
-    return fetch(TICKET_URL, parameters)
-        .then(response => response.json())
-        .then(json => json);
+    const response = await fetch(TICKET_URL, parameters);
+    const data = await response.json();
+    return data;
 };
 
-export const newTickets = () => {
+export const ticketById = async id => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
         headers: {
@@ -40,50 +40,35 @@ export const newTickets = () => {
         method: 'GET',
         mode: 'cors',
     };
-    return fetch(NEW_TICKET_URL, parameters)
-        .then(response => response.json())
-        .then(json => json);
+    const response = await fetch(`${TICKET_URL}/${id}`, parameters);
+    const data = await response.json();
+    return data;
 };
 
-export const pendingTickets = () => {
+export const postTicketMessages = async payload => {
+    const { id, body } = payload;
     const token = localStorage.getItem('FBToken');
     const parameters = {
+        body: JSON.stringify({ body }),
         headers: {
             Authorization: token,
             'Content-Type': 'application/json',
         },
-        method: 'GET',
-        mode: 'cors',
+        method: 'POST',
     };
-    return fetch(PENDING_TICKET_URL, parameters)
-        .then(response => response.json())
-        .then(json => json);
+    const response = await fetch(`${TICKET_URL}/${id}`, parameters);
+    const data = await response.json();
+    return data;
 };
 
-export const resolvedTickets = () => {
+export const markTicketAsResolved = id => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
         headers: {
             Authorization: token,
             'Content-Type': 'application/json',
         },
-        method: 'GET',
-        mode: 'cors',
-    };
-    return fetch(RESOLVED_TICKET_URL, parameters)
-        .then(response => response.json())
-        .then(json => json);
-};
-
-export const ticketById = id => {
-    const token = localStorage.getItem('FBToken');
-    const parameters = {
-        headers: {
-            Authorization: token,
-            'Content-Type': 'application/json',
-        },
-        method: 'GET',
-        mode: 'cors',
+        method: 'PATCH',
     };
     return fetch(`${TICKET_URL}/${id}`, parameters)
         .then(response => response.json())
