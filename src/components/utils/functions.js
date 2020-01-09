@@ -48,15 +48,14 @@ export const handleFormData = formValues => {
             formValues[key].forEach(element => {
                 formData.append('video', element.originFileObj);
             });
-        }
-        else if (key === 'images') {
+        } else if (key === 'images') {
             formValues[key].forEach(element => {
                 formData.append('images', element.originFileObj);
             });
         }
     });
     return formData;
-}
+};
 
 export const priorityColor = priority => {
     let color;
