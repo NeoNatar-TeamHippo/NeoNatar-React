@@ -15,6 +15,7 @@ export const renderRateFormat = text => {
     }
     return { color, rateText };
 };
+
 export const renderPrice = text => {
     let type;
     if (parseInt(text, 10) <= 200) {
@@ -40,7 +41,7 @@ export const normFile = e => {
         return e;
     }
     return e && e.fileList;
-}
+};
 
 export const priorityColor = priority => {
     let color;
@@ -72,6 +73,7 @@ export const statusColor = status => {
     }
     return color;
 };
+
 export const handleFormData = formValues => {
     const formData = new FormData();
     Object.keys(formValues).forEach(key => {
@@ -80,8 +82,7 @@ export const handleFormData = formValues => {
             formValues[key].forEach(element => {
                 formData.append('video', element.originFileObj);
             });
-        }
-        else if (key === 'images') {
+        } else if (key === 'images') {
             formValues[key].forEach(element => {
                 formData.append('images', element.originFileObj);
             });

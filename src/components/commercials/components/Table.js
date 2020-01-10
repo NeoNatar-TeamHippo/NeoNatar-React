@@ -5,7 +5,7 @@ import { Tooltip, Button, Table, Modal } from 'antd';
 import ViewCommercial from './ViewCommercial';
 
 import { TABLE_VALUES } from '../constants';
-import { getCommercial, removeCommercial } from '../actions';
+import { getCommercial, removeCommercial, deleteCommercialRequest } from '../actions';
 
 import { openNotification } from '../../utils/functions';
 
@@ -21,7 +21,6 @@ const CommercialTable = () => {
     const {
         commercials,
         isCommercialsLoading,
-        isCommercialDeleted,
     } = useSelector(state => state.commercials);
 
     const showDeleteConfirm = id => {
@@ -31,10 +30,12 @@ const CommercialTable = () => {
             okText: 'Yes',
             okType: 'danger',
             onOk() {
+                dispatch(deleteCommercialRequest(id));
                 dispatch(removeCommercial(id));
-                if (isCommercialDeleted) {
+                setTimeout(() => {
                     openNotification('Deleted Successfully', 'Delete Video');
-                }
+                },
+                2000);
             },
             title: 'Are you sure delete this video?',
         });
