@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, PageHeader, Tag, Table, Row, Col, Menu, Tooltip } from 'antd';
 
@@ -8,33 +8,35 @@ import { requestTransactions } from '../actions';
 const menuItems = [ALL, VALID, INVALID];
 
 const Tickets = ({ history }) => {
-    const dispatch = useDispatch();
-
     const { transactions } = useSelector(state => state.transactions);
 
-    console.log(transactions);
+    const [transactionsData, setTransactionsData] = useState(transactions);
+
+    const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(requestTransactions());
     }, [dispatch]);
-    const handleChangeTab = () => {
+    const handleChangeTab = ({ key }) => {
         let tableData;
-        // switch (key) {
-        //     case ALL:
-        //         setTicketData(tickets);
-        //         break;
-        //     case NEW:
-        //         setTicketData(newTickets);
-        //         break;
-        //     case PENDING:
-        //         setTicketData(pendingTickets);
-        //         break;
-        //     case RESOLVED:
-        //         setTicketData(resolvedTickets);
-        //         break;
-        //     default:
-        //         setTicketData(tickets);
-        //         break;
-        // }
+        switch (key) {
+            case ALL:
+                setTransactionsData(transactions);
+                break;
+            case VALID:
+                setTransactionsData(transactions.filter(
+                    transaction => transaction.status === 'valid'
+                ));
+                break;
+            case INVALID:
+                setTransactionsData(transactions.filter(
+                    transaction => transaction.status === 'invalid'
+                ));
+                break;
+            default:
+                setTransactionsData(transactions);
+                break;
+        }
         return tableData;
     };
 
@@ -115,7 +117,7 @@ const Tickets = ({ history }) => {
             </Row>
             <Table
                 columns={columns}
-                dataSource={transactions}
+                dataSource={transactionsData}
                 rowKey={record => record.id}
             />
         </div>
