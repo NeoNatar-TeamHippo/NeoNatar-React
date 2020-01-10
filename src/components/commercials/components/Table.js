@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Tooltip, Button, Table, Modal } from 'antd';
+
+import ViewCommercial from './ViewCommercial';
 
 import { TABLE_VALUES } from '../constants';
 import { getCommercial, removeCommercial } from '../actions';
@@ -8,6 +10,8 @@ import { getCommercial, removeCommercial } from '../actions';
 import { openNotification } from '../../utils/functions';
 
 const CommercialTable = () => {
+    const [selectedModal, setSelectedModal] = useState(null);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -44,7 +48,7 @@ const CommercialTable = () => {
                 <>
                     <Tooltip placement="top" title="View video">
                         <Button
-                            onClick={() => { console.log(record.url); }}
+                            onClick={() => setSelectedModal(record.commercialId)}
                             type="link"
                             icon="eye"
                         />
@@ -64,6 +68,12 @@ const CommercialTable = () => {
     ];
     return (
         <div>
+            <ViewCommercial
+                selectedModal={selectedModal}
+                onCancel={() => setSelectedModal(null)}
+                data={commercials}
+                onOk={() => setSelectedModal(null)}
+            />
             <Table
                 columns={columns}
                 loading={isCommercialsLoading}

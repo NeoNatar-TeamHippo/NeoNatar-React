@@ -53,12 +53,12 @@ function* postNewCommercial(data) {
  * @param {Object} action - the data sent from the action creator
  * @return {Void} - void
  */
-function* requestDeleteCommercialById(id) {
+function* requestDeleteCommercialById({ payload }) {
     try {
         yield put(loadingCommercial());
-        const res = yield call(deleteCommercialById, id);
+        const res = yield call(deleteCommercialById, payload);
         if (res.status === 'success') {
-            yield put(deleteCommercialRequest(id.payload));
+            yield put(deleteCommercialRequest(payload));
         } else {
             // eslint-disable-next-line no-console
             console.log(res.message);
