@@ -10,11 +10,11 @@ export const getCommercialService = async () => {
         method: 'GET',
         mode: 'cors',
     };
-    const response = await fetch(COMMERCIALS_URL, parameters)
+    const response = await fetch(COMMERCIALS_URL, parameters);
     const resData = await response.json();
     return resData;
 };
-export const postCommercialService = async (data) => {
+export const postCommercialService = async data => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
         body: data,
@@ -24,11 +24,12 @@ export const postCommercialService = async (data) => {
         method: 'POST',
         mode: 'cors',
     };
-    const response = await fetch(COMMERCIALS_URL, parameters)
+    const response = await fetch(COMMERCIALS_URL, parameters);
     const resData = await response.json();
     return resData;
 };
-export const deleteCommercialById = async (id) => {
+
+export const deleteCommercialById = async id => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
         headers: {
@@ -37,7 +38,7 @@ export const deleteCommercialById = async (id) => {
         method: 'DELETE',
         mode: 'cors',
     };
-    const response = await fetch(`${COMMERCIALS_URL}/${id}`, parameters)
+    const response = await fetch(`${COMMERCIALS_URL}/${id}`, parameters);
     const resData = await response.json();
     return resData;
 };

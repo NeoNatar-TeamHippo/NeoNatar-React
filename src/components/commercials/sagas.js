@@ -1,61 +1,112 @@
-import { takeEvery, call, put } from 'redux-saga/effects';
-import * as TYPES from './actionTypes';
-import { getCommercial, deleteCommercialRequest, setCommercial, loadingCommercial } from './actions';
+import { takeLatest, put, all, call } from 'redux-saga/effects';
+import { deleteCommercialRequest, setCommercial, loadingCommercial } from './actions';
 import { getCommercialService, postCommercialService, deleteCommercialById } from './services';
-import { openNotification } from '../utils/functions';
+import { GET_COMMERCIALS, POST_COMMERCIALS, REMOVE_COMMERCIALS } from './actionTypes';
 
-function* getAllCommercials() {
+/**
+ * Handles requesting the list of videos from the database
+ *
+ * @return {Void} - void
+ */
+function* requestAllCommercials() {
     try {
         yield put(loadingCommercial());
         const res = yield call(getCommercialService);
         if (res.status === 'success') {
             yield put(setCommercial(res.data));
         } else {
-            console.log('error getting data');
+            // eslint-disable-next-line no-console
+            console.log(res.message);
         }
     } catch (error) {
-        console.log('error getting data');
+        // eslint-disable-next-line no-console
+        console.log({ message: 'Something went wrong please try again' }, error);
     }
 }
+
+/**
+ * Handles requesting to post videos to the backend
+ *
+ * @param {Object} action - the data sent from the action creator
+ * @return {Void} - void
+ */
+
 function* postNewCommercial(data) {
     try {
         yield put(loadingCommercial());
         const res = yield call(postCommercialService, data);
         if (res.status === 'success') {
-            yield call(getAllCommercials);
-            openNotification('Uploaded successfully', 'Video');
+            yield call(requestAllCommercials);
         } else {
-            console.log('error getting data');
+            // eslint-disable-next-line no-console
+            console.log(res.message);
         }
     } catch (error) {
-        console.log('something went wrong');
+        // eslint-disable-next-line no-console
+        console.log({ message: 'Something went wrong please try again' }, error);
     }
 }
-function* deleteCommercial(id) {
+
+/**
+ * Handles requesting to post videos to the backend
+ *
+ * @param {Object} action - the data sent from the action creator
+ * @return {Void} - void
+ */
+function* requestDeleteCommercialById(id) {
     try {
         yield put(loadingCommercial());
         const res = yield call(deleteCommercialById, id);
         if (res.status === 'success') {
-            yield put(deleteCommercialRequest(id));
-            openNotification('Deleted Sucessfully', 'Video');
+            yield put(deleteCommercialRequest(id.payload));
         } else {
-            console.log('error getting data');
+            // eslint-disable-next-line no-console
+            console.log(res.message);
         }
     } catch (error) {
-        console.log('something went wrong');
+        // eslint-disable-next-line no-console
+        console.log({ message: 'Something went wrong please try again' }, error);
     }
 }
-function* getCommercialsEffect() {
-    yield call(getAllCommercials);
+
+/**
+ * @function
+ * Watches for the {@link actionTypes.REQUEST_VIDEOS REQUEST_VIDEOS} action.
+ * Triggers request to pull the videos from database
+ *
+ * @return {void}
+ */
+
+function* watchRequestAllCommercials() {
+    yield takeLatest(GET_COMMERCIALS, requestAllCommercials);
 }
-function* postNewCommercialEffect({ payload }) {
-    yield call(postNewCommercial, payload);
+
+/**
+ * @function
+ * Watches for the {@link actionTypes.REQUEST_VIDEO_UPLOAD REQUEST_VIDEO_UPLOAD} action.
+ * Triggers request to update product item
+ *
+ * @return {void}
+ */
+function* watchRequestToPostNewCommercial() {
+    yield takeLatest(POST_COMMERCIALS, postNewCommercial);
 }
-function* deleteCommercialEffect({ payload }) {
-    yield call(deleteCommercial, payload);
+
+/**
+ * @function
+ * Watches for the {@link actionTypes.REQUEST_ADD_USER REQUEST_ADD_USER} action.
+ * Triggers request to update product item
+ *
+ * @return {void}
+ */
+function* watchRequesToDeleteCommercial() {
+    yield takeLatest(REMOVE_COMMERCIALS, requestDeleteCommercialById);
 }
-export default function* actionWatcher() {
-    yield takeEvery(TYPES.GET_COMMERCIALS, getCommercialsEffect);
-    yield takeEvery(TYPES.POST_COMMERCIALS, postNewCommercialEffect);
-    yield takeEvery(TYPES.REMOVE_COMMERCIALS, deleteCommercialEffect);
+
+export default function* () {
+    yield all([
+        watchRequestAllCommercials(),
+        watchRequestToPostNewCommercial(),
+        watchRequesToDeleteCommercial(),
+    ]);
 }

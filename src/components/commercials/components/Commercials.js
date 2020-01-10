@@ -1,29 +1,38 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Modal, Button } from 'antd';
-import CommercialForm from './CommercialForm'
-import Table from './Table'
+
+import CommercialForm from './CommercialForm';
+import Table from './Table';
+
+import { NEW_VIDEO, CANCEL } from '../constants';
+
 const Commercials = () => {
-    const [visible, setvisible] = useState(false)
-    const handleOk = e => {
-        setvisible(false)
+    const [visible, setvisible] = useState(false);
+
+    const handleCancel = () => {
+        setvisible(false);
     };
-    const handleCancel = e => {
-        setvisible(false)
-    };
+
     return (
         <div>
-            <Button type='primary' onClick={() => setvisible(true)}>
-                New Video
+            <Button type="primary" onClick={() => setvisible(true)}>
+                {NEW_VIDEO}
             </Button>
-            <Table></Table>
-            <Modal visible={visible}
-                title="Upload Video"
+
+            <Table />
+            <Modal
                 visible={visible}
-                onOk={handleOk}
-                onCancel={handleCancel}>
-                <CommercialForm></CommercialForm>
+                title="Upload Video"
+                footer={[
+                    <Button key="back" onClick={handleCancel}>
+                        { CANCEL }
+                    </Button>,
+                ]}
+            >
+                <CommercialForm />
             </Modal>
         </div>
-    )
-}
+    );
+};
+
 export default Commercials;

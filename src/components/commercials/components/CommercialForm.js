@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Form, Input, Upload, Button, Icon } from 'antd';
-import { normFile } from '../../utils/functions';
+import { normFile, handleFormData } from '../../utils/functions';
 import { CREATE_COMMERCIAL, UPLOAD } from '../constants';
-import { postCommercial } from '../actions'
-import { handleFormData } from '../../utils/functions'
+import { postCommercial } from '../actions';
+
 const CommercialForm = ({ form }) => {
     const dispatch = useDispatch();
     const { getFieldDecorator, resetFields, validateFields } = form;
@@ -40,7 +40,7 @@ const CommercialForm = ({ form }) => {
             <Form.Item label="Upload">
                 {getFieldDecorator('video', {
                     getValueFromEvent: normFile,
-                    rules: [{ message: 'Please upload a video', required: true, }],
+                    rules: [{ message: 'Please upload a video', required: true }],
                     valuePropName: 'fileList',
                 })(
                     <Upload
@@ -60,14 +60,14 @@ const CommercialForm = ({ form }) => {
                 <Button
                     type="primary"
                     htmlType="submit"
-                    // loading={loading}
                     block
                 >
                     {CREATE_COMMERCIAL}
                 </Button>
             </Form.Item>
         </Form>
-    )
-}
+    );
+};
+
 const WrappedCommercialForm = Form.create({ name: 'commercial-form' })(CommercialForm);
 export default WrappedCommercialForm;

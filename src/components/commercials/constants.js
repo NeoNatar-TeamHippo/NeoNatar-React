@@ -26,11 +26,16 @@ export const TABLE_VALUES = [
     },
 ];
 /** @constant */
-export const NEW = 'New';
+export const NEW_VIDEO = 'New Video';
 
 /** @constant */
 export const NAME = 'commercials';
+
 export const CREATE_COMMERCIAL = 'Create Commercial';
+
+/** @constant */
+export const CANCEL = 'Cancel';
+
 const baseUrl = 'http://localhost:5000/neonatar/europe-west1/api';
 export const COMMERCIALS_URL = `${baseUrl}/v1/commercials`;
 
