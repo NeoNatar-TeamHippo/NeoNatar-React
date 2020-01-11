@@ -1,5 +1,5 @@
 import React from 'react';
-import { Badge, Card, Col, Row, Typography, Tag } from 'antd';
+import { Card, Col, Row, Typography, Tag } from 'antd';
 
 import UnresolvedTickets from './UnresolvedTickets';
 import Tasks from './Tasks';
@@ -13,7 +13,6 @@ const Dashboard = () => (
         <Row gutter={48}>
             {ADMIN_CARDS.map(({ color, counts, type }) => (
                 <Col key={type} span={6}>
-                    {/* <Badge style={{ backgroundColor: color }} count={counts}> */}
                     <Card className="dashboard-card">
                         <Text className="notification-card-text">{type}</Text>
                         <br />
@@ -21,7 +20,6 @@ const Dashboard = () => (
                             {counts}
                         </Tag>
                     </Card>
-                    {/* </Badge> */}
                 </Col>
             ))}
         </Row>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Tag, Table, Steps, Button, message, Icon } from 'antd';
+import { Steps, Button, message } from 'antd';
 
 import { NEXT, DONE, PREVIOUS } from '../constants';
 
