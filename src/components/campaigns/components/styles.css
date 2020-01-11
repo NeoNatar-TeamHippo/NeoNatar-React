@@ -1,0 +1,23 @@
+
+.ant-layout {
+    background: #fff;
+}
+
+.page_header {
+    border: 1px solid rgb(235, 237, 240);
+    border-radius: 4px;
+}
+
+.card_background {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card_background {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
