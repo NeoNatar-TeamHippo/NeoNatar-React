@@ -20,8 +20,6 @@ export const ADMIN_SIDE_MENU_ITEMS = [
     { iconType: 'credit-card', label: 'Tickets', link: '/dashboard/tickets' },
     { iconType: 'team', label: 'Users' },
     { iconType: 'user', label: 'Staff' },
-    { iconType: 'interaction', label: 'Transactions', link: '/dashboard/transactions' },
-    { iconType: 'setting', label: 'Settings' },
 ];
 
 /** @constant */
@@ -31,7 +29,5 @@ export const CLIENT_SIDE_MENU_ITEMS = [
     { iconType: 'environment', label: 'Locations', link: '/dashboard/locations' },
     { iconType: 'play-square', label: 'Videos', link: '/dashboard/commercials' },
     { iconType: 'pushpin', label: 'Saved Locations', link: '/dashboard/savedLocations' },
-    { iconType: 'interaction', label: 'Transactions', link: '/dashboard/transactions' },
     { iconType: 'credit-card', label: 'Tickets', link: '/dashboard/tickets' },
-    { iconType: 'setting', label: 'Settings' },
 ];
