@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Icon, Menu, Tooltip, Divider } from 'antd';
+import { Icon, Menu, Tooltip } from 'antd';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import history from '../../history/History';
@@ -44,7 +44,6 @@ const SideMenu = () => {
             selectedKeys={[current]}
             defaultSelectedKeys={['/dashboard']}
             onClick={e => setCurrent(e.key)}
-            style={{ lineHeight: '64px' }}
         >
             {
                 menuItems.map(({ iconType, label, link }) => (
@@ -53,7 +52,6 @@ const SideMenu = () => {
                     </Menu.Item>
                 ))
             }
-            <Divider />
         </Menu>
     );
 };
