@@ -20,3 +20,7 @@ aside.ant-layout-sider {
 .center_form {
     margin: auto;
 }
+
+.anticon svg {
+    margin-bottom: 6px;
+}  

@@ -15,7 +15,7 @@ const Commercials = () => {
 
     return (
         <div>
-            <Button type="primary" onClick={() => setvisible(true)}>
+            <Button type="primary" icon="plus" onClick={() => setvisible(true)}>
                 {NEW_VIDEO}
             </Button>
 
