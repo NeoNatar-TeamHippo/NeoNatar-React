@@ -71,3 +71,10 @@ aside.ant-layout-sider {
 .ant-layout-content {
     margin-left: 190px;
 }
+
+@media(max-width: 767px){
+    .display-name{
+      display: none;
+    }
+  }
+  

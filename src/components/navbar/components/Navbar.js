@@ -21,8 +21,7 @@ const Navbar = () => {
                     <Icon type={BELL} />
                 </Button>
             </Badge>
-            <Divider type={VERTICAL} />
-            <Typography.Text strong>
+            <Typography.Text className="display-name" strong>
                 {!navLoading ? fullName.toLowerCase() : 'User'}
             </Typography.Text>
             <Divider type={VERTICAL} />
