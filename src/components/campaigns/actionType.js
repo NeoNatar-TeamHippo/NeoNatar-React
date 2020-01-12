@@ -40,3 +40,18 @@ export const SET_CAMPAIGN = 'SET_CAMPAIGN';
  * @type {String}
  */
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+/**
+ * Fired by the {@link actions.setTitle }
+ * action creator.
+ *
+ * @type {String}
+ */
+export const SET_TITLE = 'SET_TITLE';
+export const SET_VIDEO_DETAILS = 'SET_VIDEO_DETAILS';
+export const SET_CAMPAIGN_LOCATIONS = 'SET_CAMPAIGN_LOCATIONS';
+export const SET_AMOUNT = 'SET_AMOUNT';
+export const SET_DURATION = 'SET_DURATION';
+export const NEXT = 'NEXT';
+export const PREVIOUS = 'PREVIOUS';
+export const RESET_FORM_STATE = 'RESET_FORM_STATE';
+export const CREATE_CAMPAIGN = 'CREATE_CAMPAIGN';

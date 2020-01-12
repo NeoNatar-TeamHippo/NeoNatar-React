@@ -1,29 +1,30 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
-import { Tooltip, Button, Table, Modal } from 'antd'
-import { TABLE_VALUES } from '../constants'
-import { getCommercial, removeCommercial } from '../actions'
+import { useSelector, useDispatch } from 'react-redux';
+import { Tooltip, Button, Table, Modal } from 'antd';
+import { TABLE_VALUES } from '../constants';
+import { getCommercial, removeCommercial } from '../actions';
+
 const CommercialTable = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getCommercial());
     }, [dispatch]);
-    const { commercials, loadingCommercials } = useSelector(state => state.commercials);
-    const showDeleteConfirm = (id) => {
+    const { commercials } = useSelector(state => state.commercials);
+    const showDeleteConfirm = id => {
         Modal.confirm({
-            title: 'Are you sure delete this video?',
+            cancelText: 'No',
             content: 'This cannot be reversed',
             okText: 'Yes',
             okType: 'danger',
-            cancelText: 'No',
-            onOk() {
-                dispatch(removeCommercial(id))
-            },
             onCancel() {
                 console.log('Cancel');
             },
+            onOk() {
+                dispatch(removeCommercial(id));
+            },
+            title: 'Are you sure delete this video?',
         });
-    }
+    };
     const columns = [
         ...TABLE_VALUES,
         {
@@ -39,10 +40,10 @@ const CommercialTable = () => {
                     </Tooltip>
                     <Tooltip placement="top" title="Delete Video">
                         <Button
-                            onClick={() => { showDeleteConfirm(record.commercialId) }}
+                            onClick={() => { showDeleteConfirm(record.commercialId); }}
                             type="link"
                             icon="delete"
-                            className='text-danger'
+                            className="text-danger"
                         />
                     </Tooltip>
                 </>
@@ -59,6 +60,6 @@ const CommercialTable = () => {
                 rowKey={record => record.id}
             />
         </div>
-    )
-}
+    );
+};
 export default CommercialTable;

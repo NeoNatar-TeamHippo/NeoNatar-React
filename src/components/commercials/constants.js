@@ -6,7 +6,7 @@ export const UPLOAD = 'Video Upload';
 
 /** @constant */
 export const FILE_TYPE = 'File types accepted include: .mp4';
-
+export const NEW_VIDEO = 'New Video';
 /** @constant */
 export const TABLE_VALUES = [
     {
@@ -30,7 +30,7 @@ export const NEW = 'New';
 
 /** @constant */
 export const NAME = 'commercials';
-export const CREATE_COMMERCIAL = 'Create Commercial';
+export const CREATE_COMMERCIAL = 'Create Video Commercial';
 const baseUrl = 'http://localhost:5000/neonatar/europe-west1/api';
 export const COMMERCIALS_URL = `${baseUrl}/v1/commercials`;
 
