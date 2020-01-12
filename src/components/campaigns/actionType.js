@@ -54,3 +54,4 @@ export const SET_DURATION = 'SET_DURATION';
 export const NEXT = 'NEXT';
 export const PREVIOUS = 'PREVIOUS';
 export const RESET_FORM_STATE = 'RESET_FORM_STATE';
+export const CREATE_CAMPAIGN = 'CREATE_CAMPAIGN';

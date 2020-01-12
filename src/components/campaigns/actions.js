@@ -82,3 +82,7 @@ export const previous = () => ({
 export const resetFormState = () => ({
     type: TYPES.RESET_FORM_STATE,
 });
+export const createCampaign = (payload) => ({
+    payload,
+    type: TYPES.CREATE_CAMPAIGN,
+});

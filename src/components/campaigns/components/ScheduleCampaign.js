@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { withRouter } from 'react-router-dom'
 import {
     Descriptions, Col, Row, Button, Tooltip, Typography, Select, Divider,
     message
@@ -7,7 +8,7 @@ import {
 import PaystackButton from 'react-paystack';
 import { SELECT_OPTIONS, REFERENCE_VALUE, CAMPAIGN_LENGTH_TEXT } from '../constants';
 import { openNotification } from '../../utils/functions';
-import { next, resetFormState } from '../actions';
+import { next, resetFormState, createCampaign } from '../actions';
 
 const { Option } = Select;
 const { Paragraph } = Typography;
@@ -59,6 +60,10 @@ const ScheduleCampaign = ({ history }) => {
     const callback = response => {
         if (response.status === 'success') {
             dispatch(next());
+            // const newCampaign = {
+
+            // }
+            // dispatch(createCampaign(newCampaign));
             message.success('Payment successful, Thanks for working with us!!!');
             setTimeout(() => {
                 dispatch(resetFormState());
@@ -138,4 +143,4 @@ const ScheduleCampaign = ({ history }) => {
         </div>
     );
 };
-export default ScheduleCampaign;
+export default withRouter(ScheduleCampaign);
