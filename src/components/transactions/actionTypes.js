@@ -17,10 +17,3 @@ export const UPDATE_TRANSACTIONS = `${NAME}/UPDATE_TRANSACTIONS`;
  */
 
 export const REQUEST_TRANSACTIONS = `${NAME}/REQUEST_TRANSACTIONS`;
-
-/**
- * Fired by the {@link actions.postTransaction postTransaction}
- * action creator.
- *
- * @type {Array}
- */
