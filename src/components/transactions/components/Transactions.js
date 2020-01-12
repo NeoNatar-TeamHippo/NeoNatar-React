@@ -7,7 +7,7 @@ import { requestTransactions } from '../actions';
 
 const menuItems = [ALL, VALID, INVALID];
 
-const Tickets = ({ history }) => {
+const Transactions = ({ history }) => {
     const { transactions } = useSelector(state => state.transactions);
 
     const [transactionsData, setTransactionsData] = useState(transactions);
@@ -124,4 +124,4 @@ const Tickets = ({ history }) => {
     );
 };
 
-export default Tickets;
+export default Transactions;
