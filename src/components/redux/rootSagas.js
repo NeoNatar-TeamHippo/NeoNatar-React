@@ -7,6 +7,7 @@ import commercials from '../commercials';
 import tickets from '../tickets';
 import campaigns from '../campaigns';
 import savedLocations from '../savedLocations';
+import transactions from '../transactions';
 
 const actionWatcherSignUp = signup.sagas;
 const actionWatcherSignIn = signin.sagas;
@@ -16,6 +17,7 @@ const actionWatcherCommercials = commercials.sagas;
 const actionWatcherTickets = tickets.sagas;
 const actionWatcherCampaigns = campaigns.sagas;
 const actionWatcherSavedLocations = savedLocations.sagas;
+const actionWatcherTransactions = transactions.sagas;
 
 export default function* rootSaga() {
     yield all([
@@ -27,5 +29,6 @@ export default function* rootSaga() {
         actionWatcherTickets(),
         actionWatcherCampaigns(),
         actionWatcherSavedLocations(),
+        actionWatcherTransactions(),
     ]);
 }
