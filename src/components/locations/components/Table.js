@@ -24,7 +24,7 @@ const LocationTable = ({ history }) => {
         dispatch(locationOperation(payload));
         openNotification(
             `${selectedRowKeys.length} Location${selectedRowKeys.length > 1 ? 's' : ''}`,
-            'Successfully added'
+            'Successfully added', 'success', 'suucess'
         );
     };
     const handleNewLocation = () => {
@@ -37,7 +37,7 @@ const LocationTable = ({ history }) => {
             savedLocationId,
         };
         dispatch(locationOperation(payload));
-        openNotification('Location added', 'Success');
+        openNotification('Location added', 'Success', 'success');
     };
     const handleMenuClick2 = ({ key }) => {
         addBulkState(key);

@@ -67,4 +67,14 @@ export const getLocationsByID = payload => ({
     payload,
     type: TYPES.GET_LOCATIONS_BY_ID,
 });
+/**
+ * Triggers request to get all locations
+ *
+ * @function
+ * @return {void} The {@link actionTypes.NEW_LOCATIONS } action.
+ */
+export const newLocations = payload => ({
+    payload,
+    type: TYPES.NEW_LOCATIONS,
+});
 

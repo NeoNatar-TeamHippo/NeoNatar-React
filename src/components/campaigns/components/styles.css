@@ -21,3 +21,11 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.steps-content {
+    min-height: 50vh;
+}
+
+.steps-action {
+    margin-top: 24px;
+}

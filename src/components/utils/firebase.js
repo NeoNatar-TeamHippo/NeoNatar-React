@@ -1,8 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
-//  process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-
 const config = {
     apiKey: process.env.REACT_APP_APIKEY,
     appId: process.env.REACT_APP_APPID,
@@ -19,5 +17,14 @@ export default firebase.initializeApp(config);
 const firebaseDB = firebase.firestore();
 const firebaseTickets = firebaseDB.collection('tickets');
 const firebaseCampaigns = firebaseDB.collection('campaigns');
+const firebaseCommercials = firebaseDB.collection('commercials');
+const firebaseLocations = firebaseDB.collection('locations');
+const firebaseSavedLocations = firebaseDB.collection('savedLocations');
 
-export { firebase, firebaseCampaigns, firebaseDB, firebaseTickets };
+export {
+    firebase, firebaseCampaigns,
+    firebaseDB, firebaseTickets,
+    firebaseCommercials,
+    firebaseLocations,
+    firebaseSavedLocations
+};

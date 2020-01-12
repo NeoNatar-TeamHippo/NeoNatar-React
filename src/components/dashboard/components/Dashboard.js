@@ -10,7 +10,7 @@ import commercials from '../../commercials';
 import savedLocations from '../../savedLocations';
 
 const { Overview } = overview.components;
-const { Campaigns, ViewCampaign } = campaigns.components;
+const { Campaigns, ViewCampaign, NewCampaigns } = campaigns.components;
 const { Commercials } = commercials.components;
 const { Locations, LocationById, NewLocation } = locations.components;
 const { Tickets, ViewTicket } = tickets.components;
@@ -25,6 +25,7 @@ const Dashboard = props => {
         { component: Overview, path },
         { component: Campaigns, path: getPathWay('campaigns') },
         { component: ViewCampaign, path: getNestedPath('campaigns', ':id') },
+        { component: NewCampaigns, path: getPathWay('new-campaigns') },
         { component: SavedLocations, path: getPathWay('savedLocations') },
         { component: Commercials, path: getPathWay('commercials') },
         { component: SavedLocationById, path: getNestedPath('savedLocations', ':id') },

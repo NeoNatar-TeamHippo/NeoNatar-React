@@ -1,42 +1,22 @@
-import { CREATE_COMMERCIALS, UPDATE_COMMERCIALS, RESET_COMMERCIALS_STATE } from './actionTypes';
+import * as TYPES from './actionTypes';
 
 const initialState = {
     commercials: [],
-    isCommercialsCreated: false,
+    loadingCommercials: false,
 };
-
-const addCommercials = (items, newItem) => {
-    items.push(newItem);
-    return items;
-};
-
-export default (state = { ...initialState }, action) => {
-    switch (action.type) {
-        case UPDATE_COMMERCIALS: {
-            const { payload: newCommercials } = action;
+export default (state = initialState, { type, payload }) => {
+    switch (type) {
+        case TYPES.LOADING_COMMERCIAL:
+            return { ...state, loadingCommercials: true };
+        case TYPES.SET_COMMERCIALS:
+            return { ...state, commercials: payload, loadingCommercials: false };
+        case TYPES.DELETE_COMMERCIALS:
             return {
                 ...state,
-                commercials: [...newCommercials],
-                isCommercialsCreated: false,
+                commercials: state.commercials
+                    .filter(commercial => commercial.commercialId !== payload),
+                loadingCommercials: false,
             };
-        }
-
-        case CREATE_COMMERCIALS: {
-            const { users } = state;
-            const { payload: item } = action;
-            return {
-                ...state,
-                isCommercialsCreated: true,
-                users: addCommercials(users, item),
-            };
-        }
-
-        case RESET_COMMERCIALS_STATE: {
-            return {
-                ...state,
-                isCommercialsCreated: false,
-            };
-        }
         default:
             return state;
     }

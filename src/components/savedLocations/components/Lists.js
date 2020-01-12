@@ -25,7 +25,7 @@ const Lists = ({ history }) => {
             onOk() {
                 dispatch(deleteSavedLocationByID(savedLocationId));
                 setTimeout(() => {
-                    openNotification('Deleted Successfully', 'Saved List');
+                    openNotification('Deleted Successfully', 'Saved List', 'success');
                 }, 3000);
             },
             title: 'Do you want to delete this List of Saved Location?',
