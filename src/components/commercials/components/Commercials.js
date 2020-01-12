@@ -34,5 +34,4 @@ const Commercials = () => {
         </div>
     );
 };
-
 export default Commercials;

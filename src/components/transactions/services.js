@@ -1,6 +1,6 @@
 import { TRANSACTIONS_URL } from './constants';
 
-export const allTransactions = () => {
+export const allTransactions = async () => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
         headers: {
@@ -10,7 +10,7 @@ export const allTransactions = () => {
         method: 'GET',
         mode: 'cors',
     };
-    return fetch(TRANSACTIONS_URL, parameters)
-        .then(response => response.json())
-        .then(json => json);
+    const response = await fetch(TRANSACTIONS_URL, parameters);
+    const data = await response.json();
+    return data;
 };

@@ -28,8 +28,8 @@ export const renderPrice = text => {
     return { type };
 };
 
-export const openNotification = (description, message) => {
-    notification.success({
+export const openNotification = (description, message, type) => {
+    notification[type]({
         description,
         duration: 5,
         message,
@@ -41,6 +41,23 @@ export const normFile = e => {
         return e;
     }
     return e && e.fileList;
+};
+
+export const handleFormData = formValues => {
+    const formData = new FormData();
+    Object.keys(formValues).forEach(key => {
+        formData.append(key, formValues[key]);
+        if (key === 'video') {
+            formValues[key].forEach(element => {
+                formData.append('video', element.originFileObj);
+            });
+        } else if (key === 'images') {
+            formValues[key].forEach(element => {
+                formData.append('images', element.originFileObj);
+            });
+        }
+    });
+    return formData;
 };
 
 export const priorityColor = priority => {
@@ -72,21 +89,4 @@ export const statusColor = status => {
         color = 'grey';
     }
     return color;
-};
-
-export const handleFormData = formValues => {
-    const formData = new FormData();
-    Object.keys(formValues).forEach(key => {
-        formData.append(key, formValues[key]);
-        if (key === 'video') {
-            formValues[key].forEach(element => {
-                formData.append('video', element.originFileObj);
-            });
-        } else if (key === 'images') {
-            formValues[key].forEach(element => {
-                formData.append('images', element.originFileObj);
-            });
-        }
-    });
-    return formData;
 };
