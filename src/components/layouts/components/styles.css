@@ -20,3 +20,15 @@ aside.ant-layout-sider {
 .center_form {
     margin: auto;
 }
+
+.anticon svg {
+    margin-bottom: 6px;
+}
+
+.side-menu-item .ant-menu-inline {
+    border-right: 0;
+}
+
+.side-menu-item .ant-layout-sider-trigger {
+    background: #c41d7f;
+}

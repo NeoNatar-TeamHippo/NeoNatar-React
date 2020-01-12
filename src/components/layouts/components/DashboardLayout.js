@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Layout, Divider } from 'antd';
+import { Layout } from 'antd';
 import { NavLink, withRouter } from 'react-router-dom';
 
 import FooterComponent from './Footer';
@@ -19,28 +19,29 @@ const DashboardLayout = props => {
     };
     return (
         <Layout>
-            <Sider
-                breakpoint="sm"
-                collapsible
-                collapsed={collapsed}
-                onCollapse={onCollapse}
-            >
+            <Header>
                 <NavLink to="/dashboard" className="my-2 d-flex justify-content-center">
                     <img src={Logo} width="100%" height="30px" alt="NeoNatar Logo" />
                 </NavLink>
-                <SideMenu />
-            </Sider>
+                <Navbar />
+            </Header>
             <Layout>
-                <Header>
-                    <Navbar />
-                </Header>
+                <Sider
+                    breakpoint="sm"
+                    collapsible
+                    collapsed={collapsed}
+                    onCollapse={onCollapse}
+                    className="side-menu-item"
+                >
+                    <SideMenu />
+                </Sider>
                 <Content className="content container">
                     {children}
                 </Content>
-                <Footer className="text-center">
-                    <FooterComponent />
-                </Footer>
             </Layout>
+            <Footer className="text-center">
+                <FooterComponent />
+            </Footer>
         </Layout>
     );
 };

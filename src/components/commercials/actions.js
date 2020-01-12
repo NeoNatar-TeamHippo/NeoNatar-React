@@ -9,6 +9,7 @@ import * as TYPES from './actionTypes';
 export const loadingCommercial = () => ({
     type: TYPES.LOADING_COMMERCIAL,
 });
+
 /**
  * Triggers request to get Commercial
  *
@@ -18,6 +19,7 @@ export const loadingCommercial = () => ({
 export const getCommercial = () => ({
     type: TYPES.GET_COMMERCIALS,
 });
+
 /**
  * Triggers request to get Commercial
  *
@@ -28,6 +30,7 @@ export const setCommercial = payload => ({
     payload,
     type: TYPES.SET_COMMERCIALS,
 });
+
 /**
  * Triggers request to post Commercial
  *
@@ -38,6 +41,7 @@ export const postCommercial = payload => ({
     payload,
     type: TYPES.POST_COMMERCIALS,
 });
+
 /**
  * Triggers request to delete a Commercial
  *
@@ -48,6 +52,7 @@ export const deleteCommercialRequest = payload => ({
     payload,
     type: TYPES.DELETE_COMMERCIALS,
 });
+
 /**
  * Triggers request to delete a Commercial
  *

@@ -1,11 +1,14 @@
 import React from 'react';
 import { Avatar, Divider, Icon, Menu, Button, Typography, Badge } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
-import { ICONS, VERTICAL, LOGOUT_TEXT } from '../constants';
+import { NavLink } from 'react-router-dom';
+
+import { ICONS, VERTICAL, LOGOUT_TEXT, SETTINGS, TRANSACTIONS } from '../constants';
 import { logoutUser } from '../actions';
 import UserLogo from '../../../images/user.svg';
 
 const { BELL } = ICONS;
+const { SubMenu, Item } = Menu;
 
 const Navbar = () => {
     const dispatch = useDispatch();
@@ -19,19 +22,44 @@ const Navbar = () => {
                         <Icon type={BELL} />
                     </Button>
                 </Badge>
-                <Divider type={VERTICAL} />
                 <Typography.Text strong>
                     {!navLoading ? fullName.toLowerCase() : 'User'}
                 </Typography.Text>
                 <Divider type={VERTICAL} />
-                {navLoading ? (<Avatar src={UserLogo} />)
-                    : (<Avatar src={user.avatar} />)}
-                <Divider type={VERTICAL} />
-                <Button onClick={() => dispatch(logoutUser())} type="link">
-                    <Typography.Text type="danger">
-                        {LOGOUT_TEXT}
-                    </Typography.Text>
-                </Button>
+                <SubMenu
+                    key="sub1"
+                    title={(
+                        <span>
+                            {navLoading ? (<Avatar src={UserLogo} />)
+                                : (<Avatar src={user.avatar} />)}
+                        </span>
+                    )}
+                >
+                    <Item>
+                        <NavLink to="/dashboard/transactions">
+                            <Icon type="interaction" />
+                            <span>
+                                {TRANSACTIONS}
+                            </span>
+                        </NavLink>
+                    </Item>
+                    <Item>
+                        <NavLink to="/">
+                            <Icon type="setting" />
+                            <span>
+                                {SETTINGS}
+                            </span>
+                        </NavLink>
+                    </Item>
+                    <Item key="1">
+                        <Button onClick={() => dispatch(logoutUser())} type="link">
+                            <Typography.Text type="danger">
+                                {LOGOUT_TEXT}
+                            </Typography.Text>
+                        </Button>
+                    </Item>
+
+                </SubMenu>
             </Menu>
         </div>
     );

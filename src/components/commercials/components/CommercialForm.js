@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, Input, Upload, Button, Icon } from 'antd';
-import { normFile, handleFormData } from '../../utils/functions';
+import { normFile, handleFormData, openNotification } from '../../utils/functions';
 import { CREATE_COMMERCIAL, UPLOAD } from '../constants';
 import { postCommercial } from '../actions';
 
@@ -16,6 +16,10 @@ const CommercialForm = ({ form }) => {
                 const newFormData = handleFormData(values);
                 dispatch(postCommercial(newFormData));
                 resetFields();
+                setTimeout(() => {
+                    openNotification('Uploaded Successfully', 'Upload Video');
+                },
+                3000);
             }
         });
     };
@@ -70,5 +74,6 @@ const CommercialForm = ({ form }) => {
         </Form>
     );
 };
+
 const WrappedCommercialForm = Form.create({ name: 'commercial-form' })(CommercialForm);
 export default WrappedCommercialForm;
