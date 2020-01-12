@@ -105,6 +105,8 @@ export const getCampaignById = payload => ({
 export const approveCampaign = payload => ({
     payload,
     type: TYPES.APPROVE_CAMPAIGN,
+});
+/**
  * Triggers request to set campaign title
  *
  * @function
