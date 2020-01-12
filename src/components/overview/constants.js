@@ -37,7 +37,11 @@ export const TICKETS = [
 
 /** @constant */
 export const TASKS_SOURCE = [
-    { iconType: 'plus-circle', id: 1, type: 'Create new tasks' },
+    {
+        iconType: 'plus-circle',
+        id: 1,
+        type: 'Create new tasks',
+    },
     {
         buttonText: 'URGENT',
         buttonType: 'danger',
@@ -63,18 +67,18 @@ export const TASKS_SOURCE = [
 
 /** @constant */
 export const ADMIN_CARDS = [
-    { counts: 10, type: 'Pending Approval' },
-    { counts: '99+', type: 'Approved Campaigns' },
-    { counts: 54, type: 'Locations' },
-    { counts: 7, type: 'Staff' },
+    { color: 'yellow', counts: 10, link: '/dashboard/campaigns', type: 'Pending Approval' },
+    { color: 'green', counts: '99+', link: '/dashboard/campaigns', type: 'Approved Campaigns' },
+    { color: 'green', counts: 54, link: '/dashboard/locations', type: 'Locations' },
+    { color: 'green', counts: 7, link: '/dashboard/locations', type: 'Staff' },
 ];
 
 /** @constant */
 export const CLIENT_CARDS = [
-    { counts: 10, type: 'Campaigns' },
-    { counts: '99+', type: 'Approved Campaigns' },
-    { counts: 54, type: 'Pending Approval' },
-    { counts: 7, type: 'Saved Locations' },
+    { color: 'green', counts: 10, link: '/dashboard/campaigns', type: 'Campaigns' },
+    { color: 'green', counts: '99+', link: '/dashboard/campaigns', type: 'Approved Campaigns' },
+    { color: 'yellow', counts: 54, link: '/dashboard/campaigns', type: 'Pending Approval' },
+    { color: 'green', counts: 7, link: '/dashboard/locations', type: 'Saved Locations' },
 ];
 
 /** @constant */

@@ -25,6 +25,9 @@ aside.ant-layout-sider {
     margin-bottom: 6px;
 }
 
+.side-menu-item {
+    position: fixed;
+}
 .side-menu-item .ant-menu-inline {
     border-right: 0;
 }
@@ -32,3 +35,49 @@ aside.ant-layout-sider {
 .side-menu-item .ant-layout-sider-trigger {
     background: #c41d7f;
 }
+
+.header-menu {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+
+.right-nav{
+    position: relative;
+    float: right;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.left-menu{
+    position: relative;
+    float: left;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+header.header-menu.ant-layout-header {
+    padding: 0 20px;
+}
+
+section.ant-layout.ant-layout-has-sider {
+    margin-top: 100px;
+}
+
+aside.ant-layout-sider {
+    position: fixed;
+}
+
+.ant-layout-content {
+    margin-left: 190px;
+}
+
+@media(max-width: 767px){
+    .display-name{
+      display: none;
+    }
+    .ant-layout-content {
+        margin-left: 70px;
+    }
+  }
+  

@@ -3,18 +3,29 @@
     background: white;
     padding-top: 10px;
 }
+.dashboard-div {
+    width: 100%;
+}
+
 .dashboard-card {
-    width: 220px;
-    height: 105px;
+    height: 110px;
     border-radius: 10px;
-    font-size: large;
-    font-weight: bold;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-bottom: 50px;
 }
+
+.notification-card-text {
+    font-size: large;
+    font-weight: bold;
+}
+
+span.ant-tag.ant-tag-green, span.ant-tag.ant-tag-yellow {
+    padding: 5px 10px;
+}
+
 .ticket-card {
     margin-top: 20px;
     background: white;
@@ -43,4 +54,25 @@
 
 .search-campaigns {
     width: 200px;
+}
+
+.ant-list-split .ant-list-item {
+    border-bottom: 0;
+}
+
+@media(max-width: 767px){
+    div.ant-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .dashboard-card {
+        margin-left: 50px;
+        height: 110px;
+        width: 200px;
+        margin-bottom: 30px;
+    }
+    .ticket-card{
+        width: 300px;
+    }
 }
