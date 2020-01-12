@@ -21,7 +21,7 @@ const ViewCampaign = ({ match, history }) => {
     const { user } = useSelector(state => state.user);
     const userIsAdmin = user.isAdmin;
 
-    const { campaignById, campaignsLoading } = useSelector(state => state.campaigns);
+    const { campaignById, campaignByIdLoading } = useSelector(state => state.campaigns);
 
     const { title,
         status,
@@ -54,7 +54,7 @@ const ViewCampaign = ({ match, history }) => {
             <Row className="d-sm-flex justify-content-sm-center">
                 <Col sm={20} md={16} lg={12}>
                     <Card
-                        loading={campaignsLoading}
+                        loading={campaignByIdLoading}
                         hoverable
                         className="w-100"
                         cover={(
@@ -75,13 +75,13 @@ const ViewCampaign = ({ match, history }) => {
                                 </Typography.Title>
                             </div>
                             <div>
-                                <Tag color={statusColor(status)}>{status.toUpperCase()}</Tag>
+                                <Tag color={statusColor(status)}>{campaignByIdLoading ? '' : status.toUpperCase()}</Tag>
                                 {`₦ ${amount}`}
                             </div>
                         </div>
                         <div>
 
-                            {locationsSelected.map(location => <Tag key={location}>{location}</Tag>)}
+                            {campaignByIdLoading ? [] : locationsSelected.map(location => <Tag key={location}>{location}</Tag>)}
                         </div>
                         <div>
                             {LOCATIONS}

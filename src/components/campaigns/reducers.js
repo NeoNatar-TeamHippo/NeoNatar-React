@@ -2,7 +2,7 @@ import * as TYPES from './actionType';
 
 const initialState = {
     campaignById: [],
-    campaignByIdLoading: false,
+    campaignByIdLoading: true,
     campaignDetails: {
         amount: null,
         current: 0,
@@ -23,11 +23,11 @@ export default (state = initialState, { type, payload }) => {
         case TYPES.LOADING_CAMPAIGNS:
             return { ...state, campaignsLoading: true };
         case TYPES.LOADING_CAMPAIGN_BY_ID:
-            return { ...state, campaignsLoading: true };
+            return { ...state, campaignByIdLoading: true };
         case TYPES.SET_CAMPAIGN:
             return { ...state, campaigns: payload, campaignsLoading: false };
         case TYPES.SET_CAMPAIGN_BY_ID:
-            return { ...state, campaignById: payload, campaignsLoading: false };
+            return { ...state, campaignById: payload, campaignByIdLoading: false };
         case TYPES.SET_ERRORS:
             return { ...state, campaignsLoading: false, errors: payload };
         case TYPES.CLEAR_ERRORS:
