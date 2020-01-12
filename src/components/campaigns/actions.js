@@ -47,3 +47,42 @@ export const clearErrors = () => ({
 export const getCampaigns = () => ({
     type: TYPES.GET_CAMPAIGNS,
 });
+/**
+ * Triggers request to set campaign title
+ *
+ * @function
+ * @return {void} The {@link actionTypes.SET_TITLE } action.
+ */
+export const setTitle = payload => ({
+    payload,
+    type: TYPES.SET_TITLE,
+});
+export const setVideoDetails = payload => ({
+    payload,
+    type: TYPES.SET_VIDEO_DETAILS,
+});
+export const setCampaignLocation = payload => ({
+    payload,
+    type: TYPES.SET_CAMPAIGN_LOCATIONS,
+});
+export const setAmount = payload => ({
+    payload,
+    type: TYPES.SET_AMOUNT,
+});
+export const setDuration = payload => ({
+    payload,
+    type: TYPES.SET_DURATION,
+});
+export const next = () => ({
+    type: TYPES.NEXT,
+});
+export const previous = () => ({
+    type: TYPES.PREVIOUS,
+});
+export const resetFormState = () => ({
+    type: TYPES.RESET_FORM_STATE,
+});
+export const createCampaign = (payload) => ({
+    payload,
+    type: TYPES.CREATE_CAMPAIGN,
+});

@@ -14,9 +14,11 @@ export const LOGOUT_TEXT = 'LOG OUT';
 /** @constant */
 export const ADMIN_SIDE_MENU_ITEMS = [
     { iconType: 'dashboard', label: 'Overview', link: '/dashboard' },
-    { iconType: 'sound', label: 'Campaigns', link: '/dashboard/campaigns' },
+    // @TODO: dont forget to remove this from admin part, an admin is not meant to create a campaign
+    { iconType: 'video-camera', label: 'New Campaign', link: '/dashboard/new-campaigns' },
     { iconType: 'environment', label: 'Locations', link: '/dashboard/locations' },
     { iconType: 'play-square', label: 'Videos', link: '/dashboard/commercials' },
+    { iconType: 'sound', label: 'Campaigns', link: '/dashboard/campaigns' },
     { iconType: 'credit-card', label: 'Tickets', link: '/dashboard/tickets' },
     { iconType: 'team', label: 'Users' },
     { iconType: 'user', label: 'Staff' },
@@ -25,9 +27,9 @@ export const ADMIN_SIDE_MENU_ITEMS = [
 /** @constant */
 export const CLIENT_SIDE_MENU_ITEMS = [
     { iconType: 'dashboard', label: 'Overview', link: '/dashboard' },
-    { iconType: 'sound', label: 'Campaigns', link: '/dashboard/campaigns' },
-    { iconType: 'environment', label: 'Locations', link: '/dashboard/locations' },
+    { iconType: 'video-camera', label: 'New Campaign', link: '/dashboard/new-campaigns' },
     { iconType: 'play-square', label: 'Videos', link: '/dashboard/commercials' },
+    { iconType: 'environment', label: 'Locations', link: '/dashboard/locations' },
     { iconType: 'pushpin', label: 'Saved Locations', link: '/dashboard/savedLocations' },
     { iconType: 'credit-card', label: 'Tickets', link: '/dashboard/tickets' },
 ];

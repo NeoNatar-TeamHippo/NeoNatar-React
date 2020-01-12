@@ -14,3 +14,18 @@ export const allCampaigns = async () => {
     const data = await response.json();
     return data;
 };
+export const createCampaigns = async (value) => {
+    const token = localStorage.getItem('FBToken');
+    const parameters = {
+        body: JSON.stringify(value),
+        headers: {
+            Authorization: token,
+            'Content-Type': 'application/json',
+        },
+        method: 'POST',
+        mode: 'cors',
+    };
+    const response = await fetch(CAMPAIGN_URL, parameters);
+    const data = await response.json();
+    return data;
+};

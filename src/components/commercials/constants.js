@@ -31,7 +31,7 @@ export const NEW_VIDEO = 'New Video';
 /** @constant */
 export const NAME = 'commercials';
 
-export const CREATE_COMMERCIAL = 'Create Commercial';
+export const CREATE_COMMERCIAL = 'Create Video Commercial';
 
 /** @constant */
 export const CANCEL = 'Cancel';

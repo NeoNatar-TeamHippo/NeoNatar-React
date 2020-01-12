@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Form, Input, Upload, Button, Icon } from 'antd';
 import { normFile, handleFormData, openNotification } from '../../utils/functions';
 import { CREATE_COMMERCIAL, UPLOAD } from '../constants';
@@ -7,6 +7,7 @@ import { postCommercial } from '../actions';
 
 const CommercialForm = ({ form }) => {
     const dispatch = useDispatch();
+    const { loadingCommercial } = useSelector(state => state.commercials);
     const { getFieldDecorator, resetFields, validateFields } = form;
     const handleSubmit = e => {
         e.preventDefault();
@@ -64,6 +65,7 @@ const CommercialForm = ({ form }) => {
                 <Button
                     type="primary"
                     htmlType="submit"
+                    loading={loadingCommercial}
                     block
                 >
                     {CREATE_COMMERCIAL}
