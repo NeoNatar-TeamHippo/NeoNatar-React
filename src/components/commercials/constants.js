@@ -27,6 +27,7 @@ export const TABLE_VALUES = [
 ];
 /** @constant */
 export const NEW = 'New';
+export const BACK = 'Back';
 
 /** @constant */
 export const NAME = 'commercials';

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal, Button } from 'antd';
 import CommercialForm from './CommercialForm';
 import Table from './Table';
-import { NEW_VIDEO } from '../constants';
+import { NEW_VIDEO, BACK } from '../constants';
 
 const Commercials = () => {
     const [visible, setvisible] = useState(false);
@@ -19,10 +19,16 @@ const Commercials = () => {
             </Button>
             <Table />
             <Modal
+                centered
                 visible={visible}
                 title="Upload Video"
                 onOk={handleOk}
                 onCancel={handleCancel}
+                footer={[
+                    <Button key="back" onClick={handleCancel}>
+                        {BACK}
+                    </Button>
+                ]}
             >
                 <CommercialForm />
             </Modal>
