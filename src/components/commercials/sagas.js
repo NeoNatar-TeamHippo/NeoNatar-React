@@ -4,7 +4,7 @@ import * as TYPES from './actionTypes';
 import { deleteCommercialRequest, setCommercial, loadingCommercial } from './actions';
 import { postCommercialService, deleteCommercialById } from './services';
 import { openNotification } from '../utils/functions';
-import { next, setVideoDetails } from '../campaigns/actions';
+import { next, setVideoDetails, setCommercialId, setDuration } from '../campaigns/actions';
 import { firebaseCommercials } from '../utils/firebase';
 
 function* startListener() {
@@ -34,6 +34,8 @@ function* postNewCommercial(data) {
                 title: res.data.title,
                 url: res.data.url,
             };
+            yield put(setCommercialId(res.data.id))
+            yield put(setDuration(res.data.duration))
             yield put(setVideoDetails(videoDetails));
         } else {
             console.log('error getting data');

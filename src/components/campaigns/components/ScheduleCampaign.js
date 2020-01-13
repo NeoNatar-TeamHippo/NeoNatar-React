@@ -19,7 +19,7 @@ const ScheduleCampaign = ({ history }) => {
     const dispatch = useDispatch();
     const [selectOption, setselectOption] = useState(null);
     const {
-        campaignDetails: { amount, videoDetails, locations },
+        campaignDetails: { amount, commercialId, duration, videoDetails, locations },
     } = useSelector(state => state.campaigns);
     const { locations: allLocations } = useSelector(state => state.location);
     const { user: { email } } = useSelector(state => state.user);
@@ -60,10 +60,13 @@ const ScheduleCampaign = ({ history }) => {
     const callback = response => {
         if (response.status === 'success') {
             dispatch(next());
-            // const newCampaign = {
-
-            // }
-            // dispatch(createCampaign(newCampaign));
+            const newCampaign = {
+                commercialId,
+                duration: 5,
+                locationsSelected: locations,
+                title: newTitle,
+            }
+            dispatch(createCampaign(newCampaign));
             message.success('Payment successful, Thanks for working with us!!!');
             setTimeout(() => {
                 dispatch(resetFormState());
