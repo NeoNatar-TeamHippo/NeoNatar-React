@@ -56,7 +56,7 @@ const Campaigns = ({ history }) => {
                 const color = statusColor(status);
                 return (
                     <Tag color={color} key={status}>
-                        {status}
+                        {status.toUpperCase()}
                     </Tag>
                 );
             },
