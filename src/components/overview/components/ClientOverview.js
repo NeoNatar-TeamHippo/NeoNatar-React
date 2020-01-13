@@ -1,5 +1,6 @@
 import React from 'react';
-import { Modal, Tag, Table, Icon, Input, Badge, Card, Col, Row } from 'antd';
+import { Modal, Tag, Table, Icon, Input, Typography, Card, Col, Row } from 'antd';
+import { NavLink } from 'react-router-dom';
 
 import {
     ALL_CAMPAIGNS,
@@ -9,6 +10,7 @@ import {
     VIDEO_CAMERA
 } from '../constants';
 
+const { Text } = Typography;
 const { Search } = Input;
 const { confirm } = Modal;
 function showConfirm() {
@@ -20,13 +22,19 @@ function showConfirm() {
     });
 }
 const Dashboard = () => (
-    <div>
-        <Row gutter={0}>
-            {CLIENT_CARDS.map(({ counts, type }) => (
+    <div className="dashboard-div">
+        <Row gutter={48}>
+            {CLIENT_CARDS.map(({ color, counts, link, type }) => (
                 <Col key={type} span={6}>
-                    <Badge count={counts}>
-                        <Card className="dashboard-card">{type}</Card>
-                    </Badge>
+                    <NavLink to={link}>
+                        <Card hoverable className="dashboard-card">
+                            <Text className="notification-card-text">{type}</Text>
+                            <br />
+                            <Tag class="notification-card-tag" color={color} key={type}>
+                                {counts}
+                            </Tag>
+                        </Card>
+                    </NavLink>
                 </Col>
             ))}
         </Row>

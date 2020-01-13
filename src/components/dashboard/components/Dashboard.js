@@ -8,6 +8,7 @@ import tickets from '../../tickets';
 import layouts from '../../layouts';
 import commercials from '../../commercials';
 import savedLocations from '../../savedLocations';
+import transactions from '../../transactions';
 
 const { Overview } = overview.components;
 const { Campaigns, ViewCampaign, NewCampaigns } = campaigns.components;
@@ -15,6 +16,7 @@ const { Commercials } = commercials.components;
 const { Locations, LocationById, NewLocation } = locations.components;
 const { Tickets, ViewTicket } = tickets.components;
 const { SavedLocations, SavedLocationById } = savedLocations.components;
+const { Transactions } = transactions.components;
 
 const { DashboardLayout } = layouts.components;
 const Dashboard = props => {
@@ -34,6 +36,7 @@ const Dashboard = props => {
         { component: Tickets, path: getPathWay('tickets') },
         { component: ViewTicket, path: getNestedPath('tickets', ':id') },
         { component: LocationById, path: getNestedPath('locations', ':id') },
+        { component: Transactions, path: getPathWay('transactions') },
     ];
     const renderRoutes = routeComponent => routeComponent.map(route => {
         const { path: routePath, component } = route;

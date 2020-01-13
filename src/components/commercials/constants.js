@@ -6,7 +6,7 @@ export const UPLOAD = 'Video Upload';
 
 /** @constant */
 export const FILE_TYPE = 'File types accepted include: .mp4';
-export const NEW_VIDEO = 'New Video';
+
 /** @constant */
 export const TABLE_VALUES = [
     {
@@ -26,11 +26,16 @@ export const TABLE_VALUES = [
     },
 ];
 /** @constant */
-export const NEW = 'New';
+export const NEW_VIDEO = 'New Video';
 
 /** @constant */
 export const NAME = 'commercials';
+
 export const CREATE_COMMERCIAL = 'Create Video Commercial';
 const baseUrl = 'https://europe-west1-neonatar.cloudfunctions.net';
+
+/** @constant */
+export const CANCEL = 'Cancel';
+
 export const COMMERCIALS_URL = `${baseUrl}/v1/commercials`;
 
