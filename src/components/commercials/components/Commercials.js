@@ -27,7 +27,7 @@ const Commercials = () => {
                 footer={[
                     <Button key="back" onClick={handleCancel}>
                         {BACK}
-                    </Button>
+                    </Button>,
                 ]}
             >
                 <CommercialForm />
