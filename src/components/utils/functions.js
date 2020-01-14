@@ -4,12 +4,10 @@ export const renderRateFormat = text => {
     let color;
     let rateText;
     if (parseInt(text, 10) <= 200) {
-        // @TODO: change from volcano to something else
-        // also dont show test low, mediun high
         color = 'volcano';
         rateText = 'LOW';
     } else if (parseInt(text, 10) <= 500) {
-        color = 'orange';
+        color = 'blue';
         rateText = 'MEDIUM';
     } else {
         color = 'green';
@@ -20,7 +18,6 @@ export const renderRateFormat = text => {
 
 export const renderPrice = text => {
     let type;
-    // @TODO: uniform color for the price
     if (parseInt(text, 10) <= 200) {
         type = 'danger';
     } else if (parseInt(text, 10) <= 500) {

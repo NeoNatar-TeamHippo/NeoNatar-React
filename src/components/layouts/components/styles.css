@@ -28,6 +28,7 @@ aside.ant-layout-sider {
 .side-menu-item {
     position: fixed;
 }
+
 .side-menu-item .ant-menu-inline {
     border-right: 0;
 }
@@ -42,14 +43,14 @@ aside.ant-layout-sider {
     z-index: 1;
 }
 
-.right-nav{
+.right-nav {
     position: relative;
     float: right;
     top: 50%;
     transform: translateY(-50%);
 }
 
-.left-menu{
+.left-menu {
     position: relative;
     float: left;
     top: 50%;
@@ -72,12 +73,12 @@ aside.ant-layout-sider {
     margin-left: 190px;
 }
 
-@media(max-width: 767px){
-    .display-name{
-      display: none;
+@media(max-width: 767px) {
+    .display-name {
+        display: none;
     }
+
     .ant-layout-content {
         margin-left: 70px;
     }
-  }
-  
+}

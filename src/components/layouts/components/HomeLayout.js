@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import NavHeader from './Header';
 import FooterComponent from './Footer';
 
-const { Content, Footer, Header } = Layout;
+const { Footer, Header } = Layout;
 
 const HomeLayout = props => {
     const { children } = props;
@@ -13,7 +13,7 @@ const HomeLayout = props => {
             <Header>
                 <NavHeader />
             </Header>
-            <Content className="content">{children}</Content>
+            <div className="content">{children}</div>
             <Footer className="text-center">
                 <FooterComponent />
             </Footer>
