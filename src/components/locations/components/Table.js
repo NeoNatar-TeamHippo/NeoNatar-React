@@ -113,7 +113,7 @@ const LocationTable = ({ history }) => {
         {
             key: 'action',
             render: (text, record) => (
-                <>
+                <div className="d-flex justify-content-between">
                     <>
                         <Tooltip placement="top" title="View details">
                             <Button
@@ -140,7 +140,7 @@ const LocationTable = ({ history }) => {
                             </Dropdown>
                         </Tooltip>
                     </div>
-                </>
+                </div>
             ),
             title: 'Action',
         },
@@ -151,7 +151,7 @@ const LocationTable = ({ history }) => {
                 <div hidden={isAdmin}>
                     <Dropdown disabled={noSavedLoc || !hasSelected} overlay={menu2}>
                         <Button
-                            className="ml-2"
+                            className="my-2"
                             size="default"
                             type="primary"
                             disabled={noSavedLoc}

@@ -4,6 +4,7 @@ import * as TYPES from './actionType';
 import { setErrors, loadingUI, setAuthenticated, clearErrors } from './actions';
 import { signUpService } from './services';
 import { loadingUser } from '../navbar/actions';
+import { openMessage } from '../utils/functions';
 
 function* userSignUp(userData) {
     try {
@@ -16,6 +17,7 @@ function* userSignUp(userData) {
             yield put(loadingUser(authorization));
             yield put(push('/signin'));
         } else {
+            yield put(openMessage(res.message, 5, 'error'));
             yield put(setErrors({ message: res.message }));
         }
     } catch (error) {

@@ -1,4 +1,4 @@
-import { notification } from 'antd';
+import { notification, message } from 'antd';
 
 export const renderRateFormat = text => {
     let color;
@@ -28,12 +28,15 @@ export const renderPrice = text => {
     return { type };
 };
 
-export const openNotification = (description, message, type) => {
+export const openNotification = (description, messageText, type) => {
     notification[type]({
         description,
         duration: 5,
-        message,
+        messageText,
     });
+};
+export const openMessage = (messageText, duration, type) => {
+    message[type](messageText, duration);
 };
 
 export const normFile = e => {
