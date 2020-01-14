@@ -17,6 +17,7 @@ export const renderRateFormat = text => {
     }
     return { color, rateText };
 };
+
 export const renderPrice = text => {
     let type;
     // @TODO: uniform color for the price
@@ -37,12 +38,14 @@ export const openNotification = (description, message, type) => {
         message,
     });
 };
+
 export const normFile = e => {
     if (Array.isArray(e)) {
         return e;
     }
     return e && e.fileList;
 };
+
 export const handleFormData = formValues => {
     const formData = new FormData();
     Object.keys(formValues).forEach(key => {

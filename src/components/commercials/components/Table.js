@@ -1,30 +1,46 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Tooltip, Button, Table, Modal } from 'antd';
+
+import ViewCommercial from './ViewCommercial';
+
 import { TABLE_VALUES } from '../constants';
-import { getCommercial, removeCommercial } from '../actions';
+import { getCommercial, removeCommercial, deleteCommercialRequest } from '../actions';
+
+import { openNotification } from '../../utils/functions';
 
 const CommercialTable = () => {
+    const [selectedModal, setSelectedModal] = useState(null);
+
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(getCommercial());
     }, [dispatch]);
-    const { commercials } = useSelector(state => state.commercials);
+
+    const {
+        commercials,
+        isCommercialsLoading,
+    } = useSelector(state => state.commercials);
+
     const showDeleteConfirm = id => {
         Modal.confirm({
             cancelText: 'No',
             content: 'This cannot be reversed',
             okText: 'Yes',
             okType: 'danger',
-            onCancel() {
-                console.log('Cancel');
-            },
             onOk() {
+                dispatch(deleteCommercialRequest(id));
                 dispatch(removeCommercial(id));
+                setTimeout(() => {
+                    openNotification('Deleted Successfully', 'Delete Video');
+                },
+                2000);
             },
             title: 'Are you sure delete this video?',
         });
     };
+
     const columns = [
         ...TABLE_VALUES,
         {
@@ -33,7 +49,7 @@ const CommercialTable = () => {
                 <>
                     <Tooltip placement="top" title="View video">
                         <Button
-                            onClick={() => { console.log(record.url); }}
+                            onClick={() => setSelectedModal(record.commercialId)}
                             type="link"
                             icon="eye"
                         />
@@ -53,13 +69,20 @@ const CommercialTable = () => {
     ];
     return (
         <div>
+            <ViewCommercial
+                selectedModal={selectedModal}
+                onCancel={() => setSelectedModal(null)}
+                data={commercials}
+                onOk={() => setSelectedModal(null)}
+            />
             <Table
                 columns={columns}
-                // loading={loadingCommercials}
+                loading={isCommercialsLoading}
                 dataSource={commercials}
                 rowKey={record => record.id}
             />
         </div>
     );
 };
+
 export default CommercialTable;

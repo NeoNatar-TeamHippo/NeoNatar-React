@@ -23,14 +23,14 @@ const Tasks = () => (
                             title={<a href={DASHBOARD}>{type}</a>}
                             description={date}
                         />
-                        <Icon type={iconType} />
-                        <Button
+                        <Icon type={iconType} theme="twoTone" twoToneColor="#eb2f96" />
+                        {/* <Button
                             size="small"
                             type={buttonType}
                             ghost
                         >
                             {buttonText}
-                        </Button>
+                        </Button> */}
                     </List.Item>
                 );
             }}
