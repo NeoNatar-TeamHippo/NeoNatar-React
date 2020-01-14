@@ -14,7 +14,6 @@ import {
     resolvingTicket
 } from './actions';
 import {
-    allTickets,
     postTicket,
     postTicketMessages,
     markTicketAsResolved
@@ -22,22 +21,41 @@ import {
 
 import { firebaseTickets } from '../utils/firebase';
 
-function* getAllTickets() {
-    try {
-        yield put(loadingTickets());
-        const res = yield call(allTickets);
-        if (res.status === 'success') {
-            yield put(setTicket(res.data));
-        } else {
-            yield put(setErrors({ message: res.message }));
+function* startTicketListener(payload) {
+    const { isAdmin, userId } = payload;
+    yield put(loadingTickets());
+    const channel = new EventChannel(emiter => {
+        firebaseTickets.onSnapshot(snapshot => {
+            emiter({ data: snapshot.docs || [] });
+        });
+        return () => {
+            firebaseTickets.off();
+        };
+    });
+    while (true) {
+        const { data } = yield take(channel);
+        const newData = data.map(element => ({
+            ...element.data(),
+            ticketId: element.id,
+        }));
+        const ticketData = newData.map(ticket => {
+            const { createdAt } = ticket;
+            return ({
+                date: (new Date(createdAt)).toDateString(),
+                ...ticket,
+            });
+        });
+        let userTicket;
+        if (isAdmin) userTicket = ticketData;
+        if (!isAdmin) {
+            userTicket = ticketData.filter(ticket => ticket.createdBy === userId);
         }
-    } catch (error) {
-        yield put(setErrors({ message: 'Something went wrong please try again' }));
+        yield put(setTicket(userTicket));
     }
 }
 
-function* getTicketsEffect() {
-    yield call(getAllTickets);
+function* getTicketsEffect({ payload }) {
+    yield fork(startTicketListener, payload);
 }
 
 function* postNewTicket(payload) {
@@ -85,7 +103,7 @@ function* getSingleTicket(id) {
                 emiter({ data: snapshot.data() || [] });
             });
             return () => {
-                firebaseTickets.off();
+                firebaseTickets.doc(id).off();
             };
         });
 
@@ -107,6 +125,7 @@ function* getSingleTicket(id) {
         yield put(setErrors({ message: 'Something went wrong please try again' }));
     }
 }
+
 function* getTicketsByIdEffect({ payload }) {
     yield call(getSingleTicket, payload);
 }
@@ -128,37 +147,10 @@ function* markTicketResolvedEffect({ payload }) {
     yield call(markTicketResolved, payload);
 }
 
-function* startTicketListener() {
-    const channel = new EventChannel(emiter => {
-        firebaseTickets.onSnapshot(snapshot => {
-            emiter({ data: snapshot.docs || [] });
-        });
-        return () => {
-            firebaseTickets.off();
-        };
-    });
-    while (true) {
-        const { data } = yield take(channel);
-        const newData = data.map(element => ({
-            ...element.data(),
-            ticketId: element.id,
-        }));
-        const ticketData = newData.map(ticket => {
-            const { createdAt } = ticket;
-            return ({
-                date: (new Date(createdAt)).toDateString(),
-                ...ticket,
-            });
-        });
-        yield put(setTicket(ticketData));
-    }
-}
-
 export default function* actionWatcher() {
     yield takeEvery(TYPES.GET_TICKETS, getTicketsEffect);
     yield takeEvery(TYPES.GET_TICKETS_BY_ID, getTicketsByIdEffect);
     yield takeEvery(TYPES.POST_TICKET, postTicketEffect);
     yield takeEvery(TYPES.RESOLVE_TICKET, markTicketResolvedEffect);
     yield takeEvery(TYPES.POST_TICKET_MESSAGE, postTicketMessageEffect);
-    yield fork(startTicketListener);
 }

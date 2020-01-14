@@ -110,7 +110,8 @@ export const clearErrors = () => ({
  * @function
  * @return {void} The {@link actionTypes.GET_TICKETS } action.
  */
-export const getTickets = () => ({
+export const getTickets = payload => ({
+    payload,
     type: TYPES.GET_TICKETS,
 });
 /**
@@ -132,6 +133,16 @@ export const getTicketsById = payload => ({
 export const postTicketMessage = payload => ({
     payload,
     type: TYPES.POST_TICKET_MESSAGE,
+});
+/**
+ * Triggers request to post ticket's message
+ *
+ * @function
+ * @return {void} The {@link actionTypes.POST_TICKET_MESSAGE } action.
+ */
+export const updateTicketMessage = payload => ({
+    payload,
+    type: TYPES.UPDATE_TICKET_MESSAGE,
 });
 /**
  * Triggers request to mark ticket as resolved

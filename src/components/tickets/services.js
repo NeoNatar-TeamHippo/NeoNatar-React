@@ -46,10 +46,10 @@ export const ticketById = async id => {
 };
 
 export const postTicketMessages = async payload => {
-    const { id, body } = payload;
+    const { id, content } = payload;
     const token = localStorage.getItem('FBToken');
     const parameters = {
-        body: JSON.stringify({ body }),
+        body: JSON.stringify({ body: content }),
         headers: {
             Authorization: token,
             'Content-Type': 'application/json',

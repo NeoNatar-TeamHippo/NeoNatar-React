@@ -1,26 +1,35 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Avatar, Button, Tag, Table, Row, Col, Menu } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Avatar, Button, Tag, Table, Row, Col, Menu, Tooltip, PageHeader } from 'antd';
 
 import CreateTickets from './CreateTickets';
-import { ALL, PENDING, NEW, RESOLVED, HORIZONTAL } from '../constants';
+import { ALL, PENDING, NEW, RESOLVED, HORIZONTAL, TICKETS } from '../constants';
 import { priorityColor } from '../../utils/functions';
+import { getTickets } from '../actions';
 
 const menuItems = [ALL, PENDING, NEW, RESOLVED];
 const Tickets = ({ history }) => {
-    const { user: { isAdmin } } = useSelector(state => state.user);
+    const { user: { isAdmin, userId } } = useSelector(state => state.user);
+    const dispatch = useDispatch();
 
-    const { tickets } = useSelector(state => state.ticket);
+    useEffect(() => {
+        dispatch(getTickets({ isAdmin, userId }));
+    }, [dispatch, isAdmin, userId]);
+
+    const { tickets, ticketsLoading } = useSelector(state => state.ticket);
 
     const [visible, setVisible] = useState(false);
-    const [ticketData, setTicketData] = useState(tickets);
+    const [ticketData, setTicketData] = useState(((tickets.length !== 0) ? tickets : []));
+
+    useEffect(() => {
+        setTicketData(tickets);
+    }, [tickets]);
 
     const handleViewTicket = ticketId => {
         history.push(`/dashboard/tickets/${ticketId}`);
     };
 
     const handleChangeTab = ({ key }) => {
-        let tableData;
         switch (key) {
             case ALL:
                 setTicketData(tickets);
@@ -38,7 +47,6 @@ const Tickets = ({ history }) => {
                 setTicketData(tickets);
                 break;
         }
-        return tableData;
     };
 
     const columns = [
@@ -47,6 +55,7 @@ const Tickets = ({ history }) => {
             key: 'avater',
             render: avater => <Avatar src={avater} />,
             title: '',
+            width: 10,
         },
         {
             dataIndex: 'customerName',
@@ -76,47 +85,69 @@ const Tickets = ({ history }) => {
             },
             title: 'Priority',
         },
+        {
+            key: 'action',
+            render: (text, record) => (
+                <>
+                    <Tooltip placement="top" title="View ticket">
+                        <Button
+                            onClick={() => handleViewTicket(record.ticketId)}
+                            type="link"
+                            icon="eye"
+                        />
+                    </Tooltip>
+                </>
+            ),
+            title: 'Action',
+        },
     ];
     return (
-        <div>
-            <Row type="flex" style={{ marginBottom: 5 }}>
-                <Col span={14}>
-                    <Menu mode={HORIZONTAL} onClick={handleChangeTab}>
-                        {
+        <>
+            <PageHeader
+                onBack={() => history.goBack()}
+                title={TICKETS}
+                className="mb-2 page_header"
+            />
+            <div>
+                <Row type="flex" style={{ marginBottom: 5 }}>
+                    <Col span={14}>
+                        <Menu
+                            mode={HORIZONTAL}
+                            onClick={handleChangeTab}
+                            defaultSelectedKeys={[ALL]}
+                        >
+                            {
                             menuItems.map(key => (
                                 <Menu.Item key={key}>
                                     {key}
                                 </Menu.Item>
                             ))
                         }
-                    </Menu>
-                </Col>
-                <Col span={2} offset={8}>
-                    <Button
-                        onClick={() => setVisible(true)}
-                        className="mb-2"
-                        type="primary"
-                        hidden={isAdmin}
-                    >
-                        {NEW}
-                    </Button>
-                </Col>
-            </Row>
-            <CreateTickets
-                visible={visible}
-                onCancel={() => setVisible(false)}
-            />
-            <Table
-                columns={columns}
-                dataSource={ticketData}
-                onRow={record => ({
-                    onClick: () => {
-                        handleViewTicket(record.ticketId);
-                    },
-                })}
-                rowKey={record => record.ticketId}
-            />
-        </div>
+                        </Menu>
+                    </Col>
+                    <Col span={2} offset={8}>
+                        <Button
+                            onClick={() => setVisible(true)}
+                            className="mb-2"
+                            type="primary"
+                            hidden={isAdmin}
+                        >
+                            {NEW}
+                        </Button>
+                    </Col>
+                </Row>
+                <CreateTickets
+                    visible={visible}
+                    onCancel={() => setVisible(false)}
+                />
+                <Table
+                    loading={ticketsLoading}
+                    columns={columns}
+                    dataSource={ticketData}
+                    rowKey={record => record.ticketId}
+                />
+            </div>
+        </>
     );
 };
 
