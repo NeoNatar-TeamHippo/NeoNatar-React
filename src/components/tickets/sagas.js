@@ -3,7 +3,6 @@ import { eventChannel as EventChannel } from 'redux-saga';
 import moment from 'moment';
 import * as TYPES from './actionType';
 import {
-    setErrors,
     setTicket,
     setTicketById,
     postingTicket,
@@ -29,10 +28,10 @@ function* getAllTickets() {
         if (res.status === 'success') {
             yield put(setTicket(res.data));
         } else {
-            yield put(setErrors({ message: res.message }));
+            console.log(res.message);
         }
     } catch (error) {
-        yield put(setErrors({ message: 'Something went wrong please try again' }));
+        console.error(error);
     }
 }
 
@@ -47,10 +46,10 @@ function* postNewTicket(payload) {
         if (res.status === 'success') {
             yield put(postSuccess({ message: 'ticket Created succesfully' }));
         } else {
-            yield put(setErrors({ message: res.message }));
+            console.log(res.message);
         }
     } catch (error) {
-        yield put(setErrors({ message: 'Something went wrong please try again' }));
+        console.error(error);
     }
 }
 
@@ -65,10 +64,10 @@ function* postTicketMessage(payload) {
         if (res.status === 'success') {
             yield put(postSuccess({ message: ' New Ticket Message Created succesfully' }));
         } else {
-            yield put(setErrors({ message: res.message }));
+            console.log(res.message);
         }
     } catch (error) {
-        yield put(setErrors({ message: 'Something went wrong please try again' }));
+        console.error(error);
     }
 }
 
@@ -104,7 +103,7 @@ function* getSingleTicket(id) {
         data.messages = newData;
         yield put(setTicketById(data));
     } catch (error) {
-        yield put(setErrors({ message: 'Something went wrong please try again' }));
+        console.error(error);
     }
 }
 function* getTicketsByIdEffect({ payload }) {
@@ -118,10 +117,10 @@ function* markTicketResolved(id) {
         if (res.status === 'success') {
             yield put(postSuccess({ message: 'Ticket Marked as Resolved' }));
         } else {
-            yield put(setErrors({ message: res.message }));
+            console.log(res.message);
         }
     } catch (error) {
-        yield put(setErrors({ message: 'Something went wrong please try again' }));
+        console.error(error);
     }
 }
 function* markTicketResolvedEffect({ payload }) {

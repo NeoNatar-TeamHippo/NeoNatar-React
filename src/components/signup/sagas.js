@@ -19,8 +19,14 @@ function* userSignUp(userData) {
             yield put(setErrors({ message: res.message }));
         }
     } catch (error) {
-        console.log(error);
-        yield put(setErrors({ message: 'Something went wrong please try again' }));
+        switch (error.status) {
+            case 500:
+                yield put(setErrors({ message: 'Server error please try again' }));
+                break;
+            default:
+                yield put(setErrors({ message: 'Something went wrong please try again' }));
+                break;
+        }
     }
 }
 function* postUserEffect({ payload }) {
