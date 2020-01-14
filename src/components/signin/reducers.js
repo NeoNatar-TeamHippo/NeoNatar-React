@@ -22,7 +22,7 @@ export default (state = initialState, { type, payload }) => {
         case TYPES.CLEAR_ERRORS:
             return { ...state, errors: {}, loading: false };
         case TYPES.AUTH_TRUE:
-            return { ...state, errors: {}, loading: false };
+            return { ...state, authenticated: true, errors: {}, loading: false };
         default:
             return state;
     }

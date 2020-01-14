@@ -1,28 +1,25 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import * as TYPES from './actionType';
-import { setErrors, loadingUI, setAuthenticated, setUnAuthenticated, clearErrors } from './actions';
+import { setErrors, loadingUI, setAuthenticated, clearErrors } from './actions';
 import { loadingUser } from '../navbar/actions';
 import { signInService } from './services';
 
 function* userSignIn(userData) {
     try {
+        yield put(clearErrors());
         yield put(loadingUI());
         const res = yield call(signInService, userData);
         if (res.status === 'success') {
             const authorization = `Bearer ${res.data}`;
             yield put(setAuthenticated(authorization));
-            yield put(clearErrors());
             yield put(loadingUser(authorization));
             yield put(push('/dashboard'));
         } else {
             yield put(setErrors({ message: res.message }));
-            yield put(setUnAuthenticated());
         }
     } catch (error) {
-        yield put(clearErrors());
         yield put(setErrors({ message: 'Something went wrong please try again' }));
-        yield put(setUnAuthenticated());
     }
 }
 function* postUserEffect({ payload }) {
