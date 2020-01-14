@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { withRouter } from 'react-router-dom'
-import {
-    Descriptions, Col, Row, Button, Tooltip, Typography, Select, Divider,
-    message
-} from 'antd';
+import { withRouter } from 'react-router-dom';
+import { Descriptions, Col, Row, Button, Tooltip, Typography, Select, message, Tag } from 'antd';
 import PaystackButton from 'react-paystack';
 import { SELECT_OPTIONS, REFERENCE_VALUE, CAMPAIGN_LENGTH_TEXT } from '../constants';
 import { openNotification } from '../../utils/functions';
@@ -19,7 +16,7 @@ const ScheduleCampaign = ({ history }) => {
     const dispatch = useDispatch();
     const [selectOption, setselectOption] = useState(null);
     const {
-        campaignDetails: { amount, commercialId, duration, videoDetails, locations },
+        campaignDetails: { amount, commercialId, videoDetails, locations },
     } = useSelector(state => state.campaigns);
     const { locations: allLocations } = useSelector(state => state.location);
     const { user: { email } } = useSelector(state => state.user);
@@ -46,13 +43,7 @@ const ScheduleCampaign = ({ history }) => {
     const renderCampaignLocation = () => allLocations.map(location => locations.map(rowKey => {
         if (location.locationId === rowKey) {
             return (
-                <div>
-                    <Typography.Text className="mx-2">{location.name}</Typography.Text>
-                    <Divider type="vertical" />
-                    <Typography.Text type="secondary" className="ml-3">
-                        {location.state}
-                    </Typography.Text>
-                </div>
+                <Tag className="my-1">{location.name}</Tag>
             );
         }
         return true;
@@ -65,7 +56,7 @@ const ScheduleCampaign = ({ history }) => {
                 duration: 5,
                 locationsSelected: locations,
                 title: newTitle,
-            }
+            };
             dispatch(createCampaign(newCampaign));
             message.success('Payment successful, Thanks for working with us!!!');
             setTimeout(() => {
