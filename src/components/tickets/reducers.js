@@ -17,6 +17,10 @@ export default (state = initialState, { type, payload }) => {
             return { ...state, tickets: payload, ticketsLoading: false };
         case TYPES.SET_TICKET_BY_ID:
             return { ...state, ticketIdLoading: false, ticketsById: payload };
+        case TYPES.UPDATE_TICKET_MESSAGE:
+            return { ...state,
+                ticketIdLoading: false,
+                ticketsById: { messages: [...state.ticketsById.messages, payload] } };
         case TYPES.SET_ERRORS:
             return { ...state, errors: payload, ticketsLoading: false };
         case TYPES.CLEAR_ERRORS:

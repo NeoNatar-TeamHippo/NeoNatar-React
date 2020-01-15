@@ -5,7 +5,7 @@ import {
     Typography, Icon
 } from 'antd';
 import moment from 'moment';
-import { getTicketsById, postTicketMessage, resolveTicket } from '../actions';
+import { getTicketsById, postTicketMessage, resolveTicket, updateTicketMessage } from '../actions';
 import { ADDCOMMENT, MARKED_AS_RESOLVED, IS_RESOLVED } from '../constants';
 
 const { TextArea } = Input;
@@ -31,11 +31,9 @@ const ViewTicket = ({ match, form }) => {
     const [submitting, setsubmitting] = useState(false);
     const commentsEndRef = useRef(null);
 
-    const [comments, setcomments] = useState(messages);
-
     useEffect(() => {
         commentsEndRef.current.scrollIntoView({ behavior: 'smooth' });
-    }, [comments]);
+    }, [messages]);
 
     const { getFieldDecorator, resetFields, validateFields } = form;
     const actions = [
@@ -44,7 +42,6 @@ const ViewTicket = ({ match, form }) => {
                 <Icon
                     type="delete"
                     className="text-danger"
-                // onClick={handleDelete}
                 />
             </Tooltip>
         </span>,
@@ -67,14 +64,22 @@ const ViewTicket = ({ match, form }) => {
                 setsubmitting(true);
                 setTimeout(() => {
                     setsubmitting(false);
-                    setcomments([...comments, {
+                    dispatch(updateTicketMessage({
                         author: customerName,
                         avatar,
-                        content: <p>{values.body}</p>,
+                        content: values.body,
                         datetime: moment().fromNow(),
+                        id: ticketId,
                         isAdmin: userIsAdmin,
-                    }]);
-                    dispatch(postTicketMessage({ body: values.body, id: ticketId }));
+                    }));
+                    dispatch(postTicketMessage({
+                        author: customerName,
+                        avatar,
+                        content: values.body,
+                        datetime: moment().fromNow(),
+                        id: ticketId,
+                        isAdmin: userIsAdmin,
+                    }));
                 }, 1000);
                 resetFields();
             }

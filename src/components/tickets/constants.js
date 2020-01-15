@@ -44,6 +44,9 @@ export const PRIORITY = 'priority';
 export const HIGHOPTION = 'high';
 
 /** @constant */
+export const TICKETS = 'TICKETS';
+
+/** @constant */
 export const LOWOPTION = 'low';
 
 /** @constant */
