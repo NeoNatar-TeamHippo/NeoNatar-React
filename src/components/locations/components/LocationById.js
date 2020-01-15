@@ -42,10 +42,10 @@ const LocationById = ({ match, history }) => {
 
     ));
     const renderTag = text => {
-        const { color, rateText } = renderRateFormat(text);
+        const { color } = renderRateFormat(text);
         return (
             <Tag color={color}>
-                {rateText}
+                {text}
             </Tag>
         );
     };

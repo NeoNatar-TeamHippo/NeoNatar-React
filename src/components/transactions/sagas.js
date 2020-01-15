@@ -15,11 +15,9 @@ function* requestAllTransactions() {
         if (res.status === 'success') {
             yield put(updateTransactions(res.data));
         } else {
-            // eslint-disable-next-line no-console
             console.log(res.message);
         }
     } catch (error) {
-        // eslint-disable-next-line no-console
         console.log({ message: 'Something went wrong please try again' }, error);
     }
 }

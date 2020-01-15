@@ -20,12 +20,10 @@ function* requestAllCommercials() {
         if (res.status === 'success') {
             yield put(setCommercial(res.data));
         } else {
-            // eslint-disable-next-line no-console
-            console.log(res.message);
+            console.error(res.message);
         }
     } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log({ message: 'Something went wrong please try again' }, error);
+        console.error(error);
     }
 }
 
@@ -55,7 +53,7 @@ function* postNewCommercial(data) {
             console.log(res.message);
         }
     } catch (error) {
-        console.log({ message: 'Something went wrong please try again' }, error);
+        console.error(error);
     }
 }
 
@@ -72,12 +70,10 @@ function* requestDeleteCommercialById({ payload }) {
         if (res.status === 'success') {
             yield put(deleteCommercialRequest(payload));
         } else {
-            // eslint-disable-next-line no-console
             console.log(res.message);
         }
     } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log({ message: 'Something went wrong please try again' }, error);
+        console.error(error);
     }
 }
 

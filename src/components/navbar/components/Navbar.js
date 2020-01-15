@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Divider, Icon, Menu, Button, Typography, Badge } from 'antd';
+import { Avatar, Divider, Icon, Menu, Button, Typography, Badge, Tooltip } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
@@ -16,11 +16,16 @@ const Navbar = () => {
     const fullName = `${user.firstName} ${user.lastName}`;
     return (
         <Menu className="right-nav" mode="horizontal">
-            <Badge count={0} dot>
-                <Button type="link">
-                    <Icon type={BELL} />
-                </Button>
-            </Badge>
+            <Item key="notification" disabled>
+                <Tooltip title="Under construction">
+                    <Badge count={5} dot>
+                        <Button type="link">
+                            <Icon type={BELL} />
+                        </Button>
+                    </Badge>
+                </Tooltip>
+            </Item>
+            <Divider type={VERTICAL} />
             <Typography.Text className="display-name" strong>
                 {!navLoading ? fullName.toLowerCase() : 'User'}
             </Typography.Text>
@@ -34,7 +39,7 @@ const Navbar = () => {
                     </span>
                 )}
             >
-                <Item>
+                <Item disabled key="transactions">
                     <NavLink to="/dashboard/transactions">
                         <Icon type="interaction" />
                         <span>
@@ -42,7 +47,7 @@ const Navbar = () => {
                         </span>
                     </NavLink>
                 </Item>
-                <Item>
+                <Item disabled key="settings">
                     <NavLink to="/">
                         <Icon type="setting" />
                         <span>
@@ -50,14 +55,13 @@ const Navbar = () => {
                         </span>
                     </NavLink>
                 </Item>
-                <Item key="1">
+                <Item key="logout">
                     <Button onClick={() => dispatch(logoutUser())} type="link">
                         <Typography.Text type="danger">
                             {LOGOUT_TEXT}
                         </Typography.Text>
                     </Button>
                 </Item>
-
             </SubMenu>
         </Menu>
     );

@@ -4,9 +4,8 @@ import jwtDecode from 'jwt-decode';
 import { Provider } from 'react-redux';
 
 import './index.css';
-import reduxStore from './components/redux/store';
 import router from './components/router';
-
+import reduxStore from './components/redux/store';
 import { authTrue, setUnAuthenticated } from './components/signin/actions';
 import { logoutUser, loadingUser } from './components/navbar/actions';
 
@@ -24,6 +23,8 @@ if (token) {
         store.dispatch(authTrue());
         store.dispatch(loadingUser(token));
     }
+} else {
+    store.dispatch(setUnAuthenticated());
 }
 const App = () => (
     <Provider store={store}>

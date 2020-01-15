@@ -23,14 +23,13 @@ export default (state = initialState, { type, payload }) => {
             return { ...state, campaignsLoading: true };
         case TYPES.SET_CAMPAIGN:
             return { ...state, campaigns: payload, campaignsLoading: false };
-        case TYPES.SET_ERRORS:
-            return { ...state, campaignsLoading: false, errors: payload };
-        case TYPES.CLEAR_ERRORS:
-            return { ...state, campaignsLoading: false, errors: {} };
         case TYPES.SET_TITLE:
             return { ...state, campaignDetails: { ...state.campaignDetails, title: payload } };
         case TYPES.SET_COMMERCIAL_ID:
-            return { ...state, campaignDetails: { ...state.campaignDetails, commercialId: payload } };
+            return {
+                ...state,
+                campaignDetails: { ...state.campaignDetails, commercialId: payload },
+            };
         case TYPES.SET_AMOUNT:
             return { ...state, campaignDetails: { ...state.campaignDetails, amount: payload } };
         case TYPES.SET_DURATION:
