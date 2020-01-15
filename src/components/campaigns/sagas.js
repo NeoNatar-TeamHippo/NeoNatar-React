@@ -1,10 +1,6 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
 import * as TYPES from './actionType';
-import {
-    loadingCampaigns,
-    setCampaign,
-    setErrors
-} from './actions';
+import { loadingCampaigns, setCampaign } from './actions';
 import { allCampaigns, createCampaigns } from './services';
 
 function* getAllCampaigns() {
@@ -13,11 +9,9 @@ function* getAllCampaigns() {
         const res = yield call(allCampaigns);
         if (res.status === 'success') {
             yield put(setCampaign(res.data));
-        } else {
-            yield put(setErrors({ message: res.message }));
         }
     } catch (error) {
-        yield put(setErrors({ message: 'Something went wrong please try again' }));
+        console.error(error);
     }
 }
 function* postNewCampaignWithData(data) {
@@ -26,11 +20,9 @@ function* postNewCampaignWithData(data) {
         const res = yield call(createCampaigns, data);
         if (res.status === 'success') {
             console.log('success');
-        } else {
-            console.log('error getting data');
         }
     } catch (error) {
-        console.log('something went wrong');
+        console.error(error);
     }
 }
 function* getCampaignsEffect() {

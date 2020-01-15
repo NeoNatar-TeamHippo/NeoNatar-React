@@ -5,13 +5,7 @@
  * @type {String}
  */
 export const GET_CAMPAIGNS = 'GET_CAMPAIGNS';
-/**
- * Fired by the {@link actions.setErrors }
- * action creator.
- *
- * @type {String}
- */
-export const SET_ERRORS = 'SET_ERRORS';
+
 /**
  * Fired by the {@link actions.setErrors }
  * action creator.
@@ -34,19 +28,13 @@ export const LOADING_CAMPAIGNS = 'LOADING_CAMPAIGNS';
  */
 export const SET_CAMPAIGN = 'SET_CAMPAIGN';
 /**
- * Fired by the {@link actions.clearErrors }
- * action creator.
- *
- * @type {String}
- */
-export const CLEAR_ERRORS = 'CLEAR_ERRORS';
-/**
  * Fired by the {@link actions.setTitle }
  * action creator.
  *
  * @type {String}
  */
 export const SET_TITLE = 'SET_TITLE';
+export const SET_COMMERCIAL_ID = 'SET_COMMERCIAL_ID';
 export const SET_VIDEO_DETAILS = 'SET_VIDEO_DETAILS';
 export const SET_CAMPAIGN_LOCATIONS = 'SET_CAMPAIGN_LOCATIONS';
 export const SET_AMOUNT = 'SET_AMOUNT';

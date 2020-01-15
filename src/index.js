@@ -2,17 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import jwtDecode from 'jwt-decode';
 import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
 
 import './index.css';
-import reduxStore from './components/redux/store';
 import router from './components/router';
-
+import reduxStore from './components/redux/store';
 import { authTrue, setUnAuthenticated } from './components/signin/actions';
 import { logoutUser, loadingUser } from './components/navbar/actions';
 
 const { store } = reduxStore;
-const { persistor } = reduxStore;
 const { Routes } = router.components;
 const token = localStorage.getItem('FBToken');
 if (token) {
@@ -26,12 +23,12 @@ if (token) {
         store.dispatch(authTrue());
         store.dispatch(loadingUser(token));
     }
+} else {
+    store.dispatch(setUnAuthenticated());
 }
 const App = () => (
     <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-            <Routes />
-        </PersistGate>
+        <Routes />
     </Provider>
 );
 

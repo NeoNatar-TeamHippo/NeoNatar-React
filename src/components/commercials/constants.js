@@ -26,6 +26,8 @@ export const TABLE_VALUES = [
     },
 ];
 /** @constant */
+export const NEW = 'New';
+export const BACK = 'Back';
 export const NEW_VIDEO = 'New Video';
 
 /** @constant */
