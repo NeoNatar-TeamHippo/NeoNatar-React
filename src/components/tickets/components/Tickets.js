@@ -87,28 +87,26 @@ const Tickets = ({ history }) => {
         },
         {
             key: 'action',
-            render: (text, record) => (
-                <>
-                    <Tooltip placement="top" title="View ticket">
-                        <Button
-                            onClick={() => handleViewTicket(record.ticketId)}
-                            type="link"
-                            icon="eye"
-                        />
-                    </Tooltip>
-                </>
+            render: record => (
+                <Tooltip placement="top" title="View ticket">
+                    <Button
+                        onClick={() => handleViewTicket(record.ticketId)}
+                        type="link"
+                        icon="eye"
+                    />
+                </Tooltip>
             ),
             title: 'Action',
         },
     ];
     return (
-        <>
+        <div>
             <PageHeader
                 onBack={() => history.goBack()}
                 title={TICKETS}
                 className="mb-2 page_header"
             />
-            <div>
+            <>
                 <Row type="flex" style={{ marginBottom: 5 }}>
                     <Col span={14}>
                         <Menu
@@ -146,8 +144,8 @@ const Tickets = ({ history }) => {
                     dataSource={ticketData}
                     rowKey={record => record.ticketId}
                 />
-            </div>
-        </>
+            </>
+        </div>
     );
 };
 
