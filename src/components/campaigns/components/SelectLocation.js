@@ -4,7 +4,7 @@ import { Select, Button, Tabs, List, Table, Typography, Tag, Col, Row } from 'an
 import { renderRateFormat, renderPrice } from '../../utils/functions';
 import { setCampaignLocation, next, setAmount } from '../actions';
 import {
-    TABLE_VALUES, TOTAL, NAIRASIGN, PROCEED, SELECT_A_LOCATION, RELOAD,
+    TABLE_VALUES, TOTAL, NAIRASIGN, PROCEED, SELECT_A_LOCATION,
     CHOOSE_SAVED_LOCATION
 } from '../constants';
 
@@ -14,7 +14,6 @@ const SelectLocation = () => {
     const dispatch = useDispatch();
     const { savedLocations } = useSelector(state => state.savedLocation);
     const { locations } = useSelector(state => state.location);
-    const [loading, setLoading] = useState(false);
     const [formLocations, setformLocations] = useState([]);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const calculateAmount = () => {
@@ -29,21 +28,13 @@ const SelectLocation = () => {
         const total = amounts.reduce((acc, cur) => acc + cur);
         dispatch(setAmount(total));
         return (
-            <>
-                <span>{TOTAL}</span>
-                <span>{NAIRASIGN}</span>
+            <span>
+                {TOTAL}
+                {NAIRASIGN}
                 {total}
-            </>
+            </span>
         );
     };
-    const start = () => {
-        setLoading(true);
-        setTimeout(() => {
-            setSelectedRowKeys([]);
-            setLoading(false);
-        }, 200);
-    };
-
     const onSelectChange = selectedKeys => {
         setSelectedRowKeys(selectedKeys);
     };
@@ -152,21 +143,12 @@ const SelectLocation = () => {
             <Tabs defaultActiveKey="1" onChange={callback}>
                 <TabPane tab="Locations" key="1">
                     <div className="d-flex justify-content-between">
-                        <div>
-                            <Button
-                                className="mb-1"
-                                type="ghost"
-                                onClick={start}
-                                disabled={!hasSelected}
-                                loading={loading}
-                            >
-                                {RELOAD}
-                            </Button>
-                            <span className="mb-1 ml-2">
+                        <div className="my-1">
+                            <span className="ml-2">
                                 {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
                             </span>
                             <Button
-                                className="ml-4 mb-1"
+                                className="ml-4"
                                 type="primary"
                                 disabled={!hasSelected}
                                 onClick={() => handleProceed('locations')}

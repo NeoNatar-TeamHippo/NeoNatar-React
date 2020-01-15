@@ -15,7 +15,8 @@ const Locations = ({ history }) => {
             <PageHeader
                 onBack={() => history.goBack()}
                 title={OUR_LOCATION}
-                className="mb-2 page_header"
+                className="page_header"
+                bordered={false}
             />
             <LocationTable />
         </>

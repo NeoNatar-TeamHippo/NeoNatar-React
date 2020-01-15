@@ -6,6 +6,13 @@
  */
 export const GET_TICKETS = 'GET_TICKETS';
 /**
+ * Fired by the {@link actions.getTickets }
+ * action creator.
+ *
+ * @type {String}
+ */
+export const UPDATE_TICKET_MESSAGE = 'UPDATE_TICKET_MESAGE';
+/**
  * Fired by the {@link actions.getTicketsById }
  * action creator.
  *

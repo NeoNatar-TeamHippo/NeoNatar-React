@@ -40,25 +40,6 @@ export const setCampaignById = payload => ({
     type: TYPES.SET_CAMPAIGN_BY_ID,
 });
 /**
- * Triggers request to set errors after a bad request
- *
- * @function
- * @return {void} The {@link actionTypes.SET_ERRORS } action.
- */
-export const setErrors = payload => ({
-    payload,
-    type: TYPES.SET_ERRORS,
-});
-/**
- * Triggers request to clear errors after a success
- *
- * @function
- * @return {void} The {@link actionTypes.CLEAR_ERRORS } action.
- */
-export const clearErrors = () => ({
-    type: TYPES.CLEAR_ERRORS,
-});
-/**
  * Triggers request to get all CAMPAIGNs
  *
  * @function
@@ -95,6 +76,25 @@ export const postSuccess = payload => ({
 export const getCampaignById = payload => ({
     payload,
     type: TYPES.GET_CAMPAIGN_BY_ID,
+});
+/*
+* Triggers request to set errors after a bad request
+ *
+ * @function
+ * @return {void} The {@link actionTypes.SET_ERRORS } action.
+ */
+export const setErrors = payload => ({
+    payload,
+    type: TYPES.SET_ERRORS,
+});
+/**
+ * Triggers request to clear errors after a success
+ *
+ * @function
+ * @return {void} The {@link actionTypes.CLEAR_ERRORS } action.
+ */
+export const clearErrors = () => ({
+    type: TYPES.CLEAR_ERRORS,
 });
 /**
  * Triggers request to approve campaign
@@ -141,7 +141,11 @@ export const previous = () => ({
 export const resetFormState = () => ({
     type: TYPES.RESET_FORM_STATE,
 });
-export const createCampaign = (payload) => ({
+export const createCampaign = payload => ({
     payload,
     type: TYPES.CREATE_CAMPAIGN,
+});
+export const setCommercialId = payload => ({
+    payload,
+    type: TYPES.SET_COMMERCIAL_ID,
 });

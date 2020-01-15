@@ -16,6 +16,7 @@ const initialState = {
     },
     campaigns: [],
     campaignsLoading: false,
+    commercialId: null,
     errors: {},
 };
 export default (state = initialState, { type, payload }) => {
@@ -34,6 +35,11 @@ export default (state = initialState, { type, payload }) => {
             return { ...state, campaignsLoading: false, errors: {} };
         case TYPES.SET_TITLE:
             return { ...state, campaignDetails: { ...state.campaignDetails, title: payload } };
+        case TYPES.SET_COMMERCIAL_ID:
+            return {
+                ...state,
+                campaignDetails: { ...state.campaignDetails, commercialId: payload },
+            };
         case TYPES.SET_AMOUNT:
             return { ...state, campaignDetails: { ...state.campaignDetails, amount: payload } };
         case TYPES.SET_DURATION:

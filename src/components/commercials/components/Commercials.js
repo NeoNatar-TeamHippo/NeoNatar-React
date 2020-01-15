@@ -21,11 +21,12 @@ const Commercials = () => {
 
             <Table />
             <Modal
+                centered
                 visible={visible}
                 title="Upload Video"
                 footer={[
                     <Button key="back" onClick={handleCancel}>
-                        { CANCEL }
+                        {CANCEL}
                     </Button>,
                 ]}
             >

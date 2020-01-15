@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Table, Button, Tag, Typography, Divider, Tooltip, Menu, Dropdown, Icon } from 'antd';
-import { RELOAD, ADD_SELECTED, NO_SAVED_LOCATION, TABLE_VALUES, NEW_LOCATION } from '../constants';
-import { renderRateFormat, renderPrice, openNotification } from '../../utils/functions';
+import { ADD_SELECTED, NO_SAVED_LOCATION, TABLE_VALUES, NEW_LOCATION } from '../constants';
+import { renderRateFormat, openNotification } from '../../utils/functions';
 import { locationOperation } from '../../savedLocations/actions';
 
 const LocationTable = ({ history }) => {
@@ -11,7 +11,6 @@ const LocationTable = ({ history }) => {
     const { locations } = useSelector(state => state.location);
     const { user: { isAdmin } } = useSelector(state => state.user);
     const { savedLocations } = useSelector(state => state.savedLocation);
-    const [loading, setLoading] = useState(false);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [locationToAdd, setlocationToAdd] = useState(null);
     const noSavedLoc = savedLocations.length === 0;
@@ -78,14 +77,6 @@ const LocationTable = ({ history }) => {
     const addToSavedLocation = locationId => {
         setlocationToAdd(locationId);
     };
-    const start = () => {
-        setLoading(true);
-        setTimeout(() => {
-            setSelectedRowKeys([]);
-            setLoading(false);
-        }, 1500);
-    };
-
     const onSelectChange = selectedKeys => {
         setSelectedRowKeys(selectedKeys);
     };
@@ -99,33 +90,30 @@ const LocationTable = ({ history }) => {
         {
             dataIndex: 'price',
             key: 'price',
-            render: text => {
-                const { type } = renderPrice(text);
-                return (
-                    <Typography.Text type={type}>
-                        {text}
-                    </Typography.Text>
-                );
-            },
+            render: text => (
+                <Typography.Text type="secondary">
+                    {text}
+                </Typography.Text>
+            ),
             title: 'Price',
         },
         {
             dataIndex: 'trafficRate',
             key: 'trafficRate',
             render: text => {
-                const { color, rateText } = renderRateFormat(text);
+                const { color } = renderRateFormat(text);
                 return (
                     <Tag color={color}>
-                        {rateText}
+                        {text}
                     </Tag>
                 );
             },
-            title: 'Traffic Rate',
+            title: 'Average Weekly Visitors',
         },
         {
             key: 'action',
             render: (text, record) => (
-                <>
+                <div className="d-flex justify-content-between">
                     <>
                         <Tooltip placement="top" title="View details">
                             <Button
@@ -152,38 +140,39 @@ const LocationTable = ({ history }) => {
                             </Dropdown>
                         </Tooltip>
                     </div>
-                </>
+                </div>
             ),
             title: 'Action',
         },
     ];
     return (
         <>
-            <div style={{ marginBottom: 16 }}>
-                <div className="d-flex justify-content-between">
-                    <div hidden={isAdmin}>
-                        <Button type="ghost" onClick={start} disabled={!hasSelected} loading={loading}>
-                            {RELOAD}
+            <div className="d-flex justify-content-between">
+                <div hidden={isAdmin}>
+                    <Dropdown disabled={noSavedLoc || !hasSelected} overlay={menu2}>
+                        <Button
+                            className="my-2"
+                            size="default"
+                            type="primary"
+                            disabled={noSavedLoc}
+                        >
+                            {ADD_SELECTED}
+                            <Icon type="down" />
                         </Button>
-                        <span style={{ marginLeft: 8 }}>
-                            {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
-                        </span>
-                        <Dropdown disabled={noSavedLoc || !hasSelected} overlay={menu2}>
-                            <Button
-                                className="ml-2"
-                                size="default"
-                                type="primary"
-                                disabled={noSavedLoc}
-                            >
-                                {ADD_SELECTED}
-                                <Icon type="down" />
-                            </Button>
-                        </Dropdown>
-                    </div>
-                    <Button type="primary" icon="plus" hidden={!isAdmin} onClick={() => handleNewLocation()}>
-                        {NEW_LOCATION}
-                    </Button>
+                    </Dropdown>
+                    <span className="ml-3">
+                        {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
+                    </span>
                 </div>
+                <Button
+                    className="my-2"
+                    type="primary"
+                    icon="plus"
+                    hidden={!isAdmin}
+                    onClick={() => handleNewLocation()}
+                >
+                    {NEW_LOCATION}
+                </Button>
             </div>
             <Table
                 rowSelection={rowSelection}

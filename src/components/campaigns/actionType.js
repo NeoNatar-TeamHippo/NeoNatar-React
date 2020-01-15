@@ -40,6 +40,7 @@ export const GET_CAMPAIGN_BY_ID = 'GET_CAMPAIGN_BY_ID';
  * @type {String}
  */
 export const SET_ERRORS = 'SET_ERRORS';
+
 /**
  * Fired by the {@link actions.setErrors }
  * action creator.
@@ -89,6 +90,7 @@ export const CLEAR_ERRORS = 'CLEAR_ERRORS';
  * @type {String}
  */
 export const SET_TITLE = 'SET_TITLE';
+export const SET_COMMERCIAL_ID = 'SET_COMMERCIAL_ID';
 export const SET_VIDEO_DETAILS = 'SET_VIDEO_DETAILS';
 export const SET_CAMPAIGN_LOCATIONS = 'SET_CAMPAIGN_LOCATIONS';
 export const SET_AMOUNT = 'SET_AMOUNT';

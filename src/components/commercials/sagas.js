@@ -1,6 +1,11 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 import { deleteCommercialRequest, setCommercial, loadingCommercial } from './actions';
-import { getCommercialService, postCommercialService, deleteCommercialById } from './services';
+import {
+    postCommercialService, deleteCommercialById, getCommercialService
+} from './services';
+import { openNotification } from '../utils/functions';
+import { next, setVideoDetails, setCommercialId, setDuration } from '../campaigns/actions';
+
 import { GET_COMMERCIALS, POST_COMMERCIALS, REMOVE_COMMERCIALS } from './actionTypes';
 
 /**
@@ -15,12 +20,10 @@ function* requestAllCommercials() {
         if (res.status === 'success') {
             yield put(setCommercial(res.data));
         } else {
-            // eslint-disable-next-line no-console
-            console.log(res.message);
+            console.error(res.message);
         }
     } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log({ message: 'Something went wrong please try again' }, error);
+        console.error(error);
     }
 }
 
@@ -36,14 +39,21 @@ function* postNewCommercial(data) {
         yield put(loadingCommercial());
         const res = yield call(postCommercialService, data);
         if (res.status === 'success') {
+            yield put(next());
+            openNotification('Uploaded successfully', 'Video', 'success');
+            const videoDetails = {
+                title: res.data.title,
+                url: res.data.url,
+            };
+            yield put(setCommercialId(res.data.id));
+            yield put(setDuration(res.data.duration));
+            yield put(setVideoDetails(videoDetails));
             yield call(requestAllCommercials);
         } else {
-            // eslint-disable-next-line no-console
             console.log(res.message);
         }
     } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log({ message: 'Something went wrong please try again' }, error);
+        console.error(error);
     }
 }
 
@@ -60,12 +70,10 @@ function* requestDeleteCommercialById({ payload }) {
         if (res.status === 'success') {
             yield put(deleteCommercialRequest(payload));
         } else {
-            // eslint-disable-next-line no-console
             console.log(res.message);
         }
     } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log({ message: 'Something went wrong please try again' }, error);
+        console.error(error);
     }
 }
 

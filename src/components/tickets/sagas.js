@@ -3,7 +3,6 @@ import { eventChannel as EventChannel } from 'redux-saga';
 import moment from 'moment';
 import * as TYPES from './actionType';
 import {
-    setErrors,
     setTicket,
     setTicketById,
     postingTicket,
@@ -14,7 +13,6 @@ import {
     resolvingTicket
 } from './actions';
 import {
-    allTickets,
     postTicket,
     postTicketMessages,
     markTicketAsResolved
@@ -22,113 +20,9 @@ import {
 
 import { firebaseTickets } from '../utils/firebase';
 
-function* getAllTickets() {
-    try {
-        yield put(loadingTickets());
-        const res = yield call(allTickets);
-        if (res.status === 'success') {
-            yield put(setTicket(res.data));
-        } else {
-            yield put(setErrors({ message: res.message }));
-        }
-    } catch (error) {
-        yield put(setErrors({ message: 'Something went wrong please try again' }));
-    }
-}
-
-function* getTicketsEffect() {
-    yield call(getAllTickets);
-}
-
-function* postNewTicket(payload) {
-    try {
-        yield put(postingTicket());
-        const res = yield call(postTicket, payload);
-        if (res.status === 'success') {
-            yield put(postSuccess({ message: 'ticket Created succesfully' }));
-        } else {
-            yield put(setErrors({ message: res.message }));
-        }
-    } catch (error) {
-        yield put(setErrors({ message: 'Something went wrong please try again' }));
-    }
-}
-
-function* postTicketEffect({ payload }) {
-    yield call(postNewTicket, payload);
-}
-
-function* postTicketMessage(payload) {
-    try {
-        yield put(postingTicketMessage());
-        const res = yield call(postTicketMessages, payload);
-        if (res.status === 'success') {
-            yield put(postSuccess({ message: ' New Ticket Message Created succesfully' }));
-        } else {
-            yield put(setErrors({ message: res.message }));
-        }
-    } catch (error) {
-        yield put(setErrors({ message: 'Something went wrong please try again' }));
-    }
-}
-
-function* postTicketMessageEffect({ payload }) {
-    yield call(postTicketMessage, payload);
-}
-
-function* getSingleTicket(id) {
-    try {
-        yield put(loadingTicketById());
-        const doc = firebaseTickets.doc(id);
-        const channel = new EventChannel(emiter => {
-            doc.onSnapshot(snapshot => {
-                emiter({ data: snapshot.data() || [] });
-            });
-            return () => {
-                firebaseTickets.off();
-            };
-        });
-
-        const { data } = yield take(channel);
-        const { messages } = data;
-        const newData = messages.map(message => {
-            const { author, avatar, content, isAdmin, createdAt } = message;
-            return ({
-                author,
-                avatar,
-                content,
-                datetime: moment(createdAt).fromNow(),
-                isAdmin,
-            });
-        });
-        data.messages = newData;
-        yield put(setTicketById(data));
-    } catch (error) {
-        yield put(setErrors({ message: 'Something went wrong please try again' }));
-    }
-}
-function* getTicketsByIdEffect({ payload }) {
-    yield call(getSingleTicket, payload);
-}
-
-function* markTicketResolved(id) {
-    try {
-        yield put(resolvingTicket());
-        const res = yield call(markTicketAsResolved, id);
-        if (res.status === 'success') {
-            yield put(postSuccess({ message: 'Ticket Marked as Resolved' }));
-        } else {
-            yield put(setErrors({ message: res.message }));
-        }
-    } catch (error) {
-        yield put(setErrors({ message: 'Something went wrong please try again' }));
-    }
-}
-function* markTicketResolvedEffect({ payload }) {
-    yield call(markTicketResolved, payload);
-}
-
-function* startTicketListener() {
+function* startTicketListener(payload) {
+    const { isAdmin, userId } = payload;
+    yield put(loadingTickets());
     const channel = new EventChannel(emiter => {
         firebaseTickets.onSnapshot(snapshot => {
             emiter({ data: snapshot.docs || [] });
@@ -150,8 +44,106 @@ function* startTicketListener() {
                 ...ticket,
             });
         });
-        yield put(setTicket(ticketData));
+        let userTicket;
+        if (isAdmin) userTicket = ticketData;
+        if (!isAdmin) {
+            userTicket = ticketData.filter(ticket => ticket.createdBy === userId);
+        }
+        yield put(setTicket(userTicket));
     }
+}
+
+function* getTicketsEffect({ payload }) {
+    yield fork(startTicketListener, payload);
+}
+
+function* postNewTicket(payload) {
+    try {
+        yield put(postingTicket());
+        const res = yield call(postTicket, payload);
+        if (res.status === 'success') {
+            yield put(postSuccess({ message: 'ticket Created succesfully' }));
+        } else {
+            console.log(res.message);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function* postTicketEffect({ payload }) {
+    yield call(postNewTicket, payload);
+}
+
+function* postTicketMessage(payload) {
+    try {
+        yield put(postingTicketMessage());
+        const res = yield call(postTicketMessages, payload);
+        if (res.status === 'success') {
+            yield put(postSuccess({ message: ' New Ticket Message Created succesfully' }));
+        } else {
+            console.log(res.message);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function* postTicketMessageEffect({ payload }) {
+    yield call(postTicketMessage, payload);
+}
+
+function* getSingleTicket(id) {
+    try {
+        yield put(loadingTicketById());
+        const doc = firebaseTickets.doc(id);
+        const channel = new EventChannel(emiter => {
+            doc.onSnapshot(snapshot => {
+                emiter({ data: snapshot.data() || [] });
+            });
+            return () => {
+                firebaseTickets.doc(id).off();
+            };
+        });
+
+        const { data } = yield take(channel);
+        const { messages } = data;
+        const newData = messages.map(message => {
+            const { author, avatar, content, isAdmin, createdAt } = message;
+            return ({
+                author,
+                avatar,
+                content,
+                datetime: moment(createdAt).fromNow(),
+                isAdmin,
+            });
+        });
+        data.messages = newData;
+        yield put(setTicketById(data));
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function* getTicketsByIdEffect({ payload }) {
+    yield call(getSingleTicket, payload);
+}
+
+function* markTicketResolved(id) {
+    try {
+        yield put(resolvingTicket());
+        const res = yield call(markTicketAsResolved, id);
+        if (res.status === 'success') {
+            yield put(postSuccess({ message: 'Ticket Marked as Resolved' }));
+        } else {
+            console.log(res.message);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+function* markTicketResolvedEffect({ payload }) {
+    yield call(markTicketResolved, payload);
 }
 
 export default function* actionWatcher() {
@@ -160,5 +152,4 @@ export default function* actionWatcher() {
     yield takeEvery(TYPES.POST_TICKET, postTicketEffect);
     yield takeEvery(TYPES.RESOLVE_TICKET, markTicketResolvedEffect);
     yield takeEvery(TYPES.POST_TICKET_MESSAGE, postTicketMessageEffect);
-    yield fork(startTicketListener);
 }

@@ -1,13 +1,13 @@
 import { takeEvery, call, put, fork, take } from 'redux-saga/effects';
 import { eventChannel as EventChannel } from 'redux-saga';
 import * as TYPES from './actionType';
-import { setErrors, setLocation, loadingLocation, setLocationById } from './actions';
+import { setLocation, loadingLocation, setLocationById } from './actions';
 import { locationById, postNewLocation } from './services';
 import { openNotification } from '../utils/functions';
-import { firebaseLocations } from "../utils/firebase";
+import { firebaseLocations } from '../utils/firebase';
 
 function* startListener() {
-    const channel = new EventChannel((emitter) => {
+    const channel = new EventChannel(emitter => {
         firebaseLocations.onSnapshot(snapshot => {
             emitter({ data: snapshot.docs || [] });
         });
@@ -49,7 +49,7 @@ function* getSingleLocation(id) {
             console.log('error getting data');
         }
     } catch (error) {
-        yield put(setErrors({ message: 'Something went wrong please try again' }));
+        console.log(error);
     }
 }
 function* getLocationsByIdEffect({ payload }) {
