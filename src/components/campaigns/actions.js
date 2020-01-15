@@ -86,3 +86,7 @@ export const createCampaign = (payload) => ({
     payload,
     type: TYPES.CREATE_CAMPAIGN,
 });
+export const setCommercialId = (payload) => ({
+    payload,
+    type: TYPES.SET_COMMERCIAL_ID,
+});

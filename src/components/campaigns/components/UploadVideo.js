@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Row, Col, Select, Tabs, Button, Typography, Input } from 'antd';
 import CommercialForm from '../../commercials/components/CommercialForm';
-import { setVideoDetails, next } from '../actions';
+import { setVideoDetails, next, setCommercialId, setDuration } from '../actions';
 import { PROCEED, VIEW, CHOOSE_A_TITLE, CHOOSE_PREVIOUS_VIDEO } from '../constants';
 
 const { TabPane } = Tabs;
@@ -13,7 +13,12 @@ const UploadVideo = () => {
     const [displayVideo, setdisplayVideo] = useState(null);
     const [inputCampaignTitle, setinputCampaignTitle] = useState(null);
     const onChange = value => {
-        setdisplayVideo(value);
+        const url = value.split(',')[0];
+        const commercialId = value.split(',')[1];
+        const duration = value.split(',')[2];
+        setDuration(duration)
+        dispatch(setCommercialId(commercialId));
+        setdisplayVideo(url);
     };
 
     const onBlur = () => {
@@ -36,7 +41,7 @@ const UploadVideo = () => {
     const renderCommercials = () => commercials.map(commercial => (
         <Option
             key={commercial.videoId}
-            value={commercial.url}
+            value={`${commercial.url},${commercial.commercialId},${commercial.duration}`}
         >
             {commercial.title}
         </Option>
