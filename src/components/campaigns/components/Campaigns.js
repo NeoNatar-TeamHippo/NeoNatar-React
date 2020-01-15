@@ -1,27 +1,52 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Tag, Table } from 'antd';
+import { Tag, Table, PageHeader, Menu, Typography } from 'antd';
 
 import { getCampaigns } from '../actions';
+import { ALLCAMPAIGNS, ALL, PENDING, APPROVE, HORIZONTAL } from '../constants';
 import { statusColor } from '../../utils/functions';
+
+const menuItems = [ALL, PENDING, APPROVE];
 
 const Campaigns = ({ history }) => {
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(getCampaigns());
     }, [dispatch]);
 
     const { campaigns } = useSelector(state => state.campaigns);
+    const [campaignData, setCampaignData] = useState(campaigns);
+    useEffect(() => {
+        setCampaignData(campaigns);
+    }, [campaigns]);
 
     const handleViewCampaign = campaignId => {
         history.push(`/dashboard/campaigns/${campaignId}`);
+    };
+
+    const handleChangeTab = ({ key }) => {
+        switch (key) {
+            case ALL:
+                setCampaignData(campaigns);
+                break;
+            case PENDING:
+                setCampaignData(campaigns.filter(campaign => campaign.status === 'pending'));
+                break;
+            case APPROVE:
+                setCampaignData(campaigns.filter(campaign => campaign.status === 'live'));
+                break;
+            default:
+                setCampaignData(campaigns);
+                break;
+        }
     };
 
     const columns = [
         {
             dataIndex: 'title',
             key: 'title',
-            title: 'Video details',
+            title: 'Video Title',
         },
         {
             dataIndex: 'customerName',
@@ -32,12 +57,12 @@ const Campaigns = ({ history }) => {
             dataIndex: 'amount',
             key: 'amount',
             render: amount => (
-                <div style={{ fontFamily: 'monospace', textAlign: 'center' }}>
-                    {amount}
-                </div>
+                <Typography.Text>
+                    {`₦ ${amount}`}
+                </Typography.Text>
             ),
-
-            title: 'Amount(₦)',
+            title: 'Amount',
+            width: 120,
         },
         {
             dataIndex: 'numberOfLocations',
@@ -48,6 +73,7 @@ const Campaigns = ({ history }) => {
                 </div>
             ),
             title: 'Locations',
+            width: 120,
         },
         {
             dataIndex: 'status',
@@ -65,18 +91,38 @@ const Campaigns = ({ history }) => {
     ];
 
     return (
-        <Table
-            dataSource={campaigns}
-            title={() => 'All Campaigns'}
-            columns={columns}
-            rowKey={record => record.id}
-            onRow={record => ({
-                onClick: () => {
-                    handleViewCampaign(record.campaignId);
-                },
-            })}
-        />
+        <div>
+            <PageHeader
+                onBack={() => history.goBack()}
+                title={ALLCAMPAIGNS}
+                className="mb-2 page_header"
+            />
+            <Menu
+                mode={HORIZONTAL}
+                onClick={handleChangeTab}
+                defaultSelectedKeys={[ALL]}
+            >
+                {
+                            menuItems.map(key => (
+                                <Menu.Item key={key}>
+                                    {key}
+                                </Menu.Item>
+                            ))
+                        }
+            </Menu>
+            <Table
+                dataSource={campaignData}
+                columns={columns}
+                rowKey={record => record.id}
+                onRow={record => ({
+                    onClick: () => {
+                        handleViewCampaign(record.campaignId);
+                    },
+                })}
+            />
+        </div>
     );
 };
 
 export default Campaigns;
+

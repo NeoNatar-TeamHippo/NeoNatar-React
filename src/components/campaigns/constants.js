@@ -5,9 +5,17 @@ export const APPROVED = 'Approved: ';
 /** @constant */
 export const EXPIRES = 'Expires: ';
 /** @constant */
-export const PENDING = 'pending';
+export const PENDING = 'Pending';
 /** @constant */
 export const APPROVECAMPAIGN = 'Approve Campaign';
+/** @constant */
+export const ALLCAMPAIGNS = 'All Campaigns';
+/** @constant */
+export const ALL = 'All';
+/** @constant */
+export const APPROVE = 'Approved';
+/** @constant */
+export const HORIZONTAL = 'horizontal';
 
 /** @constant */
 
