@@ -1,6 +1,8 @@
 import * as TYPES from './actionType';
 
 const initialState = {
+    campaignById: [],
+    campaignByIdLoading: true,
     campaignDetails: {
         amount: null,
         current: 0,
@@ -21,8 +23,16 @@ export default (state = initialState, { type, payload }) => {
     switch (type) {
         case TYPES.LOADING_CAMPAIGNS:
             return { ...state, campaignsLoading: true };
+        case TYPES.LOADING_CAMPAIGN_BY_ID:
+            return { ...state, campaignByIdLoading: true };
         case TYPES.SET_CAMPAIGN:
             return { ...state, campaigns: payload, campaignsLoading: false };
+        case TYPES.SET_CAMPAIGN_BY_ID:
+            return { ...state, campaignById: payload, campaignByIdLoading: false };
+        case TYPES.SET_ERRORS:
+            return { ...state, campaignsLoading: false, errors: payload };
+        case TYPES.CLEAR_ERRORS:
+            return { ...state, campaignsLoading: false, errors: {} };
         case TYPES.SET_TITLE:
             return { ...state, campaignDetails: { ...state.campaignDetails, title: payload } };
         case TYPES.SET_COMMERCIAL_ID:

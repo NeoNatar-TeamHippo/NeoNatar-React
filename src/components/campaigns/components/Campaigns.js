@@ -1,72 +1,137 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Tag, Table } from 'antd';
+import { Tag, Table, PageHeader, Menu, Typography, Tooltip, Button } from 'antd';
 
 import { getCampaigns } from '../actions';
+import { ALLCAMPAIGNS, ALL, PENDING, APPROVE, HORIZONTAL } from '../constants';
 import { statusColor } from '../../utils/functions';
 
-const Campaigns = () => {
+const menuItems = [ALL, PENDING, APPROVE];
+
+const Campaigns = ({ history }) => {
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(getCampaigns());
     }, [dispatch]);
 
     const { campaigns } = useSelector(state => state.campaigns);
-    return (
-        <Table
-            dataSource={campaigns}
-            title={() => 'All Campaigns'}
-            columns={
-                [
-                    {
-                        dataIndex: 'title',
-                        key: 'title',
-                        title: 'Video details',
-                    },
-                    {
-                        dataIndex: 'customerName',
-                        key: 'customerName',
-                        title: 'Customer Name',
-                    },
-                    {
-                        dataIndex: 'amount',
-                        key: 'amount',
-                        render: amount => (
-                            <div style={{ fontFamily: 'monospace', textAlign: 'center' }}>
-                                {amount}
-                            </div>
-                        ),
+    const [campaignData, setCampaignData] = useState(campaigns);
+    useEffect(() => {
+        setCampaignData(campaigns);
+    }, [campaigns]);
 
-                        title: 'Amount(₦)',
-                    },
-                    {
-                        dataIndex: 'numberOfLocations',
-                        key: 'numberOfLocations',
-                        render: numberOfLocations => (
-                            <div style={{ fontFamily: 'monospace', textAlign: 'center' }}>
-                                {numberOfLocations}
-                            </div>
-                        ),
-                        title: 'Locations',
-                    },
-                    {
-                        dataIndex: 'status',
-                        key: 'status',
-                        render: status => {
-                            const color = statusColor(status);
-                            return (
-                                <Tag color={color} key={status}>
-                                    {status.toUpperCase()}
-                                </Tag>
-                            );
-                        },
-                        title: 'Status',
-                    },
-                ]
-            }
-            rowKey={record => record.id}
-        />
+    const handleViewCampaign = campaignId => {
+        history.push(`/dashboard/campaigns/${campaignId}`);
+    };
+
+    const handleChangeTab = ({ key }) => {
+        switch (key) {
+            case ALL:
+                setCampaignData(campaigns);
+                break;
+            case PENDING:
+                setCampaignData(campaigns.filter(campaign => campaign.status === 'pending'));
+                break;
+            case APPROVE:
+                setCampaignData(campaigns.filter(campaign => campaign.status === 'live'));
+                break;
+            default:
+                setCampaignData(campaigns);
+                break;
+        }
+    };
+
+    const columns = [
+        {
+            dataIndex: 'title',
+            key: 'title',
+            title: 'Video Title',
+        },
+        {
+            dataIndex: 'customerName',
+            key: 'customerName',
+            title: 'Customer Name',
+        },
+        {
+            dataIndex: 'amount',
+            key: 'amount',
+            render: amount => (
+                <Typography.Text>
+                    {`₦ ${amount}`}
+                </Typography.Text>
+            ),
+            title: 'Amount',
+            width: 120,
+        },
+        {
+            dataIndex: 'numberOfLocations',
+            key: 'numberOfLocations',
+            render: numberOfLocations => (
+                <div style={{ fontFamily: 'monospace', textAlign: 'center' }}>
+                    {numberOfLocations}
+                </div>
+            ),
+            title: 'Locations',
+            width: 120,
+        },
+        {
+            dataIndex: 'status',
+            key: 'status',
+            render: status => {
+                const color = statusColor(status);
+                return (
+                    <Tag color={color} key={status}>
+                        {status.toUpperCase()}
+                    </Tag>
+                );
+            },
+            title: 'Status',
+        },
+        {
+            key: 'action',
+            render: (text, record) => (
+                <Tooltip placement="top" title="View ticket">
+                    <Button
+                        onClick={() => handleViewCampaign(record.campaignId)}
+                        type="link"
+                        icon="eye"
+                    />
+                </Tooltip>
+            ),
+            title: 'Action',
+        },
+    ];
+
+    return (
+        <div>
+            <PageHeader
+                onBack={() => history.goBack()}
+                title={ALLCAMPAIGNS}
+                className="mb-2 page_header"
+            />
+            <Menu
+                mode={HORIZONTAL}
+                onClick={handleChangeTab}
+                defaultSelectedKeys={[ALL]}
+                style={{ marginBottom: 5 }}
+            >
+                {
+                            menuItems.map(key => (
+                                <Menu.Item key={key}>
+                                    {key}
+                                </Menu.Item>
+                            ))
+                        }
+            </Menu>
+            <Table
+                dataSource={campaignData}
+                columns={columns}
+                rowKey={record => record.id}
+            />
+        </div>
     );
 };
 
 export default Campaigns;
+

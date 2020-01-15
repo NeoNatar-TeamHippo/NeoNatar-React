@@ -1,4 +1,23 @@
 /** @constant */
+export const LOCATIONS = 'Locations: ';
+/** @constant */
+export const APPROVED = 'Approved: ';
+/** @constant */
+export const EXPIRES = 'Expires: ';
+/** @constant */
+export const PENDING = 'Pending';
+/** @constant */
+export const APPROVECAMPAIGN = 'Approve Campaign';
+/** @constant */
+export const ALLCAMPAIGNS = 'All Campaigns';
+/** @constant */
+export const ALL = 'All';
+/** @constant */
+export const APPROVE = 'Approved';
+/** @constant */
+export const HORIZONTAL = 'horizontal';
+
+/** @constant */
 
 export const NEXT = 'Next';
 export const DONE = 'Done';
@@ -7,7 +26,7 @@ export const TOTAL = 'Total:';
 export const RELOAD = 'Reload';
 export const VIEW = 'View';
 export const PROCEED = 'Proceed';
-const baseUrl = 'http://localhost:5000/neonatar/europe-west1';
+const baseUrl = 'https://europe-west1-neonatar.cloudfunctions.net';
 export const CAMPAIGN_URL = `${baseUrl}/api/v1/campaign`;
 export const NAIRASIGN = '&#8358;';
 export const CAMPAIGN_LENGTH_TEXT = ' How long should your campaign last ?';
