@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Tag, Table, PageHeader, Menu, Typography } from 'antd';
+import { Tag, Table, PageHeader, Menu, Typography, Tooltip, Button } from 'antd';
 
 import { getCampaigns } from '../actions';
 import { ALLCAMPAIGNS, ALL, PENDING, APPROVE, HORIZONTAL } from '../constants';
@@ -88,6 +88,19 @@ const Campaigns = ({ history }) => {
             },
             title: 'Status',
         },
+        {
+            key: 'action',
+            render: (text, record) => (
+                <Tooltip placement="top" title="View ticket">
+                    <Button
+                        onClick={() => handleViewCampaign(record.campaignId)}
+                        type="link"
+                        icon="eye"
+                    />
+                </Tooltip>
+            ),
+            title: 'Action',
+        },
     ];
 
     return (
@@ -101,6 +114,7 @@ const Campaigns = ({ history }) => {
                 mode={HORIZONTAL}
                 onClick={handleChangeTab}
                 defaultSelectedKeys={[ALL]}
+                style={{ marginBottom: 5 }}
             >
                 {
                             menuItems.map(key => (
@@ -114,11 +128,6 @@ const Campaigns = ({ history }) => {
                 dataSource={campaignData}
                 columns={columns}
                 rowKey={record => record.id}
-                onRow={record => ({
-                    onClick: () => {
-                        handleViewCampaign(record.campaignId);
-                    },
-                })}
             />
         </div>
     );
