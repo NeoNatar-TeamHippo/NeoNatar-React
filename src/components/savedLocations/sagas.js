@@ -1,5 +1,6 @@
 import { takeEvery, call, put, take } from 'redux-saga/effects';
 import { eventChannel as EventChannel } from 'redux-saga';
+
 import * as TYPES from './actionType';
 import {
     setSavedLocation, loadingSavedLocation, savedLocationResult,

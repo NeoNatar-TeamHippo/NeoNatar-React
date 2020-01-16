@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import {
@@ -8,20 +8,22 @@ import {
 import Highlighter from 'react-highlight-words';
 import { ADD_SELECTED, NO_SAVED_LOCATION, NEW_LOCATION, SEARCH, RESET } from '../constants';
 import { renderRateFormat, openNotification } from '../../utils/functions';
-import { locationOperation } from '../../savedLocations/actions';
+import { locationOperation, getSavedLocations } from '../../savedLocations/actions';
 
 const LocationTable = ({ history }) => {
     const dispatch = useDispatch();
 
     const { locations } = useSelector(state => state.location);
-    const { user: { isAdmin } } = useSelector(state => state.user);
+    const { user: { isAdmin, userId } } = useSelector(state => state.user);
     const { savedLocations } = useSelector(state => state.savedLocation);
 
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [locationToAdd, setlocationToAdd] = useState(null);
     const [searchText, setsearchText] = useState('');
     const [searchedColumn, setsearchedColumn] = useState('');
-
+    useEffect(() => {
+        dispatch(getSavedLocations({ userId }));
+    }, [dispatch, userId]);
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
         setsearchText(selectedKeys[0]);
@@ -206,7 +208,7 @@ const LocationTable = ({ history }) => {
         {
             key: 'action',
             render: (text, record) => (
-                <div className="d-flex justify-content-between">
+                <div className="d-flex justify-content-around">
                     <>
                         <Tooltip placement="top" title="View details">
                             <Button
