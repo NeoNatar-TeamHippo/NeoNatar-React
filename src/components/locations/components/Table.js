@@ -6,10 +6,7 @@ import {
     Icon, Input
 } from 'antd';
 import Highlighter from 'react-highlight-words';
-import {
-    ADD_SELECTED, NO_SAVED_LOCATION, TABLE_VALUES, NEW_LOCATION,
-    SEARCH, RESET
-} from '../constants';
+import { ADD_SELECTED, NO_SAVED_LOCATION, NEW_LOCATION, SEARCH, RESET } from '../constants';
 import { renderRateFormat, openNotification } from '../../utils/functions';
 import { locationOperation } from '../../savedLocations/actions';
 

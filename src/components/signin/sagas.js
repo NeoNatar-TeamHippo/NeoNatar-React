@@ -13,8 +13,9 @@ function* userSignIn(userData) {
         const res = yield call(signInService, userData);
         if (res.status === 'success') {
             const authorization = `Bearer ${res.data}`;
-            yield put(setAuthenticated(authorization));
-            yield put(loadingUser(authorization));
+            localStorage.setItem('FBToken', authorization);
+            yield put(setAuthenticated());
+            yield put(loadingUser());
             yield put(push('/dashboard'));
         } else {
             yield put(openMessage(res.message, 5, 'error'));

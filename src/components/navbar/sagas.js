@@ -5,9 +5,10 @@ import { setUser, loadingNavBar } from './actions';
 import { setUnAuthenticated } from '../signin/actions';
 import { getUserProfile } from './services';
 
-function* userProfile(token) {
+function* userProfile() {
     try {
         yield put(loadingNavBar());
+        const token = localStorage.getItem('FBToken');
         const res = yield call(getUserProfile, token);
         if (res.status === 'success') {
             const userDetails = res.data;

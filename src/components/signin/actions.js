@@ -34,8 +34,7 @@ export const clearErrors = () => ({
  * @function
  * @return {void} The {@link actionTypes.SET_AUTHENTICATED } action.
  */
-export const setAuthenticated = payload => ({
-    payload,
+export const setAuthenticated = () => ({
     type: TYPES.SET_AUTHENTICATED,
 });
 /**
