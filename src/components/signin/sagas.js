@@ -23,9 +23,11 @@ function* userSignIn(userData) {
     } catch (error) {
         switch (error.status) {
             case 500:
+                yield put(openMessage('Server error please try again', 5, 'error'));
                 yield put(setErrors({ message: 'Server error please try again' }));
                 break;
             default:
+                yield put(openMessage('Something went wrong please try again', 5, 'error'));
                 yield put(setErrors({ message: 'Something went wrong please try again' }));
                 break;
         }

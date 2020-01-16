@@ -35,26 +35,7 @@ const baseUrl = 'https://europe-west1-neonatar.cloudfunctions.net/api';
 export const LOCATION_URL = `${baseUrl}/v1/locations`;
 
 export const TABLE_VALUES = [
-    {
-        dataIndex: 'name',
-        key: 'name',
-        title: 'Name',
-    },
-    {
-        dataIndex: 'address',
-        key: 'address',
-        title: 'Address',
-    },
-    {
-        dataIndex: 'state',
-        key: 'state',
-        title: 'State',
-    },
-    {
-        dataIndex: 'lga',
-        key: 'lga',
-        title: 'Local Govt',
-    },
+
 ];
 export const FORM_ITEMS = [
     {
@@ -121,3 +102,5 @@ export const WRAPPER_COL = {
     sm: { offset: 8, span: 16 },
     xs: { offset: 0, span: 24 },
 };
+export const SEARCH = 'SEARCH';
+export const RESET = 'RESET';

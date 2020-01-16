@@ -1,18 +1,91 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Table, Button, Tag, Typography, Divider, Tooltip, Menu, Dropdown, Icon } from 'antd';
-import { ADD_SELECTED, NO_SAVED_LOCATION, TABLE_VALUES, NEW_LOCATION } from '../constants';
+import {
+    Table, Button, Tag, Typography, Divider, Tooltip, Menu, Dropdown,
+    Icon, Input
+} from 'antd';
+import Highlighter from 'react-highlight-words';
+import {
+    ADD_SELECTED, NO_SAVED_LOCATION, TABLE_VALUES, NEW_LOCATION,
+    SEARCH, RESET
+} from '../constants';
 import { renderRateFormat, openNotification } from '../../utils/functions';
 import { locationOperation } from '../../savedLocations/actions';
 
 const LocationTable = ({ history }) => {
     const dispatch = useDispatch();
+
     const { locations } = useSelector(state => state.location);
     const { user: { isAdmin } } = useSelector(state => state.user);
     const { savedLocations } = useSelector(state => state.savedLocation);
+
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [locationToAdd, setlocationToAdd] = useState(null);
+    const [searchText, setsearchText] = useState('');
+    const [searchedColumn, setsearchedColumn] = useState('');
+
+    const handleSearch = (selectedKeys, confirm, dataIndex) => {
+        confirm();
+        setsearchText(selectedKeys[0]);
+        setsearchedColumn(dataIndex);
+    };
+    const handleReset = clearFilters => {
+        clearFilters();
+        setsearchText('');
+    };
+    const searchKeyText = dataIndex => `Search ${dataIndex}`;
+    const getColumnSearchProps = dataIndex => ({
+        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+            <div style={{ padding: 8 }}>
+                <Input.Search
+                    placeholder={searchKeyText(dataIndex)}
+                    value={selectedKeys[0]}
+                    onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+                    onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                    style={{ display: 'block', marginBottom: 8, width: 188 }}
+                />
+                <Button
+                    type="primary"
+                    onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                    icon="search"
+                    size="small"
+                    style={{ marginRight: 8, width: 90 }}
+                >
+                    {SEARCH}
+                </Button>
+                <Button
+                    onClick={() => handleReset(clearFilters)}
+                    size="small"
+                    style={{ width: 90 }}
+                >
+                    {RESET}
+                </Button>
+            </div>
+        ),
+        filterIcon: filtered => (
+            <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+        ),
+        onFilter: (value, record) => record[dataIndex]
+            .toString()
+            .toLowerCase()
+            .includes(value.toLowerCase()),
+        onFilterDropdownVisibleChange: visible => {
+            if (visible) {
+                console.log(visible);
+                // setTimeout(() => this.searchInput.select());
+            }
+        },
+        render: text => (searchedColumn === dataIndex ? (
+            <Highlighter
+                highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+                searchWords={[searchText]}
+                autoEscape
+                textToHighlight={text.toString()}
+            />
+        ) : (text)),
+    });
+
     const noSavedLoc = savedLocations.length === 0;
     const addBulkState = savedLocationId => {
         const payload = {
@@ -23,7 +96,7 @@ const LocationTable = ({ history }) => {
         dispatch(locationOperation(payload));
         openNotification(
             `${selectedRowKeys.length} Location${selectedRowKeys.length > 1 ? 's' : ''}`,
-            'Successfully added', 'success', 'suucess'
+            'Successfully added', 'success', 'success'
         );
     };
     const handleNewLocation = () => {
@@ -86,7 +159,30 @@ const LocationTable = ({ history }) => {
     };
     const hasSelected = selectedRowKeys.length > 0;
     const columns = [
-        ...TABLE_VALUES,
+        {
+            dataIndex: 'name',
+            key: 'name',
+            title: 'Name',
+        },
+        {
+            dataIndex: 'address',
+            key: 'address',
+            title: 'Address',
+            width: '25%',
+            ...getColumnSearchProps('address'),
+        },
+        {
+            dataIndex: 'lga',
+            key: 'lga',
+            title: 'Local Govt',
+            ...getColumnSearchProps('lga'),
+        },
+        {
+            dataIndex: 'state',
+            key: 'state',
+            title: 'State',
+            ...getColumnSearchProps('state'),
+        },
         {
             dataIndex: 'price',
             key: 'price',
@@ -95,7 +191,7 @@ const LocationTable = ({ history }) => {
                     {text}
                 </Typography.Text>
             ),
-            title: 'Price',
+            title: 'Price/day',
         },
         {
             dataIndex: 'trafficRate',
@@ -179,6 +275,8 @@ const LocationTable = ({ history }) => {
                 columns={columns}
                 dataSource={locations}
                 rowKey={record => record.locationId}
+                size="middle"
+                scroll={{ y: 300 }}
             />
         </>
     );
