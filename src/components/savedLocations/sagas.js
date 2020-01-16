@@ -3,16 +3,13 @@ import { eventChannel as EventChannel } from 'redux-saga';
 import * as TYPES from './actionType';
 import {
     setSavedLocation, loadingSavedLocation, savedLocationResult,
-    setSavedLocationById, submittingForm, submitedForm, deleteLocationResult
+    submittingForm, submitedForm, deleteLocationResult
 } from './actions';
-import {
-    savedlocationById, deleteSavedlocationById, locationOperationService,
-    newSavedLocation
-} from './services';
-import { firebaseSavedLocations } from '../utils/firebase'
+import { deleteSavedlocationById, locationOperationService, newSavedLocation } from './services';
+import { firebaseSavedLocations } from '../utils/firebase';
 
 function* startListener() {
-    const channel = new EventChannel((emitter) => {
+    const channel = new EventChannel(emitter => {
         firebaseSavedLocations.onSnapshot(snapshot => {
             emitter({ data: snapshot.docs || [] });
         });
@@ -23,28 +20,11 @@ function* startListener() {
 
     while (true) {
         const { data } = yield take(channel);
-        const savedLocations = [];
-        for (const doc of data) {
-            const newObj = Object.assign({}, doc.data(), { savedLocationId: doc.id });
-            savedLocations.push(newObj);
-        }
-        yield put(setSavedLocation(savedLocations));
+        const loc = data.map(doc => Object.assign({}, doc.data(), { savedLocationId: doc.id }));
+        yield put(setSavedLocation(loc));
     }
 }
 
-function* getSingleLocation(id) {
-    try {
-        yield put(loadingSavedLocation());
-        const res = yield call(savedlocationById, id);
-        if (res.status === 'success') {
-            yield put(setSavedLocationById(res.data));
-        } else {
-            console.log('error getting data');
-        }
-    } catch (error) {
-        console.log('Something went wrong please try again');
-    }
-}
 function* deleteLocation(id) {
     try {
         yield put(loadingSavedLocation());
@@ -87,9 +67,6 @@ function* locationOperationById(payload) {
         console.log('Something went wrong please try again');
     }
 }
-function* getLocationsByIdEffect({ payload }) {
-    yield call(getSingleLocation, payload);
-}
 function* deleteLocationsByIdEffect({ payload }) {
     yield call(deleteLocation, payload);
 }
@@ -101,7 +78,6 @@ function* locationOperationByIdEffect({ payload }) {
 }
 export default function* actionWatcher() {
     yield fork(startListener);
-    yield takeEvery(TYPES.GET_SAVED_LOCATIONS_BY_ID, getLocationsByIdEffect);
     yield takeEvery(TYPES.DELETE_SAVED_LOCATION, deleteLocationsByIdEffect);
     yield takeEvery(TYPES.NEW_SAVED_LOCATION, createNewLocationEffect);
     yield takeEvery(TYPES.LOCATION_OPERATION, locationOperationByIdEffect);

@@ -1,22 +1,25 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import {
-    Icon, Card, Carousel, Row, Col, Button, Typography, Tag, Descriptions, Skeleton
+    Icon, Card, Carousel, Row, Col, Button, Typography, Tag, Descriptions, Spin
 } from 'antd';
 import { PERWEEK, LOCAL_GOVERNMENT, ADDRESS, STATE, NAIRA } from '../constants';
-import { getLocationsByID } from '../actions';
 import { renderRateFormat } from '../../utils/functions';
 
 const LocationById = ({ match, history }) => {
-    const dispatch = useDispatch();
     const { params } = match;
     const { id: locationId } = params;
-    const { locationById, locationLoading } = useSelector(state => state.location);
-    const { name, price, lga, trafficRate, address, state, images } = locationById;
+    const { locations } = useSelector(state => state.location);
+    const [newLocation, setnewLocation] = useState({});
+    const { name, price, lga, trafficRate, address, state, images } = newLocation;
     useEffect(() => {
-        dispatch(getLocationsByID(locationId));
-    }, [dispatch, locationId]);
+        locations.forEach(location => {
+            if (location.locationId === locationId) {
+                setnewLocation(location);
+            }
+        });
+    }, [locationId, locations]);
     const renderAmount = text => (
         <Typography.Text type="secondary">
             <del>{NAIRA}</del>
@@ -29,17 +32,15 @@ const LocationById = ({ match, history }) => {
         </Typography.Text>
     );
     const renderImages = locImages => locImages.map((element, i) => (
-        !locationLoading ? (
-            <img
-                key={element}
-                alt={i}
-                src={element}
-                style={{
-                    objectFit: 'cover',
-                }}
-            />
-        ) : ''
-
+        <img
+            key={element}
+            alt={i}
+            src={element}
+            style={{
+                objectFit: 'cover',
+            }}
+            height="300px"
+        />
     ));
     const renderTag = text => {
         const { color } = renderRateFormat(text);
@@ -73,12 +74,15 @@ const LocationById = ({ match, history }) => {
             <Row className="d-sm-flex justify-content-sm-center">
                 <Col sm={20} md={16} lg={12}>
                     <Card
-                        loading={locationLoading}
                         hoverable
                         className="w-100"
                         cover={(
                             <Carousel autoplay>
-                                {images ? renderImages(images) : (<Skeleton />)}
+                                {images && images.length > 0 ? renderImages(images) : (
+                                    <div className="img d-flex flex-column justify-content-center">
+                                        <Spin size="large" tip="Loading..." />
+                                    </div>
+                                )}
                             </Carousel>
                         )}
                         actions={[

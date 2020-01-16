@@ -1,18 +1,29 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Card, Row, Col, Button, Icon, Typography } from 'antd';
-import { getSavedLocationsByID } from '../actions';
 import LocationList from './LocationList';
 
 const SaveLocationById = ({ match, history }) => {
     const { params } = match;
     const { id: savedLocationId } = params;
-    const { savedLocationById } = useSelector(state => state.savedLocation);
-    const { title } = savedLocationById;
-    const dispatch = useDispatch();
+    const { savedLocations } = useSelector(state => state.savedLocation);
+    const { locations } = useSelector(state => state.location);
+    const [newSavedLocation, setnewSavedLocation] = useState({});
+    const { title } = newSavedLocation;
     useEffect(() => {
-        dispatch(getSavedLocationsByID(savedLocationId));
-    }, [dispatch, savedLocationId]);
+        const amendedLocations = [];
+        savedLocations.forEach(savedLocation => {
+            if (savedLocation.savedLocationId === savedLocationId) {
+                savedLocation.locations.forEach(savedLoc => locations.forEach(loc => {
+                    if (loc.locationId === savedLoc) {
+                        amendedLocations.push(loc);
+                    }
+                }));
+                savedLocation.locations = amendedLocations;
+                setnewSavedLocation(savedLocation);
+            }
+        });
+    }, [locations, savedLocationId, savedLocations]);
     return (
         <div className="card_background">
             <Row className="d-sm-flex justify-content-sm-center">
@@ -33,7 +44,10 @@ const SaveLocationById = ({ match, history }) => {
                                 </Typography.Title>
                             )}
                         />
-                        <LocationList savedLocationId={savedLocationId} />
+                        <LocationList
+                            savedLocationId={savedLocationId}
+                            newSavedLocation={newSavedLocation}
+                        />
                     </Card>
                 </Col>
             </Row>
