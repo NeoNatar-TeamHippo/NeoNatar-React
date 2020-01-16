@@ -26,7 +26,8 @@ export const setSavedLocation = payload => ({
  * @function
  * @return {void} The {@link actionTypes.GET_SAVED_LOCATIONS } action.
  */
-export const getSavedLocations = () => ({
+export const getSavedLocations = payload => ({
+    payload,
     type: TYPES.GET_SAVED_LOCATIONS,
 });
 

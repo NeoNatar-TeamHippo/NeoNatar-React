@@ -1,4 +1,4 @@
-import { takeEvery, call, put, fork, take } from 'redux-saga/effects';
+import { takeEvery, call, put, take } from 'redux-saga/effects';
 import { eventChannel as EventChannel } from 'redux-saga';
 import * as TYPES from './actionType';
 import {
@@ -8,7 +8,8 @@ import {
 import { deleteSavedlocationById, locationOperationService, newSavedLocation } from './services';
 import { firebaseSavedLocations } from '../utils/firebase';
 
-function* startListener() {
+function* startListener(payload) {
+    const { userId } = payload;
     const channel = new EventChannel(emitter => {
         firebaseSavedLocations.onSnapshot(snapshot => {
             emitter({ data: snapshot.docs || [] });
@@ -21,7 +22,8 @@ function* startListener() {
     while (true) {
         const { data } = yield take(channel);
         const loc = data.map(doc => Object.assign({}, doc.data(), { savedLocationId: doc.id }));
-        yield put(setSavedLocation(loc));
+        const newLoc = loc.filter(savLoc => savLoc.createdBy === userId);
+        yield put(setSavedLocation(newLoc));
     }
 }
 
@@ -76,9 +78,13 @@ function* createNewLocationEffect({ payload }) {
 function* locationOperationByIdEffect({ payload }) {
     yield call(locationOperationById, payload);
 }
+function* callSavedLoctionEffect({ payload }) {
+    yield call(startListener, payload);
+}
 export default function* actionWatcher() {
-    yield fork(startListener);
+    // yield fork(startListener);
     yield takeEvery(TYPES.DELETE_SAVED_LOCATION, deleteLocationsByIdEffect);
     yield takeEvery(TYPES.NEW_SAVED_LOCATION, createNewLocationEffect);
     yield takeEvery(TYPES.LOCATION_OPERATION, locationOperationByIdEffect);
+    yield takeEvery(TYPES.GET_SAVED_LOCATIONS, callSavedLoctionEffect);
 }
