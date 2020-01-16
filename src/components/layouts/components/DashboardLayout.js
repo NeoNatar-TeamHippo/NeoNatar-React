@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Layout } from 'antd';
 import { NavLink, withRouter } from 'react-router-dom';
 
-// import FooterComponent from './Footer';
 import SideMenu from './SiderMenu';
 
 import navbar from '../../navbar';
@@ -39,9 +38,6 @@ const DashboardLayout = props => {
                     {children}
                 </Content>
             </Layout>
-            {/* <Footer className="text-center">
-                <FooterComponent />
-            </Footer> */}
         </Layout>
     );
 };
