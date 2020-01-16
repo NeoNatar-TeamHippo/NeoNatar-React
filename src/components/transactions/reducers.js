@@ -1,19 +1,15 @@
-import { UPDATE_TRANSACTIONS } from './actionTypes';
+import { UPDATE_TRANSACTIONS, LOAD_TRANSACTIONS } from './actionTypes';
 
 const initialState = {
+    isTransactionsLoading: false,
     transactions: [],
 };
-
-export default (state = { ...initialState }, action) => {
-    switch (action.type) {
-        case UPDATE_TRANSACTIONS: {
-            const { payload: transactions } = action;
-            return {
-                ...state,
-                transactions: [...transactions],
-            };
-        }
-
+export default (state = initialState, { type, payload }) => {
+    switch (type) {
+        case LOAD_TRANSACTIONS:
+            return { ...state, isTransactionsLoading: true };
+        case UPDATE_TRANSACTIONS:
+            return { ...state, transactions: payload, isTransactionsLoading: false };
         default:
             return state;
     }

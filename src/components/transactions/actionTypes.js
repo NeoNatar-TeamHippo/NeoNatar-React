@@ -17,3 +17,11 @@ export const UPDATE_TRANSACTIONS = `${NAME}/UPDATE_TRANSACTIONS`;
  */
 
 export const REQUEST_TRANSACTIONS = `${NAME}/REQUEST_TRANSACTIONS`;
+
+/**
+ * Fired by the {@link actions.loadTransactions loadTransactions}
+ * action creator.
+ *
+ */
+
+export const LOAD_TRANSACTIONS = `${NAME}/LOAD_TRANSACTIONS`;
