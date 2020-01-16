@@ -1,11 +1,10 @@
-import { takeEvery, put, call, fork } from 'redux-saga/effects';
-import * as TYPES from './actionTypes';
+import { takeLatest, put, call } from 'redux-saga/effects';
 import { updateTransactions, loadTransactions } from './actions';
 import { REQUEST_TRANSACTIONS } from './actionTypes';
 import { allTransactions } from './services';
 
 /**
- * Handles requesting the list of videos from the database
+ * Handles requesting the list of transactions from the database
  *
  * @return {Void} - void
  */
@@ -24,10 +23,14 @@ function* requestAllTransactions() {
     }
 }
 
-function* getTicketsEffect({ payload }) {
-    yield fork(requestAllTransactions, payload);
-}
+/**
+ * @function
+ * Watches for the {@link actionTypes.REQUEST_TRANSACTIONS REQUEST_TRANSACTIONS} action.
+ * Triggers request to pull the videos from database
+ *
+ * @return {void}
+ */
 
-export default function* actionWatcher() {
-    yield takeEvery(TYPES.REQUEST_TRANSACTIONS, getTicketsEffect);
+export default function* watchRequestAllTransactions() {
+    yield takeLatest(REQUEST_TRANSACTIONS, requestAllTransactions);
 }
