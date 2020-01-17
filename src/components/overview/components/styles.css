@@ -17,6 +17,11 @@
     margin-bottom: 50px;
 }
 
+.client-card {
+    display: flex;
+    justify-content: center;
+}
+
 .notification-card-text {
     font-size: large;
     font-weight: bold;

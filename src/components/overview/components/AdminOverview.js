@@ -1,15 +1,32 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Card, Col, Row, Typography, Tag } from 'antd';
 import { NavLink } from 'react-router-dom';
 
 import UnresolvedTickets from './UnresolvedTickets';
 import Tasks from './Tasks';
 
-import { ADMIN_CARDS } from '../constants';
-
 const { Text } = Typography;
 
-const Dashboard = () => (
+const Dashboard = () => {
+    const { overviewLocationNumber,
+        overviewPendingCampignNumber,
+        overviewApprovedCampignNumber } = useSelector(state => state.overview);
+    const ADMIN_CARDS = [
+        { color: 'green',
+            counts: overviewApprovedCampignNumber,
+            link: '/dashboard/campaigns',
+            type: 'Approved Campaigns' },
+        { color: 'yellow',
+            counts: overviewPendingCampignNumber,
+            link: '/dashboard/campaigns',
+            type: 'Pending Approval' },
+        { color: 'green',
+            counts: 7,
+            link: '/dashboard/locations',
+            type: 'Saved Locations' },
+    ];
+    return (
     <div className="dashboard-div">
         <Row gutter={48}>
             {ADMIN_CARDS.map(({ color, counts, type, link }) => (
@@ -36,5 +53,6 @@ const Dashboard = () => (
         </Row>
     </div>
 );
+            };
 
 export default Dashboard;
