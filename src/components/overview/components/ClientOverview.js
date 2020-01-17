@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Modal, Tag, Table, Icon, Input, Typography, Card, Col, Row } from 'antd';
+import { Modal, Tag, Icon, Typography, Card, Col, Row } from 'antd';
 import { NavLink } from 'react-router-dom';
 
 import {
