@@ -5,19 +5,20 @@ import { Button, Menu, Layout } from 'antd';
 
 import Logo from '../../../images/mock-logo.png';
 
-import { SIGNIN, SIGNUP } from '../constants';
+import { SIGNIN, SIGNUP, GO_TO_DASHBOARD } from '../constants';
 
 const { Item } = Menu;
 const { Header } = Layout;
 
 const NavHeader = () => {
     const { location } = useSelector(state => state.router);
+    const { user } = useSelector(state => state.user);
 
     const renderMenuItem = path => {
         if (path.pathname === '/signup') {
             return (
                 <Menu className="right-nav" mode="horizontal">
-                    <Item className="modified-item">
+                    <Item className="header-item">
                         <Button type="primary" ghost>
                             <Link to="/signin">
                                 {SIGNIN}
@@ -30,10 +31,23 @@ const NavHeader = () => {
         if (path.pathname === '/signin') {
             return (
                 <Menu className="right-nav" mode="horizontal">
-                    <Item className="modified-item">
+                    <Item className="header-item">
                         <Button type="primary">
                             <Link to="/signup">
                                 {SIGNUP}
+                            </Link>
+                        </Button>
+                    </Item>
+                </Menu>
+            );
+        }
+        if (user) {
+            return (
+                <Menu className="right-nav" mode="horizontal">
+                    <Item className="header-item">
+                        <Button type="primary">
+                            <Link to="/dashboard">
+                                {GO_TO_DASHBOARD}
                             </Link>
                         </Button>
                     </Item>
