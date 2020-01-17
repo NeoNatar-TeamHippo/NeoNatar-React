@@ -34,7 +34,7 @@ export const NEW_VIDEO = 'New Video';
 export const NAME = 'commercials';
 
 export const CREATE_COMMERCIAL = 'Create Video Commercial';
-const baseUrl = 'https://europe-west1-neonatar.cloudfunctions.net';
+const baseUrl = 'https://europe-west1-neonatar.cloudfunctions.net/api';
 
 /** @constant */
 export const CANCEL = 'Cancel';

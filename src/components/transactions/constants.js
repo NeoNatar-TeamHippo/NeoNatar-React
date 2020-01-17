@@ -11,7 +11,7 @@ export const INVALID = 'Invalid';
 export const NEW_TRANSACTION = 'New Transaction';
 
 /** @constant */
-const baseUrl = 'http://localhost:5000/neonatar/europe-west1/api';
+const baseUrl = 'https://europe-west1-neonatar.cloudfunctions.net/api';
 export const TRANSACTIONS_URL = `${baseUrl}/v1/transactions`;
 
 /** @constant */

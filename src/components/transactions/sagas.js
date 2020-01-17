@@ -1,6 +1,5 @@
 import { takeLatest, put, call } from 'redux-saga/effects';
-
-import { updateTransactions } from './actions';
+import { updateTransactions, loadTransactions } from './actions';
 import { REQUEST_TRANSACTIONS } from './actionTypes';
 import { allTransactions } from './services';
 
@@ -11,7 +10,9 @@ import { allTransactions } from './services';
  */
 function* requestAllTransactions() {
     try {
+        yield put(loadTransactions());
         const res = yield call(allTransactions);
+        console.log(res.data);
         if (res.status === 'success') {
             yield put(updateTransactions(res.data));
         } else {

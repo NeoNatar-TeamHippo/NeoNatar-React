@@ -8,7 +8,7 @@ import { requestTransactions } from '../actions';
 const menuItems = [ALL, VALID, INVALID];
 
 const Transactions = ({ history }) => {
-    const { transactions } = useSelector(state => state.transactions);
+    const { transactions, isTransactionsLoading } = useSelector(state => state.transactions);
 
     const [transactionsData, setTransactionsData] = useState(transactions);
 
@@ -17,8 +17,8 @@ const Transactions = ({ history }) => {
     useEffect(() => {
         dispatch(requestTransactions());
     }, [dispatch]);
+
     const handleChangeTab = ({ key }) => {
-        let tableData;
         switch (key) {
             case ALL:
                 setTransactionsData(transactions);
@@ -37,7 +37,6 @@ const Transactions = ({ history }) => {
                 setTransactionsData(transactions);
                 break;
         }
-        return tableData;
     };
 
     const columns = [
@@ -116,6 +115,7 @@ const Transactions = ({ history }) => {
                 </Col>
             </Row>
             <Table
+                loading={isTransactionsLoading}
                 columns={columns}
                 dataSource={transactionsData}
                 rowKey={record => record.id}
