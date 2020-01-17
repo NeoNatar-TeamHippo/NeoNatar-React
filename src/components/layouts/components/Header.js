@@ -1,10 +1,73 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Logo from '../../../images/neoNatar Logo.svg';
+import { Button, Menu, Layout } from 'antd';
 
-const navHeader = () => (
-    <Link to="/">
-        <img src={Logo} width="120px" height="60px" alt="NeoNatar Logo" />
-    </Link>
-);
-export default navHeader;
+import Logo from '../../../images/mock-logo.png';
+
+import { SIGNIN, SIGNUP } from '../constants';
+
+const { Item } = Menu;
+const { Header } = Layout;
+
+const NavHeader = () => {
+    const { location } = useSelector(state => state.router);
+
+    const renderMenuItem = path => {
+        if (path.pathname === '/signup') {
+            return (
+                <Menu className="right-nav" mode="horizontal">
+                    <Item className="modified-item">
+                        <Button type="primary" ghost>
+                            <Link to="/signin">
+                                {SIGNIN}
+                            </Link>
+                        </Button>
+                    </Item>
+                </Menu>
+            );
+        }
+        if (path.pathname === '/signin') {
+            return (
+                <Menu className="right-nav" mode="horizontal">
+                    <Item className="modified-item">
+                        <Button type="primary">
+                            <Link to="/signup">
+                                {SIGNUP}
+                            </Link>
+                        </Button>
+                    </Item>
+                </Menu>
+            );
+        }
+        return (
+            <Menu className="right-nav" mode="horizontal">
+                <Item className="modified-item">
+                    <Button type="primary" ghost>
+                        <Link to="/signin">
+                            {SIGNIN}
+                        </Link>
+                    </Button>
+                </Item>
+                <Item className="modified-item">
+                    <Button type="primary">
+                        <Link to="/signup">
+                            {SIGNUP}
+                        </Link>
+                    </Button>
+                </Item>
+            </Menu>
+        );
+    };
+
+    return (
+        <Header>
+            <Link to="/" className="left-menu">
+                <img src={Logo} height="60px" alt="NeoNatar Logo" />
+            </Link>
+            {renderMenuItem(location)}
+        </Header>
+    );
+};
+
+export default NavHeader;
