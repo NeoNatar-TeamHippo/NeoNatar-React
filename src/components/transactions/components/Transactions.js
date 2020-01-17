@@ -118,7 +118,7 @@ const Transactions = ({ history }) => {
                 loading={isTransactionsLoading}
                 columns={columns}
                 dataSource={transactionsData}
-                rowKey={record => record.ticketId}
+                rowKey={record => record.id}
             />
         </div>
     );
