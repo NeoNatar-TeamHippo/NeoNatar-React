@@ -7,7 +7,7 @@ import moment from 'moment';
 
 import { getCampaignById, approveCampaign } from '../actions';
 import { statusColor } from '../../utils/functions';
-import { LOCATIONS, APPROVECAMPAIGN, EXPIRES, APPROVED, PENDING } from '../constants';
+import { LOCATIONS, APPROVECAMPAIGN, EXPIRES, APPROVED, PEND } from '../constants';
 
 const ViewCampaign = ({ match, history }) => {
     const { params } = match;
@@ -32,13 +32,13 @@ const ViewCampaign = ({ match, history }) => {
     const createdDate = moment(createdAt).format('LLLL');
     let expiredDate;
     let approvedDate;
-    if (status !== PENDING) {
+    if (status !== PEND) {
+        approvedDate = moment(approvedAt).format('LLLL');
         expiredDate = moment(approvedAt).add(duration, 'days').format('LLLL');
-        approvedDate = moment(approvedDate).format('LLLL');
     }
     const hidden = () => {
         let cond;
-        if (userIsAdmin && status === PENDING) {
+        if (userIsAdmin && status === PEND) {
             cond = false;
         } else {
             cond = true;
@@ -87,11 +87,11 @@ const ViewCampaign = ({ match, history }) => {
                             {LOCATIONS}
                             {createdDate}
                         </div>
-                        <div hidden={status === PENDING}>
+                        <div hidden={status === PEND}>
                             {APPROVED}
                             {approvedDate}
                         </div>
-                        <div hidden={status === PENDING}>
+                        <div hidden={status === PEND}>
                             {EXPIRES}
                             {expiredDate}
                         </div>

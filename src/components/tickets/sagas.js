@@ -38,8 +38,9 @@ function* startTicketListener(payload) {
             ticketId: element.id,
         }));
         const ticketData = newData.map(ticket => {
-            const { createdAt } = ticket;
+            const { createdAt, customerName, avatar } = ticket;
             return ({
+                customerDetail: { avatar, customerName },
                 date: (new Date(createdAt)).toDateString(),
                 ...ticket,
             });
