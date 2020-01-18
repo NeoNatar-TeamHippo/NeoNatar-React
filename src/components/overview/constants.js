@@ -19,7 +19,7 @@ export const UNRESOLVED_TICKETS = 'Unresolved Tickets';
 export const TASKS = 'Tasks';
 
 /** @constant */
-export const VIEW_DETAILS = 'View details';
+export const STATUS = 'Status';
 
 /** @constant */
 export const VIEW_ALL = 'View all';

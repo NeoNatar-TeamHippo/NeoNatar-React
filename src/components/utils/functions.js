@@ -71,7 +71,7 @@ export const priorityColor = priority => {
     if (priority === 'medium') {
         color = 'green';
     }
-    if (priority === 'low') {
+    if (priority === 'volcano') {
         color = 'yellow';
     }
     return color;
@@ -85,11 +85,21 @@ export const statusColor = status => {
     if (status === 'live') {
         color = 'green';
     }
-    if (status === 'pending') {
+    if (status === 'blue') {
         color = 'yellow';
     }
-    if (status === 'ended') {
+    if (status === 'volcano') {
         color = 'grey';
     }
     return color;
 };
+
+export const overviewTicketData = async ticket => {
+    const { title, status, ticketId } = await ticket;
+    return ({
+        status,
+        ticketId,
+        title,
+    });
+};
+

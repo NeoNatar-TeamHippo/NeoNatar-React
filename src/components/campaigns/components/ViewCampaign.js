@@ -7,7 +7,7 @@ import moment from 'moment';
 
 import { getCampaignById, approveCampaign } from '../actions';
 import { statusColor } from '../../utils/functions';
-import { LOCATIONS, APPROVECAMPAIGN, EXPIRES, APPROVED, PEND } from '../constants';
+import { LOCATIONS, APPROVECAMPAIGN, EXPIRES, APPROVED, PEND, CREATEDAT } from '../constants';
 
 const ViewCampaign = ({ match, history }) => {
     const { params } = match;
@@ -80,20 +80,32 @@ const ViewCampaign = ({ match, history }) => {
                             </div>
                         </div>
                         <div>
-
-                            {campaignByIdLoading ? [] : locationsSelected.map(location => <Tag key={location}>{location}</Tag>)}
+                            <Row>
+                                <Col span={5}>{LOCATIONS}</Col>
+                                <Col span={17} offset={2}>
+                                    {campaignByIdLoading
+                                        ? []
+                                        : locationsSelected.map(location => <Tag key={location}>{location}</Tag>)}
+                                </Col>
+                            </Row>
                         </div>
                         <div>
-                            {LOCATIONS}
-                            {createdDate}
+                            <Row>
+                                <Col span={5}>{CREATEDAT}</Col>
+                                <Col span={17} offset={2}>{createdDate}</Col>
+                            </Row>
                         </div>
                         <div hidden={status === PEND}>
-                            {APPROVED}
-                            {approvedDate}
+                            <Row>
+                                <Col span={5}>{APPROVED}</Col>
+                                <Col span={17} offset={2}>{approvedDate}</Col>
+                            </Row>
                         </div>
                         <div hidden={status === PEND}>
-                            {EXPIRES}
-                            {expiredDate}
+                            <Row>
+                                <Col span={5}>{EXPIRES}</Col>
+                                <Col span={17} offset={2}>{expiredDate}</Col>
+                            </Row>
                         </div>
                         <div>
                             <Button
