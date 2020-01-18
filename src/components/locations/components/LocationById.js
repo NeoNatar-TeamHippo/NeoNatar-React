@@ -11,12 +11,12 @@ const LocationById = ({ match, history }) => {
     const { params } = match;
     const { id: locationId } = params;
     const { locations } = useSelector(state => state.location);
-    const [newLocation, setnewLocation] = useState({});
+    const [newLocation, setNewLocation] = useState({});
     const { name, price, lga, trafficRate, address, state, images } = newLocation;
     useEffect(() => {
         locations.forEach(location => {
             if (location.locationId === locationId) {
-                setnewLocation(location);
+                setNewLocation(location);
             }
         });
     }, [locationId, locations]);
@@ -34,7 +34,7 @@ const LocationById = ({ match, history }) => {
     const renderImages = locImages => locImages.map((element, i) => (
         <img
             key={element}
-            alt={i}
+            alt={element}
             src={element}
             style={{
                 objectFit: 'cover',
