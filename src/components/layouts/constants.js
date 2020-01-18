@@ -3,13 +3,24 @@ export const FOOTER_TEXT = 'NEONATAR ©2018, TEAM HIPPO';
 
 /** @constant */
 export const INLINE = 'inline';
+
 /** @constant */
 export const THEME = 'light';
 
 /** @constant */
 export const SIDE_BAR = 'side-bar';
+
+/** @constant */
+export const GO_TO_DASHBOARD = 'Go to dashboard';
+
 /** @constant */
 export const LOGOUT_TEXT = 'LOG OUT';
+
+/** @constant */
+export const SIGNIN = 'Sign In';
+
+/** @constant */
+export const SIGNUP = 'Sign Up';
 
 /** @constant */
 export const ADMIN_SIDE_MENU_ITEMS = [

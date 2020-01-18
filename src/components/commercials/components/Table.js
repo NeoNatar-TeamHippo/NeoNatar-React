@@ -30,7 +30,7 @@ const CommercialTable = () => {
                 dispatch(deleteCommercialRequest(id));
                 dispatch(removeCommercial(id));
                 setTimeout(() => {
-                    openNotification('Deleted Successfully', 'Delete Video');
+                    openNotification('Deleted Successfully', 'Delete Video', 'success');
                 },
                 2000);
             },
@@ -46,14 +46,14 @@ const CommercialTable = () => {
                 <>
                     <Tooltip placement="top" title="View video">
                         <Button
-                            onClick={() => setSelectedModal(record.commercialId)}
+                            onClick={() => setSelectedModal(record.id)}
                             type="link"
                             icon="eye"
                         />
                     </Tooltip>
                     <Tooltip placement="top" title="Delete Video">
                         <Button
-                            onClick={() => { showDeleteConfirm(record.commercialId); }}
+                            onClick={() => { showDeleteConfirm(record.id); }}
                             type="link"
                             icon="delete"
                             className="text-danger"

@@ -27,7 +27,7 @@ export default (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 commercials: commercials.filter(
-                    commercial => commercial.commercialId !== payload
+                    commercial => commercial.id !== payload
                 ),
                 isCommercialDeleted: true,
                 isCommercialsLoading: true,

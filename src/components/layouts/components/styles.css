@@ -77,6 +77,10 @@ aside.ant-layout-sider {
     margin-left: 190px;
 }
 
+li.ant-menu-item.header-item:hover {
+    border-bottom: 2px solid transparent;
+    color: inherit;
+}
 @media(max-width: 767px) {
     .display-name {
         display: none;

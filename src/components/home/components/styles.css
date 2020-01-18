@@ -9,3 +9,18 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.home-page{
+    display: flex;
+    flex-direction: row;
+}
+
+.image-container{
+    margin-left: 50px;
+}
+
+@media(max-width: 767px) {
+    .hide-image-container {
+        display: none;
+    }
+}

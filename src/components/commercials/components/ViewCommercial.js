@@ -9,10 +9,10 @@ const ViewCommercial = props => {
     return (
         <>
             {
-                data.map(({ description, commercialId, url, title }) => (
+                data.map(({ description, id, url, title }) => (
                     <Modal
-                        key={commercialId}
-                        visible={selectedModal === commercialId}
+                        key={id}
+                        visible={selectedModal === id}
                         closable={false}
                         onCancel={onCancel}
                         title={title}

@@ -1,0 +1,18 @@
+.ant-upload.ant-upload-drag {
+    width: 50%;
+    margin: auto;
+}
+
+.video-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ant-modal-footer {
+  border-top: 0;
+}
+
+.uploaded-video{
+    height: 240px;
+    width: 100%;
+} 
