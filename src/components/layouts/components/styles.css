@@ -17,6 +17,10 @@ aside.ant-layout-sider {
     background-color: #fff;
 }
 
+section.ant-layout.ant-layout-has-sider {
+    margin-top: 75px !important;
+}
+
 .center_form {
     margin: auto;
 }

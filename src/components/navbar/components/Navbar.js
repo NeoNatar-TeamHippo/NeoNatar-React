@@ -27,7 +27,7 @@ const Navbar = () => {
             </Item>
             <Divider type={VERTICAL} />
             <Typography.Text className="display-name" strong>
-                {!navLoading ? fullName.toLowerCase() : 'User'}
+                {!navLoading ? fullName.toUpperCase() : 'User'}
             </Typography.Text>
             <Divider type={VERTICAL} />
             <SubMenu

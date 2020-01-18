@@ -13,8 +13,9 @@ function* userSignIn(userData) {
         const res = yield call(signInService, userData);
         if (res.status === 'success') {
             const authorization = `Bearer ${res.data}`;
-            yield put(setAuthenticated(authorization));
-            yield put(loadingUser(authorization));
+            localStorage.setItem('FBToken', authorization);
+            yield put(setAuthenticated());
+            yield put(loadingUser());
             yield put(push('/dashboard'));
         } else {
             yield put(openMessage(res.message, 5, 'error'));
@@ -23,9 +24,11 @@ function* userSignIn(userData) {
     } catch (error) {
         switch (error.status) {
             case 500:
+                yield put(openMessage('Server error please try again', 5, 'error'));
                 yield put(setErrors({ message: 'Server error please try again' }));
                 break;
             default:
+                yield put(openMessage('Something went wrong please try again', 5, 'error'));
                 yield put(setErrors({ message: 'Something went wrong please try again' }));
                 break;
         }

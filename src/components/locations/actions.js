@@ -19,16 +19,6 @@ export const setLocation = payload => ({
     payload,
     type: TYPES.SET_LOCATION,
 });
-/**
- * Triggers request to set LOCATION
- *
- * @function
- * @return {void} The {@link actionTypes.SET_LOCATION_BY_ID } action.
- */
-export const setLocationById = payload => ({
-    payload,
-    type: TYPES.SET_LOCATION_BY_ID,
-});
 
 /**
  * Triggers request to get all locations
@@ -39,16 +29,7 @@ export const setLocationById = payload => ({
 export const getLocations = () => ({
     type: TYPES.GET_LOCATIONS,
 });
-/**
- * Triggers request to get all locations
- *
- * @function
- * @return {void} The {@link actionTypes.GET_LOCATIONS_BY_ID } action.
- */
-export const getLocationsByID = payload => ({
-    payload,
-    type: TYPES.GET_LOCATIONS_BY_ID,
-});
+
 /**
  * Triggers request to get all locations
  *

@@ -17,9 +17,8 @@ const CommercialForm = ({ form }) => {
                 dispatch(postCommercial(newFormData));
                 resetFields();
                 setTimeout(() => {
-                    openNotification('Uploaded Successfully', 'Upload Video');
-                },
-                3000);
+                    openNotification('Uploaded Successfully', 'Upload Video', 'success');
+                }, 3000);
             }
         });
     };

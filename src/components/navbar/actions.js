@@ -14,8 +14,7 @@ export const loadingNavBar = () => ({
  * @function
  * @return {void} The {@link actionTypes.LOADING_USER } action.
  */
-export const loadingUser = payload => ({
-    payload,
+export const loadingUser = () => ({
     type: TYPES.LOADING_USER,
 });
 /**

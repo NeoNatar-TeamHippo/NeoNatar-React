@@ -9,6 +9,7 @@ import { openNotification } from '../../utils/functions';
 const SavedLocations = ({ history, form }) => {
     const dispatch = useDispatch();
     const { savedLocations, formLoading } = useSelector(state => state.savedLocation);
+    const { user: { userId } } = useSelector(state => state.user);
     const [visible, setvisible] = useState(false);
     const handleCreateList = () => {
         setvisible(true);
@@ -30,14 +31,14 @@ const SavedLocations = ({ history, form }) => {
                 setTimeout(() => {
                     resetFields();
                     setvisible(false);
-                    openNotification('Add locations to your new list', 'New List Created', 'success');
+                    openNotification('Add locations to your list', 'New List Created', 'success');
                 }, 5000);
             }
         });
     };
     useEffect(() => {
-        dispatch(getSavedLocations());
-    }, [dispatch]);
+        dispatch(getSavedLocations({ userId }));
+    }, [dispatch, userId]);
     return (
         <>
             <PageHeader
