@@ -71,8 +71,8 @@ export const priorityColor = priority => {
     if (priority === 'medium') {
         color = 'green';
     }
-    if (priority === 'volcano') {
-        color = 'yellow';
+    if (priority === 'low') {
+        color = 'volcano';
     }
     return color;
 };
@@ -85,11 +85,11 @@ export const statusColor = status => {
     if (status === 'live') {
         color = 'green';
     }
-    if (status === 'blue') {
-        color = 'yellow';
+    if (status === 'pending') {
+        color = 'blue';
     }
-    if (status === 'volcano') {
-        color = 'grey';
+    if (status === 'ended') {
+        color = 'volcano';
     }
     return color;
 };
