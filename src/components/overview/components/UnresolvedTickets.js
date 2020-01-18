@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { List } from 'antd';
 
-import { DASHBOARD, UNRESOLVED_TICKETS, STATUS, TICKETS } from '../constants';
+import { UNRESOLVED_TICKETS, STATUS, TICKET_URL } from '../constants';
 import { getTickets } from '../../tickets/actions';
 
 const UnresolvedTickets = () => {
@@ -14,11 +14,6 @@ const UnresolvedTickets = () => {
     }, [dispatch, isAdmin, userId]);
     const { tickets } = useSelector(state => state.ticket);
     const ticketData = ticket => ticket.filter(tick => tick.status !== 'resolved');
-    // const [ticketData, setTicketData] = useState(tickets);
-
-    // useEffect(() => {
-    //     setTicketData(tickets);
-    // }, [tickets]);
     return (
         <div className="ticket-card">
             <div className="ticket-header">
@@ -35,9 +30,9 @@ const UnresolvedTickets = () => {
                     return (
                         <List.Item key={ticketId}>
                             <List.Item.Meta
-                                title={<a href={DASHBOARD}>{title}</a>}
+                                title={<a href={`${TICKET_URL}/${ticketId}`}><h6>{title}</h6></a>}
                             />
-                            <div>{status}</div>
+                            <div><h6>{status}</h6></div>
                         </List.Item>
                     );
                 }}

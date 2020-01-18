@@ -10,6 +10,9 @@ export const VIDEO_CAMERA = 'video-camera';
 export const DASHBOARD = '/dashboard';
 
 /** @constant */
+export const TICKET_URL = '/dashboard/tickets';
+
+/** @constant */
 export const GROUP_SUPPORT = 'Group: Support';
 
 /** @constant */
@@ -26,14 +29,6 @@ export const VIEW_ALL = 'View all';
 
 /** @constant */
 export const TODAY = 'Today';
-
-/** @constant */
-export const TICKETS = [
-    { counts: 15, id: 1, type: 'Illegal Advert' },
-    { counts: 33, id: 2, type: 'Increase View Locations' },
-    { counts: 25, id: 3, type: 'Content Change' },
-    { counts: 8, id: 4, type: 'Copyright Issues' },
-];
 
 /** @constant */
 export const TASKS_SOURCE = [

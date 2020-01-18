@@ -94,12 +94,3 @@ export const statusColor = status => {
     return color;
 };
 
-export const overviewTicketData = async ticket => {
-    const { title, status, ticketId } = await ticket;
-    return ({
-        status,
-        ticketId,
-        title,
-    });
-};
-

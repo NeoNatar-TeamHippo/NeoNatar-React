@@ -8,7 +8,8 @@
 }
 
 .dashboard-card {
-    height: 110px;
+    height: 150px;
+    width: 280px;
     border-radius: 10px;
     text-align: center;
     display: flex;
@@ -25,6 +26,7 @@
 .notification-card-text {
     font-size: large;
     font-weight: bold;
+    height: 300px;
 }
 
 span.ant-tag.ant-tag-green, span.ant-tag.ant-tag-yellow {
