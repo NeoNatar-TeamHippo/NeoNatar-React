@@ -12,66 +12,32 @@ const { Header } = Layout;
 
 const NavHeader = () => {
     const { location } = useSelector(state => state.router);
-    const { user } = useSelector(state => state.user);
+    const { authenticated } = useSelector(state => state.signIn);
 
-    const renderMenuItem = path => {
-        if (path.pathname === '/signup') {
-            return (
-                <Menu className="right-nav" mode="horizontal">
-                    <Item className="header-item">
-                        <Button type="primary" ghost>
-                            <Link to="/signin">
-                                {SIGNIN}
-                            </Link>
-                        </Button>
-                    </Item>
-                </Menu>
-            );
+    const menuItem = (linkPath, text, type) => (
+        <Item className="header-item">
+            <Button type="primary" ghost={type}>
+                <Link to={linkPath}>
+                    {text}
+                </Link>
+            </Button>
+        </Item>
+    );
+
+    const renderMenuItem = ({ pathname }) => {
+        if (pathname === '/signup') {
+            return menuItem('/signin', SIGNIN, false);
         }
-        if (path.pathname === '/signin') {
-            return (
-                <Menu className="right-nav" mode="horizontal">
-                    <Item className="header-item">
-                        <Button type="primary">
-                            <Link to="/signup">
-                                {SIGNUP}
-                            </Link>
-                        </Button>
-                    </Item>
-                </Menu>
-            );
+        if (pathname === '/signin') {
+            return menuItem('/signup', SIGNUP, true);
         }
-        if (user) {
-            return (
-                <Menu className="right-nav" mode="horizontal">
-                    <Item className="header-item">
-                        <Button type="primary">
-                            <Link to="/dashboard">
-                                {GO_TO_DASHBOARD}
-                            </Link>
-                        </Button>
-                    </Item>
-                </Menu>
-            );
+        if (authenticated) {
+            return menuItem('/dashboard', GO_TO_DASHBOARD, false);
         }
-        return (
-            <Menu className="right-nav" mode="horizontal">
-                <Item className="modified-item">
-                    <Button type="primary" ghost>
-                        <Link to="/signin">
-                            {SIGNIN}
-                        </Link>
-                    </Button>
-                </Item>
-                <Item className="modified-item">
-                    <Button type="primary">
-                        <Link to="/signup">
-                            {SIGNUP}
-                        </Link>
-                    </Button>
-                </Item>
-            </Menu>
-        );
+        return [
+            menuItem('/signin', SIGNIN, false),
+            menuItem('/signup', SIGNUP, true),
+        ];
     };
 
     return (
@@ -79,7 +45,9 @@ const NavHeader = () => {
             <Link to="/" className="left-menu">
                 <img src={Logo} height="60px" alt="NeoNatar Logo" />
             </Link>
-            {renderMenuItem(location)}
+            <Menu className="right-nav" mode="horizontal">
+                {renderMenuItem(location)}
+            </Menu>
         </Header>
     );
 };
