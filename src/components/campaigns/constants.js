@@ -1,9 +1,11 @@
 /** @constant */
-export const LOCATIONS = 'Locations: ';
+export const LOCATIONS = 'Locations:';
 /** @constant */
-export const APPROVED = 'Approved: ';
+export const CREATEDAT = 'Created:';
 /** @constant */
-export const EXPIRES = 'Expires: ';
+export const APPROVED = 'Approved:';
+/** @constant */
+export const EXPIRES = 'Expires:';
 /** @constant */
 export const PENDING = 'Pending';
 /** @constant */
