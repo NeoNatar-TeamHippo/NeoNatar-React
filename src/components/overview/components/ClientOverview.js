@@ -41,7 +41,7 @@ const Dashboard = () => {
         <div className="dashboard-div">
             <Row gutter={48} className="client-card">
                 {CLIENT_CARDS.map(({ color, counts, link, type }) => (
-                    <Col key={type} span={6}>
+                    <Col key={type} span={7}>
                         <NavLink to={link}>
                             <Card hoverable className="dashboard-card">
                                 <Text className="notification-card-text">{type}</Text>
