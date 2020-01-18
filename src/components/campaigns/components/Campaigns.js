@@ -15,7 +15,7 @@ const Campaigns = ({ history }) => {
         dispatch(getCampaigns());
     }, [dispatch]);
 
-    const { campaigns } = useSelector(state => state.campaigns);
+    const { campaigns, campaignsLoading } = useSelector(state => state.campaigns);
     const [campaignData, setCampaignData] = useState(campaigns);
     useEffect(() => {
         setCampaignData(campaigns);
@@ -125,6 +125,7 @@ const Campaigns = ({ history }) => {
                         }
             </Menu>
             <Table
+                loading={campaignsLoading}
                 dataSource={campaignData}
                 columns={columns}
                 rowKey={record => record.id}

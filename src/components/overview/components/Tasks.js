@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Icon, List } from 'antd';
+import { Icon, List } from 'antd';
 
 import { DASHBOARD, TASKS_SOURCE, TASKS, VIEW_ALL, TODAY } from '../constants';
 
@@ -15,7 +15,7 @@ const Tasks = () => (
             border-bottom={0}
             dataSource={TASKS_SOURCE}
             renderItem={item => {
-                const { buttonType, buttonText, iconType, date, type, id } = item;
+                const { iconType, date, type, id } = item;
 
                 return (
                     <List.Item key={id}>

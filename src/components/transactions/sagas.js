@@ -12,7 +12,6 @@ function* requestAllTransactions() {
     try {
         yield put(loadTransactions());
         const res = yield call(allTransactions);
-        console.log(res.data);
         if (res.status === 'success') {
             yield put(updateTransactions(res.data));
         } else {

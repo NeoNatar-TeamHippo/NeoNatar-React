@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Modal, Tag, Table, Icon, Input, Typography, Card, Col, Row } from 'antd';
+import { Modal, Tag, Icon, Typography, Card, Col, Row } from 'antd';
 import { NavLink } from 'react-router-dom';
 
 import {
@@ -28,11 +28,11 @@ const Dashboard = () => {
             counts: overviewApprovedCampignNumber,
             link: '/dashboard/campaigns',
             type: 'Approved Campaigns' },
-        { color: 'yellow',
+        { color: 'volcano',
             counts: overviewPendingCampignNumber,
             link: '/dashboard/campaigns',
             type: 'Pending Approval' },
-        { color: 'green',
+        { color: 'blue',
             counts: savedLocations.length,
             link: '/dashboard/locations',
             type: 'Saved Locations' },
