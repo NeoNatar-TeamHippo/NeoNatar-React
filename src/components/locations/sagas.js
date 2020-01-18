@@ -1,8 +1,8 @@
 import { takeEvery, call, put, fork, take } from 'redux-saga/effects';
 import { eventChannel as EventChannel } from 'redux-saga';
 import * as TYPES from './actionType';
-import { setLocation, loadingLocation, setLocationById } from './actions';
-import { locationById, postNewLocation } from './services';
+import { setLocation, loadingLocation } from './actions';
+import { postNewLocation } from './services';
 import { openNotification } from '../utils/functions';
 import { firebaseLocations } from '../utils/firebase';
 
@@ -18,11 +18,7 @@ function* startListener() {
 
     while (true) {
         const { data } = yield take(channel);
-        const locations = [];
-        for (const doc of data) {
-            const newObj = Object.assign({}, doc.data(), { locationId: doc.id });
-            locations.push(newObj);
-        }
+        const locations = data.map(doc => Object.assign({}, doc.data(), { locationId: doc.id }));
         yield put(setLocation(locations));
     }
 }
@@ -39,27 +35,10 @@ function* postNewLocationWithData(data) {
         console.log('something went wrong');
     }
 }
-function* getSingleLocation(id) {
-    try {
-        yield put(loadingLocation());
-        const res = yield call(locationById, id);
-        if (res.status === 'success') {
-            yield put(setLocationById(res.data));
-        } else {
-            console.log('error getting data');
-        }
-    } catch (error) {
-        console.log(error);
-    }
-}
-function* getLocationsByIdEffect({ payload }) {
-    yield call(getSingleLocation, payload);
-}
 function* postLocationEffect({ payload }) {
     yield call(postNewLocationWithData, payload);
 }
 export default function* actionWatcher() {
-    yield takeEvery(TYPES.GET_LOCATIONS_BY_ID, getLocationsByIdEffect);
     yield takeEvery(TYPES.NEW_LOCATIONS, postLocationEffect);
     yield fork(startListener);
 }

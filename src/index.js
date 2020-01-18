@@ -21,7 +21,7 @@ if (token) {
         store.dispatch(logoutUser());
     } else {
         store.dispatch(authTrue());
-        store.dispatch(loadingUser(token));
+        store.dispatch(loadingUser());
     }
 } else {
     store.dispatch(setUnAuthenticated());

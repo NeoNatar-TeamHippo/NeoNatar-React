@@ -51,16 +51,15 @@ const Tickets = ({ history }) => {
 
     const columns = [
         {
-            dataIndex: 'avatar',
-            key: 'avater',
-            render: avater => <Avatar src={avater} />,
-            title: '',
-            width: 10,
-        },
-        {
-            dataIndex: 'customerName',
-            key: 'customerName',
-            title: 'Customer Name',
+            dataIndex: 'customerDetail',
+            key: 'customerDetail',
+            render: customerDetail => (
+                <div className="customer-profile">
+                    <Avatar src={customerDetail.avatar} />
+                    <p style={{ marginLeft: '25px' }}>{customerDetail.customerName}</p>
+                </div>
+            ),
+            title: 'Customer Profile',
         },
         {
             dataIndex: 'title',

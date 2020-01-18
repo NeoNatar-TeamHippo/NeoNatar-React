@@ -7,6 +7,8 @@ export const EXPIRES = 'Expires: ';
 /** @constant */
 export const PENDING = 'Pending';
 /** @constant */
+export const PEND = 'pending';
+/** @constant */
 export const APPROVECAMPAIGN = 'Approve Campaign';
 /** @constant */
 export const ALLCAMPAIGNS = 'All Campaigns';

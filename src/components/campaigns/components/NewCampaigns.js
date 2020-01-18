@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Steps, Button, message } from 'antd';
+import { Steps, Button, message, Icon } from 'antd';
 import UploadVideo from './UploadVideo';
 import SummaryPayment from './SummaryPayment';
 import SelectLocation from './SelectLocation';
@@ -14,18 +14,22 @@ const { Step } = Steps;
 const steps = [
     {
         content: <UploadVideo />,
+        icon: 'play-square',
         title: 'Upload Video',
     },
     {
         content: <SelectLocation />,
+        icon: 'environment',
         title: 'Select Location',
     },
     {
         content: <ScheduleCampaign />,
+        icon: 'sound',
         title: 'Schedule Campaign',
     },
     {
         content: <SummaryPayment />,
+        icon: 'file-done',
         title: 'Summary and Payment',
     },
 ];
@@ -40,7 +44,7 @@ const NewCampaigns = () => {
         <>
             <Steps current={current}>
                 {steps.map(item => (
-                    <Step key={item.title} title={item.title} />
+                    <Step key={item.title} title={item.title} icon={<Icon type={item.icon} />} />
                 ))}
             </Steps>
             <div className="steps-content">{steps[current].content}</div>

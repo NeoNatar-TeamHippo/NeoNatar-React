@@ -1,17 +1,16 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { List, Tooltip, Button, Tag, Typography, Modal } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { PRICE, TRAFFIC_RATE } from '../constants';
 import { locationOperation } from '../actions';
 import { renderRateFormat, renderPrice } from '../../utils/functions';
 
 const { confirm } = Modal;
-const LocationList = ({ history, savedLocationId }) => {
+const LocationList = ({ history, savedLocationId, newSavedLocation }) => {
     const dispatch = useDispatch();
-    const { savedLocationById, savedLocationLoading } = useSelector(state => state.savedLocation);
     const renderPathUrl = locationId => `/dashboard/Locations/${locationId}`;
-    const { locations } = savedLocationById;
+    const { locations } = newSavedLocation;
     const listData = locations;
     const viewSavedLocation = locationId => {
         history.push(renderPathUrl(locationId));
@@ -55,7 +54,6 @@ const LocationList = ({ history, savedLocationId }) => {
     };
     return (
         <List
-            loading={savedLocationLoading}
             itemLayout="vertical"
             size="small"
             pagination={{

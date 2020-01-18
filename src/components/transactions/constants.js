@@ -1,13 +1,4 @@
 /** @constant */
-export const ALL = 'All';
-
-/** @constant */
-export const VALID = 'Valid';
-
-/** @constant */
-export const INVALID = 'Invalid';
-
-/** @constant */
 export const NEW_TRANSACTION = 'New Transaction';
 
 /** @constant */

@@ -16,7 +16,7 @@ const UploadVideo = () => {
         const url = value.split(',')[0];
         const commercialId = value.split(',')[1];
         const duration = value.split(',')[2];
-        setDuration(duration)
+        setDuration(duration);
         dispatch(setCommercialId(commercialId));
         setdisplayVideo(url);
     };
@@ -38,10 +38,11 @@ const UploadVideo = () => {
     const getCampaignTitle = e => {
         setinputCampaignTitle(e.target.value);
     };
+    const renderOptionValue = obj => `${obj.url},${obj.commercialId},${obj.duration}`;
     const renderCommercials = () => commercials.map(commercial => (
         <Option
             key={commercial.videoId}
-            value={`${commercial.url},${commercial.commercialId},${commercial.duration}`}
+            value={renderOptionValue(commercial)}
         >
             {commercial.title}
         </Option>
