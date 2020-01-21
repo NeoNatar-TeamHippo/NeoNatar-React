@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Row, Col, Select, Tabs, Button, Typography, Input, message } from 'antd';
+import { Row, Col, Select, Tabs, Button, Typography, Input, message, Tooltip } from 'antd';
 import CommercialForm from '../../commercials/components/CommercialForm';
 import { setVideoDetails, next, setCommercialId, setDuration } from '../actions';
 import { getCommercial } from '../../commercials/actions';
@@ -67,9 +67,15 @@ const UploadVideo = () => {
             <Button type="ghost" onClick={() => console.log(displayVideo)}>
                 {VIEW}
             </Button>
-            <Button type="primary" disabled={!inputCampaignTitle} onClick={() => handleProceed()}>
-                {PROCEED}
-            </Button>
+            <Tooltip title={!inputCampaignTitle ? 'Please input a title before proceeding' : ''}>
+                <Button
+                    type="primary"
+                    disabled={!inputCampaignTitle}
+                    onClick={() => handleProceed()}
+                >
+                    {PROCEED}
+                </Button>
+            </Tooltip>
         </div>
     );
     return (

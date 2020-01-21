@@ -6,6 +6,9 @@
     border-radius: 4px;
 }
 
+.ant-card-hoverable:hover {
+    border: 1px solid #c41d7f;
+}
 
 .notification-card-text {
     font-size: large;
@@ -61,12 +64,12 @@ span.ant-tag.ant-tag-yellow {
         justify-content: center;
     }
 
-    .dashboard-card {
+    /* .dashboard-card {
         margin-left: 50px;
         height: 110px;
         width: 200px;
         margin-bottom: 30px;
-    }
+    } */
 
     .ticket-card {
         width: 300px;

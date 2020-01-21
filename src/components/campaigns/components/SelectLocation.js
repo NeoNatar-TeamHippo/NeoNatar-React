@@ -291,12 +291,11 @@ const SelectLocation = () => {
                                     </Select>
                                 </div>
                                 {formLocations.length !== 0 ? (
-                                    <div className="my-1 d-flex justify-content-between">
+                                    <div className="my-2 d-flex justify-content-between">
                                         <Button onClick={() => dispatch(prev())}>
                                             {PREVIOUS}
                                         </Button>
                                         <Button
-                                            className="mt-4"
                                             type="primary"
                                             onClick={() => handleProceed('savedLocations')}
                                         >

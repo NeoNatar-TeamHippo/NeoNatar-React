@@ -34,7 +34,7 @@ const Dashboard = () => {
             color: 'volcano',
             counts: overviewPendingCampignNumber,
             link: '/dashboard/campaigns',
-            type: 'Pending Approval',
+            type: 'Pending Campaigns',
         },
         {
             color: 'blue',
@@ -43,8 +43,8 @@ const Dashboard = () => {
             type: 'Saved Locations',
         },
     ];
-    const renderCards = () => (CLIENT_CARDS.map(({ counts, color, link, type }) => (
-        <Col key={type} sm={24} md={12} lg={8}>
+    const renderCards = () => (CLIENT_CARDS.map(({ counts, link, type }) => (
+        <Col key={type} sm={24} md={8}>
             <NavLink to={link}>
                 <Card hoverable className="dashboard-card">
                     <div>
@@ -79,11 +79,10 @@ const Dashboard = () => {
                 type="flex"
                 justify="space-between"
                 gutter={[{ xs: 8, sm: 16, md: 24, lg: 32 }, 20]}
-                className="mb-2"
+                className="mb-4"
             >
                 {renderCards()}
             </Row>
-
             <TransactionsTable />
         </div>
     );
