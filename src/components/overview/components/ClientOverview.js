@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Modal, Tag, Icon, Typography, Card, Col, Row } from 'antd';
+import { Modal, Icon, Typography, Card, Col, Row } from 'antd';
 import { NavLink } from 'react-router-dom';
 
 import {
@@ -9,7 +9,7 @@ import {
 } from '../constants';
 import TransactionsTable from '../../transactions/components/Table';
 
-const { Text } = Typography;
+const { Text, Title } = Typography;
 const { confirm } = Modal;
 function showConfirm() {
     confirm({
@@ -24,45 +24,66 @@ const Dashboard = () => {
         overviewApprovedCampignNumber } = useSelector(state => state.overview);
     const { savedLocations } = useSelector(state => state.savedLocation);
     const CLIENT_CARDS = [
-        { color: 'green',
+        {
+            color: 'green',
             counts: overviewApprovedCampignNumber,
             link: '/dashboard/campaigns',
-            type: 'Approved Campaigns' },
-        { color: 'volcano',
+            type: 'Approved Campaigns',
+        },
+        {
+            color: 'volcano',
             counts: overviewPendingCampignNumber,
             link: '/dashboard/campaigns',
-            type: 'Pending Approval' },
-        { color: 'blue',
+            type: 'Pending Approval',
+        },
+        {
+            color: 'blue',
             counts: savedLocations.length,
             link: '/dashboard/locations',
-            type: 'Saved Locations' },
+            type: 'Saved Locations',
+        },
     ];
+    const renderCards = () => (CLIENT_CARDS.map(({ counts, color, link, type }) => (
+        <Col key={type} sm={24} md={12} lg={8}>
+            <NavLink to={link}>
+                <Card hoverable className="dashboard-card">
+                    <div>
+                        <Text
+                            type="secondary"
+                            style={{
+                                fontSize: 16,
+                            }}
+                        >
+                            {type}
+                        </Text>
+                    </div>
+                    <div>
+                        <Text
+                            type="secondary"
+                            style={{
+                                fontSize: 36,
+                                fontWeight: 700,
+                            }}
+                        >
+                            {counts}
+                        </Text>
+                    </div>
+
+                </Card>
+            </NavLink>
+        </Col>
+    )));
     return (
-        <div className="dashboard-div">
-            <Row gutter={48} className="client-card">
-                {CLIENT_CARDS.map(({ color, counts, link, type }) => (
-                    <Col key={type} span={7}>
-                        <NavLink to={link}>
-                            <Card hoverable className="dashboard-card">
-                                <Text className="notification-card-text">{type}</Text>
-                                <br />
-                                <Tag class="notification-card-tag" color={color} key={type}>
-                                    {counts}
-                                </Tag>
-                            </Card>
-                        </NavLink>
-                    </Col>
-                ))}
+        <div className="container">
+            <Row
+                type="flex"
+                justify="space-between"
+                gutter={[{ xs: 8, sm: 16, md: 24, lg: 32 }, 20]}
+                className="mb-2"
+            >
+                {renderCards()}
             </Row>
-            <Row className="client-card">
-                <Col span={8}>
-                    <Card className="dashboard-card">
-                        {NEW_CAMPAIGNS}
-                        <br />
-                        <Icon onClick={showConfirm} type={VIDEO_CAMERA} />
-                    </Card>
-                </Col>
-            </Row>
+
             <TransactionsTable />
         </div>
     );

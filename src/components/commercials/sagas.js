@@ -17,6 +17,7 @@ function* requestAllCommercials() {
     try {
         yield put(loadingCommercial());
         const res = yield call(getCommercialService);
+        console.log(res);
         if (res.status === 'success') {
             yield put(setCommercial(res.data));
         } else {

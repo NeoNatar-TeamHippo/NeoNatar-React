@@ -1,27 +1,11 @@
-.dashboard-content {
-    border-bottom: 0;
-    background: white;
-    padding-top: 10px;
-}
-.dashboard-div {
-    width: 100%;
-}
-
 .dashboard-card {
-    height: 150px;
-    width: 280px;
-    border-radius: 10px;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-bottom: 50px;
+    border-radius: 4px;
 }
 
-.client-card {
-    display: flex;
-    justify-content: center;
-}
 
 .notification-card-text {
     font-size: large;
@@ -29,7 +13,8 @@
     height: 300px;
 }
 
-span.ant-tag.ant-tag-green, span.ant-tag.ant-tag-yellow {
+span.ant-tag.ant-tag-green,
+span.ant-tag.ant-tag-yellow {
     padding: 5px 10px;
 }
 
@@ -50,10 +35,12 @@ span.ant-tag.ant-tag-green, span.ant-tag.ant-tag-yellow {
     margin-left: auto;
     order: 1;
 }
-.ticket-sub-header{
+
+.ticket-sub-header {
     padding: 8px 24px;
 }
-.card-container{
+
+.card-container {
     overflow: auto;
     padding: 8px 24px;
     width: 480px;
@@ -67,19 +54,21 @@ span.ant-tag.ant-tag-green, span.ant-tag.ant-tag-yellow {
     border-bottom: 0;
 }
 
-@media(max-width: 767px){
+@media(max-width: 767px) {
     div.ant-row {
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
+
     .dashboard-card {
         margin-left: 50px;
         height: 110px;
         width: 200px;
         margin-bottom: 30px;
     }
-    .ticket-card{
+
+    .ticket-card {
         width: 300px;
     }
 }

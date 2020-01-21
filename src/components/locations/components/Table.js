@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-literals */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -95,7 +96,7 @@ const LocationTable = ({ history }) => {
         dispatch(locationOperation(payload));
         openNotification(
             `${selectedRowKeys.length} Location${selectedRowKeys.length > 1 ? 's' : ''}`,
-            'Successfully added', 'success', 'success'
+            'Successfully added', 'success'
         );
     };
     const handleNewLocation = () => {
@@ -159,11 +160,13 @@ const LocationTable = ({ history }) => {
     const hasSelected = selectedRowKeys.length > 0;
     const columns = [
         {
+            align: 'left',
             dataIndex: 'name',
             key: 'name',
             title: 'Name',
         },
         {
+            align: 'left',
             dataIndex: 'address',
             key: 'address',
             title: 'Address',
@@ -171,41 +174,44 @@ const LocationTable = ({ history }) => {
             ...getColumnSearchProps('address'),
         },
         {
+            align: 'left',
             dataIndex: 'lga',
             key: 'lga',
             title: 'Local Govt',
             ...getColumnSearchProps('lga'),
         },
         {
+            align: 'center',
             dataIndex: 'state',
             key: 'state',
             title: 'State',
             ...getColumnSearchProps('state'),
         },
         {
+            align: 'right',
             dataIndex: 'price',
             key: 'price',
             render: text => (
                 <Typography.Text type="secondary">
+                    <span className="mr-1">&#8358;</span>
                     {text}
                 </Typography.Text>
             ),
             title: 'Price/day',
         },
         {
+            align: 'center',
             dataIndex: 'trafficRate',
             key: 'trafficRate',
-            render: text => {
-                const { color } = renderRateFormat(text);
-                return (
-                    <Tag color={color}>
-                        {text}
-                    </Tag>
-                );
-            },
-            title: 'Average Weekly Visitors',
+            render: text => (
+                <Typography.Text>
+                    {text}
+                </Typography.Text>
+            ),
+            title: 'Avg Visitors/week',
         },
         {
+            align: 'center',
             key: 'action',
             render: (text, record) => (
                 <div className="d-flex justify-content-around">

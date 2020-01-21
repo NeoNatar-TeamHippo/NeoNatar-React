@@ -16,13 +16,14 @@ const Navbar = () => {
     const fullName = `${user.firstName} ${user.lastName}`;
     return (
         <Menu className="right-nav" mode="horizontal">
-            <Item key="notification" disabled>
+            <Item key="notification">
                 <Tooltip title="Under construction">
-                    <Badge count={5} dot>
-                        <Button type="link">
+                    <Button type="link" disabled>
+                        <Badge count={5} dot>
                             <Icon type={BELL} />
-                        </Button>
-                    </Badge>
+                        </Badge>
+                    </Button>
+
                 </Tooltip>
             </Item>
             <Divider type={VERTICAL} />

@@ -32,7 +32,7 @@ export const openNotification = (description, messageText, type) => {
     notification[type]({
         description,
         duration: 5,
-        messageText,
+        message: messageText,
     });
 };
 export const openMessage = (messageText, duration, type) => {

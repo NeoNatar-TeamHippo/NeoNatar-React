@@ -104,3 +104,4 @@ export const WRAPPER_COL = {
 };
 export const SEARCH = 'SEARCH';
 export const RESET = 'RESET';
+export const NAIRASIGN = '&#8358;';

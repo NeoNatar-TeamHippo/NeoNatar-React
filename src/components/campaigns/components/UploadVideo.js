@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Row, Col, Select, Tabs, Button, Typography, Input } from 'antd';
+import { Row, Col, Select, Tabs, Button, Typography, Input, message } from 'antd';
 import CommercialForm from '../../commercials/components/CommercialForm';
 import { setVideoDetails, next, setCommercialId, setDuration } from '../actions';
+import { getCommercial } from '../../commercials/actions';
 import { PROCEED, VIEW, CHOOSE_A_TITLE, CHOOSE_PREVIOUS_VIDEO } from '../constants';
 
 const { TabPane } = Tabs;
 const { Option } = Select;
 const UploadVideo = () => {
     const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getCommercial());
+    }, [dispatch]);
     const { commercials } = useSelector(state => state.commercials);
     const [displayVideo, setdisplayVideo] = useState(null);
     const [inputCampaignTitle, setinputCampaignTitle] = useState(null);
@@ -48,6 +52,9 @@ const UploadVideo = () => {
         </Option>
     ));
     const handleProceed = () => {
+        if (!inputCampaignTitle) {
+            message.error('Please input a campaign title before proceeding', 4);
+        }
         dispatch(next());
         const payload = {
             title: inputCampaignTitle,
@@ -60,7 +67,7 @@ const UploadVideo = () => {
             <Button type="ghost" onClick={() => console.log(displayVideo)}>
                 {VIEW}
             </Button>
-            <Button type="primary" onClick={() => handleProceed()}>
+            <Button type="primary" disabled={!inputCampaignTitle} onClick={() => handleProceed()}>
                 {PROCEED}
             </Button>
         </div>

@@ -28,6 +28,7 @@ function* postNewCampaignWithData(data) {
     try {
         yield put(loadingCampaigns());
         const res = yield call(createCampaigns, data);
+        console.log(res);
         if (res.status === 'success') {
             console.log('success');
         }

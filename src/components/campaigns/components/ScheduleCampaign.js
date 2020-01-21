@@ -1,20 +1,27 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Descriptions, Col, Row, Button, Tooltip, Typography, Select, message, Tag } from 'antd';
+import {
+    Descriptions, Col, Row, Button, Tooltip, Typography, message,
+    Tag, Modal, Slider, InputNumber
+} from 'antd';
 import PaystackButton from 'react-paystack';
-import { SELECT_OPTIONS, REFERENCE_VALUE, CAMPAIGN_LENGTH_TEXT } from '../constants';
-import { openNotification } from '../../utils/functions';
-import { next, resetFormState, createCampaign } from '../actions';
+import {
+    REFERENCE_VALUE, CAMPAIGN_LENGTH_TEXT, PROCEED,
+    PREVIOUS,
+    TOTAL_AMOUNT_DUE,
+    SHALL_WE_PROCEED
+} from '../constants';
+import { next, resetFormState, createCampaign, previous as prev } from '../actions';
+import { CANCEL } from '../../commercials/constants';
 
-const { Option } = Select;
 const { Paragraph } = Typography;
 const apiKey = process.env.REACT_APP_PAYSTACK_KEY;
 let newAmount = 0;
 let finalAmount = 0;
 const ScheduleCampaign = ({ history }) => {
     const dispatch = useDispatch();
-    const [selectOption, setselectOption] = useState(null);
+    const [visible, setVisible] = useState(false);
     const {
         campaignDetails: { amount, commercialId, videoDetails, locations },
     } = useSelector(state => state.campaigns);
@@ -22,33 +29,37 @@ const ScheduleCampaign = ({ history }) => {
     const { user: { email } } = useSelector(state => state.user);
     const [newTitle, setnewTitle] = useState(videoDetails.title);
     const [localAmount, setlocalAmount] = useState(amount);
+    const [days, setdays] = useState(1);
     const onChange = value => {
-        setselectOption(value);
+        setdays(value);
         newAmount = amount * value;
         finalAmount = amount * value * 100;
         setlocalAmount(newAmount);
-        openNotification(`New Price Updated to ${newAmount}`, 'Update', 'success');
     };
     const onChangeTitle = value => {
         setnewTitle(value);
     };
-    const renderSelectOptions = () => SELECT_OPTIONS.map(option => (
-        <Option
-            key={option.value}
-            value={option.value}
-        >
-            {option.title}
-        </Option>
-    ));
-    const renderCampaignLocation = () => allLocations.map(location => locations.map(rowKey => {
-        if (location.locationId === rowKey) {
-            return (
-                <Tag className="my-1">{location.name}</Tag>
-            );
-        }
-        return true;
-    }));
+    const renderCampaignLocation = () => {
+        const newArray = [];
+        allLocations.map(location => locations.map(rowKey => {
+            if (location.locationId === rowKey) {
+                newArray.push(location);
+            }
+            return false;
+        }));
+        const sortedLocations = newArray.sort((a, b) => a.name.localeCompare(b.name));
+        return sortedLocations.map(location => (
+            <Tag
+                key={location.locationId}
+                color="blue"
+                className="my-1"
+            >
+                {location.name}
+            </Tag>
+        ));
+    };
     const callback = response => {
+        setVisible(false);
         if (response.status === 'success') {
             dispatch(next());
             const newCampaign = {
@@ -69,6 +80,7 @@ const ScheduleCampaign = ({ history }) => {
     };
 
     const close = () => {
+        setVisible(false);
         message.error('The payment process was cancelled by you');
     };
 
@@ -80,11 +92,22 @@ const ScheduleCampaign = ({ history }) => {
         }
         return text;
     };
+    const handleProceed = () => {
+        newAmount = amount * days;
+        finalAmount = amount * days * 100;
+        setlocalAmount(newAmount);
+        setVisible(true);
+    };
     return (
         <div className="mt-4">
             <Row type="flex" justify="center" align="middle">
                 <Col xs={24} md={14}>
-                    <Descriptions title="Campaign Info" layout="vertical" bordered>
+                    <Descriptions
+                        title="Campaign Info"
+                        layout="vertical"
+                        bordered
+                        column={{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }}
+                    >
                         <Descriptions.Item label="Title">
                             <Paragraph editable={{ onChange: onChangeTitle }}>{newTitle}</Paragraph>
                         </Descriptions.Item>
@@ -95,10 +118,20 @@ const ScheduleCampaign = ({ history }) => {
                                 </Button>
                             </Tooltip>
                         </Descriptions.Item>
-                        <Descriptions.Item label="Amount">
-                            {localAmount}
+                        <Descriptions.Item label="Initial Amount">
+                            <Typography.Title className="total_text" level={4}>
+                                <span className="mr-1">&#8358;</span>
+                                {amount}
+                            </Typography.Title>
                         </Descriptions.Item>
-                        <Descriptions.Item label="Locations">
+                        <Descriptions.Item label="Amount Due">
+                            <Typography.Title className="total_text" level={4}>
+                                <span className="mr-1">&#8358;</span>
+                                {localAmount}
+                            </Typography.Title>
+                        </Descriptions.Item>
+
+                        <Descriptions.Item label="Locations" span={3}>
                             {renderCampaignLocation()}
                         </Descriptions.Item>
                     </Descriptions>
@@ -108,32 +141,89 @@ const ScheduleCampaign = ({ history }) => {
                                 <Typography.Text strong>
                                     {CAMPAIGN_LENGTH_TEXT}
                                 </Typography.Text>
-                                <Select
-                                    className="w-100 mt-2"
-                                    placeholder="Select Duration"
-                                    onChange={onChange}
-                                    defaultActiveFirstOption
-                                >
-                                    {renderSelectOptions()}
-                                </Select>
+                                <Row type="flex" className="mt-2">
+                                    <Col span={12}>
+                                        <Slider
+                                            min={1}
+                                            max={30}
+                                            onChange={onChange}
+                                            value={typeof days === 'number' ? days : 0}
+                                        />
+                                    </Col>
+                                    <Col span={4}>
+                                        <InputNumber
+                                            min={1}
+                                            max={30}
+                                            style={{ marginLeft: 16 }}
+                                            value={days}
+                                            formatter={value => `${value} ${days > 1 ? 'days' : 'day'}`}
+                                            onChange={onChange}
+                                        />
+                                    </Col>
+                                    {/* <Col span={6}>
+                                        <Typography.Title className="total_text" level={4}>
+                                            <span className="mr-1">&#8358;</span>
+                                            {amount}
+                                        </Typography.Title>
+                                    </Col> */}
+                                </Row>
                             </div>
                         </Col>
                     </Row>
+                </Col>
+            </Row>
+            <div className="my-1 d-flex justify-content-between">
+                <Button onClick={() => dispatch(prev())}>
+                    {PREVIOUS}
+                </Button>
+                <Button
+                    type="primary"
+                    onClick={() => handleProceed()}
+                >
+                    {PROCEED}
+                </Button>
+            </div>
+            <Modal
+                visible={visible}
+                centered
+
+                title="Confirm Price"
+                onOk={() => setVisible(false)}
+                onCancel={() => setVisible(false)}
+                footer={[
+                    <Button key="back" onClick={() => setVisible(false)}>
+                        {CANCEL}
+                    </Button>,
                     <PaystackButton
-                        text="Proceed To Payment"
+                        key="proceed"
+                        text="Pay With Paystack"
                         class="ant-btn ant-btn-primary mt-4"
                         callback={callback}
                         close={close}
-                        disabled={!selectOption}
                         embed={false}
                         reference={getReference()}
                         email={email}
                         amount={finalAmount}
                         paystackkey={apiKey}
                         tag="button"
-                    />
-                </Col>
-            </Row>
+                    />,
+                ]}
+            >
+                <div className="d-flex justify-content-center">
+                    <div>
+                        <Typography.Text className="mx-1">
+                            {TOTAL_AMOUNT_DUE}
+                        </Typography.Text>
+                        <Typography.Text strong>
+                            <span>&#8358;</span>
+                            {newAmount}
+                        </Typography.Text>
+                        <Typography.Text className="mx-1">
+                            {SHALL_WE_PROCEED}
+                        </Typography.Text>
+                    </div>
+                </div>
+            </Modal>
         </div>
     );
 };
