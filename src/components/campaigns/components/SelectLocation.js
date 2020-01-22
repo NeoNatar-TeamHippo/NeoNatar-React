@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Highlighter from 'react-highlight-words';
+import ReactHtmlParser from 'react-html-parser';
 import { Select, Button, Tabs, List, Table, Typography, Col, Row, Input, Icon } from 'antd';
 import { setCampaignLocation, next, setAmount, previous as prev } from '../actions';
 import {
     TOTAL, PROCEED, SELECT_A_LOCATION, PREVIOUS,
-    CHOOSE_SAVED_LOCATION, SEARCH, RESET
+    CHOOSE_SAVED_LOCATION, SEARCH, RESET, NAIRASIGN
 } from '../constants';
 
 const { TabPane } = Tabs;
@@ -92,7 +93,7 @@ const SelectLocation = () => {
         return (
             <span>
                 {TOTAL}
-                <span className="ml-1">&#8358;</span>
+                <span className="ml-1">{ReactHtmlParser(NAIRASIGN)}</span>
                 <span className="total_text">{total}</span>
             </span>
         );
@@ -198,7 +199,7 @@ const SelectLocation = () => {
             key: 'price',
             render: text => (
                 <Typography.Text type="secondary">
-                    <span>&#8358;</span>
+                    <span>{ReactHtmlParser(NAIRASIGN)}</span>
                     {text}
                 </Typography.Text>
             ),

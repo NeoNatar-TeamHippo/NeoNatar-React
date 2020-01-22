@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import ReactHtmlParser from 'react-html-parser';
 import {
     Descriptions, Col, Row, Button, Tooltip, Typography, message,
     Tag, Modal, Slider, InputNumber
@@ -10,7 +11,8 @@ import {
     REFERENCE_VALUE, CAMPAIGN_LENGTH_TEXT, PROCEED,
     PREVIOUS,
     TOTAL_AMOUNT_DUE,
-    SHALL_WE_PROCEED
+    SHALL_WE_PROCEED,
+    NAIRASIGN
 } from '../constants';
 import { next, resetFormState, createCampaign, previous as prev } from '../actions';
 import { CANCEL } from '../../commercials/constants';
@@ -106,7 +108,7 @@ const ScheduleCampaign = ({ history }) => {
                         title="Campaign Info"
                         layout="vertical"
                         bordered
-                        column={{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }}
+                        column={{ lg: 3, md: 3, sm: 2, xl: 3, xs: 1, xxl: 4 }}
                     >
                         <Descriptions.Item label="Title">
                             <Paragraph editable={{ onChange: onChangeTitle }}>{newTitle}</Paragraph>
@@ -120,13 +122,17 @@ const ScheduleCampaign = ({ history }) => {
                         </Descriptions.Item>
                         <Descriptions.Item label="Initial Amount">
                             <Typography.Title className="total_text" level={4}>
-                                <span className="mr-1">&#8358;</span>
+                                <span className="mr-1">
+                                    {ReactHtmlParser(NAIRASIGN)}
+                                </span>
                                 {amount}
                             </Typography.Title>
                         </Descriptions.Item>
                         <Descriptions.Item label="Amount Due">
                             <Typography.Title className="total_text" level={4}>
-                                <span className="mr-1">&#8358;</span>
+                                <span className="mr-1">
+                                    {ReactHtmlParser(NAIRASIGN)}
+                                </span>
                                 {localAmount}
                             </Typography.Title>
                         </Descriptions.Item>
@@ -156,16 +162,12 @@ const ScheduleCampaign = ({ history }) => {
                                             max={30}
                                             style={{ marginLeft: 16 }}
                                             value={days}
-                                            formatter={value => `${value} ${days > 1 ? 'days' : 'day'}`}
+                                            formatter={value => `${value} ${days > 1
+                                                ? 'days'
+                                                : 'day'}`}
                                             onChange={onChange}
                                         />
                                     </Col>
-                                    {/* <Col span={6}>
-                                        <Typography.Title className="total_text" level={4}>
-                                            <span className="mr-1">&#8358;</span>
-                                            {amount}
-                                        </Typography.Title>
-                                    </Col> */}
                                 </Row>
                             </div>
                         </Col>
@@ -215,7 +217,7 @@ const ScheduleCampaign = ({ history }) => {
                             {TOTAL_AMOUNT_DUE}
                         </Typography.Text>
                         <Typography.Text strong>
-                            <span>&#8358;</span>
+                            <span>{ReactHtmlParser(NAIRASIGN)}</span>
                             {newAmount}
                         </Typography.Text>
                         <Typography.Text className="mx-1">

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Tag, Table, PageHeader, Menu, Typography, Tooltip, Button } from 'antd';
-
+import ReactHtmlParser from 'react-html-parser';
 import { getCampaigns } from '../actions';
-import { ALLCAMPAIGNS, ALL, PENDING, APPROVE, HORIZONTAL } from '../constants';
+import { ALLCAMPAIGNS, ALL, PENDING, APPROVE, HORIZONTAL, NAIRASIGN } from '../constants';
 import { statusColor } from '../../utils/functions';
 
 const menuItems = [ALL, PENDING, APPROVE];
@@ -58,7 +58,7 @@ const Campaigns = ({ history }) => {
             key: 'amount',
             render: amount => (
                 <Typography.Text>
-                    {`₦ ${amount}`}
+                    <span>{ReactHtmlParser(NAIRASIGN)`${amount}`}</span>
                 </Typography.Text>
             ),
             title: 'Amount',
@@ -117,18 +117,20 @@ const Campaigns = ({ history }) => {
                 style={{ marginBottom: 5 }}
             >
                 {
-                            menuItems.map(key => (
-                                <Menu.Item key={key}>
-                                    {key}
-                                </Menu.Item>
-                            ))
-                        }
+                    menuItems.map(key => (
+                        <Menu.Item key={key}>
+                            {key}
+                        </Menu.Item>
+                    ))
+                }
             </Menu>
             <Table
                 loading={campaignsLoading}
                 dataSource={campaignData}
                 columns={columns}
                 rowKey={record => record.id}
+                size="middle"
+                scroll={{ y: 350 }}
             />
         </div>
     );

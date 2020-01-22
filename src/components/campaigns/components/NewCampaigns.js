@@ -1,13 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Steps, Button, message, Icon } from 'antd';
+import { Steps, Button, Icon } from 'antd';
 import UploadVideo from './UploadVideo';
 import SummaryPayment from './SummaryPayment';
 import SelectLocation from './SelectLocation';
 import ScheduleCampaign from './ScheduleCampaign';
-import { previous as prev, next, resetFormState } from '../actions';
-
-import { DONE, PREVIOUS } from '../constants';
+import { next } from '../actions';
+import { NEXT } from '../constants';
 
 const { Step } = Steps;
 
@@ -45,7 +44,7 @@ const NewCampaigns = () => {
             </Steps>
             <div className="steps-content">{steps[current].content}</div>
             <Button onClick={() => dispatch(next())}>
-                next
+                {NEXT}
             </Button>
         </>
     );

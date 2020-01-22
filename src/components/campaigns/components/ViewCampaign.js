@@ -4,10 +4,13 @@ import {
     Icon, Card, Row, Col, Button, Typography, Tag
 } from 'antd';
 import moment from 'moment';
-
+import ReactHtmlParser from 'react-html-parser';
 import { getCampaignById, approveCampaign } from '../actions';
 import { statusColor } from '../../utils/functions';
-import { LOCATIONS, APPROVECAMPAIGN, EXPIRES, APPROVED, PEND, CREATEDAT } from '../constants';
+import {
+    LOCATIONS, APPROVECAMPAIGN, EXPIRES, APPROVED, PEND,
+    CREATEDAT, NAIRASIGN
+} from '../constants';
 
 const ViewCampaign = ({ match, history }) => {
     const { params } = match;
@@ -76,7 +79,7 @@ const ViewCampaign = ({ match, history }) => {
                             </div>
                             <div>
                                 <Tag color={statusColor(status)}>{campaignByIdLoading ? '' : status.toUpperCase()}</Tag>
-                                {`₦ ${amount}`}
+                                <span>{ReactHtmlParser(NAIRASIGN)`${amount}`}</span>
                             </div>
                         </div>
                         <div>
