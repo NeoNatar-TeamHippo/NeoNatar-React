@@ -60,3 +60,20 @@ export const approveCampaigns = async id => {
     const data = await response.json();
     return data;
 };
+
+export const disapproveCampaigns = async payload => {
+    const { campaignId, messages } = payload;
+    const token = localStorage.getItem('FBToken');
+    const parameters = {
+        body: JSON.stringify({ message: messages }),
+        headers: {
+            Authorization: token,
+            'Content-Type': 'application/json',
+        },
+        method: 'PUT',
+        mode: 'cors',
+    };
+    const response = await fetch(`${CAMPAIGN_URL}/${campaignId}/disapproved`, parameters);
+    const data = await response.json();
+    return data;
+};

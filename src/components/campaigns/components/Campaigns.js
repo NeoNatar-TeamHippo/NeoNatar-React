@@ -3,10 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Tag, Table, PageHeader, Menu, Typography, Tooltip, Button } from 'antd';
 import ReactHtmlParser from 'react-html-parser';
 import { getCampaigns } from '../actions';
-import { ALLCAMPAIGNS, ALL, PENDING, APPROVE, HORIZONTAL, NAIRASIGN } from '../constants';
+import { ALLCAMPAIGNS, ALL, PENDING, APPROVE, HORIZONTAL, NAIRASIGN, DISAPPROVED } from '../constants';
 import { statusColor } from '../../utils/functions';
 
-const menuItems = [ALL, PENDING, APPROVE];
+const menuItems = [ALL, PENDING, APPROVE, DISAPPROVED];
 
 const Campaigns = ({ history }) => {
     const dispatch = useDispatch();
@@ -36,6 +36,9 @@ const Campaigns = ({ history }) => {
             case APPROVE:
                 setCampaignData(campaigns.filter(campaign => campaign.status === 'live'));
                 break;
+            case DISAPPROVED:
+                setCampaignData(campaigns.filter(campaign => campaign.status === 'disapproved'));
+                break;
             default:
                 setCampaignData(campaigns);
                 break;
@@ -54,6 +57,7 @@ const Campaigns = ({ history }) => {
             title: 'Customer Name',
         },
         {
+            align: 'right',
             dataIndex: 'amount',
             key: 'amount',
             render: amount => (
@@ -62,18 +66,32 @@ const Campaigns = ({ history }) => {
                 </Typography.Text>
             ),
             title: 'Amount',
-            width: 120,
         },
         {
+            align: 'right',
             dataIndex: 'numberOfLocations',
             key: 'numberOfLocations',
             render: numberOfLocations => (
-                <div style={{ fontFamily: 'monospace', textAlign: 'center' }}>
-                    {numberOfLocations}
+                <div>
+                    <Typography.Text>
+                        {numberOfLocations}
+                    </Typography.Text>
                 </div>
             ),
             title: 'Locations',
-            width: 120,
+        },
+        {
+            align: 'right',
+            dataIndex: 'duration',
+            key: 'duration',
+            render: duration => (
+                <div>
+                    <Typography.Text>
+                        {duration}
+                    </Typography.Text>
+                </div>
+            ),
+            title: 'Duration',
         },
         {
             dataIndex: 'status',
@@ -91,7 +109,7 @@ const Campaigns = ({ history }) => {
         {
             key: 'action',
             render: (text, record) => (
-                <Tooltip placement="top" title="View ticket">
+                <Tooltip placement="top" title="View Campaign">
                     <Button
                         onClick={() => handleViewCampaign(record.campaignId)}
                         type="link"

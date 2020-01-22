@@ -49,13 +49,22 @@ export const getCampaigns = () => ({
     type: TYPES.GET_CAMPAIGNS,
 });
 /**
- * Triggers request to get all CAMPAIGNs
+ * Triggers request to get approve CAMPAIGN
  *
  * @function
  * @return {void} The {@link actionTypes.APPROVING_CAMPAIGN } action.
  */
 export const approvingCampaign = () => ({
     type: TYPES.APPROVING_CAMPAIGN,
+});
+/**
+ * Triggers request to get all CAMPAIGNs
+ *
+ * @function
+ * @return {void} The {@link actionTypes.DISAPPROVING_CAMPAIGN } action.
+ */
+export const disapprovingCampaign = () => ({
+    type: TYPES.DISAPPROVING_CAMPAIGN,
 });
 /**
  * Triggers request to set message after an actin is completed is sucessfully posted
@@ -100,11 +109,21 @@ export const clearErrors = () => ({
  * Triggers request to approve campaign
  *
  * @function
- * @return {void} The {@link actionTypes.GET_CAMPAIGN_BY_ID } action.
+ * @return {void} The {@link actionTypes.APPROVE_CAMPAIGN } action.
  */
 export const approveCampaign = payload => ({
     payload,
     type: TYPES.APPROVE_CAMPAIGN,
+});
+/**
+ * Triggers request to approve campaign
+ *
+ * @function
+ * @return {void} The {@link actionTypes.DISAPPROVE_CAMPAIGN } action.
+ */
+export const disapproveCampaign = payload => ({
+    payload,
+    type: TYPES.DISAPPROVE_CAMPAIGN,
 });
 /**
  * Triggers request to set campaign title

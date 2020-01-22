@@ -2,6 +2,7 @@ import { takeEvery, call, put } from 'redux-saga/effects';
 import * as TYPES from './actionType';
 import {
     approvingCampaign,
+    disapprovingCampaign,
     loadingCampaignById,
     loadingCampaigns,
     postSuccess,
@@ -10,7 +11,7 @@ import {
     setErrors
 } from './actions';
 import {
-    allCampaigns, campaignById, approveCampaigns, createCampaigns
+    allCampaigns, campaignById, approveCampaigns, disapproveCampaigns, createCampaigns
 } from './services';
 
 function* getAllCampaigns() {
@@ -77,9 +78,28 @@ function* approveCampaignEffect({ payload }) {
     yield call(approveCampaign, payload);
 }
 
+function* disapproveCampaign(payload) {
+    try {
+        console.log(payload);
+        yield put(disapprovingCampaign());
+        const res = yield call(disapproveCampaigns, payload);
+        if (res.status === 'success') {
+            yield put(postSuccess({ message: 'Campaign is approved' }));
+        } else {
+            yield put(setErrors({ message: res.message }));
+        }
+    } catch (error) {
+        yield put(setErrors({ message: 'Something went wrong please try again' }));
+    }
+}
+function* disapproveCampaignEffect({ payload }) {
+    yield call(disapproveCampaign, payload);
+}
+
 export default function* actionWatcher() {
     yield takeEvery(TYPES.GET_CAMPAIGNS, getCampaignsEffect);
     yield takeEvery(TYPES.GET_CAMPAIGN_BY_ID, getCampaignByIdEffect);
     yield takeEvery(TYPES.APPROVE_CAMPAIGN, approveCampaignEffect);
+    yield takeEvery(TYPES.DISAPPROVE_CAMPAIGN, disapproveCampaignEffect);
     yield takeEvery(TYPES.CREATE_CAMPAIGN, postCampaignEffect);
 }
