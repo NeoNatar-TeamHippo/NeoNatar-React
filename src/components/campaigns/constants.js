@@ -1,7 +1,11 @@
 /** @constant */
 export const LOCATIONS = 'Locations:';
 /** @constant */
+export const MESSAGE = 'Messages:';
+/** @constant */
 export const CREATEDAT = 'Created:';
+/** @constant */
+export const DURATION = 'Duration:';
 /** @constant */
 export const APPROVED = 'Approved:';
 /** @constant */
@@ -9,17 +13,49 @@ export const EXPIRES = 'Expires:';
 /** @constant */
 export const PENDING = 'Pending';
 /** @constant */
+export const DOWNLOAD = 'Download';
+/** @constant */
 export const PEND = 'pending';
 /** @constant */
-export const APPROVECAMPAIGN = 'Approve Campaign';
+export const APPROVECAMPAIGN = 'Approve';
+/** @constant */
+export const DISAPPROVECAMPAIGN = 'Disapprove';
 /** @constant */
 export const ALLCAMPAIGNS = 'All Campaigns';
 /** @constant */
 export const ALL = 'All';
 /** @constant */
+export const LIVE = 'live';
+/** @constant */
+export const DISAPPROVE = 'disapproved';
+/** @constant */
 export const APPROVE = 'Approved';
 /** @constant */
+export const DISAPPROVED = 'Disapproved';
+/** @constant */
 export const HORIZONTAL = 'horizontal';
+/** @constant */
+export const VERTICAL = 'vertical';
+/** @constant */
+export const CANCEL = 'Cancel';
+/** @constant */
+export const SUBMIT = 'Submit';
+/** @constant */
+export const BACK = 'Back';
+/** @constant */
+export const TITLE = 'Reason For disapproving Campaign';
+/** @constant */
+export const PLACEHOLDER = 'Please select reason for disapproving campaign';
+/** @constant */
+export const OPTIONKEY = [
+    'Video Content does not meet advertisment. Please Read the Guideline1',
+    'Video Content does not meet advertisment. Please Read the Guideline2',
+    'Video Content does not meet advertisment. Please Read the Guideline3',
+    'Video Content does not meet advertisment. Please Read the Guideline4',
+    'Video Content does not meet advertisment. Please Read the Guideline5',
+    'Video Content does not meet advertisment. Please Read the Guideline6',
+    'Video Content does not meet advertisment. Please Read the Guideline7',
+];
 
 /** @constant */
 
