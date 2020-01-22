@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Steps, Button, Icon } from 'antd';
 import UploadVideo from './UploadVideo';
@@ -7,6 +7,8 @@ import SelectLocation from './SelectLocation';
 import ScheduleCampaign from './ScheduleCampaign';
 import { next } from '../actions';
 import { NEXT } from '../constants';
+import { getCommercial } from '../../commercials/actions';
+import { getSavedLocations } from '../../savedLocations/actions';
 
 const { Step } = Steps;
 
@@ -34,7 +36,12 @@ const steps = [
 ];
 const NewCampaigns = () => {
     const dispatch = useDispatch();
+    const { user: { userId } } = useSelector(state => state.user);
     const { campaignDetails: { current } } = useSelector(state => state.campaigns);
+    useEffect(() => {
+        dispatch(getCommercial());
+        dispatch(getSavedLocations({ userId }));
+    }, [dispatch, userId]);
     return (
         <>
             <Steps current={current}>

@@ -24,6 +24,8 @@ const Commercials = () => {
                 centered
                 visible={visible}
                 title="Upload Video"
+                onCancel={handleCancel}
+                onOk={handleCancel}
                 footer={[
                     <Button key="back" onClick={handleCancel}>
                         {CANCEL}

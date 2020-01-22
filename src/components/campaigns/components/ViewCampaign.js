@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-    Icon, Card, Row, Col, Button, Typography, Tag
-} from 'antd';
+import { Icon, Card, Row, Col, Button, Typography, Tag } from 'antd';
 import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser';
 import { getCampaignById, approveCampaign } from '../actions';
@@ -78,7 +76,9 @@ const ViewCampaign = ({ match, history }) => {
                                 </Typography.Title>
                             </div>
                             <div>
-                                <Tag color={statusColor(status)}>{campaignByIdLoading ? '' : status.toUpperCase()}</Tag>
+                                <Tag color={statusColor(status)}>
+                                    {campaignByIdLoading ? '' : status.toUpperCase()}
+                                </Tag>
                                 <span>{ReactHtmlParser(NAIRASIGN)`${amount}`}</span>
                             </div>
                         </div>
@@ -88,7 +88,11 @@ const ViewCampaign = ({ match, history }) => {
                                 <Col span={17} offset={2}>
                                     {campaignByIdLoading
                                         ? []
-                                        : locationsSelected.map(location => <Tag key={location}>{location}</Tag>)}
+                                        : locationsSelected.map(location => (
+                                            <Tag key={location}>
+                                                {location}
+                                            </Tag>
+                                        ))}
                                 </Col>
                             </Row>
                         </div>
@@ -124,5 +128,4 @@ const ViewCampaign = ({ match, history }) => {
         </div>
     );
 };
-
 export default ViewCampaign;
