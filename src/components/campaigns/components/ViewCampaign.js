@@ -31,6 +31,7 @@ import { LOCATIONS,
 
 const { Option } = Select;
 const { Item } = Form;
+const { Paragraph, Text, Title } = Typography;
 
 const ViewCampaignWithModal = ({ match, history, form }) => {
     const { getFieldDecorator } = form;
@@ -202,7 +203,13 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                                 </video>
                         )}
                             actions={[
-                                <Button key="back" type="primary" color="red" ghost onClick={() => history.goBack()}>
+                                <Button
+                                    key="back"
+                                    type="primary"
+                                    color="red"
+                                    ghost
+                                    onClick={() => history.goBack()}
+                                >
                                     {BACK}
                                 </Button>,
                                 <Button
@@ -231,22 +238,27 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                                 style={{ marginBottom: '10px' }}
                             >
                                 <div>
-                                    <Typography.Text strong="true">
+                                    <Text strong="true">
                                         {title}
-                                    </Typography.Text>
-                                </div>
-                                <div hidden={downloadHidden()}>
-                                    <Button
-                                        type="primary"
-                                        icon="download"
-                                        onClick={() => handleDownload(commercialUrl, title)}
-                                    >
-                                        {DOWNLOAD}
-                                    </Button>
+                                    </Text>
                                 </div>
                                 <div>
-                                    <Tag color={statusColor(status)}>{campaignByIdLoading ? '' : status.toUpperCase()}</Tag>
+                                    <Tag
+                                        color={statusColor(status)}
+                                    >
+                                        {campaignByIdLoading ? '' : status.toUpperCase()}
+                                    </Tag>
                                     {`₦ ${amount}`}
+                                    <div hidden={downloadHidden()}>
+                                        <Button
+                                            type="primary"
+                                            icon="download"
+                                            onClick={() => handleDownload(commercialUrl, title)}
+                                            style={{ marginTop: '5px' }}
+                                        >
+                                            {DOWNLOAD}
+                                        </Button>
+                                    </div>
                                 </div>
                             </div>
                             <div>
@@ -292,9 +304,15 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                                             : campaignByIdLoading ? []
                                                 : message.map(
                                                     messa => (
-                                                        <Tag key={messa} color="blue">
+                                                        <Paragraph
+                                                            key={messa}
+                                                            ellipsis={{
+                                                                rows: 1,
+                                                                expandable: true,
+                                                            }}
+                                                        >
                                                             {messa}
-                                                        </Tag>
+                                                        </Paragraph>
                                                     )
                                                 )}
                                     </Col>

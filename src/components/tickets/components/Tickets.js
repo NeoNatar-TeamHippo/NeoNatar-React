@@ -83,6 +83,7 @@ const Tickets = ({ history }) => {
                 );
             },
             title: 'Priority',
+            width: '150px',
         },
         {
             key: 'action',
@@ -101,7 +102,6 @@ const Tickets = ({ history }) => {
     return (
         <div>
             <PageHeader
-                onBack={() => history.goBack()}
                 title={TICKETS}
                 className="mb-2 page_header"
             />

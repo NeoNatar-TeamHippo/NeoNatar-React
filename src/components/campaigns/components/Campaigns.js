@@ -124,7 +124,6 @@ const Campaigns = ({ history }) => {
     return (
         <div>
             <PageHeader
-                onBack={() => history.goBack()}
                 title={ALLCAMPAIGNS}
                 className="mb-2 page_header"
             />
