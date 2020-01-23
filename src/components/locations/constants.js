@@ -1,7 +1,7 @@
 /** @constant */
 export const LOCATION = '/location';
 /** @constant */
-export const OUR_LOCATION = 'Our Locations';
+export const OUR_LOCATION = 'Locations';
 /** @constant */
 export const ADD_SELECTED = 'Add Selected';
 /** @constant */

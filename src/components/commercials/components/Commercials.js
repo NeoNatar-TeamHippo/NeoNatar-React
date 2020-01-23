@@ -14,27 +14,23 @@ const Commercials = () => {
     };
 
     return (
-        <div>
-            <Button type="primary" icon="plus" onClick={() => setvisible(true)}>
-                {NEW_VIDEO}
-            </Button>
-
+        <>
+            <div className="d-flex justify-content-end">
+                <Button type="primary" icon="plus" onClick={() => setvisible(true)}>
+                    {NEW_VIDEO}
+                </Button>
+            </div>
             <Table />
             <Modal
                 centered
                 visible={visible}
                 title="Upload Video"
                 onCancel={handleCancel}
-                onOk={handleCancel}
-                footer={[
-                    <Button key="back" onClick={handleCancel}>
-                        {CANCEL}
-                    </Button>,
-                ]}
+                footer={null}
             >
                 <CommercialForm />
             </Modal>
-        </div>
+        </>
     );
 };
 export default Commercials;

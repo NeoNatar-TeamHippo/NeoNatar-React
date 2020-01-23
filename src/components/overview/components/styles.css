@@ -16,55 +16,7 @@
     height: 300px;
 }
 
-span.ant-tag.ant-tag-green,
-span.ant-tag.ant-tag-yellow {
-    padding: 5px 10px;
-}
-
-.ticket-card {
-    margin-top: 20px;
-    background: white;
-    border: 1px solid #e8e8e8;
-    border-radius: 10px;
-}
-
-.ticket-header {
-    display: flex;
-    width: 100%;
-    padding: 8px 24px;
-}
-
-.right-card-header {
-    margin-left: auto;
-    order: 1;
-}
-
-.ticket-sub-header {
-    padding: 8px 24px;
-}
-
-.card-container {
-    overflow: auto;
-    padding: 8px 24px;
-    width: 480px;
-}
-
-.search-campaigns {
-    width: 200px;
-}
 
 .ant-list-split .ant-list-item {
     border-bottom: 0;
-}
-
-@media(max-width: 767px) {
-    div.ant-row {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .ticket-card {
-        width: 300px;
-    }
 }

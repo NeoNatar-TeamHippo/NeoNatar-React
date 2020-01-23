@@ -6,7 +6,7 @@ import UnresolvedTickets from './UnresolvedTickets';
 import Tasks from './Tasks';
 import TransactionsTable from '../../transactions/components/Table';
 
-const { Text } = Typography;
+const { Text, Title } = Typography;
 
 const Overview = () => {
     const { overviewLocationNumber,
@@ -36,25 +36,14 @@ const Overview = () => {
             <NavLink to={link}>
                 <Card hoverable className="dashboard-card">
                     <div>
-                        <Text
-                            type="secondary"
-                            style={{
-                                fontSize: 16,
-                            }}
-                        >
+                        <Title type="secondary" level={4}>
                             {type}
-                        </Text>
+                        </Title>
                     </div>
                     <div>
-                        <Text
-                            type="secondary"
-                            style={{
-                                fontSize: 36,
-                                fontWeight: 700,
-                            }}
-                        >
+                        <Title level={1}>
                             {counts}
-                        </Text>
+                        </Title>
                     </div>
                 </Card>
             </NavLink>

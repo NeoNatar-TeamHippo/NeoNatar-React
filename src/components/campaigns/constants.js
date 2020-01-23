@@ -1,6 +1,8 @@
 /** @constant */
 export const LOCATIONS = 'Locations:';
 /** @constant */
+export const CREATED_SUCCESSFULLY = 'Campaign Created Successfully';
+/** @constant */
 export const MESSAGE = 'Messages:';
 /** @constant */
 export const CREATEDAT = 'Created:';

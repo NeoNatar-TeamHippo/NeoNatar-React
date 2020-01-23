@@ -45,7 +45,7 @@ const Lists = ({ history }) => {
                 onChange: page => {
                     console.log(page);
                 },
-                pageSize: 3,
+                pageSize: 5,
             }}
             dataSource={listData}
             renderItem={item => (
@@ -83,7 +83,7 @@ const Lists = ({ history }) => {
                             <Typography.Text type="secondary">
                                 {LOCATION_NUMBER_LABEL}
                             </Typography.Text>
-                            <Tag color="volcano" className="ml-3">
+                            <Tag color="geekblue" className="ml-3">
                                 {item.locations ? item.locations.length : 0}
                             </Tag>
                         </div>

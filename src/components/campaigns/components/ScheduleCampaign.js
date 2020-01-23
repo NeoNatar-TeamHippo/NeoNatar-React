@@ -147,20 +147,20 @@ const ScheduleCampaign = ({ history }) => {
                                 <Typography.Text strong>
                                     {CAMPAIGN_LENGTH_TEXT}
                                 </Typography.Text>
-                                <Row type="flex" className="mt-2">
-                                    <Col span={12}>
+                                <Row type="flex" className="mt-2" gutter={[{ lg: 32, md: 24, sm: 16, xs: 8 }, 20]}>
+                                    <Col sm={24} md={18} className='d-none d-lg-block'>
                                         <Slider
                                             min={1}
-                                            max={30}
+                                            max={60}
                                             onChange={onChange}
+                                            style={{ marginRight: 16 }}
                                             value={typeof days === 'number' ? days : 0}
                                         />
                                     </Col>
-                                    <Col span={4}>
+                                    <Col sm={24} md={6}>
                                         <InputNumber
                                             min={1}
-                                            max={30}
-                                            style={{ marginLeft: 16 }}
+                                            max={60}
                                             value={days}
                                             formatter={value => `${value} ${days > 1
                                                 ? 'days'

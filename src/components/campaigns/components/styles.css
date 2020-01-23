@@ -25,11 +25,12 @@
     min-height: 50vh;
 }
 
-.steps-action {
-    margin-top: 24px;
-}
 
 .total_text {
     font-family: 'Courier New', Courier, monospace;
-    font-weight: 900;
+}
+
+.image_div {
+    padding: 32px;
+    width: 80%;
 }

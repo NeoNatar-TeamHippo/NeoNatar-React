@@ -10,16 +10,12 @@ const menuItems = [ALL, PENDING, APPROVE, DISAPPROVED];
 
 const Campaigns = ({ history }) => {
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getCampaigns());
-    }, [dispatch]);
-
     const { campaigns, campaignsLoading } = useSelector(state => state.campaigns);
     const [campaignData, setCampaignData] = useState(campaigns);
     useEffect(() => {
+        dispatch(getCampaigns());
         setCampaignData(campaigns);
-    }, [campaigns]);
+    }, [campaigns, dispatch]);
 
     const handleViewCampaign = campaignId => {
         history.push(`/dashboard/campaigns/${campaignId}`);
@@ -47,11 +43,13 @@ const Campaigns = ({ history }) => {
 
     const columns = [
         {
+            align: 'left',
             dataIndex: 'title',
             key: 'title',
             title: 'Video Title',
         },
         {
+            align: 'left',
             dataIndex: 'customerName',
             key: 'customerName',
             title: 'Customer Name',
@@ -62,13 +60,16 @@ const Campaigns = ({ history }) => {
             key: 'amount',
             render: amount => (
                 <Typography.Text>
-                    <span>{ReactHtmlParser(NAIRASIGN)`${amount}`}</span>
+                    <span className="mr-1">
+                        {ReactHtmlParser(NAIRASIGN)}
+                    </span>
+                    {amount}
                 </Typography.Text>
             ),
             title: 'Amount',
         },
         {
-            align: 'right',
+            align: 'center',
             dataIndex: 'numberOfLocations',
             key: 'numberOfLocations',
             render: numberOfLocations => (
@@ -81,7 +82,7 @@ const Campaigns = ({ history }) => {
             title: 'Locations',
         },
         {
-            align: 'right',
+            align: 'center',
             dataIndex: 'duration',
             key: 'duration',
             render: duration => (
@@ -94,6 +95,7 @@ const Campaigns = ({ history }) => {
             title: 'Duration',
         },
         {
+            align: 'centerr',
             dataIndex: 'status',
             key: 'status',
             render: status => {
@@ -107,6 +109,7 @@ const Campaigns = ({ history }) => {
             title: 'Status',
         },
         {
+            align: 'center',
             key: 'action',
             render: (text, record) => (
                 <Tooltip placement="top" title="View Campaign">
@@ -122,12 +125,7 @@ const Campaigns = ({ history }) => {
     ];
 
     return (
-        <div>
-            <PageHeader
-                onBack={() => history.goBack()}
-                title={ALLCAMPAIGNS}
-                className="mb-2 page_header"
-            />
+        <>
             <Menu
                 mode={HORIZONTAL}
                 onClick={handleChangeTab}
@@ -148,9 +146,9 @@ const Campaigns = ({ history }) => {
                 columns={columns}
                 rowKey={record => record.id}
                 size="middle"
-                scroll={{ y: 350 }}
+                scroll={{ y: 400 }}
             />
-        </div>
+        </>
     );
 };
 

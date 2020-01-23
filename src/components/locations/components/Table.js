@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import {
-    Table, Button, Tag, Typography, Divider, Tooltip, Menu, Dropdown,
+    Table, Button, Typography, Divider, Tooltip, Menu, Dropdown,
     Icon, Input
 } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { ADD_SELECTED, NO_SAVED_LOCATION, NEW_LOCATION, SEARCH, RESET } from '../constants';
-import { renderRateFormat, openNotification } from '../../utils/functions';
+import { openNotification } from '../../utils/functions';
 import { locationOperation, getSavedLocations } from '../../savedLocations/actions';
 
 const LocationTable = ({ history }) => {
@@ -73,7 +73,6 @@ const LocationTable = ({ history }) => {
         onFilterDropdownVisibleChange: visible => {
             if (visible) {
                 console.log(visible);
-                // setTimeout(() => this.searchInput.select());
             }
         },
         render: text => (searchedColumn === dataIndex ? (
@@ -233,7 +232,9 @@ const LocationTable = ({ history }) => {
                                 <Button
                                     onMouseOver={() => { addToSavedLocation(record.locationId); }}
                                     onFocus={() => { addToSavedLocation(record.locationId); }}
-                                    className="text-success"
+                                    style={{
+                                        color: noSavedLoc ? 'grey' : '#3ACC6C'
+                                    }}
                                     type="link"
                                     icon="plus"
                                     disabled={noSavedLoc}
@@ -248,7 +249,7 @@ const LocationTable = ({ history }) => {
     ];
     return (
         <>
-            <div className="d-flex justify-content-between">
+            <div className="d-flex justify-content-end">
                 <div hidden={isAdmin}>
                     <Dropdown disabled={noSavedLoc || !hasSelected} overlay={menu2}>
                         <Button
@@ -281,7 +282,7 @@ const LocationTable = ({ history }) => {
                 dataSource={locations}
                 rowKey={record => record.locationId}
                 size="middle"
-                scroll={{ y: 300 }}
+                scroll={{ y: 400 }}
             />
         </>
     );
