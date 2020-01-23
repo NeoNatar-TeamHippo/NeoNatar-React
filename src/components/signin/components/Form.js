@@ -3,7 +3,7 @@ import { Button, Form, Icon, Input } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { SIGN_IN } from '../constants';
-import { userSignIn } from '../actions';
+import { userSignIn, clearErrors } from '../actions';
 
 const SignInForm = ({ form }) => {
     const dispatch = useDispatch();
@@ -17,6 +17,7 @@ const SignInForm = ({ form }) => {
                     email: values.email,
                     password: values.password,
                 };
+                dispatch(clearErrors())
                 dispatch(userSignIn(formValues));
                 resetFields();
             }

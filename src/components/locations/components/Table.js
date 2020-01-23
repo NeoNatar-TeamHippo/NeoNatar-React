@@ -282,7 +282,7 @@ const LocationTable = ({ history }) => {
                 dataSource={locations}
                 rowKey={record => record.locationId}
                 size="middle"
-                scroll={{ y: 400 }}
+                scroll={{ y: 350 }}
             />
         </>
     );

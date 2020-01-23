@@ -17,7 +17,7 @@ export default (state = initialState, { type, payload }) => {
         case TYPES.SET_ERRORS:
             return { ...state, errors: payload, loading: false };
         case TYPES.CLEAR_ERRORS:
-            return { ...state, errors: {} };
+            return { ...state, errors: {}, loading: false };
         case TYPES.AUTH_TRUE:
             return { ...state, authenticated: true };
         default:
