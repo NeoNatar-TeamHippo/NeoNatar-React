@@ -1,22 +1,6 @@
-.center_card {
-    min-width: 100%;
-    text-align: center;
-}
-
-.card_background {
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.home-page{
-    display: flex;
-    flex-direction: row;
-}
-
 .image-container{
     margin-left: 50px;
+    width: 20%;
 }
 
 @media(max-width: 767px) {
