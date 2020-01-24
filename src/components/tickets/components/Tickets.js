@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Avatar, Button, Tag, Table, Row, Col, Menu, Tooltip, PageHeader } from 'antd';
+import { Avatar, Button, Tag, Table, Row, Col, Menu, Tooltip } from 'antd';
 
 import CreateTickets from './CreateTickets';
-import { ALL, PENDING, NEW, RESOLVED, HORIZONTAL, TICKETS } from '../constants';
+import { ALL, PENDING, NEW, RESOLVED, HORIZONTAL } from '../constants';
 import { priorityColor } from '../../utils/functions';
 import { getTickets } from '../actions';
 
