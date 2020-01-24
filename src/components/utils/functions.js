@@ -1,4 +1,9 @@
 import { notification, message } from 'antd';
+import {
+    LIVE,
+    PEND,
+    DISAPPROVE
+} from '../campaigns/constants';
 
 export const renderRateFormat = text => {
     let color;
@@ -81,19 +86,52 @@ export const statusColor = status => {
     let color;
     if (status === 'disapproved') {
         color = 'red';
-    }
-    else if (status === 'live') {
+    } else if (status === 'live') {
         color = 'green';
-    }
-    else if (status === 'pending') {
+    } else if (status === 'pending') {
         color = 'blue';
-    }
-    else if (status === 'ended') {
+    } else if (status === 'ended') {
         color = 'volcano';
-    }
-    else {
-        color = 'purple'
+    } else {
+        color = 'purple';
     }
     return color;
 };
 
+export const approvedHidden = status => {
+    let cond;
+    if (status === LIVE) {
+        cond = false;
+    } else {
+        cond = true;
+    }
+    return cond;
+};
+
+export const disapprovedHidden = status => {
+    let cond;
+    if (status === DISAPPROVE) {
+        cond = false;
+    } else {
+        cond = true;
+    }
+    return cond;
+};
+export const hidden = (status, userIsAdmin) => {
+    let cond;
+    if (userIsAdmin && status === PEND) {
+        cond = false;
+    } else {
+        cond = true;
+    }
+    return cond;
+};
+export const downloadHidden = userIsAdmin => {
+    let cond;
+    if (userIsAdmin) {
+        cond = false;
+    } else {
+        cond = true;
+    }
+    return cond;
+};
