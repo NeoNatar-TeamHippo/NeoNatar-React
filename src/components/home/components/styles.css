@@ -4,7 +4,13 @@
 }
 .section-one{
     background-color: #FDF0F7;
+    height: 500px;
 }
+
+.section-two, .section-three{
+    height: 500px;
+}
+
 @media(max-width: 767px) {
     .hide-image-container {
         display: none;

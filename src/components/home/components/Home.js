@@ -1,37 +1,41 @@
 import React from 'react';
-import { Row, Col, Divider } from 'antd';
+import { Row, Col, Divider, Typography} from 'antd';
 
 import layouts from '../../layouts';
-import art from '../../../images/illustration.png';
+import art from '../../../images/office-setting.png';
 import text from '../../../images/text.png';
 
 const { HomeLayout } = layouts.components;
+const { Title } = Typography;
 
 const Home = () => (
     <HomeLayout>
         <div>
-            <Row className="section-one">
+            <Row type="flex" align="middle" className="section-one">
                 <Col span={12}>
-                    <img src={text} alt="dummy-text" />
+                    <Title>Get Your Business Out</Title>
+                    <Title type="secondary" level={4}>
+                        Follow up on your campaigns by keeping a day to day record of your visitors
+                    </Title>
                 </Col>
-                <Col className="image-container hide-image-container" span={12}>
+                <Col span={12}>
                     <img src={art} alt="illustration" />
                 </Col>
             </Row>
-            <Row>
+            <Row type="flex" align="middle" className="section-two">
+                <Col span={12}>
+                    <img src={art} alt="illustration" />
+                </Col>
                 <Col span={12}>
                     <img src={text} alt="dummy-text" />
-                </Col>
-                <Col className="image-container hide-image-container" span={12}>
-                    <img src={art} alt="illustration" />
                 </Col>
             </Row>
             <Divider />
-            <Row>
+            <Row type="flex" align="middle" className="section-three">
                 <Col span={12}>
                     <img src={text} alt="dummy-text" />
                 </Col>
-                <Col className="image-container hide-image-container" span={12}>
+                <Col span={12}>
                     <img src={art} alt="illustration" />
                 </Col>
             </Row>
