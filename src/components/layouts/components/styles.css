@@ -25,10 +25,6 @@ section.ant-layout.ant-layout-has-sider {
     margin: auto;
 }
 
-.anticon svg {
-    margin-bottom: 6px;
-}
-
 .side-menu-item {
     position: fixed;
 }
@@ -81,6 +77,11 @@ li.ant-menu-item.header-item:hover {
     border-bottom: 2px solid transparent;
     color: inherit;
 }
+
+.anticon svg {
+    margin-bottom: 6px !important;
+}
+
 @media(max-width: 767px) {
     .display-name {
         display: none;

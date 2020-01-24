@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form, Icon, Input } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { SIGN_UP } from '../constants';
-import { userSignUp } from '../actions';
+import { userSignUp, clearErrors } from '../actions';
 
 const SignUpForm = ({ form }) => {
     const dispatch = useDispatch();
@@ -20,6 +20,7 @@ const SignUpForm = ({ form }) => {
                     lastName: values.lastName,
                     password: values.password,
                 };
+                dispatch(clearErrors())
                 dispatch(userSignUp(formValues));
             }
         });

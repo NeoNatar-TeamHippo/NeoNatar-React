@@ -8,7 +8,8 @@ import download from 'downloadjs';
 
 import { getCampaignById, approveCampaign, disapproveCampaign } from '../actions';
 import { statusColor } from '../../utils/functions';
-import { LOCATIONS,
+import {
+    LOCATIONS,
     APPROVECAMPAIGN,
     TITLE,
     BACK,
@@ -27,7 +28,8 @@ import { LOCATIONS,
     CREATEDAT,
     DURATION,
     DISAPPROVE,
-    DISAPPROVED } from '../constants';
+    DISAPPROVED
+} from '../constants';
 
 const { Option } = Select;
 const { Item } = Form;
@@ -201,7 +203,7 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                                         type="video/mp4"
                                     />
                                 </video>
-                        )}
+                            )}
                             actions={[
                                 <Button
                                     key="back"

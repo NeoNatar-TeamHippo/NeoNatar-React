@@ -1,13 +1,14 @@
+/* eslint-disable react/jsx-no-literals */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import {
-    Table, Button, Tag, Typography, Divider, Tooltip, Menu, Dropdown,
+    Table, Button, Typography, Divider, Tooltip, Menu, Dropdown,
     Icon, Input
 } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { ADD_SELECTED, NO_SAVED_LOCATION, NEW_LOCATION, SEARCH, RESET } from '../constants';
-import { renderRateFormat, openNotification } from '../../utils/functions';
+import { openNotification } from '../../utils/functions';
 import { locationOperation, getSavedLocations } from '../../savedLocations/actions';
 
 const LocationTable = ({ history }) => {
@@ -72,7 +73,6 @@ const LocationTable = ({ history }) => {
         onFilterDropdownVisibleChange: visible => {
             if (visible) {
                 console.log(visible);
-                // setTimeout(() => this.searchInput.select());
             }
         },
         render: text => (searchedColumn === dataIndex ? (
@@ -95,7 +95,7 @@ const LocationTable = ({ history }) => {
         dispatch(locationOperation(payload));
         openNotification(
             `${selectedRowKeys.length} Location${selectedRowKeys.length > 1 ? 's' : ''}`,
-            'Successfully added', 'success', 'success'
+            'Successfully added', 'success'
         );
     };
     const handleNewLocation = () => {
@@ -159,11 +159,13 @@ const LocationTable = ({ history }) => {
     const hasSelected = selectedRowKeys.length > 0;
     const columns = [
         {
+            align: 'left',
             dataIndex: 'name',
             key: 'name',
             title: 'Name',
         },
         {
+            align: 'left',
             dataIndex: 'address',
             key: 'address',
             title: 'Address',
@@ -171,41 +173,44 @@ const LocationTable = ({ history }) => {
             ...getColumnSearchProps('address'),
         },
         {
+            align: 'left',
             dataIndex: 'lga',
             key: 'lga',
             title: 'Local Govt',
             ...getColumnSearchProps('lga'),
         },
         {
+            align: 'center',
             dataIndex: 'state',
             key: 'state',
             title: 'State',
             ...getColumnSearchProps('state'),
         },
         {
+            align: 'right',
             dataIndex: 'price',
             key: 'price',
             render: text => (
                 <Typography.Text type="secondary">
+                    <span className="mr-1">&#8358;</span>
                     {text}
                 </Typography.Text>
             ),
             title: 'Price/day',
         },
         {
+            align: 'center',
             dataIndex: 'trafficRate',
             key: 'trafficRate',
-            render: text => {
-                const { color } = renderRateFormat(text);
-                return (
-                    <Tag color={color}>
-                        {text}
-                    </Tag>
-                );
-            },
-            title: 'Average Weekly Visitors',
+            render: text => (
+                <Typography.Text>
+                    {text}
+                </Typography.Text>
+            ),
+            title: 'Avg Visitors/week',
         },
         {
+            align: 'center',
             key: 'action',
             render: (text, record) => (
                 <div className="d-flex justify-content-around">
@@ -227,7 +232,9 @@ const LocationTable = ({ history }) => {
                                 <Button
                                     onMouseOver={() => { addToSavedLocation(record.locationId); }}
                                     onFocus={() => { addToSavedLocation(record.locationId); }}
-                                    className="text-success"
+                                    style={{
+                                        color: noSavedLoc ? 'grey' : '#3ACC6C'
+                                    }}
                                     type="link"
                                     icon="plus"
                                     disabled={noSavedLoc}
@@ -242,7 +249,7 @@ const LocationTable = ({ history }) => {
     ];
     return (
         <>
-            <div className="d-flex justify-content-between">
+            <div className="d-flex justify-content-end">
                 <div hidden={isAdmin}>
                     <Dropdown disabled={noSavedLoc || !hasSelected} overlay={menu2}>
                         <Button
@@ -275,7 +282,7 @@ const LocationTable = ({ history }) => {
                 dataSource={locations}
                 rowKey={record => record.locationId}
                 size="middle"
-                scroll={{ y: 300 }}
+                scroll={{ y: 350 }}
             />
         </>
     );

@@ -48,7 +48,6 @@ function* createNewLocation(data) {
         const res = yield call(newSavedLocation, data);
         if (res.status === 'success') {
             yield put(submitedForm());
-            yield put(savedLocationResult(res.data));
         } else {
             console.log('error getting data');
         }

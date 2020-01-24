@@ -11,3 +11,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.ant-steps-item-custom .ant-steps-item-icon>.ant-steps-icon {
+  line-height: 0px !important;
+}

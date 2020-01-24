@@ -28,11 +28,9 @@ const SavedLocations = ({ history, form }) => {
                     title,
                 };
                 dispatch(newSavedLocation(formValues));
-                setTimeout(() => {
-                    resetFields();
-                    setvisible(false);
-                    openNotification('Add locations to your list', 'New List Created', 'success');
-                }, 5000);
+                resetFields();
+                setvisible(false);
+                openNotification('Add locations to your list', 'New List Created', 'success');
             }
         });
     };
@@ -41,14 +39,11 @@ const SavedLocations = ({ history, form }) => {
     }, [dispatch, userId]);
     return (
         <>
-            <PageHeader
-                onBack={() => history.goBack()}
-                title="Saved Locations"
-                subTitle={(
-                    <Button onClick={() => handleCreateList()} type="primary">{CREATE_NOW}</Button>
-                )}
-                className="mb-2 page_header"
-            />
+            <div className="d-flex justify-content-end">
+                <Button type="primary" icon="plus" onClick={() => handleCreateList()}>
+                    {CREATE_NOW}
+                </Button>
+            </div>
             {savedLocations.length === 0 ? (
                 <Empty
                     image={EMPTY_ICON_URL}
@@ -65,8 +60,8 @@ const SavedLocations = ({ history, form }) => {
                 </Empty>
             )
                 : (
-                    <Row type="flex" justify="center" align="middle">
-                        <Col className="mt-2" sm={24} md={16} lg={12}>
+                    <Row type="flex" justify='start' align="middle" className='container'>
+                        <Col className="mt-2" sm={24} md={18} >
                             <DataList />
                         </Col>
                     </Row>
@@ -77,11 +72,7 @@ const SavedLocations = ({ history, form }) => {
                 centered
                 visible={visible}
                 onCancel={() => handleCancel()}
-                footer={[
-                    <Button key="back" onClick={handleCancel}>
-                        {CANCEL}
-                    </Button>,
-                ]}
+                footer={null}
             >
                 <Form onSubmit={handleSubmit}>
                     <Form.Item hasFeedback>

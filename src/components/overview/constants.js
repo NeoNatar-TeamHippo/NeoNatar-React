@@ -28,36 +28,24 @@ export const STATUS = 'Status';
 export const VIEW_ALL = 'View all';
 
 /** @constant */
-export const TODAY = 'Today';
+export const CREATE_NEW_TASK = 'Create New Tasks';
+export const CREATE_TASKS = 'Create Tasks'
+export const CREATE_TODO = 'Tasks to be accomplished can be stored here!!'
 
 /** @constant */
 export const TASKS_SOURCE = [
     {
-        iconType: 'plus-circle',
-        id: 1,
-        type: 'Create new tasks',
-    },
-    {
-        buttonText: 'URGENT',
-        buttonType: 'danger',
         date: '19 Nov, 2019, 06:41 PM',
         id: 2,
         type: 'Finish ticket update',
+        iconType: 'plus'
     },
     {
-        buttonText: 'LOW',
-        buttonType: 'primary',
         date: '19 Nov, 2019, 06:41 PM',
         id: 3,
         type: 'Create new ticket example',
     },
-    {
-        buttonText: 'DEFAULT',
-        buttonType: 'danger',
-        date: '19 Nov, 2019, 06:41 PM',
-        id: 4,
-        type: 'Update ticket report',
-    },
+
 ];
 
 /** @constant */

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Select, Button, Tabs, List, Table, Typography, Tag, Col, Row } from 'antd';
-import { renderRateFormat, renderPrice } from '../../utils/functions';
-import { setCampaignLocation, next, setAmount } from '../actions';
+import Highlighter from 'react-highlight-words';
+import ReactHtmlParser from 'react-html-parser';
+import { Select, Button, Tabs, List, Table, Typography, Col, Row, Input, Icon } from 'antd';
+import { setCampaignLocation, next, setAmount, previous as prev } from '../actions';
 import {
-    TABLE_VALUES, TOTAL, NAIRASIGN, PROCEED, SELECT_A_LOCATION,
-    CHOOSE_SAVED_LOCATION
+    TOTAL, PROCEED, SELECT_A_LOCATION, PREVIOUS,
+    CHOOSE_SAVED_LOCATION, SEARCH, RESET, NAIRASIGN
 } from '../constants';
 
 const { TabPane } = Tabs;
@@ -16,6 +17,68 @@ const SelectLocation = () => {
     const { locations } = useSelector(state => state.location);
     const [formLocations, setformLocations] = useState([]);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+    const [searchText, setsearchText] = useState('');
+    const [searchedColumn, setsearchedColumn] = useState('');
+    const handleSearch = (selectedKeys, confirm, dataIndex) => {
+        confirm();
+        setsearchText(selectedKeys[0]);
+        setsearchedColumn(dataIndex);
+    };
+    const handleReset = clearFilters => {
+        clearFilters();
+        setsearchText('');
+    };
+    const searchKeyText = dataIndex => `Search ${dataIndex}`;
+    const getColumnSearchProps = dataIndex => ({
+        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+            <div style={{ padding: 8 }}>
+                <Input.Search
+                    placeholder={searchKeyText(dataIndex)}
+                    value={selectedKeys[0]}
+                    onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+                    onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                    style={{ display: 'block', marginBottom: 8, width: 188 }}
+                />
+                <Button
+                    type="primary"
+                    onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                    icon="search"
+                    size="small"
+                    style={{ marginRight: 8, width: 90 }}
+                >
+                    {SEARCH}
+                </Button>
+                <Button
+                    onClick={() => handleReset(clearFilters)}
+                    size="small"
+                    style={{ width: 90 }}
+                >
+                    {RESET}
+                </Button>
+            </div>
+        ),
+        filterIcon: filtered => (
+            <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+        ),
+        onFilter: (value, record) => record[dataIndex]
+            .toString()
+            .toLowerCase()
+            .includes(value.toLowerCase()),
+        onFilterDropdownVisibleChange: visible => {
+            if (visible) {
+                console.log(visible);
+                // setTimeout(() => this.searchInput.select());
+            }
+        },
+        render: text => (searchedColumn === dataIndex ? (
+            <Highlighter
+                highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+                searchWords={[searchText]}
+                autoEscape
+                textToHighlight={text.toString()}
+            />
+        ) : (text)),
+    });
     const calculateAmount = () => {
         const amounts = [];
         locations.forEach(location => {
@@ -30,8 +93,8 @@ const SelectLocation = () => {
         return (
             <span>
                 {TOTAL}
-                {NAIRASIGN}
-                {total}
+                <span className="ml-1">{ReactHtmlParser(NAIRASIGN)}</span>
+                <span className="total_text">{total}</span>
             </span>
         );
     };
@@ -102,32 +165,56 @@ const SelectLocation = () => {
     ));
     const hasSelected = selectedRowKeys.length > 0;
     const columns = [
-        ...TABLE_VALUES,
         {
-            dataIndex: 'price',
-            key: 'price',
-            render: text => {
-                const { type } = renderPrice(text);
-                return (
-                    <Typography.Text type={type}>
-                        {text}
-                    </Typography.Text>
-                );
-            },
-            title: 'Price',
+            align: 'center',
+            dataIndex: 'name',
+            key: 'name',
+            title: 'Name',
         },
         {
+            align: 'center',
+            dataIndex: 'address',
+            key: 'address',
+            title: 'Address',
+            width: '25%',
+            ...getColumnSearchProps('address'),
+        },
+        {
+            align: 'center',
+            dataIndex: 'lga',
+            key: 'lga',
+            title: 'Local Govt',
+            ...getColumnSearchProps('lga'),
+        },
+        {
+            align: 'center',
+            dataIndex: 'state',
+            key: 'state',
+            title: 'State',
+            ...getColumnSearchProps('state'),
+        },
+        {
+            align: 'right',
+            dataIndex: 'price',
+            key: 'price',
+            render: text => (
+                <Typography.Text type="secondary">
+                    <span>{ReactHtmlParser(NAIRASIGN)}</span>
+                    {text}
+                </Typography.Text>
+            ),
+            title: 'Price/day',
+        },
+        {
+            align: 'center',
             dataIndex: 'trafficRate',
             key: 'trafficRate',
-            render: text => {
-                const { color, rateText } = renderRateFormat(text);
-                return (
-                    <Tag color={color}>
-                        {rateText}
-                    </Tag>
-                );
-            },
-            title: 'Traffic Rate',
+            render: text => (
+                <Typography.Text>
+                    {text}
+                </Typography.Text>
+            ),
+            title: 'Avg Visitors/week',
         },
     ];
     const handleProceed = type => {
@@ -142,20 +229,18 @@ const SelectLocation = () => {
         <div className="my-4">
             <Tabs defaultActiveKey="1" onChange={callback}>
                 <TabPane tab="Locations" key="1">
-                    <div className="d-flex justify-content-between">
-                        <div className="my-1">
-                            <span className="ml-2">
-                                {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
-                            </span>
-                            <Button
-                                className="ml-4"
-                                type="primary"
-                                disabled={!hasSelected}
-                                onClick={() => handleProceed('locations')}
-                            >
-                                {PROCEED}
-                            </Button>
-                        </div>
+                    <span className="">
+                        {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
+                    </span>
+                    <Table
+                        rowSelection={rowSelection}
+                        columns={columns}
+                        dataSource={locations}
+                        rowKey={record => record.locationId}
+                        size="middle"
+                        scroll={{ y: 250 }}
+                    />
+                    <div className="d-flex justify-content-end">
                         {!hasSelected ? (
                             <Typography.Text type="danger" strong>
                                 {SELECT_A_LOCATION}
@@ -169,12 +254,18 @@ const SelectLocation = () => {
                                 </div>
                             )}
                     </div>
-                    <Table
-                        rowSelection={rowSelection}
-                        columns={columns}
-                        dataSource={locations}
-                        rowKey={record => record.locationId}
-                    />
+                    <div className="my-1 d-flex justify-content-between">
+                        <Button onClick={() => dispatch(prev())}>
+                            {PREVIOUS}
+                        </Button>
+                        <Button
+                            type="primary"
+                            disabled={!hasSelected}
+                            onClick={() => handleProceed('locations')}
+                        >
+                            {PROCEED}
+                        </Button>
+                    </div>
                 </TabPane>
                 {savedLocations.length > 0 && (
                     <TabPane tab="Saved Locations" key="2">
@@ -201,13 +292,18 @@ const SelectLocation = () => {
                                     </Select>
                                 </div>
                                 {formLocations.length !== 0 ? (
-                                    <Button
-                                        className="mt-4"
-                                        type="primary"
-                                        onClick={() => handleProceed('savedLocations')}
-                                    >
-                                        {PROCEED}
-                                    </Button>
+                                    <div className="my-2 d-flex justify-content-between">
+                                        <Button onClick={() => dispatch(prev())}>
+                                            {PREVIOUS}
+                                        </Button>
+                                        <Button
+                                            type="primary"
+                                            onClick={() => handleProceed('savedLocations')}
+                                        >
+                                            {PROCEED}
+                                        </Button>
+
+                                    </div>
                                 ) : ''}
                             </Col>
                             <Col xs={24} md={12} lg={12}>

@@ -1,7 +1,7 @@
 /** @constant */
 export const LOCATION = '/location';
 /** @constant */
-export const OUR_LOCATION = 'Our Locations';
+export const OUR_LOCATION = 'Locations';
 /** @constant */
 export const ADD_SELECTED = 'Add Selected';
 /** @constant */
@@ -104,3 +104,4 @@ export const WRAPPER_COL = {
 };
 export const SEARCH = 'SEARCH';
 export const RESET = 'RESET';
+export const NAIRASIGN = '&#8358;';
