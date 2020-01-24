@@ -32,7 +32,7 @@ export const openNotification = (description, messageText, type) => {
     notification[type]({
         description,
         duration: 5,
-        messageText,
+        message: messageText,
     });
 };
 export const openMessage = (messageText, duration, type) => {
@@ -82,14 +82,17 @@ export const statusColor = status => {
     if (status === 'disapproved') {
         color = 'red';
     }
-    if (status === 'live') {
+    else if (status === 'live') {
         color = 'green';
     }
-    if (status === 'pending') {
+    else if (status === 'pending') {
         color = 'blue';
     }
-    if (status === 'ended') {
+    else if (status === 'ended') {
         color = 'volcano';
+    }
+    else {
+        color = 'purple'
     }
     return color;
 };

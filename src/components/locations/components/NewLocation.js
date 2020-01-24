@@ -7,6 +7,7 @@ import {
 } from '../constants';
 import { newLocations } from '../actions';
 import { normFile, handleFormData } from '../../utils/functions';
+
 const NewLocation = ({ form }) => {
     const dispatch = useDispatch();
     const { loading } = useSelector(state => state.signIn);

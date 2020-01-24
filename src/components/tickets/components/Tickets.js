@@ -99,52 +99,47 @@ const Tickets = ({ history }) => {
         },
     ];
     return (
-        <div>
-            <PageHeader
-                onBack={() => history.goBack()}
-                title={TICKETS}
-                className="mb-2 page_header"
-            />
-            <>
-                <Row type="flex" style={{ marginBottom: 5 }}>
-                    <Col span={14}>
-                        <Menu
-                            mode={HORIZONTAL}
-                            onClick={handleChangeTab}
-                            defaultSelectedKeys={[ALL]}
-                        >
-                            {
+        <>
+            <Row type="flex" justify='space-between' style={{ marginBottom: 5 }}>
+                <Col>
+                    <Menu
+                        mode={HORIZONTAL}
+                        onClick={handleChangeTab}
+                        defaultSelectedKeys={[ALL]}
+                    >
+                        {
                             menuItems.map(key => (
                                 <Menu.Item key={key}>
                                     {key}
                                 </Menu.Item>
                             ))
                         }
-                        </Menu>
-                    </Col>
-                    <Col span={2} offset={8}>
-                        <Button
-                            onClick={() => setVisible(true)}
-                            className="mb-2"
-                            type="primary"
-                            hidden={isAdmin}
-                        >
-                            {NEW}
-                        </Button>
-                    </Col>
-                </Row>
-                <CreateTickets
-                    visible={visible}
-                    onCancel={() => setVisible(false)}
-                />
-                <Table
-                    loading={ticketsLoading}
-                    columns={columns}
-                    dataSource={ticketData}
-                    rowKey={record => record.ticketId}
-                />
-            </>
-        </div>
+                    </Menu>
+                </Col>
+                <Col>
+                    <Button
+                        onClick={() => setVisible(true)}
+                        type="primary"
+                        icon="plus"
+                        hidden={isAdmin}
+                    >
+                        {NEW}
+                    </Button>
+                </Col>
+            </Row>
+            <CreateTickets
+                visible={visible}
+                onCancel={() => setVisible(false)}
+            />
+            <Table
+                loading={ticketsLoading}
+                columns={columns}
+                dataSource={ticketData}
+                rowKey={record => record.ticketId}
+                size="middle"
+                scroll={{ y: 350 }}
+            />
+        </>
     );
 };
 

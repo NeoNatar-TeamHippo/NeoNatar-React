@@ -6,12 +6,19 @@
  */
 export const GET_CAMPAIGNS = 'GET_CAMPAIGNS';
 /**
- * Fired by the {@link actions.approveCampaign }
+ * Fired by the {@link actions.disApproveCampaign }
  * action creator.
  *
  * @type {String}
  */
 export const APPROVE_CAMPAIGN = 'APPROVE_CAMPAIGN';
+/**
+ * Fired by the {@link actions.approveCampaign }
+ * action creator.
+ *
+ * @type {String}
+ */
+export const DISAPPROVE_CAMPAIGN = 'DISAPPROVE_CAMPAIGN';
 /**
  * Fired by the {@link actions.postSuccess }
  * action creator.
@@ -26,6 +33,13 @@ export const POST_SUCCESS = 'POST_SUCCESS';
  * @type {String}
  */
 export const APPROVING_CAMPAIGN = 'APPROVING_CAMPAIGN';
+/**
+ * Fired by the {@link actions.disApprovingCampaign }
+ * action creator.
+ *
+ * @type {String}
+ */
+export const DISAPPROVING_CAMPAIGN = 'DISAPPROVING_CAMPAIGN';
 /**
  * Fired by the {@link actions.getCampaignsById }
  * action creator.

@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Steps, Button, message, Icon } from 'antd';
+import { Steps, Button, Icon } from 'antd';
 import UploadVideo from './UploadVideo';
 import SummaryPayment from './SummaryPayment';
 import SelectLocation from './SelectLocation';
 import ScheduleCampaign from './ScheduleCampaign';
-import { previous as prev, resetFormState } from '../actions';
-
-import { DONE, PREVIOUS } from '../constants';
+import { next } from '../actions';
+import { NEXT } from '../constants';
+import { getCommercial } from '../../commercials/actions';
+import { getSavedLocations } from '../../savedLocations/actions';
 
 const { Step } = Steps;
 
@@ -35,11 +36,12 @@ const steps = [
 ];
 const NewCampaigns = () => {
     const dispatch = useDispatch();
+    const { user: { userId } } = useSelector(state => state.user);
     const { campaignDetails: { current } } = useSelector(state => state.campaigns);
-    const handleDone = () => {
-        message.success('Processing complete!');
-        dispatch(resetFormState());
-    };
+    useEffect(() => {
+        dispatch(getCommercial());
+        dispatch(getSavedLocations({ userId }));
+    }, [dispatch, userId]);
     return (
         <>
             <Steps current={current}>
@@ -48,18 +50,9 @@ const NewCampaigns = () => {
                 ))}
             </Steps>
             <div className="steps-content">{steps[current].content}</div>
-            <div className="steps-action d-flex justify-content-center">
-                {current > 0 && current !== steps.length - 1 && (
-                    <Button style={{ marginLeft: 8 }} onClick={() => dispatch(prev())}>
-                        {PREVIOUS}
-                    </Button>
-                )}
-                {current === steps.length - 1 && (
-                    <Button type="primary" onClick={() => handleDone()}>
-                        {DONE}
-                    </Button>
-                )}
-            </div>
+            <Button onClick={() => dispatch(next())}>
+                {NEXT}
+            </Button>
         </>
     );
 };

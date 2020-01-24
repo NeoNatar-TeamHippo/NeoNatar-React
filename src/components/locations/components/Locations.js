@@ -11,15 +11,7 @@ const Locations = ({ history }) => {
         dispatch(getLocations());
     }, [dispatch]);
     return (
-        <>
-            <PageHeader
-                onBack={() => history.goBack()}
-                title={OUR_LOCATION}
-                className="page_header"
-                bordered={false}
-            />
-            <LocationTable />
-        </>
+        <LocationTable />
     );
 };
 export default Locations;

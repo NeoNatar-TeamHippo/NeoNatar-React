@@ -11,7 +11,7 @@ export const PENDING = 'Pending';
 export const RESOLVED = 'Resolved';
 
 /** @constant */
-export const NEW = 'New';
+export const NEW = 'New Ticket';
 
 /** @constant */
 export const MAIL = 'mail';
