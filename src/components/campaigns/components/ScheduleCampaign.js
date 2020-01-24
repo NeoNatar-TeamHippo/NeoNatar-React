@@ -114,19 +114,16 @@ const ScheduleCampaign = ({ history }) => {
                             <Paragraph editable={{ onChange: onChangeTitle }}>{newTitle}</Paragraph>
                         </Descriptions.Item>
                         <Descriptions.Item label="Video">
-                            <Tooltip title="View Video">
-                                <Button type="link" onClick={() => console.log(videoDetails.url)}>
-                                    {videoDetails.title}
-                                </Button>
-                            </Tooltip>
-                        </Descriptions.Item>
-                        <Descriptions.Item label="Initial Amount">
-                            <Typography.Title className="total_text" level={4}>
-                                <span className="mr-1">
-                                    {ReactHtmlParser(NAIRASIGN)}
-                                </span>
-                                {amount}
-                            </Typography.Title>
+                            {videoDetails.title ? (
+                                <Tooltip title="View Video">
+                                    <Button
+                                        type="link"
+                                        onClick={() => console.log(videoDetails.url)}
+                                    >
+                                        {videoDetails.title}
+                                    </Button>
+                                </Tooltip>
+                            ) : null}
                         </Descriptions.Item>
                         <Descriptions.Item label="Amount Due">
                             <Typography.Title className="total_text" level={4}>
@@ -134,6 +131,14 @@ const ScheduleCampaign = ({ history }) => {
                                     {ReactHtmlParser(NAIRASIGN)}
                                 </span>
                                 {localAmount}
+                            </Typography.Title>
+                        </Descriptions.Item>
+                        <Descriptions.Item label="Initial Amount">
+                            <Typography.Title className="total_text" level={4}>
+                                <span className="mr-1">
+                                    {ReactHtmlParser(NAIRASIGN)}
+                                </span>
+                                {amount}
                             </Typography.Title>
                         </Descriptions.Item>
 
@@ -148,7 +153,7 @@ const ScheduleCampaign = ({ history }) => {
                                     {CAMPAIGN_LENGTH_TEXT}
                                 </Typography.Text>
                                 <Row type="flex" className="mt-2" gutter={[{ lg: 32, md: 24, sm: 16, xs: 8 }, 20]}>
-                                    <Col sm={24} md={18} className='d-none d-lg-block'>
+                                    <Col sm={24} md={18} className="d-none d-lg-block">
                                         <Slider
                                             min={1}
                                             max={60}

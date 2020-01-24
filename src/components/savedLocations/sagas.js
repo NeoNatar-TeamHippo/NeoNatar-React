@@ -3,7 +3,7 @@ import { eventChannel as EventChannel } from 'redux-saga';
 
 import * as TYPES from './actionType';
 import {
-    setSavedLocation, loadingSavedLocation, savedLocationResult,
+    setSavedLocation, loadingSavedLocation,
     submittingForm, submitedForm, deleteLocationResult
 } from './actions';
 import { deleteSavedlocationById, locationOperationService, newSavedLocation } from './services';

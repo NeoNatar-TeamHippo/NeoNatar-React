@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, Input, Upload, Button, Icon } from 'antd';
-import { normFile, handleFormData, openNotification } from '../../utils/functions';
+import { normFile, handleFormData } from '../../utils/functions';
 import { CREATE_COMMERCIAL, UPLOAD } from '../constants';
-import { postCommercial } from '../actions';
+import { postCommercial, setVisible } from '../actions';
 
 const CommercialForm = ({ form }) => {
     const dispatch = useDispatch();
@@ -17,8 +17,8 @@ const CommercialForm = ({ form }) => {
                 dispatch(postCommercial(newFormData));
                 resetFields();
                 setTimeout(() => {
-                    openNotification('Uploaded Successfully', 'Upload Video', 'success');
-                }, 3000);
+                    dispatch(setVisible(false));
+                }, 2000);
             }
         });
     };
@@ -49,7 +49,7 @@ const CommercialForm = ({ form }) => {
                 })(
                     <Upload
                         supportServerRender
-                        accept="video/mp4"
+                        accept="video/*"
                         customRequest={dummyRequest}
                         {...props}
                     >

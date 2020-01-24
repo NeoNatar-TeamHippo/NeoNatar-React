@@ -40,3 +40,4 @@ export const DELETE_COMMERCIALS = 'DELETE_COMMERCIALS';
  * @type {String}
  */
 export const REMOVE_COMMERCIALS = 'REMOVE_COMMERCIALS';
+export const SET_VISIBLE = 'SET_VISIBLE';
