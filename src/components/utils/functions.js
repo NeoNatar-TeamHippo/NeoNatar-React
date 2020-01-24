@@ -81,18 +81,14 @@ export const statusColor = status => {
     let color;
     if (status === 'disapproved') {
         color = 'red';
-    }
-    else if (status === 'live') {
+    } else if (status === 'live') {
         color = 'green';
-    }
-    else if (status === 'pending') {
+    } else if (status === 'pending') {
         color = 'blue';
-    }
-    else if (status === 'ended') {
+    } else if (status === 'ended') {
         color = 'volcano';
-    }
-    else {
-        color = 'purple'
+    } else {
+        color = 'purple';
     }
     return color;
 };

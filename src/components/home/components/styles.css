@@ -2,7 +2,9 @@
     margin-left: 50px;
     width: 20%;
 }
-
+.section-one{
+    background-color: #FDF0F7;
+}
 @media(max-width: 767px) {
     .hide-image-container {
         display: none;
