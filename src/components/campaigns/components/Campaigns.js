@@ -98,7 +98,7 @@ const Campaigns = ({ history }) => {
             title: 'Duration',
         },
         {
-            align: 'centerr',
+            align: 'center',
             dataIndex: 'status',
             key: 'status',
             render: status => {
