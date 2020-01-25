@@ -25,7 +25,7 @@ const ScheduleCampaign = ({ history }) => {
     const dispatch = useDispatch();
     const [visible, setVisible] = useState(false);
     const {
-        campaignDetails: { amount, commercialId, videoDetails, locations },
+        campaignDetails: { amount, commercialId, duration, videoDetails, locations },
     } = useSelector(state => state.campaigns);
     const { locations: allLocations } = useSelector(state => state.location);
     const { user: { email } } = useSelector(state => state.user);
@@ -66,11 +66,12 @@ const ScheduleCampaign = ({ history }) => {
             dispatch(next());
             const newCampaign = {
                 commercialId,
-                duration: 5,
+                duration,
                 locationsSelected: locations,
                 title: newTitle,
             };
-            dispatch(createCampaign(newCampaign));
+            console.log(newCampaign);
+            // dispatch(createCampaign(newCampaign));
             message.success('Payment successful, Thanks for working with us!!!');
             setTimeout(() => {
                 dispatch(resetFormState());
@@ -152,7 +153,11 @@ const ScheduleCampaign = ({ history }) => {
                                 <Typography.Text strong>
                                     {CAMPAIGN_LENGTH_TEXT}
                                 </Typography.Text>
-                                <Row type="flex" className="mt-2" gutter={[{ lg: 32, md: 24, sm: 16, xs: 8 }, 20]}>
+                                <Row
+                                    type="flex"
+                                    className="mt-2"
+                                    gutter={[{ lg: 32, md: 24, sm: 16, xs: 8 }, 20]}
+                                >
                                     <Col sm={24} md={18} className="d-none d-lg-block">
                                         <Slider
                                             min={1}

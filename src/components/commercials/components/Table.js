@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Tooltip, Button, Table, Modal } from 'antd';
 
 import ViewCommercial from './ViewCommercial';
-
 import { TABLE_VALUES } from '../constants';
 import { getCommercial, removeCommercial } from '../actions';
 
@@ -34,6 +33,7 @@ const CommercialTable = () => {
     const columns = [
         ...TABLE_VALUES,
         {
+            align: 'center',
             key: 'action',
             render: (text, record) => (
                 <>
@@ -69,6 +69,8 @@ const CommercialTable = () => {
                 columns={columns}
                 dataSource={commercials}
                 rowKey={record => record.id}
+                size="middle"
+                scroll={{ y: 350 }}
             />
         </div>
     );

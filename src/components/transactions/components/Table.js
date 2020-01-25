@@ -15,26 +15,31 @@ const TransactionsTable = () => {
 
     const columns = [
         {
+            align: 'left',
             dataIndex: 'title',
             key: 'title',
             title: 'Transaction Details',
         },
         {
+            align: 'left',
             dataIndex: 'createdBy',
             key: 'createdBy',
             title: 'Customer Name',
         },
         {
+            align: 'right',
             dataIndex: 'amount',
             key: 'amount',
             title: 'Amount',
         },
         {
+            align: 'center',
             dataIndex: 'createdAt',
             key: 'createdAt',
             title: 'Date',
         },
         {
+            align: 'center',
             dataIndex: 'status',
             key: 'status',
             render: status => {
@@ -60,6 +65,8 @@ const TransactionsTable = () => {
                 columns={columns}
                 dataSource={transactions}
                 rowKey={record => record.id}
+                size="middle"
+                scroll={{ y: 350 }}
             />
         </div>
     );

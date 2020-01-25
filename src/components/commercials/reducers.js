@@ -2,7 +2,6 @@ import * as TYPES from './actionTypes';
 
 const initialState = {
     commercials: [],
-    isCommercialDeleted: false,
     isCommercialsLoading: false,
     visible: false,
 };
@@ -12,14 +11,12 @@ export default (state = initialState, { type, payload }) => {
         case TYPES.LOADING_COMMERCIAL:
             return {
                 ...state,
-                isCommercialDeleted: false,
                 isCommercialsLoading: true,
             };
         case TYPES.SET_COMMERCIALS:
             return {
                 ...state,
                 commercials: payload,
-                isCommercialDeleted: false,
                 isCommercialsLoading: false,
             };
         case TYPES.DELETE_COMMERCIALS: {
@@ -30,7 +27,7 @@ export default (state = initialState, { type, payload }) => {
                 commercials: commercials.filter(
                     commercial => commercial.id !== payload
                 ),
-                isCommercialDeleted: true,
+
                 isCommercialsLoading: true,
             };
         }

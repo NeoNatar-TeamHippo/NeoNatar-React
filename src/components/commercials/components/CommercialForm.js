@@ -3,22 +3,25 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Form, Input, Upload, Button, Icon } from 'antd';
 import { normFile, handleFormData } from '../../utils/functions';
 import { CREATE_COMMERCIAL, UPLOAD } from '../constants';
-import { postCommercial, setVisible } from '../actions';
+import { postCommercial } from '../actions';
 
 const CommercialForm = ({ form }) => {
     const dispatch = useDispatch();
-    const { loadingCommercial } = useSelector(state => state.commercials);
+    const { isCommercialsLoading } = useSelector(state => state.commercials);
     const { getFieldDecorator, resetFields, validateFields } = form;
     const handleSubmit = e => {
         e.preventDefault();
         validateFields((err, values) => {
             if (!err) {
                 const newFormData = handleFormData(values);
-                dispatch(postCommercial(newFormData));
-                resetFields();
-                setTimeout(() => {
-                    dispatch(setVisible(false));
-                }, 2000);
+                const payload = {
+                    data: newFormData,
+                    resetFields,
+                };
+                dispatch(postCommercial(payload));
+                // setTimeout(() => {
+                //     resetFields();
+                // }, 5000);
             }
         });
     };
@@ -64,7 +67,7 @@ const CommercialForm = ({ form }) => {
                 <Button
                     type="primary"
                     htmlType="submit"
-                    loading={loadingCommercial}
+                    loading={isCommercialsLoading}
                     block
                 >
                     {CREATE_COMMERCIAL}

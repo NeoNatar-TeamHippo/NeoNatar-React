@@ -1,7 +1,7 @@
 import { takeEvery, put, call, take, fork, select } from 'redux-saga/effects';
 import { eventChannel as EventChannel } from 'redux-saga';
 import * as TYPES from './actionTypes';
-import { deleteCommercialRequest, setCommercial, loadingCommercial } from './actions';
+import { deleteCommercialRequest, setCommercial, loadingCommercial, setVisible } from './actions';
 import {
     postCommercialService, deleteCommercialById, getCommercialService
 } from './services';
@@ -44,11 +44,13 @@ function* requestAllCommercials() {
     }
 }
 
-function* postNewCommercial(data) {
+function* postNewCommercial({ data, resetFields }) {
     try {
         yield put(loadingCommercial());
         const res = yield call(postCommercialService, data);
         if (res.status === 'success') {
+            yield call(resetFields);
+            yield put(setVisible(false));
             yield put(next());
             openNotification('Uploaded successfully', 'Video', 'success');
             const videoDetails = {

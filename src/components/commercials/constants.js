@@ -10,16 +10,19 @@ export const FILE_TYPE = 'File types accepted include: .mp4';
 /** @constant */
 export const TABLE_VALUES = [
     {
+        align: 'left',
         dataIndex: 'title',
         key: 'title',
         title: 'Title',
     },
     {
+        align: 'left',
         dataIndex: 'description',
         key: 'description',
         title: 'Description',
     },
     {
+        align: 'center',
         dataIndex: 'duration',
         key: 'duration',
         title: 'Video Length',

@@ -50,9 +50,6 @@ const NewCampaigns = () => {
                 ))}
             </Steps>
             <div className="steps-content">{steps[current].content}</div>
-            <Button onClick={() => dispatch(next())}>
-                {NEXT}
-            </Button>
         </>
     );
 };
