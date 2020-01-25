@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Tag, Table } from 'antd';
+import ReactHtmlParser from 'react-html-parser';
+import { Tag, Table, Typography } from 'antd';
 
 import { requestTransactions } from '../actions';
+import { NAIRASIGN } from '../../campaigns/constants';
 
 const TransactionsTable = () => {
     const dispatch = useDispatch();
@@ -30,6 +32,14 @@ const TransactionsTable = () => {
             align: 'right',
             dataIndex: 'amount',
             key: 'amount',
+            render: text => (
+                <Typography.Text type="secondary">
+                    <span className="mr-1">
+                        {ReactHtmlParser(NAIRASIGN)}
+                    </span>
+                    {text}
+                </Typography.Text>
+            ),
             title: 'Amount',
         },
         {

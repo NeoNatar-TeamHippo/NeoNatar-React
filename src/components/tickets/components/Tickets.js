@@ -51,6 +51,7 @@ const Tickets = ({ history }) => {
 
     const columns = [
         {
+            align: 'left',
             dataIndex: 'customerDetail',
             key: 'customerDetail',
             render: customerDetail => (
@@ -62,16 +63,19 @@ const Tickets = ({ history }) => {
             title: 'Customer Profile',
         },
         {
+            align: 'left',
             dataIndex: 'title',
             key: 'title',
             title: 'Title',
         },
         {
+            align: 'center',
             dataIndex: 'date',
             key: 'date',
             title: 'Date',
         },
         {
+            align: 'center',
             dataIndex: 'priority',
             key: 'priority',
             render: priority => {

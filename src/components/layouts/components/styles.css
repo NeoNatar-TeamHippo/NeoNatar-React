@@ -78,7 +78,11 @@ li.ant-menu-item.header-item:hover {
 }
 
 .anticon svg {
-    margin-bottom: 6px !important;
+    vertical-align: initial;
+}
+
+.ant-steps-icon .anticon svg {
+    vertical-align: inherit;
 }
 
 @media(max-width: 767px) {

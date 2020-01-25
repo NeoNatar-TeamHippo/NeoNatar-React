@@ -95,7 +95,7 @@ const Campaigns = ({ history }) => {
                     </Typography.Text>
                 </div>
             ),
-            title: 'Duration',
+            title: 'Duration(days)',
         },
         {
             align: 'center',
