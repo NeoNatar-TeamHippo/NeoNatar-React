@@ -11,16 +11,16 @@ const menuItems = [ALL, PENDING, APPROVE, DISAPPROVED];
 const Campaigns = ({ history }) => {
     const dispatch = useDispatch();
     const { campaigns, campaignsLoading } = useSelector(state => state.campaigns);
-    const [campaignData, setCampaignData] = useState(campaigns);
     useEffect(() => {
         dispatch(getCampaigns());
-        setCampaignData(campaigns);
     }, [campaigns, dispatch]);
-
+    const [campaignData, setCampaignData] = useState(campaigns);
+    useEffect(() => {
+        setCampaignData(campaigns);
+    }, [campaigns]);
     const handleViewCampaign = campaignId => {
         history.push(`/dashboard/campaigns/${campaignId}`);
     };
-
     const handleChangeTab = ({ key }) => {
         switch (key) {
             case ALL:
