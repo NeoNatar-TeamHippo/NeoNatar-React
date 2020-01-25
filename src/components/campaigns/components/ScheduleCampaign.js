@@ -66,7 +66,7 @@ const ScheduleCampaign = ({ history }) => {
             dispatch(next());
             const newCampaign = {
                 commercialId,
-                duration,
+                duration: days,
                 locationsSelected: locations,
                 title: newTitle,
             };
@@ -160,7 +160,7 @@ const ScheduleCampaign = ({ history }) => {
                                     <Col sm={24} md={18} className="d-none d-lg-block">
                                         <Slider
                                             min={1}
-                                            max={60}
+                                            max={365}
                                             onChange={onChange}
                                             style={{ marginRight: 16 }}
                                             value={typeof days === 'number' ? days : 0}
@@ -169,11 +169,8 @@ const ScheduleCampaign = ({ history }) => {
                                     <Col sm={24} md={6}>
                                         <InputNumber
                                             min={1}
-                                            max={60}
+                                            max={365}
                                             value={days}
-                                            formatter={value => `${value} ${days > 1
-                                                ? 'days'
-                                                : 'day'}`}
                                             onChange={onChange}
                                         />
                                     </Col>
