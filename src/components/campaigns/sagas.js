@@ -48,6 +48,7 @@ function* getSingleCampaign(id) {
     try {
         yield put(loadingCampaignById());
         const res = yield call(campaignById, id);
+        console.log(res);
         if (res.status === 'success') {
             yield put(setCampaignById(res.data));
         } else {
@@ -65,6 +66,7 @@ function* approveCampaign(id) {
     try {
         yield put(approvingCampaign());
         const res = yield call(approveCampaigns, id);
+        console.log(res);
         if (res.status === 'success') {
             yield put(postSuccess({ message: 'Campaign is approved' }));
         } else {
@@ -80,9 +82,9 @@ function* approveCampaignEffect({ payload }) {
 
 function* disapproveCampaign(payload) {
     try {
-        console.log(payload);
         yield put(disapprovingCampaign());
         const res = yield call(disapproveCampaigns, payload);
+        console.log(res);
         if (res.status === 'success') {
             yield put(postSuccess({ message: 'Campaign is approved' }));
         } else {

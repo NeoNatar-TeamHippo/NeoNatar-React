@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Avatar, Button, Tag, Table, Row, Col, Menu, Tooltip, PageHeader } from 'antd';
+import { Avatar, Button, Tag, Table, Row, Col, Menu, Tooltip } from 'antd';
 
 import CreateTickets from './CreateTickets';
-import { ALL, PENDING, NEW, RESOLVED, HORIZONTAL, TICKETS } from '../constants';
-import { priorityColor } from '../../utils/functions';
+import { ALL, PENDING, NEW, RESOLVED, HORIZONTAL } from '../constants';
+import { priorityColor, statusColor } from '../../utils/functions';
 import { getTickets } from '../actions';
 
 const menuItems = [ALL, PENDING, NEW, RESOLVED];
@@ -51,6 +51,7 @@ const Tickets = ({ history }) => {
 
     const columns = [
         {
+            align: 'left',
             dataIndex: 'customerDetail',
             key: 'customerDetail',
             render: customerDetail => (
@@ -62,16 +63,19 @@ const Tickets = ({ history }) => {
             title: 'Customer Profile',
         },
         {
+            align: 'left',
             dataIndex: 'title',
             key: 'title',
             title: 'Title',
         },
         {
+            align: 'center',
             dataIndex: 'date',
             key: 'date',
             title: 'Date',
         },
         {
+            align: 'center',
             dataIndex: 'priority',
             key: 'priority',
             render: priority => {
@@ -83,6 +87,21 @@ const Tickets = ({ history }) => {
                 );
             },
             title: 'Priority',
+            width: '150px',
+        },
+        {
+            align: 'center',
+            dataIndex: 'status',
+            key: 'status',
+            render: status => {
+                const color = statusColor(status);
+                return (
+                    <Tag color={color} key={status}>
+                        {status.toUpperCase()}
+                    </Tag>
+                );
+            },
+            title: 'Status',
         },
         {
             key: 'action',
@@ -100,7 +119,7 @@ const Tickets = ({ history }) => {
     ];
     return (
         <>
-            <Row type="flex" justify='space-between' style={{ marginBottom: 5 }}>
+            <Row type="flex" justify="space-between" style={{ marginBottom: 5 }}>
                 <Col>
                     <Menu
                         mode={HORIZONTAL}

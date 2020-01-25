@@ -7,9 +7,9 @@ import ILLUSTRATION_SVG from '../../../images/svgs/undraw_confirmation_2uy0.svg'
 const SummaryPayment = () => (
     <div className="d-flex flex-column justify-content-around text-center">
         <div style={{
-            width: '250px',
             height: '250px',
             margin: 'auto',
+            width: '250px',
         }}
         >
             <img src={ILLUSTRATION_SVG} alt="Created successfully" width="100%" height="100%" />

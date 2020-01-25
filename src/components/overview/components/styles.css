@@ -6,8 +6,12 @@
     border-radius: 4px;
 }
 
-.ant-card-hoverable:hover {
+.dashboard-card.ant-card-hoverable:hover {
     border: 1px solid #c41d7f;
+}
+
+.ant-card-hoverable:hover .ant-typography.text_title {
+    color: #c41d7f;
 }
 
 .notification-card-text {

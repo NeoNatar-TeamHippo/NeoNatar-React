@@ -175,8 +175,9 @@ const LocationTable = ({ history }) => {
         {
             align: 'left',
             dataIndex: 'lga',
+            ellipsis: true,
             key: 'lga',
-            title: 'Local Govt',
+            title: 'Local Governement',
             ...getColumnSearchProps('lga'),
         },
         {
@@ -233,7 +234,7 @@ const LocationTable = ({ history }) => {
                                     onMouseOver={() => { addToSavedLocation(record.locationId); }}
                                     onFocus={() => { addToSavedLocation(record.locationId); }}
                                     style={{
-                                        color: noSavedLoc ? 'grey' : '#3ACC6C'
+                                        color: noSavedLoc ? 'grey' : '#3ACC6C',
                                     }}
                                     type="link"
                                     icon="plus"
@@ -277,7 +278,7 @@ const LocationTable = ({ history }) => {
                 </Button>
             </div>
             <Table
-                rowSelection={rowSelection}
+                rowSelection={!isAdmin ? rowSelection : null}
                 columns={columns}
                 dataSource={locations}
                 rowKey={record => record.locationId}

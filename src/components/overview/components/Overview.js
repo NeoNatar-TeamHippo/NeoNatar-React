@@ -36,12 +36,12 @@ const Overview = () => {
             <NavLink to={link}>
                 <Card hoverable className="dashboard-card">
                     <div>
-                        <Title type="secondary" level={4}>
+                        <Title className="text_title" type="secondary" level={4}>
                             {type}
                         </Title>
                     </div>
                     <div>
-                        <Title level={1}>
+                        <Title className="text_title" level={1}>
                             {counts}
                         </Title>
                     </div>

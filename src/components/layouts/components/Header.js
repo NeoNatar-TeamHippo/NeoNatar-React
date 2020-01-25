@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { Button, Menu, Layout, Avatar } from 'antd';
-import UserLogo from '../../../images/user.svg';
+import { NavLink } from 'react-router-dom';
 
+import UserLogo from '../../../images/user.svg';
 import Logo from '../../../images/neoNatar Logo.svg';
 
 import { SIGNIN, SIGNUP } from '../constants';
@@ -20,9 +20,9 @@ const NavHeader = () => {
     const menuItem = (linkPath, text, type) => (
         <Item className="header-item">
             <Button type="primary" ghost={type}>
-                <Link to={linkPath}>
+                <NavLink to={linkPath}>
                     {text}
-                </Link>
+                </NavLink>
             </Button>
         </Item>
     );
@@ -53,9 +53,9 @@ const NavHeader = () => {
 
     return (
         <Header className="header-menu">
-            <Link to="/" className="left-menu">
-                <img src={Logo} height="60px" alt="NeoNatar Logo" />
-            </Link>
+            <NavLink to="/" className="left-menu">
+                <img src={Logo} width="100%" height="30px" alt="NeoNatar Logo" />
+            </NavLink>
             <Menu className="right-nav" mode="horizontal">
                 {renderMenuItem(location)}
             </Menu>

@@ -1,27 +1,25 @@
-import { LOADING_COMMERCIAL, SET_COMMERCIALS, DELETE_COMMERCIALS } from './actionTypes';
+import * as TYPES from './actionTypes';
 
 const initialState = {
     commercials: [],
-    isCommercialDeleted: false,
     isCommercialsLoading: false,
+    visible: false,
 };
 
 export default (state = initialState, { type, payload }) => {
     switch (type) {
-        case LOADING_COMMERCIAL:
+        case TYPES.LOADING_COMMERCIAL:
             return {
                 ...state,
-                isCommercialDeleted: false,
                 isCommercialsLoading: true,
             };
-        case SET_COMMERCIALS:
+        case TYPES.SET_COMMERCIALS:
             return {
                 ...state,
                 commercials: payload,
-                isCommercialDeleted: false,
                 isCommercialsLoading: false,
             };
-        case DELETE_COMMERCIALS: {
+        case TYPES.DELETE_COMMERCIALS: {
             const { commercials } = state;
 
             return {
@@ -29,8 +27,13 @@ export default (state = initialState, { type, payload }) => {
                 commercials: commercials.filter(
                     commercial => commercial.id !== payload
                 ),
-                isCommercialDeleted: true,
+
                 isCommercialsLoading: true,
+            };
+        }
+        case TYPES.SET_VISIBLE: {
+            return {
+                ...state, visible: payload,
             };
         }
         default:

@@ -1,26 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Tag, Table, PageHeader, Menu, Typography, Tooltip, Button } from 'antd';
+import { Tag, Table, Menu, Typography, Tooltip, Button } from 'antd';
 import ReactHtmlParser from 'react-html-parser';
 import { getCampaigns } from '../actions';
-import { ALLCAMPAIGNS, ALL, PENDING, APPROVE, HORIZONTAL, NAIRASIGN, DISAPPROVED } from '../constants';
+import { ALL, PENDING, APPROVE, HORIZONTAL, NAIRASIGN, DISAPPROVED } from '../constants';
 import { statusColor } from '../../utils/functions';
 
 const menuItems = [ALL, PENDING, APPROVE, DISAPPROVED];
 
 const Campaigns = ({ history }) => {
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getCampaigns());
+    }, [dispatch]);
+
     const { campaigns, campaignsLoading } = useSelector(state => state.campaigns);
     const [campaignData, setCampaignData] = useState(campaigns);
     useEffect(() => {
-        dispatch(getCampaigns());
         setCampaignData(campaigns);
-    }, [campaigns, dispatch]);
+    }, [campaigns]);
 
     const handleViewCampaign = campaignId => {
         history.push(`/dashboard/campaigns/${campaignId}`);
     };
-
     const handleChangeTab = ({ key }) => {
         switch (key) {
             case ALL:
@@ -92,10 +95,10 @@ const Campaigns = ({ history }) => {
                     </Typography.Text>
                 </div>
             ),
-            title: 'Duration',
+            title: 'Duration(days)',
         },
         {
-            align: 'centerr',
+            align: 'center',
             dataIndex: 'status',
             key: 'status',
             render: status => {

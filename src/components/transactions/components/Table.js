@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Tag, Table } from 'antd';
+import ReactHtmlParser from 'react-html-parser';
+import { Tag, Table, Typography } from 'antd';
 
 import { requestTransactions } from '../actions';
+import { NAIRASIGN } from '../../campaigns/constants';
 
 const TransactionsTable = () => {
     const dispatch = useDispatch();
@@ -15,26 +17,39 @@ const TransactionsTable = () => {
 
     const columns = [
         {
+            align: 'left',
             dataIndex: 'title',
             key: 'title',
             title: 'Transaction Details',
         },
         {
+            align: 'left',
             dataIndex: 'createdBy',
             key: 'createdBy',
             title: 'Customer Name',
         },
         {
+            align: 'right',
             dataIndex: 'amount',
             key: 'amount',
+            render: text => (
+                <Typography.Text type="secondary">
+                    <span className="mr-1">
+                        {ReactHtmlParser(NAIRASIGN)}
+                    </span>
+                    {text}
+                </Typography.Text>
+            ),
             title: 'Amount',
         },
         {
+            align: 'center',
             dataIndex: 'createdAt',
             key: 'createdAt',
             title: 'Date',
         },
         {
+            align: 'center',
             dataIndex: 'status',
             key: 'status',
             render: status => {
@@ -60,6 +75,8 @@ const TransactionsTable = () => {
                 columns={columns}
                 dataSource={transactions}
                 rowKey={record => record.id}
+                size="middle"
+                scroll={{ y: 350 }}
             />
         </div>
     );

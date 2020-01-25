@@ -92,4 +92,3 @@ export const statusColor = status => {
     }
     return color;
 };
-

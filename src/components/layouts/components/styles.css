@@ -1,16 +1,15 @@
 .content {
     min-height: 80vh;
     background-color: #fff;
+    padding: 0 2%;
 }
 
 header.ant-layout-header {
     background: #fff;
-    min-height: 10vh;
 }
 
 footer.ant-layout-footer {
     background: #fff;
-    min-height: 10vh;
 }
 
 aside.ant-layout-sider {
@@ -80,7 +79,11 @@ li.ant-menu-item.header-item:hover {
 }
 
 .anticon svg {
-    margin-bottom: 6px !important;
+    vertical-align: initial;
+}
+
+.ant-steps-icon .anticon svg {
+    vertical-align: inherit;
 }
 
 @media(max-width: 767px) {
