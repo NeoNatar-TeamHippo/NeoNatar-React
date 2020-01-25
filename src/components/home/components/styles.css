@@ -10,7 +10,13 @@
 .section-two, .section-three{
     height: 500px;
 }
+.home-page-text{
+    margin-left: 20px;
+}
 
+.screen-image{
+    height: 400px;
+}
 @media(max-width: 767px) {
     .hide-image-container {
         display: none;

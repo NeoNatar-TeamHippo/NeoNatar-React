@@ -1,9 +1,11 @@
 import React from 'react';
-import { Row, Col, Divider, Typography} from 'antd';
+import { Row, Col, Divider, Typography } from 'antd';
 
+import { DUMMY_TITLE, DUMMY_DESCRIPTION } from '../constants';
 import layouts from '../../layouts';
 import art from '../../../images/office-setting.png';
-import text from '../../../images/text.png';
+import screen from '../../../images/svgs/undraw_composition_oskp.svg';
+import placed from '../../../images/svgs/undraw_right_places_h9n3.svg';
 
 const { HomeLayout } = layouts.components;
 const { Title } = Typography;
@@ -13,9 +15,9 @@ const Home = () => (
         <div>
             <Row type="flex" align="middle" className="section-one">
                 <Col span={12}>
-                    <Title>Get Your Business Out</Title>
-                    <Title type="secondary" level={4}>
-                        Follow up on your campaigns by keeping a day to day record of your visitors
+                    <Title className="home-page-text">{DUMMY_TITLE}</Title>
+                    <Title className="home-page-text" type="secondary" level={4}>
+                        {DUMMY_DESCRIPTION}
                     </Title>
                 </Col>
                 <Col span={12}>
@@ -24,19 +26,25 @@ const Home = () => (
             </Row>
             <Row type="flex" align="middle" className="section-two">
                 <Col span={12}>
-                    <img src={art} alt="illustration" />
+                    <img src={screen} alt="illustration" className="home-page-text screen-image" />
                 </Col>
                 <Col span={12}>
-                    <img src={text} alt="dummy-text" />
+                    <Title className="home-page-text">{DUMMY_TITLE}</Title>
+                    <Title className="home-page-text" type="secondary" level={4}>
+                        {DUMMY_DESCRIPTION}
+                    </Title>
                 </Col>
             </Row>
             <Divider />
             <Row type="flex" align="middle" className="section-three">
                 <Col span={12}>
-                    <img src={text} alt="dummy-text" />
+                    <Title className="home-page-text">{DUMMY_TITLE}</Title>
+                    <Title className="home-page-text" type="secondary" level={4}>
+                        {DUMMY_DESCRIPTION}
+                    </Title>
                 </Col>
                 <Col span={12}>
-                    <img src={art} alt="illustration" />
+                    <img src={placed} alt="illustration" className="screen-image" />
                 </Col>
             </Row>
         </div>
