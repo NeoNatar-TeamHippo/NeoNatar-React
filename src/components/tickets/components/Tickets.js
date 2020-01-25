@@ -4,7 +4,7 @@ import { Avatar, Button, Tag, Table, Row, Col, Menu, Tooltip } from 'antd';
 
 import CreateTickets from './CreateTickets';
 import { ALL, PENDING, NEW, RESOLVED, HORIZONTAL } from '../constants';
-import { priorityColor } from '../../utils/functions';
+import { priorityColor, statusColor } from '../../utils/functions';
 import { getTickets } from '../actions';
 
 const menuItems = [ALL, PENDING, NEW, RESOLVED];
@@ -91,6 +91,19 @@ const Tickets = ({ history }) => {
         },
         {
             align: 'center',
+            dataIndex: 'status',
+            key: 'status',
+            render: status => {
+                const color = statusColor(status);
+                return (
+                    <Tag color={color} key={status}>
+                        {status.toUpperCase()}
+                    </Tag>
+                );
+            },
+            title: 'Status',
+        },
+        {
             key: 'action',
             render: record => (
                 <Tooltip placement="top" title="View ticket">
