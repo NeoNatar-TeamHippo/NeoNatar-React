@@ -52,7 +52,7 @@ const NavHeader = () => {
     };
 
     return (
-        <Header>
+        <Header className="header-menu">
             <Link to="/" className="left-menu">
                 <img src={Logo} height="60px" alt="NeoNatar Logo" />
             </Link>
