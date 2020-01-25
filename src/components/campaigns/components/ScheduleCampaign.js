@@ -70,8 +70,7 @@ const ScheduleCampaign = ({ history }) => {
                 locationsSelected: locations,
                 title: newTitle,
             };
-            console.log(newCampaign);
-            // dispatch(createCampaign(newCampaign));
+            dispatch(createCampaign(newCampaign));
             message.success('Payment successful, Thanks for working with us!!!');
             setTimeout(() => {
                 dispatch(resetFormState());
