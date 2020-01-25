@@ -7,7 +7,11 @@ import moment from 'moment';
 import download from 'downloadjs';
 
 import { getCampaignById, approveCampaign, disapproveCampaign } from '../actions';
-import { statusColor } from '../../utils/functions';
+import { statusColor,
+    approvedHidden,
+    disapprovedHidden,
+    hidden,
+    downloadHidden } from '../../utils/functions';
 import {
     LOCATIONS,
     APPROVECAMPAIGN,
@@ -24,7 +28,6 @@ import {
     MESSAGE,
     DISAPPROVECAMPAIGN,
     LIVE,
-    PEND,
     CREATEDAT,
     DURATION,
     DISAPPROVE,
@@ -33,6 +36,7 @@ import {
 
 const { Option } = Select;
 const { Item } = Form;
+const { Paragraph, Text } = Typography;
 
 const ViewCampaignWithModal = ({ match, history, form }) => {
     const { getFieldDecorator } = form;
@@ -70,42 +74,6 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
     if (status === DISAPPROVE) {
         disapprovedDate = moment(disapprovedAt).format('LLLL');
     }
-    const approvedHidden = () => {
-        let cond;
-        if (status === LIVE) {
-            cond = false;
-        } else {
-            cond = true;
-        }
-        return cond;
-    };
-    const disapprovedHidden = () => {
-        let cond;
-        if (status === DISAPPROVE) {
-            cond = false;
-        } else {
-            cond = true;
-        }
-        return cond;
-    };
-    const hidden = () => {
-        let cond;
-        if (userIsAdmin && status === PEND) {
-            cond = false;
-        } else {
-            cond = true;
-        }
-        return cond;
-    };
-    const downloadHidden = () => {
-        let cond;
-        if (userIsAdmin) {
-            cond = false;
-        } else {
-            cond = true;
-        }
-        return cond;
-    };
     const approve = () => {
         setDisabled(true);
         dispatch(approveCampaign(campaignId));
@@ -204,7 +172,13 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                                 </video>
                             )}
                             actions={[
-                                <Button key="back" type="primary" color="red" ghost onClick={() => history.goBack()}>
+                                <Button
+                                    key="back"
+                                    type="primary"
+                                    color="red"
+                                    ghost
+                                    onClick={() => history.goBack()}
+                                >
                                     {BACK}
                                 </Button>,
                                 <Button
@@ -213,7 +187,7 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                                     onClick={() => disapprove()}
                                     type="danger"
                                     ghost
-                                    hidden={hidden()}
+                                    hidden={hidden(userIsAdmin, status)}
                                 >
                                     {DISAPPROVECAMPAIGN}
                                 </Button>,
@@ -222,7 +196,7 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                                     disabled={disabled}
                                     onClick={() => approve()}
                                     type="primary"
-                                    hidden={hidden()}
+                                    hidden={hidden(userIsAdmin, status)}
                                 >
                                     {APPROVECAMPAIGN}
                                 </Button>,
@@ -233,22 +207,27 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                                 style={{ marginBottom: '10px' }}
                             >
                                 <div>
-                                    <Typography.Text strong="true">
+                                    <Text strong="true">
                                         {title}
-                                    </Typography.Text>
-                                </div>
-                                <div hidden={downloadHidden()}>
-                                    <Button
-                                        type="primary"
-                                        icon="download"
-                                        onClick={() => handleDownload(commercialUrl, title)}
-                                    >
-                                        {DOWNLOAD}
-                                    </Button>
+                                    </Text>
                                 </div>
                                 <div>
-                                    <Tag color={statusColor(status)}>{campaignByIdLoading ? '' : status.toUpperCase()}</Tag>
+                                    <Tag
+                                        color={statusColor(status)}
+                                    >
+                                        {campaignByIdLoading ? '' : status.toUpperCase()}
+                                    </Tag>
                                     {`₦ ${amount}`}
+                                    <div hidden={downloadHidden(userIsAdmin)}>
+                                        <Button
+                                            type="primary"
+                                            icon="download"
+                                            onClick={() => handleDownload(commercialUrl, title)}
+                                            style={{ marginTop: '5px' }}
+                                        >
+                                            {DOWNLOAD}
+                                        </Button>
+                                    </div>
                                 </div>
                             </div>
                             <div>
@@ -279,13 +258,13 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                                     <Col span={18} offset={1}>{`${duration} days`}</Col>
                                 </Row>
                             </div>
-                            <div hidden={disapprovedHidden()}>
+                            <div hidden={disapprovedHidden(status)}>
                                 <Row>
                                     <Col span={5}>{DISAPPROVED}</Col>
                                     <Col span={18} offset={1}>{disapprovedDate}</Col>
                                 </Row>
                             </div>
-                            <div hidden={disapprovedHidden()}>
+                            <div hidden={disapprovedHidden(status)}>
                                 <Row>
                                     <Col span={5}>{MESSAGE}</Col>
                                     <Col span={18} offset={1}>
@@ -294,21 +273,27 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                                             : campaignByIdLoading ? []
                                                 : message.map(
                                                     messa => (
-                                                        <Tag key={messa} color="blue">
+                                                        <Paragraph
+                                                            key={messa}
+                                                            ellipsis={{
+                                                                rows: 1,
+                                                                expandable: true,
+                                                            }}
+                                                        >
                                                             {messa}
-                                                        </Tag>
+                                                        </Paragraph>
                                                     )
                                                 )}
                                     </Col>
                                 </Row>
                             </div>
-                            <div hidden={approvedHidden()}>
+                            <div hidden={approvedHidden(status)}>
                                 <Row>
                                     <Col span={5}>{APPROVED}</Col>
                                     <Col span={18} offset={1}>{approvedDate}</Col>
                                 </Row>
                             </div>
-                            <div hidden={approvedHidden()}>
+                            <div hidden={approvedHidden(status)}>
                                 <Row>
                                     <Col span={5}>{EXPIRES}</Col>
                                     <Col span={18} offset={1}>{expiredDate}</Col>

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Avatar, Button, Tag, Table, Row, Col, Menu, Tooltip, PageHeader } from 'antd';
+import { Avatar, Button, Tag, Table, Row, Col, Menu, Tooltip } from 'antd';
 
 import CreateTickets from './CreateTickets';
-import { ALL, PENDING, NEW, RESOLVED, HORIZONTAL, TICKETS } from '../constants';
+import { ALL, PENDING, NEW, RESOLVED, HORIZONTAL } from '../constants';
 import { priorityColor } from '../../utils/functions';
 import { getTickets } from '../actions';
 
@@ -83,6 +83,7 @@ const Tickets = ({ history }) => {
                 );
             },
             title: 'Priority',
+            width: '150px',
         },
         {
             key: 'action',
@@ -100,7 +101,7 @@ const Tickets = ({ history }) => {
     ];
     return (
         <>
-            <Row type="flex" justify='space-between' style={{ marginBottom: 5 }}>
+            <Row type="flex" justify="space-between" style={{ marginBottom: 5 }}>
                 <Col>
                     <Menu
                         mode={HORIZONTAL}
