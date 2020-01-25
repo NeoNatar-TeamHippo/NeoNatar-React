@@ -95,10 +95,10 @@ const Campaigns = ({ history }) => {
                     </Typography.Text>
                 </div>
             ),
-            title: 'Duration',
+            title: 'Duration(days)',
         },
         {
-            align: 'centerr',
+            align: 'center',
             dataIndex: 'status',
             key: 'status',
             render: status => {

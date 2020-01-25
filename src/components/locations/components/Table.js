@@ -175,8 +175,9 @@ const LocationTable = ({ history }) => {
         {
             align: 'left',
             dataIndex: 'lga',
+            ellipsis: true,
             key: 'lga',
-            title: 'Local Govt',
+            title: 'Local Governement',
             ...getColumnSearchProps('lga'),
         },
         {
