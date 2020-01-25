@@ -40,7 +40,7 @@ const Navbar = () => {
                     </span>
                 )}
             >
-                <Item disabled key="transactions">
+                <Item key="transactions">
                     <NavLink to="/dashboard/transactions">
                         <Icon type="interaction" />
                         <span>

@@ -15,7 +15,7 @@ const CommercialTable = () => {
         dispatch(getCommercial());
     }, [dispatch]);
 
-    const { commercials } = useSelector(state => state.commercials);
+    const { commercials, isCommercialsLoading } = useSelector(state => state.commercials);
 
     const showDeleteConfirm = id => {
         Modal.confirm({
@@ -66,6 +66,7 @@ const CommercialTable = () => {
                 onOk={() => setSelectedModal(null)}
             />
             <Table
+                loading={isCommercialsLoading}
                 columns={columns}
                 dataSource={commercials}
                 rowKey={record => record.id}
