@@ -24,7 +24,6 @@ const Campaigns = ({ history }) => {
     const handleViewCampaign = campaignId => {
         history.push(`/dashboard/campaigns/${campaignId}`);
     };
-
     const handleChangeTab = ({ key }) => {
         switch (key) {
             case ALL:

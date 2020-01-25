@@ -6,14 +6,14 @@ import UnresolvedTickets from './UnresolvedTickets';
 import Tasks from './Tasks';
 import TransactionsTable from '../../transactions/components/Table';
 
-const { Text, Title } = Typography;
+const { Title } = Typography;
 
 const Overview = () => {
     const { overviewLocationNumber,
         overviewPendingCampignNumber,
         overviewApprovedCampignNumber } = useSelector(state => state.overview);
     const { savedLocations } = useSelector(state => state.savedLocation);
-    const { user: { isAdmin } } = useSelector(state => state.user)
+    const { user: { isAdmin } } = useSelector(state => state.user);
     const CARDS = [
         {
             counts: overviewApprovedCampignNumber,
@@ -36,12 +36,12 @@ const Overview = () => {
             <NavLink to={link}>
                 <Card hoverable className="dashboard-card">
                     <div>
-                        <Title type="secondary" level={4}>
+                        <Title className="text_title" type="secondary" level={4}>
                             {type}
                         </Title>
                     </div>
                     <div>
-                        <Title level={1}>
+                        <Title className="text_title" level={1}>
                             {counts}
                         </Title>
                     </div>
@@ -60,14 +60,16 @@ const Overview = () => {
                 {renderCards()}
             </Row>
             {!isAdmin ? (<TransactionsTable />)
-                : (<Row gutter={[{ lg: 32, md: 24, sm: 16, xs: 8 }, 20]}>
-                    <Col sm={24} lg={12}>
-                        <UnresolvedTickets />
-                    </Col>
-                    <Col sm={24} lg={12}>
-                        <Tasks />
-                    </Col>
-                </Row>)}
+                : (
+                    <Row gutter={[{ lg: 32, md: 24, sm: 16, xs: 8 }, 20]}>
+                        <Col sm={24} lg={12}>
+                            <UnresolvedTickets />
+                        </Col>
+                        <Col sm={24} lg={12}>
+                            <Tasks />
+                        </Col>
+                    </Row>
+                )}
         </div>
     );
 };
