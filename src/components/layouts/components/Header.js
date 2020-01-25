@@ -2,8 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button, Menu, Layout } from 'antd';
-
-import Logo from '../../../images/mock-logo.png';
+import Logo from '../../../images/neoNatar Logo.svg';
 
 import { SIGNIN, SIGNUP, GO_TO_DASHBOARD } from '../constants';
 
