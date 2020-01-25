@@ -1,15 +1,19 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Button, Menu, Layout, Avatar } from 'antd';
 import { NavLink } from 'react-router-dom';
-import { Button, Menu, Layout } from 'antd';
+
+import UserLogo from '../../../images/user.svg';
 import Logo from '../../../images/neoNatar Logo.svg';
 
-import { SIGNIN, SIGNUP, GO_TO_DASHBOARD } from '../constants';
+import { SIGNIN, SIGNUP } from '../constants';
 
 const { Item } = Menu;
 const { Header } = Layout;
 
 const NavHeader = () => {
+    const { user, navLoading } = useSelector(state => state.user);
+
     const { location } = useSelector(state => state.router);
     const { authenticated } = useSelector(state => state.signIn);
 
@@ -22,6 +26,14 @@ const NavHeader = () => {
             </Button>
         </Item>
     );
+    const userIcon = () => (
+        <Item className="header-item">
+            <span>
+                {navLoading ? (<Avatar src={UserLogo} />)
+                    : (<Avatar src={user.avatar} />)}
+            </span>
+        </Item>
+    );
 
     const renderMenuItem = ({ pathname }) => {
         if (pathname === '/signup') {
@@ -31,7 +43,7 @@ const NavHeader = () => {
             return menuItem('/signup', SIGNUP, true);
         }
         if (authenticated) {
-            return menuItem('/dashboard', GO_TO_DASHBOARD, false);
+            return userIcon();
         }
         return [
             menuItem('/signin', SIGNIN, false),
@@ -40,7 +52,7 @@ const NavHeader = () => {
     };
 
     return (
-        <Header>
+        <Header className="header-menu">
             <NavLink to="/" className="left-menu">
                 <img src={Logo} width="100%" height="30px" alt="NeoNatar Logo" />
             </NavLink>
