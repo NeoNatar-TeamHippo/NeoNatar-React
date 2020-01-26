@@ -12,7 +12,6 @@ import {
     LOCATIONS,
     APPROVECAMPAIGN,
     TITLE,
-    BACK,
     CANCEL,
     DOWNLOAD,
     SUBMIT,
@@ -35,7 +34,7 @@ const { Option } = Select;
 const { Item } = Form;
 const { Paragraph, Text } = Typography;
 
-const ViewCampaignWithModal = ({ match, history, form }) => {
+const ViewCampaignWithModal = ({ match, form }) => {
     const { getFieldDecorator } = form;
     const { params } = match;
     const { id: campaignId } = params;
@@ -193,6 +192,7 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                         <Card
                             loading={campaignByIdLoading}
                             hoverable
+                            title={title}
                             className="w-100"
                             cover={(
                                 <video controls>
@@ -206,15 +206,6 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                             )}
                             actions={[
                                 <Button
-                                    key="back"
-                                    type="primary"
-                                    color="red"
-                                    ghost
-                                    onClick={() => history.goBack()}
-                                >
-                                    {BACK}
-                                </Button>,
-                                <Button
                                     key="disapprove"
                                     disabled={disabled}
                                     onClick={() => disapprove()}
@@ -223,6 +214,15 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                                     hidden={hidden()}
                                 >
                                     {DISAPPROVECAMPAIGN}
+                                </Button>,
+                                <Button
+                                    key="download"
+                                    type="primary"
+                                    icon="download"
+                                    onClick={() => handleDownload(commercialUrl, title)}
+                                    hidden={downloadHidden()}
+                                >
+                                    {DOWNLOAD}
                                 </Button>,
                                 <Button
                                     key="approve"
@@ -251,16 +251,6 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                                         {campaignByIdLoading ? '' : status.toUpperCase()}
                                     </Tag>
                                     {`₦ ${amount}`}
-                                    <div hidden={downloadHidden()}>
-                                        <Button
-                                            type="primary"
-                                            icon="download"
-                                            onClick={() => handleDownload(commercialUrl, title)}
-                                            style={{ marginTop: '5px' }}
-                                        >
-                                            {DOWNLOAD}
-                                        </Button>
-                                    </div>
                                 </div>
                             </div>
                             <div>
@@ -271,7 +261,11 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                                             ? []
                                             : locationsSelected.sort().map(
                                                 location => (
-                                                    <Tag key={location} color="blue">
+                                                    <Tag
+                                                        key={location}
+                                                        color="blue"
+                                                        style={{ marginBottom: '5px' }}
+                                                    >
                                                         {location}
                                                     </Tag>
                                                 )
