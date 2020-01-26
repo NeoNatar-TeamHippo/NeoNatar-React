@@ -144,6 +144,22 @@ const ViewCampaignWithModal = ({ match, form }) => {
         setVisible(false);
     };
 
+    const locationsTag = locations => {
+        const selectedLocations = locations.sort();
+        if (selectedLocations.length > 3) {
+            const locationsShort = selectedLocations.slice(0, 3);
+            return locationsShort.map(location => (
+                <Tag
+                    key={location}
+                    color="blue"
+                    style={{ marginBottom: '5px' }}
+                >
+                    {location}
+                </Tag>
+            ));
+        }
+    };
+
     return (
         <>
             <Modal
@@ -280,17 +296,7 @@ const ViewCampaignWithModal = ({ match, form }) => {
                                 <Col span={18} offset={1}>
                                     {campaignByIdLoading
                                         ? []
-                                        : locationsSelected.sort().map(
-                                            location => (
-                                                <Tag
-                                                    key={location}
-                                                    color="blue"
-                                                    style={{ marginBottom: '5px' }}
-                                                >
-                                                    {location}
-                                                </Tag>
-                                            )
-                                        )}
+                                        : locationsTag(locationsSelected)}
                                 </Col>
                             </Row>
                             <Row>
