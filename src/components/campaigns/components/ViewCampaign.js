@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import ReactHtmlParser from 'react-html-parser';
 import {
-    Card, Row, Col, Form, Button, Typography, Tag, Modal, Select
+    Card, Row, Col, Form, Button, Typography, Tag, Modal, Select, Tooltip, Descriptions
 } from 'antd';
 import moment from 'moment';
 import download from 'downloadjs';
@@ -27,7 +28,8 @@ import {
     CREATEDAT,
     DURATION,
     DISAPPROVE,
-    DISAPPROVED
+    DISAPPROVED,
+    NAIRASIGN
 } from '../constants';
 
 const { Option } = Select;
@@ -144,58 +146,88 @@ const ViewCampaignWithModal = ({ match, form }) => {
 
     return (
         <>
-            <div>
-                <Modal
-                    title={TITLE}
-                    visible={visible}
-                    footer={[
-                        <Button key="back" onClick={handleCancel}>
-                            {CANCEL}
-                        </Button>,
-                        <Button
-                            key="submit"
-                            type="primary"
-                            confirmLoading={confirmLoading}
-                            onClick={handleOk}
-                        >
-                            {SUBMIT}
-                        </Button>,
-                    ]}
-                >
-                    <Row type="flex" justify="center">
-                        <Col span={24}>
-                            <Form layout={VERTICAL}>
-                                <Item>
-                                    {getFieldDecorator('messages', {
-                                        rules: [{
-                                            message: 'message',
-                                            required: true,
-                                        }],
-                                    })(
-                                        <Select
-                                            mode="multiple"
-                                            style={{ width: '100%' }}
-                                            placeholder={PLACEHOLDER}
-                                        >
-                                            {renderoptionTag()}
-                                        </Select>
-                                    )}
-                                </Item>
-                            </Form>
-                        </Col>
-                    </Row>
-                </Modal>
-            </div>
+            <Modal
+                title={TITLE}
+                visible={visible}
+                footer={[
+                    <Button key="back" onClick={handleCancel}>
+                        {CANCEL}
+                    </Button>,
+                    <Button
+                        key="submit"
+                        type="primary"
+                        confirmLoading={confirmLoading}
+                        onClick={handleOk}
+                    >
+                        {SUBMIT}
+                    </Button>,
+                ]}
+            >
+                <Row type="flex" justify="center">
+                    <Col span={24}>
+                        <Form layout={VERTICAL}>
+                            <Item>
+                                {getFieldDecorator('messages', {
+                                    rules: [{
+                                        message: 'message',
+                                        required: true,
+                                    }],
+                                })(
+                                    <Select
+                                        mode="multiple"
+                                        style={{ width: '100%' }}
+                                        placeholder={PLACEHOLDER}
+                                    >
+                                        {renderoptionTag()}
+                                    </Select>
+                                )}
+                            </Item>
+                        </Form>
+                    </Col>
+                </Row>
+            </Modal>
             <div className="card_background">
-                <Row className="d-sm-flex justify-content-sm-center">
-                    <Col sm={20} md={16} lg={14}>
+                <Row type="flex" justify="center">
+                    <Col sm={24} md={18} lg={12}>
                         <Card
                             loading={campaignByIdLoading}
                             hoverable
-                            title={title}
+                            title={(
+                                <>
+                                    <Typography.Text type="secondary" strong>
+                                        {title ? title.toUpperCase() : ''}
+                                    </Typography.Text>
+                                    <Tag
+                                        color={statusColor(status)}
+                                        className="ml-3"
+                                    >
+                                        {campaignByIdLoading ? '' : status.toUpperCase()}
+                                    </Tag>
+                                </>
+
+                            )}
+                            extra={(
+                                <Typography.Text
+                                    className="total_text"
+                                    style={{
+                                        fontSize: '24px', fontWeight: 'bolder',
+                                    }}
+                                    strong
+                                >
+                                    <span className="mr-1">
+                                        {ReactHtmlParser(NAIRASIGN)}
+                                    </span>
+                                    {amount}
+                                </Typography.Text>
+                            )}
                             className="w-100"
                             cover={(
-                                <video controls>
+                                <video
+                                    controls
+                                    style={{
+                                        height: '30vh',
+                                    }}
+                                >
                                     <source
                                         src={campaignByIdLoading
                                             ? ''
@@ -205,86 +237,70 @@ const ViewCampaignWithModal = ({ match, form }) => {
                                 </video>
                             )}
                             actions={[
-                                <Button
-                                    key="disapprove"
-                                    disabled={disabled}
-                                    onClick={() => disapprove()}
-                                    type="danger"
-                                    ghost
-                                    hidden={hidden()}
-                                >
-                                    {DISAPPROVECAMPAIGN}
-                                </Button>,
-                                <Button
-                                    key="download"
-                                    type="primary"
-                                    icon="download"
-                                    onClick={() => handleDownload(commercialUrl, title)}
-                                    hidden={downloadHidden()}
-                                >
-                                    {DOWNLOAD}
-                                </Button>,
-                                <Button
-                                    key="approve"
-                                    disabled={disabled}
-                                    onClick={() => approve()}
-                                    type="primary"
-                                    hidden={hidden()}
-                                >
-                                    {APPROVECAMPAIGN}
-                                </Button>,
+                                <Tooltip key="approve" title={DISAPPROVECAMPAIGN}>
+                                    <Button
+                                        key="disapprove"
+                                        disabled={disabled}
+                                        onClick={() => disapprove()}
+                                        type="danger"
+                                        ghost
+                                        shape="circle-outline"
+                                        icon="dislike"
+                                        hidden={hidden()}
+                                    />
+                                </Tooltip>,
+                                <Tooltip key="download" title={DOWNLOAD}>
+                                    <Button
+                                        type="primary"
+                                        shape="circle"
+                                        ghost
+                                        icon="download"
+                                        onClick={() => handleDownload(commercialUrl, title)}
+                                        hidden={downloadHidden()}
+                                    />
+                                </Tooltip>,
+                                <Tooltip key="approve" title={APPROVECAMPAIGN}>
+                                    <Button
+                                        disabled={disabled}
+                                        onClick={() => approve()}
+                                        icon="like"
+                                        shape="circle-outline"
+                                        ghost
+                                        style={{
+                                            border: '1px solid green',
+                                            color: 'green',
+                                        }}
+                                        hidden={hidden()}
+                                    />
+                                </Tooltip>,
                             ]}
                         >
-                            <div
-                                className="d-flex justify-content-between"
-                                style={{ marginBottom: '10px' }}
-                            >
-                                <div>
-                                    <Text strong="true">
-                                        {title}
-                                    </Text>
-                                </div>
-                                <div>
-                                    <Tag
-                                        color={statusColor(status)}
-                                    >
-                                        {campaignByIdLoading ? '' : status.toUpperCase()}
-                                    </Tag>
-                                    {`₦ ${amount}`}
-                                </div>
-                            </div>
-                            <div>
-                                <Row>
-                                    <Col span={5}>{LOCATIONS}</Col>
-                                    <Col span={18} offset={1}>
-                                        {campaignByIdLoading
-                                            ? []
-                                            : locationsSelected.sort().map(
-                                                location => (
-                                                    <Tag
-                                                        key={location}
-                                                        color="blue"
-                                                        style={{ marginBottom: '5px' }}
-                                                    >
-                                                        {location}
-                                                    </Tag>
-                                                )
-                                            )}
-                                    </Col>
-                                </Row>
-                            </div>
-                            <div>
-                                <Row>
-                                    <Col span={5}>{CREATEDAT}</Col>
-                                    <Col span={18} offset={1}>{createdDate}</Col>
-                                </Row>
-                            </div>
-                            <div>
-                                <Row>
-                                    <Col span={5}>{DURATION}</Col>
-                                    <Col span={18} offset={1}>{`${duration} days`}</Col>
-                                </Row>
-                            </div>
+                            <Row>
+                                <Col span={5}>{LOCATIONS}</Col>
+                                <Col span={18} offset={1}>
+                                    {campaignByIdLoading
+                                        ? []
+                                        : locationsSelected.sort().map(
+                                            location => (
+                                                <Tag
+                                                    key={location}
+                                                    color="blue"
+                                                    style={{ marginBottom: '5px' }}
+                                                >
+                                                    {location}
+                                                </Tag>
+                                            )
+                                        )}
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col span={5}>{CREATEDAT}</Col>
+                                <Col span={18} offset={1}>{createdDate}</Col>
+                            </Row>
+                            <Row>
+                                <Col span={5}>{DURATION}</Col>
+                                <Col span={18} offset={1}>{`${duration} days`}</Col>
+                            </Row>
                             <div hidden={disapprovedHidden()}>
                                 <Row>
                                     <Col span={5}>{DISAPPROVED}</Col>

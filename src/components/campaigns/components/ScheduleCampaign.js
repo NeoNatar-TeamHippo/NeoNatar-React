@@ -25,7 +25,7 @@ const ScheduleCampaign = ({ history }) => {
     const dispatch = useDispatch();
     const [visible, setVisible] = useState(false);
     const {
-        campaignDetails: { amount, commercialId, duration, videoDetails, locations },
+        campaignDetails: { amount, commercialId, videoDetails, locations },
     } = useSelector(state => state.campaigns);
     const { locations: allLocations } = useSelector(state => state.location);
     const { user: { email } } = useSelector(state => state.user);
