@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactHtmlParser from 'react-html-parser';
 import {
-    Card, Row, Col, Form, Button, Typography, Tag, Modal, Select, Tooltip, Descriptions
+    Card, Row, Col, Form, Button, Typography, Tag, Modal, Select, Tooltip, Icon
 } from 'antd';
 import moment from 'moment';
 import download from 'downloadjs';
@@ -159,7 +159,17 @@ const ViewCampaignWithModal = ({ match, form }) => {
                             {location}
                         </Tag>
                     ))}
-                    <Tag color="blue">...</Tag>
+                    <Tooltip title="More Locations">
+                        <Tag
+                            color="pink"
+                            style={{
+                                cursor: 'pointer',
+                            }}
+                            onClick={() => console.log('yes')}
+                        >
+                            <Icon type="ellipsis" />
+                        </Tag>
+                    </Tooltip>
                 </div>
             );
         }
