@@ -146,15 +146,20 @@ const ViewCampaignWithModal = ({ match, form }) => {
         const selectedLocations = locations.sort();
         if (selectedLocations.length > 3) {
             const locationsShort = selectedLocations.slice(0, 3);
-            return locationsShort.map(location => (
-                <Tag
-                    key={location}
-                    color="blue"
-                    style={{ marginBottom: '5px' }}
-                >
-                    {location}
-                </Tag>
-            ));
+            return (
+                <div>
+                    {locationsShort.map(location => (
+                        <Tag
+                            key={location}
+                            color="blue"
+                            style={{ marginBottom: '5px' }}
+                        >
+                            {location}
+                        </Tag>
+                    ))}
+                    <Tag color="blue">...</Tag>
+                </div>
+            );
         }
     };
 
