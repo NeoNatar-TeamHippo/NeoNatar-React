@@ -12,11 +12,13 @@ const Tickets = ({ history }) => {
     const { user: { isAdmin, userId } } = useSelector(state => state.user);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getTickets({ isAdmin, userId }));
-    }, [dispatch, isAdmin, userId]);
-
     const { tickets, ticketsLoading } = useSelector(state => state.ticket);
+
+    useEffect(() => {
+        if (tickets.length === 0) {
+            dispatch(getTickets({ isAdmin, userId }));
+        }
+    }, [dispatch, isAdmin, tickets.length, userId]);
 
     const [visible, setVisible] = useState(false);
     const [ticketData, setTicketData] = useState(((tickets.length !== 0) ? tickets : []));

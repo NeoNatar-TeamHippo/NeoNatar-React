@@ -1,4 +1,5 @@
-import { takeEvery, call, put } from 'redux-saga/effects';
+import { takeEvery, call, put, take, fork } from 'redux-saga/effects';
+import { eventChannel as EventChannel } from 'redux-saga';
 import * as TYPES from './actionType';
 import {
     approvingCampaign,
@@ -11,18 +12,33 @@ import {
     setErrors
 } from './actions';
 import {
-    allCampaigns, campaignById, approveCampaigns, disapproveCampaigns, createCampaigns
+    campaignById, approveCampaigns, disapproveCampaigns, createCampaigns
 } from './services';
+import { firebaseCampaigns } from '../utils/firebase';
 
-function* getAllCampaigns() {
-    try {
-        yield put(loadingCampaigns());
-        const res = yield call(allCampaigns);
-        if (res.status === 'success') {
-            yield put(setCampaign(res.data));
+function* getAllCampaignsListener(payload) {
+    const { isAdmin, userId } = payload;
+    yield put(loadingCampaigns());
+    const channel = new EventChannel(emiter => {
+        firebaseCampaigns.onSnapshot(snapshot => {
+            emiter({ data: snapshot.docs || [] });
+        });
+        return () => {
+            firebaseCampaigns.off();
+        };
+    });
+    while (true) {
+        const { data } = yield take(channel);
+        const newData = data.map(element => ({
+            ...element.data(),
+            campaignId: element.id,
+        }));
+        let userCampaign;
+        if (isAdmin) userCampaign = newData;
+        if (!isAdmin) {
+            userCampaign = newData.filter(campaign => campaign.createdBy === userId);
         }
-    } catch (error) {
-        console.error(error);
+        yield put(setCampaign(userCampaign));
     }
 }
 function* postNewCampaignWithData(data) {
@@ -37,8 +53,8 @@ function* postNewCampaignWithData(data) {
         console.error(error);
     }
 }
-function* getCampaignsEffect() {
-    yield call(getAllCampaigns);
+function* getCampaignsEffect({ payload }) {
+    yield fork(getAllCampaignsListener, payload);
 }
 function* postCampaignEffect({ payload }) {
     yield call(postNewCampaignWithData, payload);
@@ -48,7 +64,6 @@ function* getSingleCampaign(id) {
     try {
         yield put(loadingCampaignById());
         const res = yield call(campaignById, id);
-        console.log(res);
         if (res.status === 'success') {
             yield put(setCampaignById(res.data));
         } else {
