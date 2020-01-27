@@ -217,160 +217,157 @@ const ViewCampaignWithModal = ({ match, form }) => {
                     </Col>
                 </Row>
             </Modal>
-            <div className="card_background">
-                <Row type="flex" justify="center">
-                    <Col sm={24} md={18} lg={12}>
-                        <Card
-                            loading={campaignByIdLoading}
-                            hoverable
-                            title={(
-                                <>
-                                    <Typography.Text type="secondary" strong>
-                                        {title ? title.toUpperCase() : ''}
-                                    </Typography.Text>
-                                    <Tag
-                                        color={statusColor(status)}
-                                        className="ml-3"
-                                    >
-                                        {campaignByIdLoading ? '' : status.toUpperCase()}
-                                    </Tag>
-                                </>
-
-                            )}
-                            extra={(
-                                <Typography.Text
-                                    className="total_text"
-                                    style={{
-                                        fontSize: '24px', fontWeight: 'bolder',
-                                    }}
-                                    strong
-                                >
-                                    <span className="mr-1">
-                                        {ReactHtmlParser(NAIRASIGN)}
-                                    </span>
-                                    {amount}
+            <Row type="flex" justify="center">
+                <Col sm={24} md={18} lg={12}>
+                    <Card
+                        loading={campaignByIdLoading}
+                        title={(
+                            <>
+                                <Typography.Text type="secondary" strong>
+                                    {title ? title.toUpperCase() : ''}
                                 </Typography.Text>
-                            )}
-                            className="w-100"
-                            cover={(
-                                <video
-                                    controls
-                                    style={{
-                                        height: '30vh',
-                                    }}
+                                <Tag
+                                    color={statusColor(status)}
+                                    className="ml-3"
                                 >
-                                    <source
-                                        src={campaignByIdLoading
-                                            ? ''
-                                            : commercialUrl}
-                                        type="video/mp4"
-                                    />
-                                </video>
-                            )}
-                            actions={[
-                                <Tooltip key="approve" title={DISAPPROVECAMPAIGN}>
-                                    <Button
-                                        key="disapprove"
-                                        disabled={disabled}
-                                        onClick={() => disapprove()}
-                                        type="danger"
-                                        ghost
-                                        shape="circle-outline"
-                                        icon="dislike"
-                                        hidden={hidden()}
-                                    />
-                                </Tooltip>,
-                                <Tooltip key="download" title={DOWNLOAD}>
-                                    <Button
-                                        type="primary"
-                                        shape="circle"
-                                        ghost
-                                        icon="download"
-                                        onClick={() => handleDownload(commercialUrl, title)}
-                                        hidden={downloadHidden()}
-                                    />
-                                </Tooltip>,
-                                <Tooltip key="approve" title={APPROVECAMPAIGN}>
-                                    <Button
-                                        disabled={disabled}
-                                        onClick={() => approve()}
-                                        icon="like"
-                                        shape="circle-outline"
-                                        ghost
-                                        style={{
-                                            border: '1px solid green',
-                                            color: 'green',
-                                        }}
-                                        hidden={hidden()}
-                                    />
-                                </Tooltip>,
-                            ]}
-                        >
+                                    {campaignByIdLoading ? '' : status.toUpperCase()}
+                                </Tag>
+                            </>
+
+                        )}
+                        extra={(
+                            <Typography.Text
+                                className="total_text"
+                                style={{
+                                    fontSize: '24px', fontWeight: 'bolder',
+                                }}
+                                strong
+                            >
+                                <span className="mr-1">
+                                    {ReactHtmlParser(NAIRASIGN)}
+                                </span>
+                                {amount}
+                            </Typography.Text>
+                        )}
+                        className="w-100"
+                        cover={(
+                            <video
+                                controls
+                                style={{
+                                    height: '30vh',
+                                }}
+                            >
+                                <source
+                                    src={campaignByIdLoading
+                                        ? ''
+                                        : commercialUrl}
+                                    type="video/mp4"
+                                />
+                            </video>
+                        )}
+                        actions={[
+                            <Tooltip key="approve" title={DISAPPROVECAMPAIGN}>
+                                <Button
+                                    key="disapprove"
+                                    disabled={disabled}
+                                    onClick={() => disapprove()}
+                                    type="danger"
+                                    ghost
+                                    shape="circle-outline"
+                                    icon="dislike"
+                                    hidden={hidden()}
+                                />
+                            </Tooltip>,
+                            <Tooltip key="download" title={DOWNLOAD}>
+                                <Button
+                                    type="primary"
+                                    shape="circle"
+                                    ghost
+                                    icon="download"
+                                    onClick={() => handleDownload(commercialUrl, title)}
+                                    hidden={downloadHidden()}
+                                />
+                            </Tooltip>,
+                            <Tooltip key="approve" title={APPROVECAMPAIGN}>
+                                <Button
+                                    disabled={disabled}
+                                    onClick={() => approve()}
+                                    icon="like"
+                                    shape="circle-outline"
+                                    ghost
+                                    style={{
+                                        border: '1px solid green',
+                                        color: 'green',
+                                    }}
+                                    hidden={hidden()}
+                                />
+                            </Tooltip>,
+                        ]}
+                    >
+                        <Row>
+                            <Col span={5}>{LOCATIONS}</Col>
+                            <Col span={18} offset={1}>
+                                {campaignByIdLoading
+                                    ? []
+                                    : locationsTag(locationsSelected)}
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col span={5}>{CREATEDAT}</Col>
+                            <Col span={18} offset={1}>{createdDate}</Col>
+                        </Row>
+                        <Row>
+                            <Col span={5}>{DURATION}</Col>
+                            <Col span={18} offset={1}>{`${duration} days`}</Col>
+                        </Row>
+                        <div hidden={disapprovedHidden()}>
                             <Row>
-                                <Col span={5}>{LOCATIONS}</Col>
+                                <Col span={5}>{DISAPPROVED}</Col>
+                                <Col span={18} offset={1}>{disapprovedDate}</Col>
+                            </Row>
+                        </div>
+                        <div hidden={disapprovedHidden()}>
+                            <Row>
+                                <Col span={5}>{MESSAGE}</Col>
                                 <Col span={18} offset={1}>
-                                    {campaignByIdLoading
+                                    {status !== DISAPPROVE
                                         ? []
-                                        : locationsTag(locationsSelected)}
+                                        : campaignByIdLoading ? []
+                                            : message.map(
+                                                messa => (
+                                                    <Paragraph
+                                                        key={messa}
+                                                        ellipsis={{
+                                                            rows: 1,
+                                                            expandable: true,
+                                                        }}
+                                                    >
+                                                        {messa}
+                                                    </Paragraph>
+                                                )
+                                            )}
                                 </Col>
                             </Row>
+                        </div>
+                        <div hidden={approvedHidden()}>
                             <Row>
-                                <Col span={5}>{CREATEDAT}</Col>
-                                <Col span={18} offset={1}>{createdDate}</Col>
+                                <Col span={5}>{APPROVED}</Col>
+                                <Col span={18} offset={1}>{approvedDate}</Col>
                             </Row>
+                        </div>
+                        <div hidden={approvedHidden()}>
                             <Row>
-                                <Col span={5}>{DURATION}</Col>
-                                <Col span={18} offset={1}>{`${duration} days`}</Col>
+                                <Col span={5}>{EXPIRES}</Col>
+                                <Col span={18} offset={1}>{expiredDate}</Col>
                             </Row>
-                            <div hidden={disapprovedHidden()}>
-                                <Row>
-                                    <Col span={5}>{DISAPPROVED}</Col>
-                                    <Col span={18} offset={1}>{disapprovedDate}</Col>
-                                </Row>
-                            </div>
-                            <div hidden={disapprovedHidden()}>
-                                <Row>
-                                    <Col span={5}>{MESSAGE}</Col>
-                                    <Col span={18} offset={1}>
-                                        {status !== DISAPPROVE
-                                            ? []
-                                            : campaignByIdLoading ? []
-                                                : message.map(
-                                                    messa => (
-                                                        <Paragraph
-                                                            key={messa}
-                                                            ellipsis={{
-                                                                rows: 1,
-                                                                expandable: true,
-                                                            }}
-                                                        >
-                                                            {messa}
-                                                        </Paragraph>
-                                                    )
-                                                )}
-                                    </Col>
-                                </Row>
-                            </div>
-                            <div hidden={approvedHidden()}>
-                                <Row>
-                                    <Col span={5}>{APPROVED}</Col>
-                                    <Col span={18} offset={1}>{approvedDate}</Col>
-                                </Row>
-                            </div>
-                            <div hidden={approvedHidden()}>
-                                <Row>
-                                    <Col span={5}>{EXPIRES}</Col>
-                                    <Col span={18} offset={1}>{expiredDate}</Col>
-                                </Row>
-                            </div>
-                        </Card>
-                    </Col>
-                </Row>
-            </div>
+                        </div>
+                    </Card>
+                </Col>
+            </Row>
         </>
     );
 };
 
-const ViewCampaign = Form.create()(ViewCampaignWithModal);
+const ViewCampaign = Form.create('campaignFormModal')(ViewCampaignWithModal);
 
 export default ViewCampaign;

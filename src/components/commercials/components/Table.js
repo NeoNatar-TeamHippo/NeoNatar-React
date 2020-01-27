@@ -10,12 +10,21 @@ const CommercialTable = () => {
     const [selectedModal, setSelectedModal] = useState(null);
 
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getCommercial());
-    }, [dispatch]);
-
     const { commercials, isCommercialsLoading } = useSelector(state => state.commercials);
+    let prev = 0;
+    useEffect(() => {
+        if (commercials.length === 0) {
+            console.log(prev);
+            dispatch(getCommercial());
+            prev = commercials.length;
+            console.log(prev);
+        } else if (commercials.length !== prev) {
+            console.log(prev);
+            dispatch(getCommercial());
+            prev = commercials.length;
+            console.log(prev);
+        }
+    }, [commercials.length, dispatch]);
 
     const showDeleteConfirm = id => {
         Modal.confirm({

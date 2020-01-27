@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { PageHeader, Button, Typography, Empty, Row, Col, Modal, Form, Icon, Input } from 'antd';
+import { Button, Typography, Empty, Row, Col, Modal, Form, Icon, Input } from 'antd';
 import DataList from './Lists';
-import { DESCRIPTION_CREATE, CREATE_NOW, EMPTY_ICON_URL, CANCEL } from '../constants';
+import { DESCRIPTION_CREATE, CREATE_NOW, EMPTY_ICON_URL } from '../constants';
 import { getSavedLocations, newSavedLocation } from '../actions';
 import { openNotification } from '../../utils/functions';
 
-const SavedLocations = ({ history, form }) => {
+const SavedLocations = ({ form }) => {
     const dispatch = useDispatch();
     const { savedLocations, formLoading } = useSelector(state => state.savedLocation);
     const { user: { userId } } = useSelector(state => state.user);
@@ -60,8 +60,8 @@ const SavedLocations = ({ history, form }) => {
                 </Empty>
             )
                 : (
-                    <Row type="flex" justify='start' align="middle" className='container'>
-                        <Col className="mt-2" sm={24} md={18} >
+                    <Row type="flex" justify="start" align="middle" className="container">
+                        <Col className="mt-2" sm={24} md={18}>
                             <DataList />
                         </Col>
                     </Row>
