@@ -50,10 +50,9 @@ export const TITLE = 'Reason For disapproving Campaign';
 export const PLACEHOLDER = 'Please select reason for disapproving campaign';
 /** @constant */
 export const OPTIONKEY = [
-    'Video Content is too long. Please Read the Guideline',
-    'Video Content is too bias. Please Read the Guideline2',
-    'Video Content is poltical. Please Read the Guideline3',
-    'Video Content is offensive. Please Read the Guideline4',
+    'Poor video quality. Please Read the Guideline',
+    'Video is Reported for Copyright Infringement. Please Read the Guideline2',
+    'Video Contains pornography elements. Please Read the Guideline4',
 ];
 
 /** @constant */

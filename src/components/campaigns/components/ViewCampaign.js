@@ -2,25 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactHtmlParser from 'react-html-parser';
 import {
-    Card, Row, Col, Form, Button, Typography, Tag, Modal, Select, Tooltip, Icon
+    Card, Row, Col, Form, Button, Typography, Tag, Tooltip, Icon
 } from 'antd';
 import moment from 'moment';
 import download from 'downloadjs';
 
 import { getCampaignById, approveCampaign, disapproveCampaign } from '../actions';
 import { statusColor } from '../../utils/functions';
+import LocationModal from './LocationModal';
+import DisapprovalModal from './DisapprovalModal';
 import {
     LOCATIONS,
     APPROVECAMPAIGN,
-    TITLE,
-    CANCEL,
     DOWNLOAD,
-    SUBMIT,
-    PLACEHOLDER,
-    OPTIONKEY,
     EXPIRES,
     APPROVED,
-    VERTICAL,
     MESSAGE,
     DISAPPROVECAMPAIGN,
     LIVE,
@@ -32,12 +28,9 @@ import {
     NAIRASIGN
 } from '../constants';
 
-const { Option } = Select;
-const { Item } = Form;
-const { Paragraph, Text } = Typography;
+const { Paragraph } = Typography;
 
 const ViewCampaignWithModal = ({ match, form }) => {
-    const { getFieldDecorator } = form;
     const { params } = match;
     const { id: campaignId } = params;
     const dispatch = useDispatch();
@@ -51,6 +44,7 @@ const ViewCampaignWithModal = ({ match, form }) => {
 
     const [disabled, setDisabled] = useState(false);
     const [visible, setVisible] = useState(false);
+    const [locationVisible, setLocationVisible] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
 
     const { campaignById, campaignByIdLoading } = useSelector(state => state.campaigns);
@@ -116,6 +110,10 @@ const ViewCampaignWithModal = ({ match, form }) => {
         setVisible(true);
     };
 
+    const locationHandleOk = () => {
+        setLocationVisible(false);
+    };
+
     const handleOk = () => {
         setConfirmLoading(true);
         setDisabled(true);
@@ -135,10 +133,6 @@ const ViewCampaignWithModal = ({ match, form }) => {
     const handleDownload = (url, name) => {
         download(url, `${name}.mp4`);
     };
-
-    const renderoptionTag = () => OPTIONKEY.map(option => (
-        <Option key={option} color="blue">{option}</Option>
-    ));
 
     const handleCancel = () => {
         setVisible(false);
@@ -160,63 +154,48 @@ const ViewCampaignWithModal = ({ match, form }) => {
                         </Tag>
                     ))}
                     <Tooltip title="More Locations">
-                        <Tag
+                        <Button
                             color="pink"
                             style={{
                                 cursor: 'pointer',
                             }}
-                            onClick={() => console.log('yes')}
+                            onClick={() => setLocationVisible(true)}
                         >
                             <Icon type="ellipsis" />
-                        </Tag>
+                        </Button>
                     </Tooltip>
                 </div>
             );
         }
+        return (
+            <div>
+                {selectedLocations.map(location => (
+                    <Tag
+                        key={location}
+                        color="blue"
+                        style={{ marginBottom: '5px' }}
+                    >
+                        {location}
+                    </Tag>
+                ))}
+            </div>
+        );
     };
 
     return (
         <>
-            <Modal
-                title={TITLE}
+            <LocationModal
+                locationVisible={locationVisible}
+                locationHandleOk={locationHandleOk}
+                campaignByIdLoading={campaignByIdLoading}
+                locationsSelected={locationsSelected}
+            />
+            <DisapprovalModal
                 visible={visible}
-                footer={[
-                    <Button key="back" onClick={handleCancel}>
-                        {CANCEL}
-                    </Button>,
-                    <Button
-                        key="submit"
-                        type="primary"
-                        confirmLoading={confirmLoading}
-                        onClick={handleOk}
-                    >
-                        {SUBMIT}
-                    </Button>,
-                ]}
-            >
-                <Row type="flex" justify="center">
-                    <Col span={24}>
-                        <Form layout={VERTICAL}>
-                            <Item>
-                                {getFieldDecorator('messages', {
-                                    rules: [{
-                                        message: 'message',
-                                        required: true,
-                                    }],
-                                })(
-                                    <Select
-                                        mode="multiple"
-                                        style={{ width: '100%' }}
-                                        placeholder={PLACEHOLDER}
-                                    >
-                                        {renderoptionTag()}
-                                    </Select>
-                                )}
-                            </Item>
-                        </Form>
-                    </Col>
-                </Row>
-            </Modal>
+                handleCancel={handleCancel}
+                confirmLoading={confirmLoading}
+                handleOk={handleOk}
+            />
             <div className="card_background">
                 <Row type="flex" justify="center">
                     <Col sm={24} md={18} lg={12}>
@@ -225,15 +204,15 @@ const ViewCampaignWithModal = ({ match, form }) => {
                             hoverable
                             title={(
                                 <>
-                                    <Typography.Text type="secondary" strong>
-                                        {title ? title.toUpperCase() : ''}
-                                    </Typography.Text>
                                     <Tag
                                         color={statusColor(status)}
                                         className="ml-3"
                                     >
                                         {campaignByIdLoading ? '' : status.toUpperCase()}
                                     </Tag>
+                                    <Typography.Text type="secondary" strong>
+                                        {title ? title.toUpperCase() : ''}
+                                    </Typography.Text>
                                 </>
 
                             )}

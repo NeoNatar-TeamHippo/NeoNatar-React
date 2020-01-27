@@ -10,12 +10,16 @@ const menuItems = [ALL, PENDING, APPROVE, DISAPPROVED];
 
 const Campaigns = ({ history }) => {
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getCampaigns());
-    }, [dispatch]);
+    const { user: { isAdmin, userId } } = useSelector(state => state.user);
 
     const { campaigns, campaignsLoading } = useSelector(state => state.campaigns);
+
+    useEffect(() => {
+        if (campaigns.length === 0) {
+            dispatch(getCampaigns({ isAdmin, userId }));
+        }
+    }, [campaigns.length, dispatch, isAdmin, userId]);
+
     const [campaignData, setCampaignData] = useState(campaigns);
     useEffect(() => {
         setCampaignData(campaigns);
