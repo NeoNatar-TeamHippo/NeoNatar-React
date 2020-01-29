@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
-
 import signUp from '../signup';
 import signIn from '../signin';
 import navBar from '../navbar';
@@ -37,5 +36,4 @@ const rootReducers = {
     transactions: transactionsReducer,
     user: navBarReducer,
 };
-
 export default combineReducers(rootReducers);

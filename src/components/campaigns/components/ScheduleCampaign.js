@@ -3,31 +3,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
 import {
-    Descriptions,
-    Col,
-    Row,
-    Button,
-    Tooltip,
-    Typography,
-    message,
-    Tag,
-    Modal,
-    Slider,
-    InputNumber
+    Descriptions, Col, Row, Button, Tooltip, Typography, message,
+    Tag, Modal, Slider, InputNumber
 } from 'antd';
 import PaystackButton from 'react-paystack';
-
 import {
-    REFERENCE_VALUE,
-    CAMPAIGN_LENGTH_TEXT,
-    PROCEED,
+    REFERENCE_VALUE, CAMPAIGN_LENGTH_TEXT, PROCEED,
     PREVIOUS,
     TOTAL_AMOUNT_DUE,
     SHALL_WE_PROCEED,
     NAIRASIGN
 } from '../constants';
 import { next, resetFormState, createCampaign, previous as prev } from '../actions';
-
 import { CANCEL } from '../../commercials/constants';
 
 const { Paragraph } = Typography;
@@ -60,11 +47,9 @@ const ScheduleCampaign = ({ history }) => {
             if (location.locationId === rowKey) {
                 newArray.push(location);
             }
-
             return false;
         }));
         const sortedLocations = newArray.sort((a, b) => a.name.localeCompare(b.name));
-
         return sortedLocations.map(location => (
             <Tag
                 key={location.locationId}
@@ -107,7 +92,6 @@ const ScheduleCampaign = ({ history }) => {
         for (let i = 0; i < 20; i += 1) {
             text += possible.charAt(Math.floor(Math.random() * possible.length));
         }
-
         return text;
     };
     const handleProceed = () => {
@@ -116,7 +100,6 @@ const ScheduleCampaign = ({ history }) => {
         setlocalAmount(newAmount);
         setVisible(true);
     };
-
     return (
         <div className="mt-4">
             <Row type="flex" justify="center" align="middle">
@@ -255,5 +238,4 @@ const ScheduleCampaign = ({ history }) => {
         </div>
     );
 };
-
 export default withRouter(ScheduleCampaign);

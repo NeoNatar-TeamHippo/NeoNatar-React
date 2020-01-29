@@ -19,7 +19,6 @@ const initialState = {
     commercialId: null,
     errors: {},
 };
-
 export default (state = initialState, { type, payload }) => {
     switch (type) {
         case TYPES.LOADING_CAMPAIGNS:

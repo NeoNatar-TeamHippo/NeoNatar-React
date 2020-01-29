@@ -2,10 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Typography, Card, Col, Row } from 'antd';
-
 import UnresolvedTickets from './UnresolvedTickets';
 import Tasks from './Tasks';
-
 import TransactionsTable from '../../transactions/components/Table';
 
 const { Title } = Typography;
@@ -51,7 +49,6 @@ const Overview = () => {
             </NavLink>
         </Col>
     )));
-
     return (
         <div className="container">
             <Row

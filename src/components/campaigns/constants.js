@@ -57,53 +57,31 @@ export const OPTIONKEY = [
 ];
 
 /** @constant */
+
 export const NEXT = 'Next';
-/** @constant */
 export const DONE = 'Done';
-/** @constant */
 export const PREVIOUS = 'Previous';
-/** @constant */
 export const TOTAL = 'Total:';
-/** @constant */
 export const RELOAD = 'Reload';
-/** @constant */
 export const VIEW = 'View';
-/** @constant */
 export const PROCEED = 'Proceed';
-/** @constant */
 export const SEARCH = 'SEARCH';
-/** @constant */
 export const RESET = 'RESET';
 const baseUrl = 'https://europe-west1-neonatar.cloudfunctions.net';
-/** @constant */
 export const CAMPAIGN_URL = `${baseUrl}/api/v1/campaign`;
-/** @constant */
 export const NAIRASIGN = '&#8358;';
-/** @constant */
 export const TOTAL_AMOUNT_DUE = 'Total amount due is ';
-/** @constant */
 export const SHALL_WE_PROCEED = 'shall we proceed ?';
-/** @constant */
 export const CAMPAIGN_LENGTH_TEXT = ' How long should your campaign last ?';
-/** @constant */
 export const SELECT_A_LOCATION = 'Select locations to get cost';
-/** @constant */
 export const CHOOSE_A_TITLE = 'Input campaign title:';
-/** @constant */
 export const CHOOSE_PREVIOUS_VIDEO = 'Choose from previous videos:';
-/** @constant */
 export const REVIEW_TEXT = " It's currently under review and will be posted once approved";
-/** @constant */
 export const YOU_CAN_VIEW = ' You can view the status ';
-/** @constant */
 export const OR_GO_TO = ' or got to campaign section';
-/** @constant */
 export const HERE = 'here';
-/** @constant */
 export const CHOOSE_SAVED_LOCATION = 'Choose from saved location';
-/** @constant */
 export const REFERENCE_VALUE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-.=';
-/** @constant */
 export const TABLE_VALUES = [
     {
         align: 'center',

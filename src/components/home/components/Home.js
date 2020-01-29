@@ -1,10 +1,8 @@
 import React from 'react';
 import { Row, Col, Divider, Typography } from 'antd';
 
-import { LANDING_TILE, DUMMY_TITLE, DUMMY_DESCRIPTION } from '../constants';
-
+import { DUMMY_TITLE, DUMMY_DESCRIPTION } from '../constants';
 import layouts from '../../layouts';
-
 import art from '../../../images/office-setting.png';
 import screen from '../../../images/svgs/undraw_composition_oskp.svg';
 import placed from '../../../images/svgs/undraw_right_places_h9n3.svg';
@@ -17,7 +15,7 @@ const Home = () => (
         <div>
             <Row type="flex" align="middle" className="section-one">
                 <Col span={12}>
-                    <Title className="home-page-title">{LANDING_TILE}</Title>
+                    <Title className="home-page-text">{DUMMY_TITLE}</Title>
                     <Title className="home-page-text" type="secondary" level={4}>
                         {DUMMY_DESCRIPTION}
                     </Title>

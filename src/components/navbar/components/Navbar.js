@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom';
 
 import { ICONS, VERTICAL, LOGOUT_TEXT, SETTINGS, TRANSACTIONS } from '../constants';
 import { logoutUser } from '../actions';
-
 import UserLogo from '../../../images/user.svg';
 
 const { BELL } = ICONS;
@@ -15,7 +14,6 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const { user, navLoading } = useSelector(state => state.user);
     const fullName = `${user.firstName} ${user.lastName}`;
-
     return (
         <Menu className="right-nav" mode="horizontal">
             <Item key="notification">

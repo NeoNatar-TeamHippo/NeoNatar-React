@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Typography, Empty, Row, Col, Modal, Form, Icon, Input } from 'antd';
-
+import { PageHeader, Button, Typography, Empty, Row, Col, Modal, Form, Icon, Input } from 'antd';
 import DataList from './Lists';
-
-import { DESCRIPTION_CREATE, CREATE_NOW, EMPTY_ICON_URL } from '../constants';
+import { DESCRIPTION_CREATE, CREATE_NOW, EMPTY_ICON_URL, CANCEL } from '../constants';
 import { getSavedLocations, newSavedLocation } from '../actions';
-
 import { openNotification } from '../../utils/functions';
 
-const SavedLocations = ({ form }) => {
+const SavedLocations = ({ history, form }) => {
     const dispatch = useDispatch();
     const { savedLocations, formLoading } = useSelector(state => state.savedLocation);
     const { user: { userId } } = useSelector(state => state.user);
@@ -40,7 +37,6 @@ const SavedLocations = ({ form }) => {
     useEffect(() => {
         dispatch(getSavedLocations({ userId }));
     }, [dispatch, userId]);
-
     return (
         <>
             <div className="d-flex justify-content-end">
@@ -64,8 +60,8 @@ const SavedLocations = ({ form }) => {
                 </Empty>
             )
                 : (
-                    <Row type="flex" justify="start" align="middle" className="container">
-                        <Col className="mt-2" sm={24} md={18}>
+                    <Row type="flex" justify='start' align="middle" className='container'>
+                        <Col className="mt-2" sm={24} md={18} >
                             <DataList />
                         </Col>
                     </Row>
@@ -114,5 +110,4 @@ const SavedLocations = ({ form }) => {
     );
 };
 const WrappedSavedLocations = Form.create({ name: 'locationForm' })(SavedLocations);
-
 export default WrappedSavedLocations;

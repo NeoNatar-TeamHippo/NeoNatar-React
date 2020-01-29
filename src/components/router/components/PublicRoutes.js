@@ -13,10 +13,8 @@ const PublicRoutes = ({ authenticated, component: Comp, ...rest }) => {
         } else {
             template = (<Comp {...props} />);
         }
-
         return template;
     };
-
     return (
         <Route
             {...rest}

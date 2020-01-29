@@ -2,7 +2,6 @@ import React from 'react';
 import { message } from 'antd';
 
 import { NO_MATCH } from '../constants';
-
 import history from '../../history/History';
 
 const NoMatch = ({ location }) => message.error(

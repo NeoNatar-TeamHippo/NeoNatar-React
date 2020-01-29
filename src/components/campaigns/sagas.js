@@ -1,5 +1,4 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
-
 import * as TYPES from './actionType';
 import {
     approvingCampaign,
@@ -30,6 +29,7 @@ function* postNewCampaignWithData(data) {
     try {
         yield put(loadingCampaigns());
         const res = yield call(createCampaigns, data);
+        console.log(res);
         if (res.status === 'success') {
             console.log('success');
         }
@@ -48,6 +48,7 @@ function* getSingleCampaign(id) {
     try {
         yield put(loadingCampaignById());
         const res = yield call(campaignById, id);
+        console.log(res);
         if (res.status === 'success') {
             yield put(setCampaignById(res.data));
         } else {
@@ -65,6 +66,7 @@ function* approveCampaign(id) {
     try {
         yield put(approvingCampaign());
         const res = yield call(approveCampaigns, id);
+        console.log(res);
         if (res.status === 'success') {
             yield put(postSuccess({ message: 'Campaign is approved' }));
         } else {
@@ -82,6 +84,7 @@ function* disapproveCampaign(payload) {
     try {
         yield put(disapprovingCampaign());
         const res = yield call(disapproveCampaigns, payload);
+        console.log(res);
         if (res.status === 'success') {
             yield put(postSuccess({ message: 'Campaign is approved' }));
         } else {

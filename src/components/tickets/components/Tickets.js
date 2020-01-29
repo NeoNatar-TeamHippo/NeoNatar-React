@@ -3,11 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Avatar, Button, Tag, Table, Row, Col, Menu, Tooltip } from 'antd';
 
 import CreateTickets from './CreateTickets';
-
 import { ALL, PENDING, NEW, RESOLVED, HORIZONTAL } from '../constants';
-import { getTickets } from '../actions';
-
 import { priorityColor, statusColor } from '../../utils/functions';
+import { getTickets } from '../actions';
 
 const menuItems = [ALL, PENDING, NEW, RESOLVED];
 const Tickets = ({ history }) => {
@@ -82,7 +80,6 @@ const Tickets = ({ history }) => {
             key: 'priority',
             render: priority => {
                 const color = priorityColor(priority);
-
                 return (
                     <Tag color={color} key={priority}>
                         {priority.toUpperCase()}
@@ -98,7 +95,6 @@ const Tickets = ({ history }) => {
             key: 'status',
             render: status => {
                 const color = statusColor(status);
-
                 return (
                     <Tag color={color} key={status}>
                         {status.toUpperCase()}
@@ -121,7 +117,6 @@ const Tickets = ({ history }) => {
             title: 'Action',
         },
     ];
-
     return (
         <>
             <Row type="flex" justify="space-between" style={{ marginBottom: 5 }}>

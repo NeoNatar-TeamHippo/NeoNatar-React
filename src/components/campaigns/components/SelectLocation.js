@@ -3,17 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import Highlighter from 'react-highlight-words';
 import ReactHtmlParser from 'react-html-parser';
 import { Select, Button, Tabs, List, Table, Typography, Col, Row, Input, Icon } from 'antd';
-
 import { setCampaignLocation, next, setAmount, previous as prev } from '../actions';
 import {
-    TOTAL,
-    PROCEED,
-    SELECT_A_LOCATION,
-    PREVIOUS,
-    CHOOSE_SAVED_LOCATION,
-    SEARCH,
-    RESET,
-    NAIRASIGN
+    TOTAL, PROCEED, SELECT_A_LOCATION, PREVIOUS,
+    CHOOSE_SAVED_LOCATION, SEARCH, RESET, NAIRASIGN
 } from '../constants';
 
 const { TabPane } = Tabs;
@@ -74,6 +67,7 @@ const SelectLocation = () => {
         onFilterDropdownVisibleChange: visible => {
             if (visible) {
                 console.log(visible);
+                // setTimeout(() => this.searchInput.select());
             }
         },
         render: text => (searchedColumn === dataIndex ? (
@@ -96,7 +90,6 @@ const SelectLocation = () => {
         });
         const total = amounts.reduce((acc, cur) => acc + cur);
         dispatch(setAmount(total));
-
         return (
             <span>
                 {TOTAL}
@@ -141,12 +134,10 @@ const SelectLocation = () => {
                 savedLocationsitem.push(location);
                 amount.push(parseInt(location.price, 10));
             }
-
             return true;
         }));
         const total = amount.reduce((acc, curr) => acc + curr);
         dispatch(setAmount(total));
-
         return (
             <List
                 itemLayout="horizontal"
@@ -234,7 +225,6 @@ const SelectLocation = () => {
         }
         dispatch(next());
     };
-
     return (
         <div className="my-4">
             <Tabs defaultActiveKey="1" onChange={callback}>

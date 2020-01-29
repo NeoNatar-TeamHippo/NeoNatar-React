@@ -13,7 +13,6 @@ export const GET_LOCATIONS = 'GET_LOCATIONS';
  * @type {String}
  */
 export const LOADING_LOCATION = 'LOADING_LOCATION';
-
 /**
  * Fired by the {@link actions.setLocation }
  * action creator.

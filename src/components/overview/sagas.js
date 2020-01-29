@@ -1,13 +1,10 @@
-import { put, take, fork } from 'redux-saga/effects';
+import { takeEvery, call, put, take, fork } from 'redux-saga/effects';
 import { eventChannel as EventChannel } from 'redux-saga';
-
-import {
-    setOverviewApprovedCampaignNumber,
-    setOverviewLocationNumber,
-    setOverviewPendingCampaignNumber
-} from './actions';
-
 import { firebaseLocations, firebaseCampaigns } from '../utils/firebase';
+
+import { setOverviewApprovedCampaignNumber,
+    setOverviewLocationNumber,
+    setOverviewPendingCampaignNumber } from './actions';
 
 function* startLocationListener() {
     const channel = new EventChannel(emiter => {
@@ -29,7 +26,6 @@ function* startCampaignListener() {
         firebaseCampaigns.onSnapshot(snapshot => {
             emiter({ data: snapshot.docs || [] });
         });
-
         return () => {
             firebaseCampaigns.off();
         };
