@@ -154,7 +154,7 @@ const ViewCampaignWithModal = ({ match, form }) => {
                         </Tag>
                     ))}
                     <Tooltip title="More Locations">
-                        <Button
+                        <Tag
                             color="pink"
                             style={{
                                 cursor: 'pointer',
@@ -162,7 +162,7 @@ const ViewCampaignWithModal = ({ match, form }) => {
                             onClick={() => setLocationVisible(true)}
                         >
                             <Icon type="ellipsis" />
-                        </Button>
+                        </Tag>
                     </Tooltip>
                 </div>
             );

@@ -20,9 +20,16 @@ function* getAllCampaignsListener(payload) {
     const { isAdmin, userId } = payload;
     yield put(loadingCampaigns());
     const channel = new EventChannel(emiter => {
-        firebaseCampaigns.onSnapshot(snapshot => {
-            emiter({ data: snapshot.docs || [] });
-        });
+        if (!isAdmin) {
+            firebaseCampaigns.where('createdBy', '==', userId)
+                .orderBy('createdAt', 'desc').onSnapshot(snapshot => {
+                    emiter({ data: snapshot.docs || [] });
+                });
+        } else {
+            firebaseCampaigns.onSnapshot(snapshot => {
+                emiter({ data: snapshot.docs || [] });
+            });
+        }
         return () => {
             firebaseCampaigns.off();
         };
@@ -33,12 +40,8 @@ function* getAllCampaignsListener(payload) {
             ...element.data(),
             campaignId: element.id,
         }));
-        let userCampaign;
-        if (isAdmin) userCampaign = newData;
-        if (!isAdmin) {
-            userCampaign = newData.filter(campaign => campaign.createdBy === userId);
-        }
-        yield put(setCampaign(userCampaign));
+        console.log(newData);
+        yield put(setCampaign(newData));
     }
 }
 function* postNewCampaignWithData(data) {

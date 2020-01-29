@@ -13,6 +13,7 @@ const LocationModal = props => {
             visible={locationVisible}
             onOk={locationHandleOk}
             onCancel={locationHandleOk}
+            footer={null}
         >
             <div type="flex" justify="center">
                 {campaignByIdLoading
