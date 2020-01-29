@@ -143,6 +143,9 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
         setVisible(false);
     };
 
+    const campaignAmount = () => `₦ ${amount}`;
+
+    const campaignDuration = () => `${duration} days`;
     return (
         <>
             <div>
@@ -202,6 +205,7 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                                             : commercialUrl}
                                         type="video/mp4"
                                     />
+                                    <track src="campaigns" kind="captions" />
                                 </video>
                             )}
                             actions={[
@@ -250,7 +254,7 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                                     >
                                         {campaignByIdLoading ? '' : status.toUpperCase()}
                                     </Tag>
-                                    {`₦ ${amount}`}
+                                    {campaignAmount()}
                                     <div hidden={downloadHidden()}>
                                         <Button
                                             type="primary"
@@ -288,7 +292,7 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                             <div>
                                 <Row>
                                     <Col span={5}>{DURATION}</Col>
-                                    <Col span={18} offset={1}>{`${duration} days`}</Col>
+                                    <Col span={18} offset={1}>{campaignDuration()}</Col>
                                 </Row>
                             </div>
                             <div hidden={disapprovedHidden()}>
@@ -301,7 +305,8 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                                 <Row>
                                     <Col span={5}>{MESSAGE}</Col>
                                     <Col span={18} offset={1}>
-                                        {status !== DISAPPROVE
+                                        {
+                                        status !== DISAPPROVE
                                             ? []
                                             : campaignByIdLoading ? []
                                                 : message.map(
@@ -316,7 +321,8 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                                                             {messa}
                                                         </Paragraph>
                                                     )
-                                                )}
+                                                )
+                                        }
                                     </Col>
                                 </Row>
                             </div>

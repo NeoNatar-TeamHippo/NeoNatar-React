@@ -14,6 +14,7 @@ export const allSavedLocation = () => {
         .then(response => response.json())
         .then(json => json);
 };
+
 export const deleteSavedlocationById = id => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
@@ -28,6 +29,7 @@ export const deleteSavedlocationById = id => {
         .then(response => response.json())
         .then(json => json);
 };
+
 export const newSavedLocation = data => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
@@ -43,6 +45,7 @@ export const newSavedLocation = data => {
         .then(response => response.json())
         .then(json => json);
 };
+
 export const locationOperationService = (data, id, queryType) => {
     const token = localStorage.getItem('FBToken');
     const parameters = {

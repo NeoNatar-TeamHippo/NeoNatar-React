@@ -27,6 +27,7 @@ const Tasks = ({ form }) => {
         const newTasks = tasks.filter(task => id !== task.id);
         settasks(newTasks);
     };
+
     return (
         <>
             <Card
@@ -52,36 +53,37 @@ const Tasks = ({ form }) => {
                         )}
                     />
                 ) : (
-                        <List
-                            dataSource={tasks}
-                            renderItem={item => {
-                                const { id, date, title } = item;
-                                return (
-                                    <List.Item key={id}>
-                                        <List.Item.Meta
-                                            title={(
-                                                <Typography.Text ellipsis>
-                                                    {title}
-                                                </Typography.Text>
+                    <List
+                        dataSource={tasks}
+                        renderItem={item => {
+                            const { id, date, title } = item;
+
+                            return (
+                                <List.Item key={id}>
+                                    <List.Item.Meta
+                                        title={(
+                                            <Typography.Text ellipsis>
+                                                {title}
+                                            </Typography.Text>
                                             )}
-                                            description={(
-                                                <Typography.Text type="secondary" ellipsis>
-                                                    {date}
-                                                </Typography.Text>
+                                        description={(
+                                            <Typography.Text type="secondary" ellipsis>
+                                                {date}
+                                            </Typography.Text>
                                             )}
+                                    />
+                                    <Tooltip title="delete">
+                                        <Button
+                                            icon="delete-o"
+                                            type="link"
+                                            onClick={() => deleteTask(id)}
                                         />
-                                        <Tooltip title="delete">
-                                            <Button
-                                                icon="delete-o"
-                                                type="link"
-                                                onClick={() => deleteTask(id)}
-                                            />
-                                        </Tooltip>
-                                    </List.Item>
-                                );
-                            }}
-                        />
-                    )}
+                                    </Tooltip>
+                                </List.Item>
+                            );
+                        }}
+                    />
+                )}
 
             </Card>
             <Modal
@@ -113,4 +115,5 @@ const Tasks = ({ form }) => {
     );
 };
 const WrappedTasks = Form.create({ name: 'tasks' })(Tasks);
+
 export default WrappedTasks;

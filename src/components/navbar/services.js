@@ -1,7 +1,6 @@
 import { USER_PROFILE } from './constants';
 
 export const getUserProfile = token => {
-    // const token = localStorage.getItem('FBToken');
     const parameters = {
         headers: {
             Authorization: token,

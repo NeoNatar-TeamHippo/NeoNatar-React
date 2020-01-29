@@ -67,7 +67,6 @@ const SelectLocation = () => {
         onFilterDropdownVisibleChange: visible => {
             if (visible) {
                 console.log(visible);
-                // setTimeout(() => this.searchInput.select());
             }
         },
         render: text => (searchedColumn === dataIndex ? (

@@ -17,12 +17,13 @@ const SignInForm = ({ form }) => {
                     email: values.email,
                     password: values.password,
                 };
-                dispatch(clearErrors())
+                dispatch(clearErrors());
                 dispatch(userSignIn(formValues));
                 resetFields();
             }
         });
     };
+
     return (
         <Form onSubmit={handleSubmit}>
             <Form.Item hasFeedback>
@@ -63,4 +64,5 @@ SignInForm.propTypes = {
     }).isRequired,
 };
 const WrappedNormalSignInForm = Form.create({ name: 'signin' })(SignInForm);
+
 export default WrappedNormalSignInForm;

@@ -31,7 +31,7 @@ const LocationById = ({ match, history }) => {
             </span>
         </Typography.Text>
     );
-    const renderImages = locImages => locImages.map((element, i) => (
+    const renderImages = locImages => locImages.map(element => (
         <img
             key={element}
             alt={element}
@@ -44,6 +44,7 @@ const LocationById = ({ match, history }) => {
     ));
     const renderTag = text => {
         const { color } = renderRateFormat(text);
+
         return (
             <Tag color={color}>
                 {text}
@@ -53,6 +54,7 @@ const LocationById = ({ match, history }) => {
     const renderDescription = (Locaddress, Locstate, Loclga) => {
         const column = 2;
         const userObj = [{ key: Locaddress }, { key: Loclga }, { key: Locstate }];
+
         return userObj.map((element, i) => {
             let label = '';
             if (i === 0) {
@@ -111,4 +113,5 @@ const LocationById = ({ match, history }) => {
         </div>
     );
 };
+
 export default withRouter(LocationById);

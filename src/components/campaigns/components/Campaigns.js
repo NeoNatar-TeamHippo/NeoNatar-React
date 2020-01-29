@@ -156,4 +156,3 @@ const Campaigns = ({ history }) => {
 };
 
 export default Campaigns;
-

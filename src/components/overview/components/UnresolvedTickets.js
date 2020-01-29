@@ -37,42 +37,42 @@ const UnresolvedTickets = () => {
                     )}
                 />
             ) : (
-                    <List
-                        dataSource={ticketData}
-                        renderItem={item => {
-                            const { status, title, ticketId, date,
-                                customerDetail: { customerName } } = item;
-                            const color = statusColor(status);
-                            return (
-                                <List.Item key={ticketId}>
-                                    <List.Item.Meta
-                                        title={(
-                                            <Link to={renderPathUrl(ticketId)}>
-                                                {title}
-                                            </Link>
+                <List
+                    dataSource={ticketData}
+                    renderItem={item => {
+                        const { status, title, ticketId, date,
+                            customerDetail: { customerName } } = item;
+                        const color = statusColor(status);
+                        return (
+                            <List.Item key={ticketId}>
+                                <List.Item.Meta
+                                    title={(
+                                        <Link to={renderPathUrl(ticketId)}>
+                                            {title}
+                                        </Link>
                                         )}
-                                        description={(
-                                            <>
-                                                <Typography.Text type="secondary">
-                                                    {customerName}
-                                                </Typography.Text>
-                                                <span>
-                                                    {ON}
-                                                </span>
-                                                <Typography.Text type="secondary">
-                                                    {date}
-                                                </Typography.Text>
-                                            </>
+                                    description={(
+                                        <>
+                                            <Typography.Text type="secondary">
+                                                {customerName}
+                                            </Typography.Text>
+                                            <span>
+                                                {ON}
+                                            </span>
+                                            <Typography.Text type="secondary">
+                                                {date}
+                                            </Typography.Text>
+                                        </>
                                         )}
-                                    />
-                                    <Tag color={color}>
-                                        {status.toUpperCase()}
-                                    </Tag>
-                                </List.Item>
-                            );
-                        }}
-                    />
-                )}
+                                />
+                                <Tag color={color}>
+                                    {status.toUpperCase()}
+                                </Tag>
+                            </List.Item>
+                        );
+                    }}
+                />
+            )}
         </Card>
     );
 };
