@@ -5,6 +5,7 @@ import { NavLink, withRouter } from 'react-router-dom';
 import SideMenu from './SiderMenu';
 
 import navbar from '../../navbar';
+
 import Logo from '../../../images/neoNatar Logo.svg';
 
 const { Content, Header, Sider } = Layout;
@@ -16,6 +17,7 @@ const DashboardLayout = props => {
     const onCollapse = collapsedValue => {
         setCollapsed(collapsedValue);
     };
+
     return (
         <Layout>
             <Header className="header-menu">

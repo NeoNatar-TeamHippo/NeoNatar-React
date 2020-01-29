@@ -1,4 +1,5 @@
 import * as TYPES from './actionType';
+
 /**
  * Triggers request to load UI
  *
@@ -8,6 +9,7 @@ import * as TYPES from './actionType';
 export const loadingNavBar = () => ({
     type: TYPES.LOADING_NAVBAR,
 });
+
 /**
  * Triggers request to load UI
  *
@@ -17,6 +19,7 @@ export const loadingNavBar = () => ({
 export const loadingUser = () => ({
     type: TYPES.LOADING_USER,
 });
+
 /**
  * Triggers request to set user
  *
@@ -27,6 +30,7 @@ export const setUser = payload => ({
     payload,
     type: TYPES.SET_USER,
 });
+
 /**
  * Triggers request to logout user
  *

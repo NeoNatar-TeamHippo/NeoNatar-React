@@ -1,5 +1,5 @@
 /** @constant */
-export const FOOTER_TEXT = 'NEONATAR ©2018, TEAM HIPPO';
+export const FOOTER_TEXT = 'NEONATAR ©2020, Built with ❤ from California';
 
 /** @constant */
 export const INLINE = 'inline';
@@ -30,7 +30,6 @@ export const ADMIN_SIDE_MENU_ITEMS = [
     { iconType: 'sound', label: 'Campaigns', link: '/dashboard/campaigns' },
     { iconType: 'credit-card', label: 'Tickets', link: '/dashboard/tickets' },
     { iconType: 'team', label: 'Users' },
-    // { iconType: 'user', label: 'Staff' },
 ];
 
 /** @constant */

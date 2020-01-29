@@ -7,7 +7,6 @@ import moment from 'moment';
 import download from 'downloadjs';
 
 import { getCampaignById, approveCampaign, disapproveCampaign } from '../actions';
-import { statusColor } from '../../utils/functions';
 import {
     LOCATIONS,
     APPROVECAMPAIGN,
@@ -30,6 +29,8 @@ import {
     DISAPPROVE,
     DISAPPROVED
 } from '../constants';
+
+import { statusColor } from '../../utils/functions';
 
 const { Option } = Select;
 const { Item } = Form;
@@ -78,6 +79,7 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
         } else {
             cond = true;
         }
+
         return cond;
     };
     const disapprovedHidden = () => {
@@ -87,6 +89,7 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
         } else {
             cond = true;
         }
+
         return cond;
     };
     const hidden = () => {
@@ -96,6 +99,7 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
         } else {
             cond = true;
         }
+
         return cond;
     };
     const downloadHidden = () => {
@@ -105,6 +109,7 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
         } else {
             cond = true;
         }
+
         return cond;
     };
     const approve = () => {
@@ -142,6 +147,10 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
     const handleCancel = () => {
         setVisible(false);
     };
+
+    const campaignAmount = () => `₦ ${amount}`;
+
+    const campaignDuration = () => `${duration} days`;
 
     return (
         <>
@@ -202,6 +211,7 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                                             : commercialUrl}
                                         type="video/mp4"
                                     />
+                                    <track src="campaigns" kind="captions" />
                                 </video>
                             )}
                             actions={[
@@ -250,7 +260,7 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                                     >
                                         {campaignByIdLoading ? '' : status.toUpperCase()}
                                     </Tag>
-                                    {`₦ ${amount}`}
+                                    {campaignAmount()}
                                     <div hidden={downloadHidden()}>
                                         <Button
                                             type="primary"
@@ -288,7 +298,7 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                             <div>
                                 <Row>
                                     <Col span={5}>{DURATION}</Col>
-                                    <Col span={18} offset={1}>{`${duration} days`}</Col>
+                                    <Col span={18} offset={1}>{campaignDuration()}</Col>
                                 </Row>
                             </div>
                             <div hidden={disapprovedHidden()}>
@@ -301,7 +311,8 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                                 <Row>
                                     <Col span={5}>{MESSAGE}</Col>
                                     <Col span={18} offset={1}>
-                                        {status !== DISAPPROVE
+                                        {
+                                        status !== DISAPPROVE
                                             ? []
                                             : campaignByIdLoading ? []
                                                 : message.map(
@@ -316,7 +327,8 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                                                             {messa}
                                                         </Paragraph>
                                                     )
-                                                )}
+                                                )
+                                        }
                                     </Col>
                                 </Row>
                             </div>

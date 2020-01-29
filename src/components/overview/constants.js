@@ -1,5 +1,6 @@
 /** @constant */
 export const NEW_CAMPAIGNS = 'New Campaigns';
+
 /** @constant */
 export const ALL_CAMPAIGNS = 'All Campaigns';
 
@@ -11,7 +12,10 @@ export const DASHBOARD = '/dashboard';
 
 /** @constant */
 export const TICKET_URL = '/dashboard/tickets';
+
+/** @constant */
 export const ON = 'on';
+
 /** @constant */
 export const GROUP_SUPPORT = 'Group: Support';
 
@@ -29,7 +33,13 @@ export const VIEW_ALL = 'View all';
 
 /** @constant */
 export const CREATE_NEW_TASK = 'Create New Tasks';
+
+/** @constant */
 export const CREATE_TASKS = 'Create Tasks';
+
+/** @constant */
 export const CREATE_TODO = 'Tasks to be accomplished can be stored here!!';
+
+/** @constant */
 export const NO_UNRESOLVED = 'Hey great work team!, No compliant from our customers';
 

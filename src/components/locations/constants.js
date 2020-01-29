@@ -30,13 +30,13 @@ export const CREATE_LOCATION = 'Create';
 export const UPLOAD_TEXT = 'Images';
 /** @constant */
 export const CREATE_NEW_LOCATION = 'Create New Location';
-/** @constant */
+
 const baseUrl = 'https://europe-west1-neonatar.cloudfunctions.net/api';
+/** @constant */
 export const LOCATION_URL = `${baseUrl}/v1/locations`;
-
-export const TABLE_VALUES = [
-
-];
+/** @constant */
+export const TABLE_VALUES = [];
+/** @constant */
 export const FORM_ITEMS = [
     {
         formControlName: 'name',
@@ -88,6 +88,7 @@ export const FORM_ITEMS = [
         type: 'number',
     },
 ];
+/** @constant */
 export const FORM_ITEM_LAYOUT = {
     labelCol: {
         sm: { span: 8 },
@@ -98,10 +99,14 @@ export const FORM_ITEM_LAYOUT = {
         xs: { span: 24 },
     },
 };
+/** @constant */
 export const WRAPPER_COL = {
     sm: { offset: 8, span: 16 },
     xs: { offset: 0, span: 24 },
 };
+/** @constant */
 export const SEARCH = 'SEARCH';
+/** @constant */
 export const RESET = 'RESET';
+/** @constant */
 export const NAIRASIGN = '&#8358;';

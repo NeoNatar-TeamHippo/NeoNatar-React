@@ -26,6 +26,7 @@ if (token) {
 } else {
     store.dispatch(setUnAuthenticated());
 }
+
 const App = () => (
     <Provider store={store}>
         <Routes />

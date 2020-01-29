@@ -1,11 +1,17 @@
 import React from 'react';
 import { Form, Input, Icon, Button, Card, Upload, Row, Col } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
+
 import {
-    CREATE_LOCATION, CREATE_NEW_LOCATION, FORM_ITEMS,
-    UPLOAD_TEXT, FORM_ITEM_LAYOUT, WRAPPER_COL
+    CREATE_LOCATION,
+    CREATE_NEW_LOCATION,
+    FORM_ITEMS,
+    UPLOAD_TEXT,
+    FORM_ITEM_LAYOUT,
+    WRAPPER_COL
 } from '../constants';
 import { newLocations } from '../actions';
+
 import { normFile, handleFormData } from '../../utils/functions';
 
 const NewLocation = ({ form }) => {
@@ -38,6 +44,7 @@ const NewLocation = ({ form }) => {
     const dummyRequest = ({ onSuccess }) => {
         onSuccess('ok');
     };
+
     return (
         <div className="card_background">
             <Row type="flex" justify="center" align="middle">
@@ -88,4 +95,5 @@ const NewLocation = ({ form }) => {
     );
 };
 const WrappedNewLocationForm = Form.create({ name: 'newLocation' })(NewLocation);
+
 export default WrappedNewLocationForm;

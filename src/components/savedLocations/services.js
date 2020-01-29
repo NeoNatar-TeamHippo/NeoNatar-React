@@ -10,10 +10,12 @@ export const allSavedLocation = () => {
         method: 'GET',
         mode: 'cors',
     };
+
     return fetch(SAVED_LOCATION_URL, parameters)
         .then(response => response.json())
         .then(json => json);
 };
+
 export const deleteSavedlocationById = id => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
@@ -24,10 +26,12 @@ export const deleteSavedlocationById = id => {
         method: 'DELETE',
         mode: 'cors',
     };
+
     return fetch(`${SAVED_LOCATION_URL}/${id}`, parameters)
         .then(response => response.json())
         .then(json => json);
 };
+
 export const newSavedLocation = data => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
@@ -39,10 +43,12 @@ export const newSavedLocation = data => {
         method: 'POST',
         mode: 'cors',
     };
+
     return fetch(`${SAVED_LOCATION_URL}`, parameters)
         .then(response => response.json())
         .then(json => json);
 };
+
 export const locationOperationService = (data, id, queryType) => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
@@ -54,6 +60,7 @@ export const locationOperationService = (data, id, queryType) => {
         method: 'PATCH',
         mode: 'cors',
     };
+
     return fetch(`${SAVED_LOCATION_URL}/${id}${TYPE}${queryType}`, parameters)
         .then(response => response.json())
         .then(json => json);

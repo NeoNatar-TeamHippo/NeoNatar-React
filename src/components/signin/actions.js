@@ -9,6 +9,7 @@ import * as TYPES from './actionType';
 export const loadingUI = () => ({
     type: TYPES.LOADING_UI,
 });
+
 /**
  * Triggers request to set errors after a bad request
  *
@@ -19,6 +20,7 @@ export const setErrors = payload => ({
     payload,
     type: TYPES.SET_ERRORS,
 });
+
 /**
  * Triggers request to clear errors after a success
  *
@@ -28,6 +30,7 @@ export const setErrors = payload => ({
 export const clearErrors = () => ({
     type: TYPES.CLEAR_ERRORS,
 });
+
 /**
  * Triggers request to set a user as authenticated
  *
@@ -37,6 +40,7 @@ export const clearErrors = () => ({
 export const setAuthenticated = () => ({
     type: TYPES.SET_AUTHENTICATED,
 });
+
 /**
  * Triggers request to set a user as unauthenticated
  *
@@ -46,9 +50,11 @@ export const setAuthenticated = () => ({
 export const setUnAuthenticated = () => ({
     type: TYPES.SET_UNAUTHENTICATED,
 });
+
 export const authTrue = () => ({
     type: TYPES.AUTH_TRUE,
 });
+
 /**
  * Triggers request to set signin a user
  *
