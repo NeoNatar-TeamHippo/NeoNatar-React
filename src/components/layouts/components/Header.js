@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 import { Button, Menu, Layout, Avatar } from 'antd';
 import { NavLink } from 'react-router-dom';
 
+import { SIGNIN, SIGNUP } from '../constants';
+
 import UserLogo from '../../../images/user.svg';
 import Logo from '../../../images/neoNatar Logo.svg';
-
-import { SIGNIN, SIGNUP } from '../constants';
 
 const { Item } = Menu;
 const { Header } = Layout;
@@ -45,6 +45,7 @@ const NavHeader = () => {
         if (authenticated) {
             return userIcon();
         }
+
         return [
             menuItem('/signin', SIGNIN, false),
             menuItem('/signup', SIGNUP, true),

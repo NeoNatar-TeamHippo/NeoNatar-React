@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import { List, Card, Typography, Tag, Empty } from 'antd';
 
 import { UNRESOLVED_TICKETS, STATUS, TICKET_URL, ON, NO_UNRESOLVED } from '../constants';
+
 import { getTickets } from '../../tickets/actions';
 import { statusColor } from '../../utils/functions';
+
 import EMPTY_ICON_URL from '../../../images/svgs/undraw_active_support_6rwo.svg';
 
 const UnresolvedTickets = () => {
@@ -43,6 +45,7 @@ const UnresolvedTickets = () => {
                         const { status, title, ticketId, date,
                             customerDetail: { customerName } } = item;
                         const color = statusColor(status);
+
                         return (
                             <List.Item key={ticketId}>
                                 <List.Item.Meta

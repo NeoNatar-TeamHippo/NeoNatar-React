@@ -14,6 +14,7 @@ export const getCommercialService = async () => {
     const resData = await response.json();
     return resData;
 };
+
 export const postCommercialService = async data => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
@@ -28,6 +29,7 @@ export const postCommercialService = async data => {
     const resData = await response.json();
     return resData;
 };
+
 export const deleteCommercialById = async id => {
     const token = localStorage.getItem('FBToken');
     const parameters = {

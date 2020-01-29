@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Form, Icon, Input } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import { SIGN_IN } from '../constants';
 import { userSignIn, clearErrors } from '../actions';
 
@@ -56,6 +57,7 @@ const SignInForm = ({ form }) => {
         </Form>
     );
 };
+
 SignInForm.propTypes = {
     form: PropTypes.shape({
         getFieldDecorator: PropTypes.func,

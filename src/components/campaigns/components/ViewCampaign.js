@@ -7,7 +7,6 @@ import moment from 'moment';
 import download from 'downloadjs';
 
 import { getCampaignById, approveCampaign, disapproveCampaign } from '../actions';
-import { statusColor } from '../../utils/functions';
 import {
     LOCATIONS,
     APPROVECAMPAIGN,
@@ -30,6 +29,8 @@ import {
     DISAPPROVE,
     DISAPPROVED
 } from '../constants';
+
+import { statusColor } from '../../utils/functions';
 
 const { Option } = Select;
 const { Item } = Form;
@@ -78,6 +79,7 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
         } else {
             cond = true;
         }
+
         return cond;
     };
     const disapprovedHidden = () => {
@@ -87,6 +89,7 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
         } else {
             cond = true;
         }
+
         return cond;
     };
     const hidden = () => {
@@ -96,6 +99,7 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
         } else {
             cond = true;
         }
+
         return cond;
     };
     const downloadHidden = () => {
@@ -105,6 +109,7 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
         } else {
             cond = true;
         }
+
         return cond;
     };
     const approve = () => {
@@ -146,6 +151,7 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
     const campaignAmount = () => `₦ ${amount}`;
 
     const campaignDuration = () => `${duration} days`;
+
     return (
         <>
             <div>

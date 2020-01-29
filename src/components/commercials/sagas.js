@@ -1,7 +1,9 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
+
 import * as TYPES from './actionTypes';
 import { deleteCommercialRequest, setCommercial, loadingCommercial, setVisible } from './actions';
 import { postCommercialService, deleteCommercialById, getCommercialService } from './services';
+
 import { openNotification } from '../utils/functions';
 import { next, setVideoDetails, setCommercialId, setDuration } from '../campaigns/actions';
 /**
@@ -57,6 +59,7 @@ function* postNewCommercial({ data, resetFields }) {
         console.error(error);
     }
 }
+
 function* deleteCommercialByIdRequest(id) {
     try {
         yield put(loadingCommercial());
@@ -83,6 +86,7 @@ function* getCommercialEffect({ payload }) {
 function* deleteCommercialEffect({ payload }) {
     yield call(deleteCommercialByIdRequest, payload);
 }
+
 export default function* actionWatcher() {
     yield takeEvery(TYPES.POST_COMMERCIALS, postCommercialEffect);
     yield takeEvery(TYPES.GET_COMMERCIALS, getCommercialEffect);

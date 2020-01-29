@@ -85,4 +85,3 @@ export const SUBMITTING_FORM = 'SUBMITTING_FORM';
  * @type {String}
  */
 export const SUBMITED_FORM = 'SUBMITED_FORM';
-

@@ -1,8 +1,8 @@
 /** @constant */
 export const NEW_TRANSACTION = 'New Transaction';
 
-/** @constant */
 const baseUrl = 'https://europe-west1-neonatar.cloudfunctions.net/api';
+/** @constant */
 export const TRANSACTIONS_URL = `${baseUrl}/v1/transactions`;
 
 /** @constant */

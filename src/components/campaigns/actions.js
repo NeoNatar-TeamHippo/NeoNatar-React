@@ -9,6 +9,7 @@ import * as TYPES from './actionType';
 export const loadingCampaigns = () => ({
     type: TYPES.LOADING_CAMPAIGNS,
 });
+
 /**
  * Triggers request to load CAMPAIGNS by ID
  *
@@ -18,6 +19,7 @@ export const loadingCampaigns = () => ({
 export const loadingCampaignById = () => ({
     type: TYPES.LOADING_CAMPAIGN_BY_ID,
 });
+
 /**
  * Triggers request to set CAMPAIGN
  *
@@ -39,6 +41,7 @@ export const setCampaignById = payload => ({
     payload,
     type: TYPES.SET_CAMPAIGN_BY_ID,
 });
+
 /**
  * Triggers request to get all CAMPAIGNs
  *
@@ -48,6 +51,7 @@ export const setCampaignById = payload => ({
 export const getCampaigns = () => ({
     type: TYPES.GET_CAMPAIGNS,
 });
+
 /**
  * Triggers request to get approve CAMPAIGN
  *
@@ -57,6 +61,7 @@ export const getCampaigns = () => ({
 export const approvingCampaign = () => ({
     type: TYPES.APPROVING_CAMPAIGN,
 });
+
 /**
  * Triggers request to get all CAMPAIGNs
  *
@@ -66,6 +71,7 @@ export const approvingCampaign = () => ({
 export const disapprovingCampaign = () => ({
     type: TYPES.DISAPPROVING_CAMPAIGN,
 });
+
 /**
  * Triggers request to set message after an actin is completed is sucessfully posted
  *
@@ -76,6 +82,7 @@ export const postSuccess = payload => ({
     payload,
     type: TYPES.POST_SUCCESS,
 });
+
 /**
  * Triggers request to get single campaign
  *
@@ -86,6 +93,7 @@ export const getCampaignById = payload => ({
     payload,
     type: TYPES.GET_CAMPAIGN_BY_ID,
 });
+
 /*
 * Triggers request to set errors after a bad request
  *
@@ -96,6 +104,7 @@ export const setErrors = payload => ({
     payload,
     type: TYPES.SET_ERRORS,
 });
+
 /**
  * Triggers request to clear errors after a success
  *
@@ -105,6 +114,7 @@ export const setErrors = payload => ({
 export const clearErrors = () => ({
     type: TYPES.CLEAR_ERRORS,
 });
+
 /**
  * Triggers request to approve campaign
  *
@@ -115,6 +125,7 @@ export const approveCampaign = payload => ({
     payload,
     type: TYPES.APPROVE_CAMPAIGN,
 });
+
 /**
  * Triggers request to approve campaign
  *
@@ -125,6 +136,7 @@ export const disapproveCampaign = payload => ({
     payload,
     type: TYPES.DISAPPROVE_CAMPAIGN,
 });
+
 /**
  * Triggers request to set campaign title
  *
@@ -135,35 +147,44 @@ export const setTitle = payload => ({
     payload,
     type: TYPES.SET_TITLE,
 });
+
 export const setVideoDetails = payload => ({
     payload,
     type: TYPES.SET_VIDEO_DETAILS,
 });
+
 export const setCampaignLocation = payload => ({
     payload,
     type: TYPES.SET_CAMPAIGN_LOCATIONS,
 });
+
 export const setAmount = payload => ({
     payload,
     type: TYPES.SET_AMOUNT,
 });
+
 export const setDuration = payload => ({
     payload,
     type: TYPES.SET_DURATION,
 });
+
 export const next = () => ({
     type: TYPES.NEXT,
 });
+
 export const previous = () => ({
     type: TYPES.PREVIOUS,
 });
+
 export const resetFormState = () => ({
     type: TYPES.RESET_FORM_STATE,
 });
+
 export const createCampaign = payload => ({
     payload,
     type: TYPES.CREATE_CAMPAIGN,
 });
+
 export const setCommercialId = payload => ({
     payload,
     type: TYPES.SET_COMMERCIAL_ID,

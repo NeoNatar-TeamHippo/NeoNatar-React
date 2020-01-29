@@ -3,10 +3,14 @@ import { eventChannel as EventChannel } from 'redux-saga';
 
 import * as TYPES from './actionType';
 import {
-    setSavedLocation, loadingSavedLocation,
-    submittingForm, submitedForm, deleteLocationResult
+    setSavedLocation,
+    loadingSavedLocation,
+    submittingForm,
+    submitedForm,
+    deleteLocationResult
 } from './actions';
 import { deleteSavedlocationById, locationOperationService, newSavedLocation } from './services';
+
 import { firebaseSavedLocations } from '../utils/firebase';
 
 function* startListener(payload) {
@@ -42,6 +46,7 @@ function* deleteLocation(id) {
         console.log('Something went wrong please try again');
     }
 }
+
 function* createNewLocation(data) {
     try {
         yield put(submittingForm());

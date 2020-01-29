@@ -9,6 +9,7 @@ export const getUserProfile = token => {
         method: 'GET',
         mode: 'cors',
     };
+
     return fetch(USER_PROFILE, parameters)
         .then(response => response.json())
         .then(json => json);

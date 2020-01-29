@@ -63,6 +63,7 @@ export const removeCommercial = payload => ({
     payload,
     type: TYPES.REMOVE_COMMERCIALS,
 });
+
 export const setVisible = payload => ({
     payload,
     type: TYPES.SET_VISIBLE,

@@ -4,7 +4,9 @@ import { withRouter } from 'react-router-dom';
 import {
     Icon, Card, Carousel, Row, Col, Button, Typography, Tag, Descriptions, Spin
 } from 'antd';
+
 import { PERWEEK, LOCAL_GOVERNMENT, ADDRESS, STATE, NAIRA } from '../constants';
+
 import { renderRateFormat } from '../../utils/functions';
 
 const LocationById = ({ match, history }) => {
@@ -64,6 +66,7 @@ const LocationById = ({ match, history }) => {
             } else {
                 label = LOCAL_GOVERNMENT;
             }
+
             return (
                 <Descriptions key={element.key} size="small" column={column}>
                     <Descriptions.Item label={label}>{element.key}</Descriptions.Item>
@@ -71,6 +74,7 @@ const LocationById = ({ match, history }) => {
             );
         });
     };
+
     return (
         <div className="card_background">
             <Row className="d-sm-flex justify-content-sm-center">
