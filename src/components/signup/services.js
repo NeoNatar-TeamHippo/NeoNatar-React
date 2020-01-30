@@ -11,7 +11,6 @@ export const signUpService = userData => {
         method: 'POST',
         mode: 'cors',
     };
-
     return fetch(REGISTER_API_ENDPOINT, parameters)
         .then(response => response.json())
         .then(json => json);

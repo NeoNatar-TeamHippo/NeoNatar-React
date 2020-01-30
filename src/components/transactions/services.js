@@ -12,6 +12,5 @@ export const allTransactions = async () => {
     };
     const response = await fetch(TRANSACTIONS_URL, parameters);
     const data = await response.json();
-
     return data;
 };

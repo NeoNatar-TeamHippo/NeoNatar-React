@@ -1,11 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, Input, Upload, Button, Icon } from 'antd';
-
+import { normFile, handleFormData } from '../../utils/functions';
 import { CREATE_COMMERCIAL, UPLOAD } from '../constants';
 import { postCommercial } from '../actions';
-
-import { normFile, handleFormData } from '../../utils/functions';
 
 const CommercialForm = ({ form }) => {
     const dispatch = useDispatch();
@@ -21,6 +19,9 @@ const CommercialForm = ({ form }) => {
                     resetFields,
                 };
                 dispatch(postCommercial(payload));
+                // setTimeout(() => {
+                //     resetFields();
+                // }, 5000);
             }
         });
     };
@@ -31,7 +32,6 @@ const CommercialForm = ({ form }) => {
     const dummyRequest = ({ onSuccess }) => {
         onSuccess('ok');
     };
-
     return (
         <Form onSubmit={handleSubmit}>
             <Form.Item label="Title" hasFeedback>
@@ -78,5 +78,4 @@ const CommercialForm = ({ form }) => {
 };
 
 const WrappedCommercialForm = Form.create({ name: 'commercial-form' })(CommercialForm);
-
 export default WrappedCommercialForm;

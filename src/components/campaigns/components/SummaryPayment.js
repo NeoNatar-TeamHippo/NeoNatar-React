@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Typography } from 'antd';
-
 import { REVIEW_TEXT, YOU_CAN_VIEW, OR_GO_TO, HERE, CREATED_SUCCESSFULLY } from '../constants';
 import ILLUSTRATION_SVG from '../../../images/svgs/undraw_confirmation_2uy0.svg';
 
@@ -37,5 +36,4 @@ const SummaryPayment = () => (
         </div>
     </div>
 );
-
 export default SummaryPayment;

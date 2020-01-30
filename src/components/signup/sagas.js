@@ -1,10 +1,8 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
-
 import * as TYPES from './actionType';
 import { setErrors, loadingUI, setAuthenticated, clearErrors } from './actions';
 import { signUpService } from './services';
-
 import { loadingUser } from '../navbar/actions';
 import { openMessage } from '../utils/functions';
 
@@ -34,11 +32,9 @@ function* userSignUp(userData) {
         }
     }
 }
-
 function* postUserEffect({ payload }) {
     yield call(userSignUp, payload);
 }
-
 export default function* actionWatcher() {
     yield takeEvery(TYPES.USER_SIGNUP, postUserEffect);
 }

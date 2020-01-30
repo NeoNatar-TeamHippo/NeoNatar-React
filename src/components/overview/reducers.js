@@ -7,7 +7,6 @@ const initialState = {
     overviewLocationNumber: [],
     overviewPendingCampignNumber: [],
 };
-
 export default (state = initialState, { type, payload }) => {
     switch (type) {
         case TYPES.SET_OVERVIEW_LOCATION_NUMBER:

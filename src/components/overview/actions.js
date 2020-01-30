@@ -10,7 +10,6 @@ export const setOverviewLocationNumber = payload => ({
     payload,
     type: TYPES.SET_OVERVIEW_LOCATION_NUMBER,
 });
-
 /**
  * Triggers request to set OverviewApprovedCampaignNumber
  *
@@ -21,7 +20,6 @@ export const setOverviewApprovedCampaignNumber = payload => ({
     payload,
     type: TYPES.SET_OVERVIEW_APPROVED_CAMPAIGN_NUMBER,
 });
-
 /**
  * Triggers request to set OverviewPendingCampaignNumber
  *
@@ -32,7 +30,6 @@ export const setOverviewPendingCampaignNumber = payload => ({
     payload,
     type: TYPES.SET_OVERVIEW_PENDING_CAMPAIGN_NUMBER,
 });
-
 /**
  * Triggers request to set errors after a bad request
  *
@@ -43,7 +40,6 @@ export const setErrors = payload => ({
     payload,
     type: TYPES.SET_ERRORS,
 });
-
 /**
  * Triggers request to clear errors after a success
  *

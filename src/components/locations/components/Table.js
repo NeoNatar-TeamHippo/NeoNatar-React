@@ -3,20 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import {
-    Table,
-    Button,
-    Typography,
-    Divider,
-    Tooltip,
-    Menu,
-    Dropdown,
-    Icon,
-    Input
+    Table, Button, Typography, Divider, Tooltip, Menu, Dropdown,
+    Icon, Input
 } from 'antd';
 import Highlighter from 'react-highlight-words';
-
 import { ADD_SELECTED, NO_SAVED_LOCATION, NEW_LOCATION, SEARCH, RESET } from '../constants';
-
 import { openNotification } from '../../utils/functions';
 import { locationOperation, getSavedLocations } from '../../savedLocations/actions';
 
@@ -140,7 +131,6 @@ const LocationTable = ({ history }) => {
                 </Menu.Item>
             );
         }
-
         return menuItem;
     };
     const menu = (
@@ -258,7 +248,6 @@ const LocationTable = ({ history }) => {
             title: 'Action',
         },
     ];
-
     return (
         <>
             <div className="d-flex justify-content-end">
@@ -299,5 +288,4 @@ const LocationTable = ({ history }) => {
         </>
     );
 };
-
 export default withRouter(LocationTable);

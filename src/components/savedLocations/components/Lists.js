@@ -2,10 +2,8 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { List, Tooltip, Button, Tag, Typography, Modal } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { LOCATION_NUMBER_LABEL } from '../constants';
 import { deleteSavedLocationByID } from '../actions';
-
 import { openNotification } from '../../utils/functions';
 
 const { confirm } = Modal;
@@ -39,7 +37,6 @@ const Lists = ({ history }) => {
     const editSavedLocation = savedLocationId => {
         console.log(savedLocationId);
     };
-
     return (
         <List
             itemLayout="vertical"
@@ -105,5 +102,4 @@ const Lists = ({ history }) => {
         />
     );
 };
-
 export default withRouter(Lists);

@@ -1,11 +1,9 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
-
 import * as TYPES from './actionType';
 import { setUser, loadingNavBar } from './actions';
-import { getUserProfile } from './services';
-
 import { setUnAuthenticated } from '../signin/actions';
+import { getUserProfile } from './services';
 
 function* userProfile() {
     try {
@@ -20,7 +18,6 @@ function* userProfile() {
         console.log(error);
     }
 }
-
 function* logout() {
     try {
         yield put(setUnAuthenticated());
@@ -29,15 +26,12 @@ function* logout() {
         console.log(error);
     }
 }
-
 function* logOutProfile() {
     yield call(logout);
 }
-
 function* postUserProfile({ payload }) {
     yield call(userProfile, payload);
 }
-
 export default function* actionWatcher() {
     yield takeEvery(TYPES.LOADING_USER, postUserProfile);
     yield takeEvery(TYPES.LOGOUT_USER, logOutProfile);

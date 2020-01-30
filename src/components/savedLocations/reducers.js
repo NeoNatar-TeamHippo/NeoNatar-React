@@ -5,7 +5,6 @@ const initialState = {
     savedLocationLoading: false,
     savedLocations: [],
 };
-
 export default (state = initialState, { type, payload }) => {
     switch (type) {
         case TYPES.LOADING_SAVED_LOCATION:

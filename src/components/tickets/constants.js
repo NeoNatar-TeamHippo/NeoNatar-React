@@ -73,7 +73,7 @@ export const FORMITEMLAYOUT = {
     },
 };
 
-const baseUrl = 'https://europe-west1-neonatar.cloudfunctions.net/api';
 /** @constant */
+const baseUrl = 'https://europe-west1-neonatar.cloudfunctions.net/api';
 export const TICKET_URL = `${baseUrl}/v1/tickets`;
 

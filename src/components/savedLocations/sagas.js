@@ -3,14 +3,10 @@ import { eventChannel as EventChannel } from 'redux-saga';
 
 import * as TYPES from './actionType';
 import {
-    setSavedLocation,
-    loadingSavedLocation,
-    submittingForm,
-    submitedForm,
-    deleteLocationResult
+    setSavedLocation, loadingSavedLocation,
+    submittingForm, submitedForm, deleteLocationResult
 } from './actions';
 import { deleteSavedlocationById, locationOperationService, newSavedLocation } from './services';
-
 import { firebaseSavedLocations } from '../utils/firebase';
 
 function* startListener(payload) {
@@ -46,7 +42,6 @@ function* deleteLocation(id) {
         console.log('Something went wrong please try again');
     }
 }
-
 function* createNewLocation(data) {
     try {
         yield put(submittingForm());
@@ -60,7 +55,6 @@ function* createNewLocation(data) {
         console.log('Something went wrong please try again');
     }
 }
-
 function* locationOperationById(payload) {
     try {
         yield put(submittingForm());
@@ -75,24 +69,20 @@ function* locationOperationById(payload) {
         console.log('Something went wrong please try again');
     }
 }
-
 function* deleteLocationsByIdEffect({ payload }) {
     yield call(deleteLocation, payload);
 }
-
 function* createNewLocationEffect({ payload }) {
     yield call(createNewLocation, payload);
 }
-
 function* locationOperationByIdEffect({ payload }) {
     yield call(locationOperationById, payload);
 }
-
 function* callSavedLoctionEffect({ payload }) {
     yield call(startListener, payload);
 }
-
 export default function* actionWatcher() {
+    // yield fork(startListener);
     yield takeEvery(TYPES.DELETE_SAVED_LOCATION, deleteLocationsByIdEffect);
     yield takeEvery(TYPES.NEW_SAVED_LOCATION, createNewLocationEffect);
     yield takeEvery(TYPES.LOCATION_OPERATION, locationOperationByIdEffect);

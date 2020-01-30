@@ -1,7 +1,6 @@
 import { takeEvery, call, put, take, fork } from 'redux-saga/effects';
 import { eventChannel as EventChannel } from 'redux-saga';
 import moment from 'moment';
-
 import * as TYPES from './actionType';
 import {
     setTicket,
@@ -13,7 +12,11 @@ import {
     loadingTickets,
     resolvingTicket
 } from './actions';
-import { postTicket, postTicketMessages, markTicketAsResolved } from './services';
+import {
+    postTicket,
+    postTicketMessages,
+    markTicketAsResolved
+} from './services';
 
 import { firebaseTickets } from '../utils/firebase';
 

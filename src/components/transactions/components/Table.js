@@ -4,7 +4,6 @@ import ReactHtmlParser from 'react-html-parser';
 import { Tag, Table, Typography } from 'antd';
 
 import { requestTransactions } from '../actions';
-
 import { NAIRASIGN } from '../../campaigns/constants';
 
 const TransactionsTable = () => {
@@ -60,7 +59,6 @@ const TransactionsTable = () => {
                 } else {
                     color = 'green';
                 }
-
                 return (
                     <Tag color={color} key={status}>
                         {status.toUpperCase()}
@@ -70,7 +68,6 @@ const TransactionsTable = () => {
             title: 'Status',
         },
     ];
-
     return (
         <div>
             <Table

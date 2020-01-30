@@ -2,10 +2,8 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { List, Tooltip, Button, Tag, Typography, Modal } from 'antd';
 import { useDispatch } from 'react-redux';
-
 import { PRICE, TRAFFIC_RATE } from '../constants';
 import { locationOperation } from '../actions';
-
 import { renderRateFormat, renderPrice } from '../../utils/functions';
 
 const { confirm } = Modal;
@@ -40,7 +38,6 @@ const LocationList = ({ history, savedLocationId, newSavedLocation }) => {
     };
     const renderTag = text => {
         const { color, rateText } = renderRateFormat(text);
-
         return (
             <Tag color={color}>
                 {rateText}
@@ -49,14 +46,12 @@ const LocationList = ({ history, savedLocationId, newSavedLocation }) => {
     };
     const renderText = text => {
         const { type } = renderPrice(text);
-
         return (
             <Typography.Text type={type}>
                 {text}
             </Typography.Text>
         );
     };
-
     return (
         <List
             itemLayout="vertical"
@@ -118,5 +113,4 @@ const LocationList = ({ history, savedLocationId, newSavedLocation }) => {
         />
     );
 };
-
 export default withRouter(LocationList);

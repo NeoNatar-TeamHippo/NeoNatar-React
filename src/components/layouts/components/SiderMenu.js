@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import { Icon, Menu, Tooltip } from 'antd';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-
+import history from '../../history/History';
 import {
     ADMIN_SIDE_MENU_ITEMS,
     CLIENT_SIDE_MENU_ITEMS,
     INLINE, THEME
 } from '../constants';
-
-import history from '../../history/History';
 
 const SideMenu = () => {
     const currentPath = history.location.pathname;
@@ -37,10 +35,8 @@ const SideMenu = () => {
                 </Tooltip>
             );
         }
-
         return template;
     };
-
     return (
         <Menu
             mode={INLINE}
@@ -59,5 +55,4 @@ const SideMenu = () => {
         </Menu>
     );
 };
-
 export default SideMenu;

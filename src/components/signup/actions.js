@@ -1,5 +1,4 @@
 import * as TYPES from './actionType';
-
 /**
  * Triggers request to load UI
  *
@@ -9,7 +8,6 @@ import * as TYPES from './actionType';
 export const loadingUI = () => ({
     type: TYPES.LOADING_UI,
 });
-
 /**
  * Triggers request to set errors after a bad request
  *
@@ -20,7 +18,6 @@ export const setErrors = payload => ({
     payload,
     type: TYPES.SET_ERRORS,
 });
-
 /**
  * Triggers request to clear errors after a success
  *
@@ -30,7 +27,6 @@ export const setErrors = payload => ({
 export const clearErrors = () => ({
     type: TYPES.CLEAR_ERRORS,
 });
-
 /**
  * Triggers request to set a user as authenticated
  *
@@ -41,7 +37,6 @@ export const setAuthenticated = payload => ({
     payload,
     type: TYPES.SET_AUTHENTICATED,
 });
-
 /**
  * Triggers request to set a user as unauthenticated
  *
@@ -52,7 +47,6 @@ export const setUnAuthenticated = payload => ({
     payload,
     type: TYPES.SET_UNAUTHENTICATED,
 });
-
 /**
  * Triggers request to signup a user
  *

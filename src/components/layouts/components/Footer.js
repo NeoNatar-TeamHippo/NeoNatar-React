@@ -1,6 +1,5 @@
 import React from 'react';
 import { Typography } from 'antd';
-
 import { FOOTER_TEXT } from '../constants';
 
 const { Text } = Typography;
@@ -11,5 +10,4 @@ const Footer = () => (
         </Text>
     </Typography>
 );
-
 export default Footer;

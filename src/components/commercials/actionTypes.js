@@ -5,7 +5,6 @@
  * @type {String}
  */
 export const GET_COMMERCIALS = 'GET_COMMERCIALS';
-
 /**
  * Fired by the {@link actions.setCommercials }
  * action creator.
@@ -13,7 +12,6 @@ export const GET_COMMERCIALS = 'GET_COMMERCIALS';
  * @type {String}
  */
 export const SET_COMMERCIALS = 'SET_COMMERCIALS';
-
 /**
  * Fired by the {@link actions.postCommercials }
  * action creator.
@@ -21,7 +19,6 @@ export const SET_COMMERCIALS = 'SET_COMMERCIALS';
  * @type {String}
  */
 export const POST_COMMERCIALS = 'POST_COMMERCIALS';
-
 /**
  * Fired by the {@link actions.loadingCommercials }
  * action creator.
@@ -29,7 +26,6 @@ export const POST_COMMERCIALS = 'POST_COMMERCIALS';
  * @type {String}
  */
 export const LOADING_COMMERCIAL = 'LOADING_COMMERCIAL';
-
 /**
  * Fired by the {@link actions.deleteCommercials }
  * action creator.
@@ -37,7 +33,6 @@ export const LOADING_COMMERCIAL = 'LOADING_COMMERCIAL';
  * @type {String}
  */
 export const DELETE_COMMERCIALS = 'DELETE_COMMERCIALS';
-
 /**
  * Fired by the {@link actions.removeCommercials }
  * action creator.
@@ -45,5 +40,4 @@ export const DELETE_COMMERCIALS = 'DELETE_COMMERCIALS';
  * @type {String}
  */
 export const REMOVE_COMMERCIALS = 'REMOVE_COMMERCIALS';
-
 export const SET_VISIBLE = 'SET_VISIBLE';

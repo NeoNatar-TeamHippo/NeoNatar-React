@@ -1,9 +1,7 @@
 import React from 'react';
 import { Card, Row, Col, Typography, Button } from 'antd';
 import { Link } from 'react-router-dom';
-
 import SignUpForm from './Form';
-
 import { SIGN_UP, ACCOUNT_TEXT, SIGN_IN } from '../constants';
 import layouts from '../../layouts';
 

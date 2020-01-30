@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Tooltip, Button, Table, Modal } from 'antd';
 
 import ViewCommercial from './ViewCommercial';
-
 import { TABLE_VALUES } from '../constants';
 import { getCommercial, removeCommercial } from '../actions';
 
@@ -58,7 +57,6 @@ const CommercialTable = () => {
             title: 'Action',
         },
     ];
-
     return (
         <div>
             <ViewCommercial

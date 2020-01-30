@@ -11,7 +11,6 @@ export const signInService = userData => {
         method: 'POST',
         mode: 'cors',
     };
-
     return fetch(SIGN_IN_ENDPOINT, parameters)
         .then(response => response.json())
         .then(json => json);

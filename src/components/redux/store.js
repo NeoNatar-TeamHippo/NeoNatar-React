@@ -1,10 +1,8 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'connected-react-router';
-
 import rootReducer from './rootReducers';
 import rootSaga from './rootSagas';
-
 import history from '../history/History';
 
 const initializeSagaMiddleware = createSagaMiddleware();
@@ -15,5 +13,4 @@ const store = createStore(
     storeEnhancers(applyMiddleware(initializeSagaMiddleware, routerWare))
 );
 initializeSagaMiddleware.run(rootSaga);
-
 export default { store };

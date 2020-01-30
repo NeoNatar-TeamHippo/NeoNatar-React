@@ -6,7 +6,6 @@
  * @type {String}
  */
 export const SET_USER = 'SET_USER';
-
 /**
  * Fired by the {@link actions.logoutUser }
  * action creator.
@@ -22,7 +21,6 @@ export const LOGOUT_USER = 'LOGOUT_USER';
  * @type {String}
  */
 export const LOADING_NAVBAR = 'LOADING_NAVBAR';
-
 /**
  * Fired by the {@link actions.loadingUser }
  * action creator.

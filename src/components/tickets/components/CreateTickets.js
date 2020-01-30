@@ -36,7 +36,6 @@ const TicketForm = props => {
         });
         visible = false;
     };
-
     return (
         <Modal
             visible={visible}

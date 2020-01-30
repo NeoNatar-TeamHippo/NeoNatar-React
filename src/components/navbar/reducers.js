@@ -4,7 +4,6 @@ const initialState = {
     navLoading: false,
     user: {},
 };
-
 export default (state = initialState, { type, payload }) => {
     switch (type) {
         case TYPES.SET_USER:

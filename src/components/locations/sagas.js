@@ -1,10 +1,8 @@
 import { takeEvery, call, put, fork, take } from 'redux-saga/effects';
 import { eventChannel as EventChannel } from 'redux-saga';
-
 import * as TYPES from './actionType';
 import { setLocation, loadingLocation } from './actions';
 import { postNewLocation } from './services';
-
 import { openNotification } from '../utils/functions';
 import { firebaseLocations } from '../utils/firebase';
 
@@ -13,7 +11,6 @@ function* startListener() {
         firebaseLocations.onSnapshot(snapshot => {
             emitter({ data: snapshot.docs || [] });
         });
-
         return () => {
             firebaseLocations.off();
         };
@@ -25,7 +22,6 @@ function* startListener() {
         yield put(setLocation(locations));
     }
 }
-
 function* postNewLocationWithData(data) {
     try {
         yield put(loadingLocation());
@@ -39,11 +35,9 @@ function* postNewLocationWithData(data) {
         console.log('something went wrong');
     }
 }
-
 function* postLocationEffect({ payload }) {
     yield call(postNewLocationWithData, payload);
 }
-
 export default function* actionWatcher() {
     yield takeEvery(TYPES.NEW_LOCATIONS, postLocationEffect);
     yield fork(startListener);

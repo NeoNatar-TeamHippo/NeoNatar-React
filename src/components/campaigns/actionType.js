@@ -5,7 +5,6 @@
  * @type {String}
  */
 export const GET_CAMPAIGNS = 'GET_CAMPAIGNS';
-
 /**
  * Fired by the {@link actions.disApproveCampaign }
  * action creator.
@@ -13,7 +12,6 @@ export const GET_CAMPAIGNS = 'GET_CAMPAIGNS';
  * @type {String}
  */
 export const APPROVE_CAMPAIGN = 'APPROVE_CAMPAIGN';
-
 /**
  * Fired by the {@link actions.approveCampaign }
  * action creator.
@@ -21,7 +19,6 @@ export const APPROVE_CAMPAIGN = 'APPROVE_CAMPAIGN';
  * @type {String}
  */
 export const DISAPPROVE_CAMPAIGN = 'DISAPPROVE_CAMPAIGN';
-
 /**
  * Fired by the {@link actions.postSuccess }
  * action creator.
@@ -29,7 +26,6 @@ export const DISAPPROVE_CAMPAIGN = 'DISAPPROVE_CAMPAIGN';
  * @type {String}
  */
 export const POST_SUCCESS = 'POST_SUCCESS';
-
 /**
  * Fired by the {@link actions.approvingCampaign }
  * action creator.
@@ -37,7 +33,6 @@ export const POST_SUCCESS = 'POST_SUCCESS';
  * @type {String}
  */
 export const APPROVING_CAMPAIGN = 'APPROVING_CAMPAIGN';
-
 /**
  * Fired by the {@link actions.disApprovingCampaign }
  * action creator.
@@ -45,7 +40,6 @@ export const APPROVING_CAMPAIGN = 'APPROVING_CAMPAIGN';
  * @type {String}
  */
 export const DISAPPROVING_CAMPAIGN = 'DISAPPROVING_CAMPAIGN';
-
 /**
  * Fired by the {@link actions.getCampaignsById }
  * action creator.
@@ -53,7 +47,6 @@ export const DISAPPROVING_CAMPAIGN = 'DISAPPROVING_CAMPAIGN';
  * @type {String}
  */
 export const GET_CAMPAIGN_BY_ID = 'GET_CAMPAIGN_BY_ID';
-
 /**
  * Fired by the {@link actions.setErrors }
  * action creator.
@@ -69,7 +62,6 @@ export const SET_ERRORS = 'SET_ERRORS';
  * @type {String}
  */
 export const UPDATE_STORE = 'UPDATE_STORE';
-
 /**
  * Fired by the {@link actions.loadingCampaigns }
  * action creator.
@@ -77,7 +69,6 @@ export const UPDATE_STORE = 'UPDATE_STORE';
  * @type {String}
  */
 export const LOADING_CAMPAIGNS = 'LOADING_CAMPAIGNS';
-
 /**
  * Fired by the {@link actions.loadingCampaignById }
  * action creator.
@@ -85,7 +76,6 @@ export const LOADING_CAMPAIGNS = 'LOADING_CAMPAIGNS';
  * @type {String}
  */
 export const LOADING_CAMPAIGN_BY_ID = 'LOADING_CAMPAIGN_BY_ID';
-
 /**
  * Fired by the {@link actions.setCampaign}
  * action creator.
@@ -93,7 +83,6 @@ export const LOADING_CAMPAIGN_BY_ID = 'LOADING_CAMPAIGN_BY_ID';
  * @type {String}
  */
 export const SET_CAMPAIGN = 'SET_CAMPAIGN';
-
 /**
  * Fired by the {@link actions.setCampaignById}
  * action creator.
@@ -101,7 +90,6 @@ export const SET_CAMPAIGN = 'SET_CAMPAIGN';
  * @type {String}
  */
 export const SET_CAMPAIGN_BY_ID = 'SET_CAMPAIGN_BY_ID';
-
 /**
  * Fired by the {@link actions.clearErrors }
  * action creator.
@@ -109,7 +97,6 @@ export const SET_CAMPAIGN_BY_ID = 'SET_CAMPAIGN_BY_ID';
  * @type {String}
  */
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
-
 /**
  * Fired by the {@link actions.setTitle }
  * action creator.

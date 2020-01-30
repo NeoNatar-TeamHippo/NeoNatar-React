@@ -10,12 +10,10 @@ export const allLocation = () => {
         method: 'GET',
         mode: 'cors',
     };
-
     return fetch(LOCATION_URL, parameters)
         .then(response => response.json())
         .then(json => json);
 };
-
 export const postNewLocation = async data => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
@@ -28,10 +26,8 @@ export const postNewLocation = async data => {
     };
     const response = await fetch(LOCATION_URL, parameters);
     const resData = await response.json();
-
     return resData;
 };
-
 export const locationById = id => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
@@ -42,7 +38,6 @@ export const locationById = id => {
         method: 'GET',
         mode: 'cors',
     };
-
     return fetch(`${LOCATION_URL}/${id}`, parameters)
         .then(response => response.json())
         .then(json => json);

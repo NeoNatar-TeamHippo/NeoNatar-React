@@ -5,7 +5,6 @@
  * @type {String}
  */
 export const GET_TICKETS = 'GET_TICKETS';
-
 /**
  * Fired by the {@link actions.getTickets }
  * action creator.
@@ -13,7 +12,6 @@ export const GET_TICKETS = 'GET_TICKETS';
  * @type {String}
  */
 export const UPDATE_TICKET_MESSAGE = 'UPDATE_TICKET_MESAGE';
-
 /**
  * Fired by the {@link actions.getTicketsById }
  * action creator.
@@ -21,7 +19,6 @@ export const UPDATE_TICKET_MESSAGE = 'UPDATE_TICKET_MESAGE';
  * @type {String}
  */
 export const GET_TICKETS_BY_ID = 'GET_TICKETS_BY_ID';
-
 /**
  * Fired by the {@link actions.setErrors }
  * action creator.
@@ -29,7 +26,6 @@ export const GET_TICKETS_BY_ID = 'GET_TICKETS_BY_ID';
  * @type {String}
  */
 export const SET_ERRORS = 'SET_ERRORS';
-
 /**
  * Fired by the {@link actions.setErrors }
  * action creator.
@@ -37,7 +33,6 @@ export const SET_ERRORS = 'SET_ERRORS';
  * @type {String}
  */
 export const UPDATE_STORE = 'UPDATE_STORE';
-
 /**
  * Fired by the {@link actions.postSuccess }
  * action creator.
@@ -45,7 +40,6 @@ export const UPDATE_STORE = 'UPDATE_STORE';
  * @type {String}
  */
 export const POST_SUCCESS = 'POST_SUCCESS';
-
 /**
  * Fired by the {@link actions.postTicket }
  * action creator.
@@ -53,7 +47,6 @@ export const POST_SUCCESS = 'POST_SUCCESS';
  * @type {String}
  */
 export const POST_TICKET = 'POST_TICKET';
-
 /**
  * Fired by the {@link actions.resolveTicket }
  * action creator.
@@ -61,7 +54,6 @@ export const POST_TICKET = 'POST_TICKET';
  * @type {String}
  */
 export const RESOLVE_TICKET = 'RESOLVE_TICKET';
-
 /**
  * Fired by the {@link actions.postTicketMesaage }
  * action creator.
@@ -69,7 +61,6 @@ export const RESOLVE_TICKET = 'RESOLVE_TICKET';
  * @type {String}
  */
 export const POST_TICKET_MESSAGE = 'POST_TICKET_MESSAGE';
-
 /**
  * Fired by the {@link actions.loadingTickets }
  * action creator.
@@ -77,7 +68,6 @@ export const POST_TICKET_MESSAGE = 'POST_TICKET_MESSAGE';
  * @type {String}
  */
 export const LOADING_TICKETS = 'LOADING_TICKETS';
-
 /**
  * Fired by the {@link actions.loadingTicketById }
  * action creator.
@@ -85,7 +75,6 @@ export const LOADING_TICKETS = 'LOADING_TICKETS';
  * @type {String}
  */
 export const LOADING_TICKET_BY_ID = 'LOADING_TICKET_BY_ID';
-
 /**
  * Fired by the {@link actions.postingTicket }
  * action creator.
@@ -93,7 +82,6 @@ export const LOADING_TICKET_BY_ID = 'LOADING_TICKET_BY_ID';
  * @type {String}
  */
 export const POSTING_TICKET = 'POSTING_TICKET';
-
 /**
  * Fired by the {@link actions.resolvingTicket }
  * action creator.
@@ -101,7 +89,6 @@ export const POSTING_TICKET = 'POSTING_TICKET';
  * @type {String}
  */
 export const RESOLVING_TICKET = 'RESOLVING_TICKET';
-
 /**
  * Fired by the {@link actions.postingTicketMessage }
  * action creator.
@@ -109,7 +96,6 @@ export const RESOLVING_TICKET = 'RESOLVING_TICKET';
  * @type {String}
  */
 export const POSTING_TICKET_MESSAGE = 'POSTING_TICKET_MESSAGE';
-
 /**
  * Fired by the {@link actions.setTicket }
  * action creator.
@@ -117,7 +103,6 @@ export const POSTING_TICKET_MESSAGE = 'POSTING_TICKET_MESSAGE';
  * @type {String}
  */
 export const SET_TICKET = 'SET_TICKET';
-
 /**
  * Fired by the {@link actions.setTicketById }
  * action creator.
@@ -125,7 +110,6 @@ export const SET_TICKET = 'SET_TICKET';
  * @type {String}
  */
 export const SET_TICKET_BY_ID = 'SET_TICKET_BY_ID';
-
 /**
  * Fired by the {@link actions.setNewTicket }
  * action creator.
@@ -133,7 +117,6 @@ export const SET_TICKET_BY_ID = 'SET_TICKET_BY_ID';
  * @type {String}
  */
 export const SET_NEW_TICKET = 'SET_NEW_TICKET';
-
 /**
  * Fired by the {@link actions.setPendingTicket }
  * action creator.
@@ -141,7 +124,6 @@ export const SET_NEW_TICKET = 'SET_NEW_TICKET';
  * @type {String}
  */
 export const SET_PENDING_TICKET = 'SET_PENDING_TICKET';
-
 /**
  * Fired by the {@link actions.setResolvedTicket }
  * action creator.
@@ -149,7 +131,6 @@ export const SET_PENDING_TICKET = 'SET_PENDING_TICKET';
  * @type {String}
  */
 export const SET_RESOLVED_TICKET = 'SET_RESOLVED_TICKET';
-
 /**
  * Fired by the {@link actions.clearErrors }
  * action creator.

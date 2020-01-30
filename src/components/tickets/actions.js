@@ -9,7 +9,6 @@ import * as TYPES from './actionType';
 export const loadingTickets = () => ({
     type: TYPES.LOADING_TICKETS,
 });
-
 /**
  * Triggers request to load TICKETS
  *
@@ -19,7 +18,6 @@ export const loadingTickets = () => ({
 export const loadingTicketById = () => ({
     type: TYPES.LOADING_TICKET_BY_ID,
 });
-
 /**
  * Triggers request to post a TICKET
  *
@@ -29,7 +27,6 @@ export const loadingTicketById = () => ({
 export const postingTicket = () => ({
     type: TYPES.POSTING_TICKET,
 });
-
 /**
  * Triggers request to post a TICKET MESSAGE
  *
@@ -39,7 +36,6 @@ export const postingTicket = () => ({
 export const postingTicketMessage = () => ({
     type: TYPES.POSTING_TICKET_MESSAGE,
 });
-
 /**
  * Triggers request to mark a TICKET Resolved
  *
@@ -49,7 +45,6 @@ export const postingTicketMessage = () => ({
 export const resolvingTicket = () => ({
     type: TYPES.RESOLVING_TICKET,
 });
-
 /**
  * Triggers request to set Single TCIKET
  *
@@ -60,7 +55,6 @@ export const setTicketById = payload => ({
     payload,
     type: TYPES.SET_TICKET_BY_ID,
 });
-
 /**
  * Triggers request to set TICKET
  *
@@ -71,7 +65,6 @@ export const setTicket = payload => ({
     payload,
     type: TYPES.SET_TICKET,
 });
-
 /**
  * Triggers request to post TICKET
  *
@@ -82,7 +75,6 @@ export const postTicket = payload => ({
     payload,
     type: TYPES.POST_TICKET,
 });
-
 /**
  * Triggers request to set errors after a bad request
  *
@@ -93,7 +85,6 @@ export const setErrors = payload => ({
     payload,
     type: TYPES.SET_ERRORS,
 });
-
 /**
  * Triggers request to set message after a ticket is sucessfully posted
  *
@@ -104,7 +95,6 @@ export const postSuccess = payload => ({
     payload,
     type: TYPES.POST_SUCCESS,
 });
-
 /**
  * Triggers request to clear errors after a success
  *
@@ -114,7 +104,6 @@ export const postSuccess = payload => ({
 export const clearErrors = () => ({
     type: TYPES.CLEAR_ERRORS,
 });
-
 /**
  * Triggers request to get all tickets
  *
@@ -125,7 +114,6 @@ export const getTickets = payload => ({
     payload,
     type: TYPES.GET_TICKETS,
 });
-
 /**
  * Triggers request to get single tickets
  *
@@ -136,7 +124,6 @@ export const getTicketsById = payload => ({
     payload,
     type: TYPES.GET_TICKETS_BY_ID,
 });
-
 /**
  * Triggers request to post ticket's message
  *
@@ -147,7 +134,6 @@ export const postTicketMessage = payload => ({
     payload,
     type: TYPES.POST_TICKET_MESSAGE,
 });
-
 /**
  * Triggers request to post ticket's message
  *
@@ -158,7 +144,6 @@ export const updateTicketMessage = payload => ({
     payload,
     type: TYPES.UPDATE_TICKET_MESSAGE,
 });
-
 /**
  * Triggers request to mark ticket as resolved
  *
