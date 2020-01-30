@@ -7,15 +7,14 @@ import { TABLE_VALUES } from '../constants';
 import { getCommercial, removeCommercial } from '../actions';
 
 const CommercialTable = () => {
-    const { user: { isAdmin, userId } } = useSelector(state => state.user);
     const [selectedModal, setSelectedModal] = useState(null);
     const dispatch = useDispatch();
     const { commercials, isCommercialsLoading } = useSelector(state => state.commercials);
     useEffect(() => {
         if (commercials.length === 0) {
-            dispatch(getCommercial({ isAdmin, userId }));
+            dispatch(getCommercial());
         }
-    }, [commercials.length, dispatch, isAdmin, userId]);
+    }, [commercials.length, dispatch]);
 
     const [commercialData, setCommercialData] = useState(commercials);
     useEffect(() => {

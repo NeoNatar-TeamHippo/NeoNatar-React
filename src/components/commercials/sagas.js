@@ -1,37 +1,25 @@
-import { takeEvery, put, call, take } from 'redux-saga/effects';
+import { takeEvery, put, call, take, fork, select } from 'redux-saga/effects';
 import { eventChannel as EventChannel } from 'redux-saga';
 import * as TYPES from './actionTypes';
 import { deleteCommercialRequest, setCommercial, loadingCommercial, setVisible } from './actions';
 import {
-    postCommercialService, deleteCommercialById
+    postCommercialService, deleteCommercialById, getCommercialService
 } from './services';
 import { openNotification } from '../utils/functions';
 import { next, setVideoDetails, setCommercialId, setDuration } from '../campaigns/actions';
-import { firebaseCommercials } from '../utils/firebase';
 
-function* requestAllCommercials(payload) {
-    const { isAdmin, userId } = payload;
-    yield put(loadingCommercial());
-    const channel = new EventChannel(emiter => {
-        firebaseCommercials.onSnapshot(snapshot => {
-            emiter({ data: snapshot.docs || [] });
-        });
-        return () => {
-            firebaseCommercials.off();
-        };
-    });
-    while (true) {
-        const { data } = yield take(channel);
-        const newData = data.map(element => ({
-            ...element.data(),
-            commercialId: element.id,
-        }));
-        let commercial;
-        if (isAdmin) commercial = newData;
-        if (!isAdmin) {
-            commercial = newData.filter(commer => commer.createdBy === userId);
+function* requestAllCommercials() {
+    try {
+        yield put(loadingCommercial());
+        const res = yield call(getCommercialService);
+        console.log(res);
+        if (res.status === 'success') {
+            yield put(setCommercial(res.data));
+        } else {
+            console.error(res.message);
         }
-        yield put(setCommercial(commercial));
+    } catch (error) {
+        console.error(error);
     }
 }
 
