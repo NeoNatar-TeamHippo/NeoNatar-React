@@ -1,46 +1,37 @@
-import { takeEvery, put, call, take, fork, select } from 'redux-saga/effects';
+import { takeEvery, put, call, take } from 'redux-saga/effects';
 import { eventChannel as EventChannel } from 'redux-saga';
 import * as TYPES from './actionTypes';
 import { deleteCommercialRequest, setCommercial, loadingCommercial, setVisible } from './actions';
 import {
-    postCommercialService, deleteCommercialById, getCommercialService
+    postCommercialService, deleteCommercialById
 } from './services';
 import { openNotification } from '../utils/functions';
 import { next, setVideoDetails, setCommercialId, setDuration } from '../campaigns/actions';
-// import { firebaseCommercials } from '../utils/firebase';
+import { firebaseCommercials } from '../utils/firebase';
 
-// function* startListener() {
-//     const { user: { userId } } = select(state => state.user);
-//     console.log(userId);
-//     const channel = new EventChannel(emitter => {
-//         firebaseCommercials.onSnapshot(snapshot => {
-//             emitter({ data: snapshot.docs || [] });
-//         });
-//         return () => {
-//             firebaseCommercials.off();
-//         };
-//     });
-
-//     while (true) {
-//         const { data } = yield take(channel);
-//         const commercial = data.map(doc => Object.assign({}, doc.data(), { id: doc.id }));
-//         const newcommercial = commercial.filter(comm => comm.createdBy === userId);
-//         // yield put(setCommercial(newcommercial));
-//         console.log(newcommercial);
-//     }
-// }
-function* requestAllCommercials() {
-    try {
-        yield put(loadingCommercial());
-        const res = yield call(getCommercialService);
-        console.log(res);
-        if (res.status === 'success') {
-            yield put(setCommercial(res.data));
-        } else {
-            console.error(res.message);
+function* requestAllCommercials(payload) {
+    const { isAdmin, userId } = payload;
+    yield put(loadingCommercial());
+    const channel = new EventChannel(emiter => {
+        firebaseCommercials.onSnapshot(snapshot => {
+            emiter({ data: snapshot.docs || [] });
+        });
+        return () => {
+            firebaseCommercials.off();
+        };
+    });
+    while (true) {
+        const { data } = yield take(channel);
+        const newData = data.map(element => ({
+            ...element.data(),
+            commercialId: element.id,
+        }));
+        let commercial;
+        if (isAdmin) commercial = newData;
+        if (!isAdmin) {
+            commercial = newData.filter(commer => commer.createdBy === userId);
         }
-    } catch (error) {
-        console.error(error);
+        yield put(setCommercial(commercial));
     }
 }
 

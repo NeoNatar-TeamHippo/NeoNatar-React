@@ -7,12 +7,20 @@ import { TABLE_VALUES } from '../constants';
 import { getCommercial, removeCommercial } from '../actions';
 
 const CommercialTable = () => {
+    const { user: { isAdmin, userId } } = useSelector(state => state.user);
     const [selectedModal, setSelectedModal] = useState(null);
     const dispatch = useDispatch();
     const { commercials, isCommercialsLoading } = useSelector(state => state.commercials);
     useEffect(() => {
-        dispatch(getCommercial());
-    }, [commercials.length, dispatch]);
+        if (commercials.length === 0) {
+            dispatch(getCommercial({ isAdmin, userId }));
+        }
+    }, [commercials.length, dispatch, isAdmin, userId]);
+
+    const [commercialData, setCommercialData] = useState(commercials);
+    useEffect(() => {
+        setCommercialData(commercials);
+    }, [commercials]);
 
     const showDeleteConfirm = id => {
         Modal.confirm({
@@ -65,7 +73,7 @@ const CommercialTable = () => {
             <Table
                 loading={isCommercialsLoading}
                 columns={columns}
-                dataSource={commercials}
+                dataSource={commercialData}
                 rowKey={record => record.id}
                 size="middle"
                 scroll={{ y: 350 }}
