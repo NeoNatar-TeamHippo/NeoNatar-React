@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Typography, Empty, Row, Col, Modal, Form, Icon, Input } from 'antd';
+
 import DataList from './Lists';
+
 import { DESCRIPTION_CREATE, CREATE_NOW, EMPTY_ICON_URL } from '../constants';
 import { getSavedLocations, newSavedLocation } from '../actions';
+
 import { openNotification } from '../../utils/functions';
 
 const SavedLocations = ({ form }) => {
@@ -37,6 +40,7 @@ const SavedLocations = ({ form }) => {
     useEffect(() => {
         dispatch(getSavedLocations({ userId }));
     }, [dispatch, userId]);
+
     return (
         <>
             <div className="d-flex justify-content-end">
@@ -110,4 +114,5 @@ const SavedLocations = ({ form }) => {
     );
 };
 const WrappedSavedLocations = Form.create({ name: 'locationForm' })(SavedLocations);
+
 export default WrappedSavedLocations;

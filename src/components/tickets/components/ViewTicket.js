@@ -1,10 +1,20 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-    Row, Col, Avatar, Tooltip, Comment, Form, Button, List, Input,
-    Typography, Icon
+    Row,
+    Col,
+    Avatar,
+    Tooltip,
+    Comment,
+    Form,
+    Button,
+    List,
+    Input,
+    Typography,
+    Icon
 } from 'antd';
 import moment from 'moment';
+
 import { getTicketsById, postTicketMessage, resolveTicket, updateTicketMessage } from '../actions';
 import { ADDCOMMENT, MARKED_AS_RESOLVED, IS_RESOLVED } from '../constants';
 
@@ -88,6 +98,7 @@ const ViewTicket = ({ match, form }) => {
     const markAsResolved = () => {
         dispatch(resolveTicket(ticketId));
     };
+
     return (
         <Row type="flex" justify="center" align="middle">
             <Col sm={24} md={22} lg={20}>
@@ -158,4 +169,5 @@ const ViewTicket = ({ match, form }) => {
     );
 };
 const WrappedViewTicketForm = Form.create({ name: 'messageForm' })(ViewTicket);
+
 export default WrappedViewTicketForm;

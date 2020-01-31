@@ -1,4 +1,4 @@
-import { takeEvery, call, put, take, fork } from 'redux-saga/effects';
+import { put, take, fork } from 'redux-saga/effects';
 import { eventChannel as EventChannel } from 'redux-saga';
 import { firebaseLocations, firebaseCampaigns } from '../utils/firebase';
 
@@ -26,6 +26,7 @@ function* startCampaignListener() {
         firebaseCampaigns.onSnapshot(snapshot => {
             emiter({ data: snapshot.docs || [] });
         });
+
         return () => {
             firebaseCampaigns.off();
         };

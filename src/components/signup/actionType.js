@@ -5,6 +5,7 @@
  * @type {String}
  */
 export const SET_AUTHENTICATED = 'SET_AUTHENTICATED';
+
 /**
  * Fired by the {@link actions.setUnAuthenticated }
  * action creator.
@@ -12,6 +13,7 @@ export const SET_AUTHENTICATED = 'SET_AUTHENTICATED';
  * @type {String}
  */
 export const SET_UNAUTHENTICATED = 'SET_UNAUTHENTICATED';
+
 /**
  * Fired by the {@link actions.userSignup }
  * action creator.
@@ -19,6 +21,7 @@ export const SET_UNAUTHENTICATED = 'SET_UNAUTHENTICATED';
  * @type {String}
  */
 export const USER_SIGNUP = 'USER_SIGN_UP';
+
 /**
  * Fired by the {@link actions.setErrors }
  * action creator.
@@ -26,6 +29,7 @@ export const USER_SIGNUP = 'USER_SIGN_UP';
  * @type {String}
  */
 export const SET_ERRORS = 'SET_ERRORS';
+
 /**
  * Fired by the {@link actions.loadingUI }
  * action creator.
@@ -33,6 +37,7 @@ export const SET_ERRORS = 'SET_ERRORS';
  * @type {String}
  */
 export const LOADING_UI = 'LOADING_UI';
+
 /**
  * Fired by the {@link actions.clearErrors }
  * action creator.
