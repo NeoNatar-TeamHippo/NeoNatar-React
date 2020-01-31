@@ -19,7 +19,7 @@ const DashboardLayout = props => {
     return (
         <Layout>
             <Header className="header-menu">
-                <NavLink to="/dashboard" className="left-menu">
+                <NavLink to="/" className="left-menu">
                     <img src={Logo} width="100%" height="30px" alt="NeoNatar Logo" />
                 </NavLink>
                 <Navbar />

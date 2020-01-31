@@ -1,18 +1,20 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Button, Menu, Layout, Avatar } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
+import { Button, Menu, Avatar, Icon, Typography } from 'antd';
 import { NavLink } from 'react-router-dom';
 
-import { SIGNIN, SIGNUP } from '../constants';
+import { SIGNIN, SIGNUP, SETTINGS, TRANSACTIONS, LOGOUT_TEXT } from '../constants';
+
+import navbar from '../../navbar';
 
 import UserLogo from '../../../images/user.svg';
-import Logo from '../../../images/neoNatar Logo.svg';
 
-const { Item } = Menu;
-const { Header } = Layout;
+const { logoutUser } = navbar.actions;
+const { Item, SubMenu } = Menu;
 
 const NavHeader = () => {
     const { user, navLoading } = useSelector(state => state.user);
+    const dispatch = useDispatch();
 
     const { location } = useSelector(state => state.router);
     const { authenticated } = useSelector(state => state.signIn);
@@ -27,12 +29,39 @@ const NavHeader = () => {
         </Item>
     );
     const userIcon = () => (
-        <Item className="header-item">
-            <span>
-                {navLoading ? (<Avatar src={UserLogo} />)
-                    : (<Avatar src={user.avatar} />)}
-            </span>
-        </Item>
+        <SubMenu
+            key="sub1"
+            title={(
+                <span>
+                    {navLoading ? (<Avatar src={UserLogo} />)
+                        : (<Avatar src={user.avatar} />)}
+                </span>
+                )}
+        >
+            <Item key="transactions">
+                <NavLink to="/dashboard/transactions">
+                    <Icon type="interaction" />
+                    <span>
+                        {TRANSACTIONS}
+                    </span>
+                </NavLink>
+            </Item>
+            <Item disabled key="settings">
+                <NavLink to="/">
+                    <Icon type="setting" />
+                    <span>
+                        {SETTINGS}
+                    </span>
+                </NavLink>
+            </Item>
+            <Item key="logout">
+                <Button onClick={() => dispatch(logoutUser())} type="link">
+                    <Typography.Text type="danger">
+                        {LOGOUT_TEXT}
+                    </Typography.Text>
+                </Button>
+            </Item>
+        </SubMenu>
     );
 
     const renderMenuItem = ({ pathname }) => {
@@ -53,14 +82,9 @@ const NavHeader = () => {
     };
 
     return (
-        <Header className="header-menu">
-            <NavLink to="/" className="left-menu">
-                <img src={Logo} width="100%" height="30px" alt="NeoNatar Logo" />
-            </NavLink>
-            <Menu className="right-nav" mode="horizontal">
-                {renderMenuItem(location)}
-            </Menu>
-        </Header>
+        <Menu className="right-nav" mode="horizontal">
+            {renderMenuItem(location)}
+        </Menu>
     );
 };
 

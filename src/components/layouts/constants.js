@@ -23,6 +23,12 @@ export const SIGNIN = 'Sign In';
 export const SIGNUP = 'Sign Up';
 
 /** @constant */
+export const SETTINGS = 'Settings';
+
+/** @constant */
+export const TRANSACTIONS = 'Transactions';
+
+/** @constant */
 export const ADMIN_SIDE_MENU_ITEMS = [
     { iconType: 'dashboard', label: 'Overview', link: '/dashboard' },
     { iconType: 'environment', label: 'Locations', link: '/dashboard/locations' },
