@@ -58,7 +58,6 @@ const Lists = ({ history }) => {
                                 type="link"
                                 icon="edit-o"
                                 className="text-success"
-                                // @TODO: work on this and remove it
                                 disabled
                             />
                         </Tooltip>,

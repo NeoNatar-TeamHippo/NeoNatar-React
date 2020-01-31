@@ -50,10 +50,9 @@ export const TITLE = 'Reason For disapproving Campaign';
 export const PLACEHOLDER = 'Please select reason for disapproving campaign';
 /** @constant */
 export const OPTIONKEY = [
-    'Video Content is too long. Please Read the Guideline',
-    'Video Content is too bias. Please Read the Guideline2',
-    'Video Content is poltical. Please Read the Guideline3',
-    'Video Content is offensive. Please Read the Guideline4',
+    'Poor video quality. Please Read the Guideline',
+    'Video is Reported for Copyright Infringement. Please Read the Guideline2',
+    'Video Contains pornography elements. Please Read the Guideline4',
 ];
 
 /** @constant */
@@ -72,7 +71,7 @@ export const CAMPAIGN_URL = `${baseUrl}/api/v1/campaign`;
 export const NAIRASIGN = '&#8358;';
 export const TOTAL_AMOUNT_DUE = 'Total amount due is ';
 export const SHALL_WE_PROCEED = 'shall we proceed ?';
-export const CAMPAIGN_LENGTH_TEXT = ' How long should your campaign last ?';
+export const CAMPAIGN_LENGTH_TEXT = ' How many days should your campaign last?';
 export const SELECT_A_LOCATION = 'Select locations to get cost';
 export const CHOOSE_A_TITLE = 'Input campaign title:';
 export const CHOOSE_PREVIOUS_VIDEO = 'Choose from previous videos:';

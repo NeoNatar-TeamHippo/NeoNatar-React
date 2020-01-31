@@ -45,7 +45,8 @@ export const setCampaignById = payload => ({
  * @function
  * @return {void} The {@link actionTypes.GET_CAMPAIGNS } action.
  */
-export const getCampaigns = () => ({
+export const getCampaigns = payload => ({
+    payload,
     type: TYPES.GET_CAMPAIGNS,
 });
 /**

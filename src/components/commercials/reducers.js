@@ -28,7 +28,7 @@ export default (state = initialState, { type, payload }) => {
                     commercial => commercial.id !== payload
                 ),
 
-                isCommercialsLoading: true,
+                isCommercialsLoading: false,
             };
         }
         case TYPES.SET_VISIBLE: {

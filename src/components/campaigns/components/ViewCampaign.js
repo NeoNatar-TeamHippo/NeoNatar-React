@@ -1,26 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import ReactHtmlParser from 'react-html-parser';
 import {
-    Card, Row, Col, Form, Button, Typography, Tag, Modal, Select
+    Card, Row, Col, Form, Button, Typography, Tag, Tooltip, Icon
 } from 'antd';
 import moment from 'moment';
 import download from 'downloadjs';
 
 import { getCampaignById, approveCampaign, disapproveCampaign } from '../actions';
 import { statusColor } from '../../utils/functions';
+import LocationModal from './LocationModal';
+import DisapprovalModal from './DisapprovalModal';
 import {
     LOCATIONS,
     APPROVECAMPAIGN,
-    TITLE,
-    BACK,
-    CANCEL,
     DOWNLOAD,
-    SUBMIT,
-    PLACEHOLDER,
-    OPTIONKEY,
     EXPIRES,
     APPROVED,
-    VERTICAL,
     MESSAGE,
     DISAPPROVECAMPAIGN,
     LIVE,
@@ -28,15 +24,13 @@ import {
     CREATEDAT,
     DURATION,
     DISAPPROVE,
-    DISAPPROVED
+    DISAPPROVED,
+    NAIRASIGN
 } from '../constants';
 
-const { Option } = Select;
-const { Item } = Form;
-const { Paragraph, Text } = Typography;
+const { Paragraph } = Typography;
 
-const ViewCampaignWithModal = ({ match, history, form }) => {
-    const { getFieldDecorator } = form;
+const ViewCampaignWithModal = ({ match, form }) => {
     const { params } = match;
     const { id: campaignId } = params;
     const dispatch = useDispatch();
@@ -50,6 +44,7 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
 
     const [disabled, setDisabled] = useState(false);
     const [visible, setVisible] = useState(false);
+    const [locationVisible, setLocationVisible] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
 
     const { campaignById, campaignByIdLoading } = useSelector(state => state.campaigns);
@@ -115,6 +110,10 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
         setVisible(true);
     };
 
+    const locationHandleOk = () => {
+        setLocationVisible(false);
+    };
+
     const handleOk = () => {
         setConfirmLoading(true);
         setDisabled(true);
@@ -135,67 +134,132 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
         download(url, `${name}.mp4`);
     };
 
-    const renderoptionTag = () => OPTIONKEY.map(option => (
-        <Option key={option} color="blue">{option}</Option>
-    ));
-
     const handleCancel = () => {
         setVisible(false);
     };
 
+    const locationsTag = locations => {
+        const selectedLocations = locations.sort();
+        if (selectedLocations.length > 3) {
+            const locationsShort = selectedLocations.slice(0, 3);
+            return (
+                <div>
+                    {locationsShort.map(location => (
+                        <Tag
+                            key={location}
+                            color="blue"
+                            style={{ marginBottom: '5px' }}
+                        >
+                            {location}
+                        </Tag>
+                    ))}
+                    <Tooltip title="More Locations">
+                        <Tag
+                            color="pink"
+                            style={{
+                                cursor: 'pointer',
+                            }}
+                            onClick={() => setLocationVisible(true)}
+                        >
+                            <Icon type="ellipsis" />
+                        </Tag>
+                    </Tooltip>
+                </div>
+            );
+        }
+        return (
+            <div>
+                {selectedLocations.map(location => (
+                    <Tag
+                        key={location}
+                        color="blue"
+                        style={{ marginBottom: '5px' }}
+                    >
+                        {location}
+                    </Tag>
+                ))}
+            </div>
+        );
+    };
+
     return (
         <>
-            <div>
-                <Modal
-                    title={TITLE}
-                    visible={visible}
-                    footer={[
-                        <Button key="back" onClick={handleCancel}>
-                            {CANCEL}
-                        </Button>,
-                        <Button
-                            key="submit"
-                            type="primary"
-                            confirmLoading={confirmLoading}
-                            onClick={handleOk}
-                        >
-                            {SUBMIT}
-                        </Button>,
-                    ]}
-                >
-                    <Row type="flex" justify="center">
-                        <Col span={24}>
-                            <Form layout={VERTICAL}>
-                                <Item>
-                                    {getFieldDecorator('messages', {
-                                        rules: [{
-                                            message: 'message',
-                                            required: true,
-                                        }],
-                                    })(
-                                        <Select
-                                            mode="multiple"
-                                            style={{ width: '100%' }}
-                                            placeholder={PLACEHOLDER}
-                                        >
-                                            {renderoptionTag()}
-                                        </Select>
-                                    )}
-                                </Item>
-                            </Form>
-                        </Col>
-                    </Row>
-                </Modal>
-            </div>
+            <LocationModal
+                locationVisible={locationVisible}
+                locationHandleOk={locationHandleOk}
+                campaignByIdLoading={campaignByIdLoading}
+                locationsSelected={locationsSelected}
+            />
+            <DisapprovalModal
+                visible={visible}
+                handleCancel={handleCancel}
+                confirmLoading={confirmLoading}
+                handleOk={handleOk}
+            />
             <div className="card_background">
-                <Row className="d-sm-flex justify-content-sm-center">
-                    <Col sm={20} md={16} lg={14}>
+                <Row type="flex" justify="center">
+                    <Col sm={24} md={18} lg={12}>
                         <Card
                             loading={campaignByIdLoading}
-                            hoverable
+                            title={(
+                                <>
+                                    <Tag
+                                        color={statusColor(status)}
+                                        className="ml-3"
+                                    >
+                                        {campaignByIdLoading ? '' : status.toUpperCase()}
+                                    </Tag>
+                                    <Typography.Text type="secondary" strong>
+                                        {title ? title.toUpperCase() : ''}
+                                    </Typography.Text>
+                                </>
+
+                            )}
+                            extra={(
+                                <>
+                                    <Typography.Text
+                                        className="total_text"
+                                        style={{
+                                            fontSize: '24px', fontWeight: 'bolder',
+                                        }}
+                                        strong
+                                    >
+                                        <span className="mr-1">
+                                            {ReactHtmlParser(NAIRASIGN)}
+                                        </span>
+                                        {amount}
+                                    </Typography.Text>
+                                    <Tag
+                                        color={statusColor(status)}
+                                        className="ml-3"
+                                    >
+                                        {campaignByIdLoading ? '' : status.toUpperCase()}
+                                    </Tag>
+                                </>
+
+                            )}
+                            extra={(
+                                <Typography.Text
+                                    className="total_text"
+                                    style={{
+                                        fontSize: '24px', fontWeight: 'bolder',
+                                    }}
+                                    strong
+                                >
+                                    <span className="mr-1">
+                                        {ReactHtmlParser(NAIRASIGN)}
+                                    </span>
+                                    {amount}
+                                </Typography.Text>
+                            )}
                             className="w-100"
                             cover={(
-                                <video controls>
+                                <video
+                                    controls
+                                    style={{
+                                        height: '30vh',
+                                    }}
+                                >
                                     <source
                                         src={campaignByIdLoading
                                             ? ''
@@ -205,92 +269,60 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
                                 </video>
                             )}
                             actions={[
-                                <Button
-                                    key="back"
-                                    type="primary"
-                                    color="red"
-                                    ghost
-                                    onClick={() => history.goBack()}
-                                >
-                                    {BACK}
-                                </Button>,
-                                <Button
-                                    key="disapprove"
-                                    disabled={disabled}
-                                    onClick={() => disapprove()}
-                                    type="danger"
-                                    ghost
-                                    hidden={hidden()}
-                                >
-                                    {DISAPPROVECAMPAIGN}
-                                </Button>,
-                                <Button
-                                    key="approve"
-                                    disabled={disabled}
-                                    onClick={() => approve()}
-                                    type="primary"
-                                    hidden={hidden()}
-                                >
-                                    {APPROVECAMPAIGN}
-                                </Button>,
+                                <Tooltip key="approve" title={DISAPPROVECAMPAIGN}>
+                                    <Button
+                                        key="disapprove"
+                                        disabled={disabled}
+                                        onClick={() => disapprove()}
+                                        type="danger"
+                                        ghost
+                                        shape="circle-outline"
+                                        icon="dislike"
+                                        hidden={hidden()}
+                                    />
+                                </Tooltip>,
+                                <Tooltip key="download" title={DOWNLOAD}>
+                                    <Button
+                                        type="primary"
+                                        shape="circle"
+                                        ghost
+                                        icon="download"
+                                        onClick={() => handleDownload(commercialUrl, title)}
+                                        hidden={downloadHidden()}
+                                    />
+                                </Tooltip>,
+                                <Tooltip key="approve" title={APPROVECAMPAIGN}>
+                                    <Button
+                                        disabled={disabled}
+                                        onClick={() => approve()}
+                                        icon="like"
+                                        shape="circle-outline"
+                                        ghost
+                                        style={{
+                                            border: '1px solid green',
+                                            color: 'green',
+                                        }}
+                                        hidden={hidden()}
+                                    />
+                                </Tooltip>,
                             ]}
                         >
-                            <div
-                                className="d-flex justify-content-between"
-                                style={{ marginBottom: '10px' }}
-                            >
-                                <div>
-                                    <Text strong="true">
-                                        {title}
-                                    </Text>
-                                </div>
-                                <div>
-                                    <Tag
-                                        color={statusColor(status)}
-                                    >
-                                        {campaignByIdLoading ? '' : status.toUpperCase()}
-                                    </Tag>
-                                    {`₦ ${amount}`}
-                                    <div hidden={downloadHidden()}>
-                                        <Button
-                                            type="primary"
-                                            icon="download"
-                                            onClick={() => handleDownload(commercialUrl, title)}
-                                            style={{ marginTop: '5px' }}
-                                        >
-                                            {DOWNLOAD}
-                                        </Button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <Row>
-                                    <Col span={5}>{LOCATIONS}</Col>
-                                    <Col span={18} offset={1}>
-                                        {campaignByIdLoading
-                                            ? []
-                                            : locationsSelected.sort().map(
-                                                location => (
-                                                    <Tag key={location} color="blue">
-                                                        {location}
-                                                    </Tag>
-                                                )
-                                            )}
-                                    </Col>
-                                </Row>
-                            </div>
-                            <div>
-                                <Row>
-                                    <Col span={5}>{CREATEDAT}</Col>
-                                    <Col span={18} offset={1}>{createdDate}</Col>
-                                </Row>
-                            </div>
-                            <div>
-                                <Row>
-                                    <Col span={5}>{DURATION}</Col>
-                                    <Col span={18} offset={1}>{`${duration} days`}</Col>
-                                </Row>
-                            </div>
+                            <Row>
+                                <Col span={5}>{LOCATIONS}</Col>
+                                <Col span={18} offset={1}>
+                                    {campaignByIdLoading
+                                        ? []
+                                        : locationsTag(locationsSelected)}
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col span={5}>{CREATEDAT}</Col>
+                                <Col span={18} offset={1}>{createdDate}</Col>
+                            </Row>
+                            <Row>
+                                <Col span={5}>{DURATION}</Col>
+                                <Col span={18} offset={1}>{`${duration} days`}</Col>
+                            </Row>
                             <div hidden={disapprovedHidden()}>
                                 <Row>
                                     <Col span={5}>{DISAPPROVED}</Col>
@@ -340,6 +372,6 @@ const ViewCampaignWithModal = ({ match, history, form }) => {
     );
 };
 
-const ViewCampaign = Form.create()(ViewCampaignWithModal);
+const ViewCampaign = Form.create('campaignFormModal')(ViewCampaignWithModal);
 
 export default ViewCampaign;

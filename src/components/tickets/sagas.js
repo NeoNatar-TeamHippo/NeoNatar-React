@@ -24,9 +24,15 @@ function* startTicketListener(payload) {
     const { isAdmin, userId } = payload;
     yield put(loadingTickets());
     const channel = new EventChannel(emiter => {
-        firebaseTickets.onSnapshot(snapshot => {
-            emiter({ data: snapshot.docs || [] });
-        });
+        if (isAdmin) {
+            firebaseTickets.onSnapshot(snapshot => {
+                emiter({ data: snapshot.docs || [] });
+            });
+        } else {
+            firebaseTickets.where('createdBy', '==', userId).onSnapshot(snapshot => {
+                emiter({ data: snapshot.docs || [] });
+            });
+        }
         return () => {
             firebaseTickets.off();
         };
@@ -45,12 +51,7 @@ function* startTicketListener(payload) {
                 ...ticket,
             });
         });
-        let userTicket;
-        if (isAdmin) userTicket = ticketData;
-        if (!isAdmin) {
-            userTicket = ticketData.filter(ticket => ticket.createdBy === userId);
-        }
-        yield put(setTicket(userTicket));
+        yield put(setTicket(ticketData));
     }
 }
 

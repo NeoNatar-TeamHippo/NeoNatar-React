@@ -19,9 +19,6 @@ const CommercialForm = ({ form }) => {
                     resetFields,
                 };
                 dispatch(postCommercial(payload));
-                // setTimeout(() => {
-                //     resetFields();
-                // }, 5000);
             }
         });
     };

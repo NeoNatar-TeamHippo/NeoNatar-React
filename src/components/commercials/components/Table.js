@@ -8,14 +8,18 @@ import { getCommercial, removeCommercial } from '../actions';
 
 const CommercialTable = () => {
     const [selectedModal, setSelectedModal] = useState(null);
-
     const dispatch = useDispatch();
-
+    const { commercials, isCommercialsLoading } = useSelector(state => state.commercials);
     useEffect(() => {
-        dispatch(getCommercial());
-    }, [dispatch]);
+        if (commercials.length === 0) {
+            dispatch(getCommercial());
+        }
+    }, [commercials.length, dispatch]);
 
-    const { commercials } = useSelector(state => state.commercials);
+    const [commercialData, setCommercialData] = useState(commercials);
+    useEffect(() => {
+        setCommercialData(commercials);
+    }, [commercials]);
 
     const showDeleteConfirm = id => {
         Modal.confirm({
@@ -66,8 +70,9 @@ const CommercialTable = () => {
                 onOk={() => setSelectedModal(null)}
             />
             <Table
+                loading={isCommercialsLoading}
                 columns={columns}
-                dataSource={commercials}
+                dataSource={commercialData}
                 rowKey={record => record.id}
                 size="middle"
                 scroll={{ y: 350 }}

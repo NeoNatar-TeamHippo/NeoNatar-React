@@ -11,15 +11,15 @@ const SaveLocationById = ({ match, history }) => {
     const [newSavedLocation, setnewSavedLocation] = useState({});
     const { title } = newSavedLocation;
     useEffect(() => {
-        const amendedLocations = [];
+        const retrievedLocations = [];
         savedLocations.forEach(savedLocation => {
             if (savedLocation.savedLocationId === savedLocationId) {
                 savedLocation.locations.forEach(savedLoc => locations.forEach(loc => {
                     if (loc.locationId === savedLoc) {
-                        amendedLocations.push(loc);
+                        retrievedLocations.push(loc);
                     }
                 }));
-                savedLocation.locations = amendedLocations;
+                savedLocation.locations = retrievedLocations;
                 setnewSavedLocation(savedLocation);
             }
         });

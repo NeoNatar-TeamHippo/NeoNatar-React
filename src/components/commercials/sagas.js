@@ -7,28 +7,7 @@ import {
 } from './services';
 import { openNotification } from '../utils/functions';
 import { next, setVideoDetails, setCommercialId, setDuration } from '../campaigns/actions';
-// import { firebaseCommercials } from '../utils/firebase';
 
-// function* startListener() {
-//     const { user: { userId } } = select(state => state.user);
-//     console.log(userId);
-//     const channel = new EventChannel(emitter => {
-//         firebaseCommercials.onSnapshot(snapshot => {
-//             emitter({ data: snapshot.docs || [] });
-//         });
-//         return () => {
-//             firebaseCommercials.off();
-//         };
-//     });
-
-//     while (true) {
-//         const { data } = yield take(channel);
-//         const commercial = data.map(doc => Object.assign({}, doc.data(), { id: doc.id }));
-//         const newcommercial = commercial.filter(comm => comm.createdBy === userId);
-//         // yield put(setCommercial(newcommercial));
-//         console.log(newcommercial);
-//     }
-// }
 function* requestAllCommercials() {
     try {
         yield put(loadingCommercial());
