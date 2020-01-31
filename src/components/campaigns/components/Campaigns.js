@@ -109,6 +109,7 @@ const Campaigns = ({ history }) => {
             key: 'status',
             render: status => {
                 const color = statusColor(status);
+
                 return (
                     <Tag color={color} key={status}>
                         {status.toUpperCase()}

@@ -13,6 +13,7 @@ export const renderRateFormat = text => {
         color = 'green';
         rateText = 'HIGH';
     }
+
     return { color, rateText };
 };
 
@@ -25,6 +26,7 @@ export const renderPrice = text => {
     } else {
         type = 'secondary';
     }
+
     return { type };
 };
 
@@ -35,6 +37,7 @@ export const openNotification = (description, messageText, type) => {
         message: messageText,
     });
 };
+
 export const openMessage = (messageText, duration, type) => {
     message[type](messageText, duration);
 };
@@ -43,6 +46,7 @@ export const normFile = e => {
     if (Array.isArray(e)) {
         return e;
     }
+
     return e && e.fileList;
 };
 
@@ -60,6 +64,7 @@ export const handleFormData = formValues => {
             });
         }
     });
+
     return formData;
 };
 
@@ -74,6 +79,7 @@ export const priorityColor = priority => {
     if (priority === 'low') {
         color = 'volcano';
     }
+
     return color;
 };
 
@@ -90,5 +96,6 @@ export const statusColor = status => {
     } else {
         color = 'purple';
     }
+
     return color;
 };

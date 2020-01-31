@@ -1,17 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-    Row,
-    Col,
-    Avatar,
-    Tooltip,
-    Comment,
-    Form,
-    Button,
-    List,
-    Input,
-    Typography,
-    Icon
+    Row, Col, Avatar, Tooltip, Comment, Form, Button, List, Input, Typography, Icon
 } from 'antd';
 import moment from 'moment';
 
@@ -56,12 +46,14 @@ const ViewTicket = ({ match, form }) => {
             </Tooltip>
         </span>,
     ];
+    const listClass = param => `d-flex justify-content-${!param ? 'end pl-4' : 'start'}`;
+
     const CommentList = ({ commentValue }) => (
         <List
             dataSource={commentValue}
             itemLayout="horizontal"
             renderItem={item => (
-                <div className={`d-flex justify-content-${!item.isAdmin ? 'end pl-4' : 'start'}`}>
+                <div className={listClass}>
                     <Comment actions={!item.isAdmin ? actions : ''} {...item} />
                 </div>
             )}

@@ -3,15 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import {
-    Table,
-    Button,
-    Typography,
-    Divider,
-    Tooltip,
-    Menu,
-    Dropdown,
-    Icon,
-    Input
+    Table, Button, Typography, Divider, Tooltip, Menu, Dropdown, Icon, Input
 } from 'antd';
 import Highlighter from 'react-highlight-words';
 

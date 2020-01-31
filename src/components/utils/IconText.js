@@ -6,5 +6,4 @@ export const IconText = ({ type, text }) => (
         <Icon type={type} style={{ marginRight: 8 }} />
         {text}
     </span>
-
 );

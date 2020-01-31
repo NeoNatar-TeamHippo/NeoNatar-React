@@ -4,12 +4,20 @@ const initialState = {
     isTransactionsLoading: false,
     transactions: [],
 };
+
 export default (state = initialState, { type, payload }) => {
     switch (type) {
         case LOAD_TRANSACTIONS:
-            return { ...state, isTransactionsLoading: true };
+            return {
+                ...state,
+                isTransactionsLoading: true,
+            };
         case UPDATE_TRANSACTIONS:
-            return { ...state, transactions: payload, isTransactionsLoading: false };
+            return {
+                ...state,
+                isTransactionsLoading: false,
+                transactions: payload,
+            };
         default:
             return state;
     }

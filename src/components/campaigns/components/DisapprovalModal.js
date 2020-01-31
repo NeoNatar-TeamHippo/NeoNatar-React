@@ -4,12 +4,7 @@ import {
 } from 'antd';
 
 import {
-    TITLE,
-    CANCEL,
-    SUBMIT,
-    PLACEHOLDER,
-    OPTIONKEY,
-    VERTICAL
+    TITLE, CANCEL, SUBMIT, PLACEHOLDER, OPTIONKEY, VERTICAL
 } from '../constants';
 
 const { Option } = Select;

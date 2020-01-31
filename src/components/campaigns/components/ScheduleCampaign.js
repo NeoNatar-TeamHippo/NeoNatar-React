@@ -3,17 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
 import {
-    Descriptions,
-    Col,
-    Row,
-    Button,
-    Tooltip,
-    Typography,
-    message,
-    Tag,
-    Modal,
-    Slider,
-    InputNumber
+    Descriptions, Col, Row, Button, Tooltip, Typography, message, Tag, Modal, Slider, InputNumber
 } from 'antd';
 import PaystackButton from 'react-paystack';
 

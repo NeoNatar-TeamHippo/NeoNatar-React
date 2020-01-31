@@ -11,6 +11,7 @@ function* startLocationListener() {
         firebaseLocations.onSnapshot(snapshot => {
             emiter({ data: snapshot.docs || [] });
         });
+
         return () => {
             firebaseLocations.off();
         };

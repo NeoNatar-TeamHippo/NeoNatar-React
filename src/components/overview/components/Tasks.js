@@ -59,6 +59,7 @@ const Tasks = ({ form }) => {
                         dataSource={tasks}
                         renderItem={item => {
                             const { id, date, title } = item;
+
                             return (
                                 <List.Item key={id}>
                                     <List.Item.Meta

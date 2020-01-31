@@ -29,4 +29,3 @@ export const SET_LOCATION = 'SET_LOCATION';
  * @type {String}
  */
 export const NEW_LOCATIONS = 'NEW_LOCATIONS';
-

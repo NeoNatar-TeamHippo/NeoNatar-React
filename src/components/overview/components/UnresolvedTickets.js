@@ -46,6 +46,7 @@ const UnresolvedTickets = () => {
                         const { status, title, ticketId, date,
                             customerDetail: { customerName } } = item;
                         const color = statusColor(status);
+
                         return (
                             <List.Item key={ticketId}>
                                 <List.Item.Meta

@@ -15,6 +15,7 @@ export const allLocation = () => {
         .then(response => response.json())
         .then(json => json);
 };
+
 export const postNewLocation = async data => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
@@ -30,6 +31,7 @@ export const postNewLocation = async data => {
 
     return resData;
 };
+
 export const locationById = id => {
     const token = localStorage.getItem('FBToken');
     const parameters = {

@@ -62,4 +62,3 @@ export const userSignUp = payload => ({
     payload,
     type: TYPES.USER_SIGNUP,
 });
-

@@ -3,11 +3,7 @@ import { eventChannel as EventChannel } from 'redux-saga';
 
 import * as TYPES from './actionType';
 import {
-    setSavedLocation,
-    loadingSavedLocation,
-    submittingForm,
-    submitedForm,
-    deleteLocationResult
+    setSavedLocation, loadingSavedLocation, submittingForm, submitedForm, deleteLocationResult
 } from './actions';
 import { deleteSavedlocationById, locationOperationService, newSavedLocation } from './services';
 
@@ -86,6 +82,7 @@ function* locationOperationByIdEffect({ payload }) {
 function* callSavedLoctionEffect({ payload }) {
     yield call(startListener, payload);
 }
+
 export default function* actionWatcher() {
     yield takeEvery(TYPES.DELETE_SAVED_LOCATION, deleteLocationsByIdEffect);
     yield takeEvery(TYPES.NEW_SAVED_LOCATION, createNewLocationEffect);
