@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Steps, Button, Icon } from 'antd';
+import { Steps, Icon } from 'antd';
+
 import UploadVideo from './UploadVideo';
 import SummaryPayment from './SummaryPayment';
 import SelectLocation from './SelectLocation';
 import ScheduleCampaign from './ScheduleCampaign';
-import { next } from '../actions';
-import { NEXT } from '../constants';
+
 import { getCommercial } from '../../commercials/actions';
 import { getSavedLocations } from '../../savedLocations/actions';
 
@@ -42,6 +42,7 @@ const NewCampaigns = () => {
         dispatch(getCommercial());
         dispatch(getSavedLocations({ userId }));
     }, [dispatch, userId]);
+
     return (
         <>
             <Steps current={current}>

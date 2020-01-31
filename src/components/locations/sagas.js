@@ -1,8 +1,10 @@
 import { takeEvery, call, put, fork, take } from 'redux-saga/effects';
 import { eventChannel as EventChannel } from 'redux-saga';
+
 import * as TYPES from './actionType';
 import { setLocation, loadingLocation } from './actions';
 import { postNewLocation } from './services';
+
 import { openNotification } from '../utils/functions';
 import { firebaseLocations } from '../utils/firebase';
 

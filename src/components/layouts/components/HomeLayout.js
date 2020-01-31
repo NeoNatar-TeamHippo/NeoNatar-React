@@ -1,6 +1,7 @@
 import React from 'react';
 import { Layout } from 'antd';
 import { withRouter } from 'react-router-dom';
+
 import NavHeader from './Header';
 import FooterComponent from './Footer';
 

@@ -30,7 +30,6 @@ export const ADMIN_SIDE_MENU_ITEMS = [
     { iconType: 'sound', label: 'Campaigns', link: '/dashboard/campaigns' },
     { iconType: 'credit-card', label: 'Tickets', link: '/dashboard/tickets' },
     { iconType: 'team', label: 'Users' },
-    // { iconType: 'user', label: 'Staff' },
 ];
 
 /** @constant */

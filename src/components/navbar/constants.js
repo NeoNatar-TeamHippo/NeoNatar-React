@@ -17,6 +17,6 @@ export const SETTINGS = 'Settings';
 /** @constant */
 export const TRANSACTIONS = 'Transactions';
 
-/** @constant */
 const baseUrl = 'https://europe-west1-neonatar.cloudfunctions.net/api';
+/** @constant */
 export const USER_PROFILE = `${baseUrl}/v1/auth`;

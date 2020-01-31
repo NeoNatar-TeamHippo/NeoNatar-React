@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Tag, Table, Menu, Typography, Tooltip, Button } from 'antd';
 import ReactHtmlParser from 'react-html-parser';
+
 import { getCampaigns } from '../actions';
 import { ALL, PENDING, APPROVE, HORIZONTAL, NAIRASIGN, DISAPPROVED } from '../constants';
+
 import { statusColor } from '../../utils/functions';
 
 const menuItems = [ALL, PENDING, APPROVE, DISAPPROVED];
@@ -160,4 +162,3 @@ const Campaigns = ({ history }) => {
 };
 
 export default Campaigns;
-

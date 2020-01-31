@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Row, Col, Select, Tabs, Button, Typography, Input, message, Tooltip } from 'antd';
-import CommercialForm from '../../commercials/components/CommercialForm';
+
 import { setVideoDetails, next, setCommercialId, setDuration, resetFormState } from '../actions';
-import { getCommercial } from '../../commercials/actions';
 import { PROCEED, VIEW, CHOOSE_A_TITLE, CHOOSE_PREVIOUS_VIDEO } from '../constants';
+
+import CommercialForm from '../../commercials/components/CommercialForm';
+import { getCommercial } from '../../commercials/actions';
+
 import VIDEO_SVG from '../../../images/svgs/undraw_video_streaming_yyld.svg';
 
 const { TabPane } = Tabs;
@@ -80,9 +83,14 @@ const UploadVideo = () => {
             </Tooltip>
         </div>
     );
+
     return (
         <div className="my-4 container">
-            <Row type="flex" justify="space-between" gutter={[{ lg: 32, md: 24, sm: 16, xs: 8 }, 20]}>
+            <Row
+                type="flex"
+                justify="space-between"
+                gutter={[{ lg: 32, md: 24, sm: 16, xs: 8 }, 20]}
+            >
                 <Col xs={24} lg={12}>
                     <Row type="flex" justify="center">
                         <Col span={18}>
@@ -147,4 +155,5 @@ const UploadVideo = () => {
         </div>
     );
 };
+
 export default UploadVideo;
