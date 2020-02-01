@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Row, Col, Divider, Typography, Icon } from 'antd';
+import { Button, Carousel, Row, Col, Divider, Typography, Icon } from 'antd';
 import { NavLink } from 'react-router-dom';
 
 import LandingCarousel from './LandingCarousel';
@@ -11,7 +11,9 @@ import {
     EXPLAINERS_TITLE,
     HALF_LANDING_ITEMS,
     SIGNUP_NOW,
-    EXPLAINER_ITEMS
+    EXPLAINER_ITEMS,
+    TESTIMONIALS,
+    TESTIMONIAL_ITEMS
 } from '../constants';
 
 import layouts from '../../layouts';
@@ -40,6 +42,22 @@ const Home = () => {
             <li key={key} className="half-landing-div">
                 <p>{description}</p>
             </li>
+        )));
+
+    const testimonialItems = items => (
+        items.map(({ company, name, testimonial }) => (
+            <Row key={name} type="flex" align="middle">
+                <Col span={12}>
+                    <span className="testimonial-id">
+                        <Title level={2}>{name}</Title>
+                        <Divider type="vertical" className="testimonial-divider" />
+                        <Title level={3}>{company}</Title>
+                    </span>
+                </Col>
+                <Col span={12}>
+                    <Title level={3} className="testimonial-text">{testimonial}</Title>
+                </Col>
+            </Row>
         )));
 
     return (
@@ -90,8 +108,15 @@ const Home = () => {
                         />
                     </Col>
                 </Row>
+                <div className="section-four">
+                    <Title className="home-page-text">{TESTIMONIALS}</Title>
+                    <Carousel autoplay>
+                        {testimonialItems(TESTIMONIAL_ITEMS)}
+                    </Carousel>
+                </div>
             </div>
         </HomeLayout>
     );
 };
+
 export default Home;
