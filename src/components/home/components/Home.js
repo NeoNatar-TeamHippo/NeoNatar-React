@@ -1,7 +1,11 @@
 import React from 'react';
 import { Row, Col, Divider, Typography } from 'antd';
 
-import { DUMMY_TITLE, DUMMY_DESCRIPTION, LANDING_TITLE, LANDING_DESCRIPTION } from '../constants';
+import LandingCarousel from './LandingCarousel';
+
+import {
+    DUMMY_TITLE, DUMMY_DESCRIPTION, LANDING_TITLE, LANDING_DESCRIPTION, HALF_LANDING_TITLE
+} from '../constants';
 
 import layouts from '../../layouts';
 
@@ -27,10 +31,10 @@ const Home = () => (
             </Row>
             <Row type="flex" align="middle" className="section-two">
                 <Col span={12}>
-                    <img src={screen} alt="illustration" className="home-page-text screen-image" />
+                    <LandingCarousel className="home-page-text screen-image" />
                 </Col>
                 <Col span={12}>
-                    <Title className="home-page-text">{DUMMY_TITLE}</Title>
+                    <Title className="home-page-title">{HALF_LANDING_TITLE}</Title>
                     <Title className="home-page-text" type="secondary" level={4}>
                         {DUMMY_DESCRIPTION}
                     </Title>

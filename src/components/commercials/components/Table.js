@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Tooltip, Button, Table, Modal } from 'antd';
+import { Tooltip, Button, Divider, Table, Modal } from 'antd';
 
 import ViewCommercial from './ViewCommercial';
 
@@ -49,6 +49,7 @@ const CommercialTable = () => {
                             icon="eye"
                         />
                     </Tooltip>
+                    <Divider type="vertical" />
                     <Tooltip placement="top" title="Delete Video">
                         <Button
                             onClick={() => { showDeleteConfirm(record.id); }}
