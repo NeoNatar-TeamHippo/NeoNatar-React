@@ -32,10 +32,12 @@ const NavHeader = () => {
         <SubMenu
             key="sub1"
             title={(
-                <span>
-                    {navLoading ? (<Avatar src={UserLogo} />)
-                        : (<Avatar src={user.avatar} />)}
-                </span>
+                <NavLink to="/dashboard">
+                    <span>
+                        {navLoading ? (<Avatar src={UserLogo} />)
+                            : (<Avatar src={user.avatar} />)}
+                    </span>
+                </NavLink>
                 )}
         >
             <Item key="transactions">
