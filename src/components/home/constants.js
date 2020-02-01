@@ -6,17 +6,17 @@ import campaign from '../../images/svgs/undraw_order_confirmed_1m3v.svg';
 /** @constant */
 export const SIGNIN = 'Sign In';
 /** @constant */
+export const SIGNUP_NOW = 'Signup now';
+/** @constant */
 export const SIGNUP = 'Sign Up';
 /** @constant */
 export const CARD_SUBTITLE = 'Please choose an action below';
 /** @constant */
-export const DUMMY_TITLE = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit';
-/** @constant */
 export const LANDING_TITLE = 'Put your content and ads in front of Restaurant traffic';
 /** @constant */
-export const HALF_LANDING_TITLE = 'Get your business out';
+export const EXPLAINERS_TITLE = 'Get your business out';
 /** @constant */
-export const EXPLAINERS_TITLE = 'Why choose us?';
+export const HALF_LANDING_TITLE = 'Why choose us?';
 /** @constant */
 export const LANDING_DESCRIPTION = 'We are expanding into secure indoor locations with very high traffic or gathering, such as: restaurants, supermarkets, covered pavilions, football houses.';
 /** @constant */
@@ -62,5 +62,25 @@ export const HALF_LANDING_ITEMS = [
         description: 'Track the performance of your ads with custom coupon.',
         iconType: 'check-circle',
         title: 'Analytics',
+    },
+];
+
+/** @constant */
+export const EXPLAINER_ITEMS = [
+    {
+        description: 'Video ads have 800% more engagement than graphics.',
+        key: 1,
+    },
+    {
+        description: 'We show your video ads at restaurants with very high traffic.',
+        key: 2,
+    },
+    {
+        description: 'We show content along side, to ensure people stay glued to your Ads',
+        key: 3,
+    },
+    {
+        description: 'You can advertise for as low as 1 location for 1 day, if that is what you can afford.',
+        key: 4,
     },
 ];

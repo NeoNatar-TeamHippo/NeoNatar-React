@@ -3,6 +3,13 @@
     width: 20%;
 }
 
+.ant-btn-primary.half-landing-button {
+    height: auto;
+}
+.half-landing-button{
+    float: right;
+    margin-right: 50px;
+}
 .section-one{
     background-color: #FDF0F7;
     height: 500px;
@@ -34,11 +41,6 @@
 
 .screen-image{
     height: 400px;
-}
-
-.home-page-title{
-    margin-left: 20px;
-    text-transform: uppercase;
 }
 
 .card-carousel {

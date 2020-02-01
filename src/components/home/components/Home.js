@@ -1,15 +1,17 @@
 import React from 'react';
-import { Row, Col, Divider, Typography, Icon } from 'antd';
+import { Button, Row, Col, Divider, Typography, Icon } from 'antd';
+import { NavLink } from 'react-router-dom';
 
 import LandingCarousel from './LandingCarousel';
 
 import {
-    DUMMY_DESCRIPTION,
     LANDING_TITLE,
     LANDING_DESCRIPTION,
     HALF_LANDING_TITLE,
     EXPLAINERS_TITLE,
-    HALF_LANDING_ITEMS
+    HALF_LANDING_ITEMS,
+    SIGNUP_NOW,
+    EXPLAINER_ITEMS
 } from '../constants';
 
 import layouts from '../../layouts';
@@ -33,12 +35,19 @@ const Home = () => {
             </div>
         )));
 
+    const explainerItems = items => (
+        items.map(({ description, key }) => (
+            <li key={key} className="half-landing-div">
+                <p>{description}</p>
+            </li>
+        )));
+
     return (
         <HomeLayout>
             <div className="landing-class">
                 <Row type="flex" align="middle" className="section-one">
                     <Col span={12}>
-                        <Title className="home-page-title">{LANDING_TITLE}</Title>
+                        <Title className="home-page-text">{LANDING_TITLE}</Title>
                         <Title className="home-page-text" type="secondary" level={4}>
                             {LANDING_DESCRIPTION}
                         </Title>
@@ -56,17 +65,22 @@ const Home = () => {
                         <LandingCarousel className="screen-image" />
                     </Col>
                     <Col span={12}>
-                        <Title className="home-page-title">{HALF_LANDING_TITLE}</Title>
+                        <Title>{EXPLAINERS_TITLE}</Title>
                         {halfLandingItems(HALF_LANDING_ITEMS)}
+                        <Button className="half-landing-button" type="primary">
+                            <NavLink to="/signup">
+                                <Title level={2}>{SIGNUP_NOW}</Title>
+                            </NavLink>
+                        </Button>
                     </Col>
                 </Row>
                 <Divider />
                 <Row type="flex" align="middle" className="section-three">
                     <Col span={12}>
-                        <Title className="home-page-title">{EXPLAINERS_TITLE}</Title>
-                        <Title className="home-page-text" type="secondary" level={4}>
-                            {DUMMY_DESCRIPTION}
-                        </Title>
+                        <Title className="home-page-text">{HALF_LANDING_TITLE}</Title>
+                        <ul>
+                            {explainerItems(EXPLAINER_ITEMS)}
+                        </ul>
                     </Col>
                     <Col span={12}>
                         <img
