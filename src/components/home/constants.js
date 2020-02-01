@@ -36,3 +36,31 @@ export const IMAGES = [
         key: 3,
     },
 ];
+/** @constant */
+export const HALF_LANDING_ITEMS = [
+    {
+        description: 'Create, upload and manage campaign videos from your mobile phone.',
+        iconType: 'check-circle',
+        title: 'Convenience',
+    },
+    {
+        description: 'Target specific restaurant locations.',
+        iconType: 'check-circle',
+        title: 'Targeting',
+    },
+    {
+        description: 'Advertise at 1 location or all location with few clicks.',
+        iconType: 'check-circle',
+        title: 'Reach',
+    },
+    {
+        description: 'Advertise at N45 per day per location (promo).',
+        iconType: 'check-circle',
+        title: 'Cost',
+    },
+    {
+        description: 'Track the performance of your ads with custom coupon.',
+        iconType: 'check-circle',
+        title: 'Analytics',
+    },
+];

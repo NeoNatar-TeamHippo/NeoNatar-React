@@ -17,7 +17,7 @@ const LandingCarousel = () => {
     ));
     return (
         <Card
-            hoverable
+            hoverable={false}
             bordered={false}
             className="w-100 home-page-section"
             cover={(
