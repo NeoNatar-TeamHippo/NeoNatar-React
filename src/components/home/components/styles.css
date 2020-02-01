@@ -13,6 +13,10 @@
 .home-page-text {
     margin-left: 20px;
 }
+.home-page-section {
+    margin-left: 20px;
+    margin-right: 100px;
+}
 
 .landing-class {
     margin-top: 70px;
@@ -26,6 +30,10 @@
     text-transform: uppercase;
 }
 
+.card-carousel {
+    height: 350px;
+    margin-top: 20px;
+}
 @media(max-width: 767px) {
     .hide-image-container {
         display: none;
