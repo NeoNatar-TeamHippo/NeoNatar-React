@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Card, Row, Col, Button, Icon, Typography } from 'antd';
+
 import LocationList from './LocationList';
 
 const SaveLocationById = ({ match, history }) => {
@@ -24,6 +25,7 @@ const SaveLocationById = ({ match, history }) => {
             }
         });
     }, [locations, savedLocationId, savedLocations]);
+
     return (
         <div className="card_background">
             <Row className="d-sm-flex justify-content-sm-center">
@@ -54,4 +56,5 @@ const SaveLocationById = ({ match, history }) => {
         </div>
     );
 };
+
 export default SaveLocationById;

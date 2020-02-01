@@ -12,6 +12,7 @@ export const allTickets = async () => {
     };
     const response = await fetch(TICKET_URL, parameters);
     const data = await response.json();
+
     return data;
 };
 
@@ -27,6 +28,7 @@ export const postTicket = async payload => {
     };
     const response = await fetch(TICKET_URL, parameters);
     const data = await response.json();
+
     return data;
 };
 
@@ -42,6 +44,7 @@ export const ticketById = async id => {
     };
     const response = await fetch(`${TICKET_URL}/${id}`, parameters);
     const data = await response.json();
+
     return data;
 };
 
@@ -58,6 +61,7 @@ export const postTicketMessages = async payload => {
     };
     const response = await fetch(`${TICKET_URL}/${id}`, parameters);
     const data = await response.json();
+
     return data;
 };
 
@@ -70,6 +74,7 @@ export const markTicketAsResolved = id => {
         },
         method: 'PATCH',
     };
+
     return fetch(`${TICKET_URL}/${id}`, parameters)
         .then(response => response.json())
         .then(json => json);

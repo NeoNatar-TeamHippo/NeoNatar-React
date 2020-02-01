@@ -29,7 +29,10 @@ export const VIEW_ALL = 'View all';
 
 /** @constant */
 export const CREATE_NEW_TASK = 'Create New Tasks';
+/** @constant */
 export const CREATE_TASKS = 'Create Tasks';
+/** @constant */
 export const CREATE_TODO = 'Tasks to be accomplished can be stored here!!';
+/** @constant */
 export const NO_UNRESOLVED = 'Hey great work team!, No compliant from our customers';
 

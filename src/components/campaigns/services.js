@@ -12,6 +12,7 @@ export const allCampaigns = async () => {
     };
     const response = await fetch(CAMPAIGN_URL, parameters);
     const data = await response.json();
+
     return data;
 };
 
@@ -27,6 +28,7 @@ export const campaignById = async id => {
     };
     const response = await fetch(`${CAMPAIGN_URL}/${id}`, parameters);
     const data = await response.json();
+
     return data;
 };
 
@@ -43,6 +45,7 @@ export const createCampaigns = async value => {
     };
     const response = await fetch(CAMPAIGN_URL, parameters);
     const data = await response.json();
+
     return data;
 };
 
@@ -58,6 +61,7 @@ export const approveCampaigns = async id => {
     };
     const response = await fetch(`${CAMPAIGN_URL}/${id}/approved`, parameters);
     const data = await response.json();
+
     return data;
 };
 
@@ -75,5 +79,6 @@ export const disapproveCampaigns = async payload => {
     };
     const response = await fetch(`${CAMPAIGN_URL}/${campaignId}/disapproved`, parameters);
     const data = await response.json();
+
     return data;
 };

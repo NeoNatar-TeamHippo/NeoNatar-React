@@ -9,6 +9,7 @@ import * as TYPES from './actionType';
 export const loadingLocation = () => ({
     type: TYPES.LOADING_LOCATION,
 });
+
 /**
  * Triggers request to set LOCATION
  *

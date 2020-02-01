@@ -40,10 +40,12 @@ const Dashboard = props => {
     ];
     const renderRoutes = routeComponent => routeComponent.map(route => {
         const { path: routePath, component } = route;
+
         return (
             <Route key={routePath} path={routePath} exact strict component={component} />
         );
     });
+
     return (
         <DashboardLayout>
             <Switch>

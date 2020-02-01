@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-    Row, Col, Avatar, Tooltip, Comment, Form, Button, List, Input,
-    Typography, Icon
+    Row, Col, Avatar, Tooltip, Comment, Form, Button, List, Input, Typography, Icon
 } from 'antd';
 import moment from 'moment';
+
 import { getTicketsById, postTicketMessage, resolveTicket, updateTicketMessage } from '../actions';
 import { ADDCOMMENT, MARKED_AS_RESOLVED, IS_RESOLVED } from '../constants';
 
@@ -46,12 +46,14 @@ const ViewTicket = ({ match, form }) => {
             </Tooltip>
         </span>,
     ];
+    const listClass = param => `d-flex justify-content-${!param ? 'end pl-4' : 'start'}`;
+
     const CommentList = ({ commentValue }) => (
         <List
             dataSource={commentValue}
             itemLayout="horizontal"
             renderItem={item => (
-                <div className={`d-flex justify-content-${!item.isAdmin ? 'end pl-4' : 'start'}`}>
+                <div className={listClass}>
                     <Comment actions={!item.isAdmin ? actions : ''} {...item} />
                 </div>
             )}
@@ -88,6 +90,7 @@ const ViewTicket = ({ match, form }) => {
     const markAsResolved = () => {
         dispatch(resolveTicket(ticketId));
     };
+
     return (
         <Row type="flex" justify="center" align="middle">
             <Col sm={24} md={22} lg={20}>
@@ -158,4 +161,5 @@ const ViewTicket = ({ match, form }) => {
     );
 };
 const WrappedViewTicketForm = Form.create({ name: 'messageForm' })(ViewTicket);
+
 export default WrappedViewTicketForm;

@@ -3,10 +3,10 @@ import { eventChannel as EventChannel } from 'redux-saga';
 
 import * as TYPES from './actionType';
 import {
-    setSavedLocation, loadingSavedLocation,
-    submittingForm, submitedForm, deleteLocationResult
+    setSavedLocation, loadingSavedLocation, submittingForm, submitedForm, deleteLocationResult
 } from './actions';
 import { deleteSavedlocationById, locationOperationService, newSavedLocation } from './services';
+
 import { firebaseSavedLocations } from '../utils/firebase';
 
 function* startListener(payload) {
@@ -15,6 +15,7 @@ function* startListener(payload) {
         firebaseSavedLocations.onSnapshot(snapshot => {
             emitter({ data: snapshot.docs || [] });
         });
+
         return () => {
             firebaseSavedLocations.off();
         };
@@ -81,8 +82,8 @@ function* locationOperationByIdEffect({ payload }) {
 function* callSavedLoctionEffect({ payload }) {
     yield call(startListener, payload);
 }
+
 export default function* actionWatcher() {
-    // yield fork(startListener);
     yield takeEvery(TYPES.DELETE_SAVED_LOCATION, deleteLocationsByIdEffect);
     yield takeEvery(TYPES.NEW_SAVED_LOCATION, createNewLocationEffect);
     yield takeEvery(TYPES.LOCATION_OPERATION, locationOperationByIdEffect);

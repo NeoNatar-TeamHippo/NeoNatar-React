@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Form, Icon, Input } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import { SIGN_IN } from '../constants';
 import { userSignIn, clearErrors } from '../actions';
 
@@ -17,12 +18,13 @@ const SignInForm = ({ form }) => {
                     email: values.email,
                     password: values.password,
                 };
-                dispatch(clearErrors())
+                dispatch(clearErrors());
                 dispatch(userSignIn(formValues));
                 resetFields();
             }
         });
     };
+
     return (
         <Form onSubmit={handleSubmit}>
             <Form.Item hasFeedback>
@@ -55,6 +57,7 @@ const SignInForm = ({ form }) => {
         </Form>
     );
 };
+
 SignInForm.propTypes = {
     form: PropTypes.shape({
         getFieldDecorator: PropTypes.func,
@@ -63,4 +66,5 @@ SignInForm.propTypes = {
     }).isRequired,
 };
 const WrappedNormalSignInForm = Form.create({ name: 'signin' })(SignInForm);
+
 export default WrappedNormalSignInForm;
