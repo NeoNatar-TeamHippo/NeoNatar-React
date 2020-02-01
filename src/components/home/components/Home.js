@@ -1,29 +1,28 @@
 import React from 'react';
 import { Row, Col, Divider, Typography } from 'antd';
 
-import { DUMMY_TITLE, DUMMY_DESCRIPTION } from '../constants';
+import { DUMMY_TITLE, DUMMY_DESCRIPTION, LANDING_TITLE, LANDING_DESCRIPTION } from '../constants';
 
 import layouts from '../../layouts';
 
-import art from '../../../images/office-setting.png';
 import screen from '../../../images/svgs/undraw_composition_oskp.svg';
-import placed from '../../../images/svgs/undraw_right_places_h9n3.svg';
+import placed from '../../../images/svgs/undraw_our_solution_htvp.svg';
 
 const { HomeLayout } = layouts.components;
 const { Title } = Typography;
 
 const Home = () => (
     <HomeLayout>
-        <div>
+        <div className="landing-class">
             <Row type="flex" align="middle" className="section-one">
                 <Col span={12}>
-                    <Title className="home-page-text">{DUMMY_TITLE}</Title>
+                    <Title className="home-page-title">{LANDING_TITLE}</Title>
                     <Title className="home-page-text" type="secondary" level={4}>
-                        {DUMMY_DESCRIPTION}
+                        {LANDING_DESCRIPTION}
                     </Title>
                 </Col>
                 <Col span={12}>
-                    <img src={art} alt="illustration" />
+                    <img src={screen} alt="illustration" className="home-page-text screen-image" />
                 </Col>
             </Row>
             <Row type="flex" align="middle" className="section-two">

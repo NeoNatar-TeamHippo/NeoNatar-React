@@ -47,8 +47,7 @@ const NavHeader = () => {
                     : (
                         <Menu className="right-nav" mode="horizontal">
                             {
-                                authenticated ? userIcon()
-                                    : renderMenuItem(location)
+                                renderMenuItem(location)
                             }
                         </Menu>
                     )

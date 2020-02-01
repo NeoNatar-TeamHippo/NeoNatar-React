@@ -10,13 +10,22 @@
 .section-two, .section-three{
     height: 500px;
 }
-.home-page-text{
+.home-page-text {
     margin-left: 20px;
 }
 
+.landing-class {
+    margin-top: 70px;
+}
 .screen-image{
     height: 400px;
 }
+
+.home-page-title{
+    margin-left: 20px;
+    text-transform: uppercase;
+}
+
 @media(max-width: 767px) {
     .hide-image-container {
         display: none;
