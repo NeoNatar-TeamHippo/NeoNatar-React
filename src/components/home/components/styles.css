@@ -2,6 +2,14 @@
     margin-left: 50px;
     width: 20%;
 }
+
+.ant-btn-primary.half-landing-button {
+    height: auto;
+}
+.half-landing-button{
+    float: right;
+    margin-right: 50px;
+}
 .section-one{
     background-color: #FDF0F7;
     height: 500px;
@@ -10,13 +18,36 @@
 .section-two, .section-three{
     height: 500px;
 }
-.home-page-text{
+
+.home-page-text {
     margin-left: 20px;
+}
+
+.half-landing-text, .half-landing-div {
+    margin-left: 5px;
+}
+
+.half-landing-div {
+    margin-bottom: 5px;
+}
+.home-page-section {
+    margin-left: 20px;
+    margin-right: 100px;
+}
+
+.landing-class {
+    margin-top: 70px;
 }
 
 .screen-image{
     height: 400px;
 }
+
+.card-carousel {
+    height: 350px;
+    margin-top: 20px;
+}
+
 @media(max-width: 767px) {
     .hide-image-container {
         display: none;

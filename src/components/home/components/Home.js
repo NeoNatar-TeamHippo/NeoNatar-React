@@ -1,56 +1,97 @@
 import React from 'react';
-import { Row, Col, Divider, Typography } from 'antd';
+import { Button, Row, Col, Divider, Typography, Icon } from 'antd';
+import { NavLink } from 'react-router-dom';
 
-import { DUMMY_TITLE, DUMMY_DESCRIPTION } from '../constants';
+import LandingCarousel from './LandingCarousel';
+
+import {
+    LANDING_TITLE,
+    LANDING_DESCRIPTION,
+    HALF_LANDING_TITLE,
+    EXPLAINERS_TITLE,
+    HALF_LANDING_ITEMS,
+    SIGNUP_NOW,
+    EXPLAINER_ITEMS
+} from '../constants';
 
 import layouts from '../../layouts';
 
-import art from '../../../images/office-setting.png';
 import screen from '../../../images/svgs/undraw_composition_oskp.svg';
-import placed from '../../../images/svgs/undraw_right_places_h9n3.svg';
+import solution from '../../../images/svgs/undraw_our_solution_htvp.svg';
 
 const { HomeLayout } = layouts.components;
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
-const Home = () => (
-    <HomeLayout>
-        <div>
-            <Row type="flex" align="middle" className="section-one">
-                <Col span={12}>
-                    <Title className="home-page-text">{DUMMY_TITLE}</Title>
-                    <Title className="home-page-text" type="secondary" level={4}>
-                        {DUMMY_DESCRIPTION}
-                    </Title>
-                </Col>
-                <Col span={12}>
-                    <img src={art} alt="illustration" />
-                </Col>
-            </Row>
-            <Row type="flex" align="middle" className="section-two">
-                <Col span={12}>
-                    <img src={screen} alt="illustration" className="home-page-text screen-image" />
-                </Col>
-                <Col span={12}>
-                    <Title className="home-page-text">{DUMMY_TITLE}</Title>
-                    <Title className="home-page-text" type="secondary" level={4}>
-                        {DUMMY_DESCRIPTION}
-                    </Title>
-                </Col>
-            </Row>
-            <Divider />
-            <Row type="flex" align="middle" className="section-three">
-                <Col span={12}>
-                    <Title className="home-page-text">{DUMMY_TITLE}</Title>
-                    <Title className="home-page-text" type="secondary" level={4}>
-                        {DUMMY_DESCRIPTION}
-                    </Title>
-                </Col>
-                <Col span={12}>
-                    <img src={placed} alt="illustration" className="screen-image" />
-                </Col>
-            </Row>
-        </div>
-    </HomeLayout>
-);
+const Home = () => {
+    const halfLandingItems = items => (
+        items.map(({ description, iconType, title }) => (
+            <div key={title} className="half-landing-div">
+                <Icon type={iconType} theme="twoTone" twoToneColor="#c41d7f" />
+                <span className="half-landing-text">
+                    {title}
+                </span>
+                <br />
+                <Text>{description}</Text>
+            </div>
+        )));
 
+    const explainerItems = items => (
+        items.map(({ description, key }) => (
+            <li key={key} className="half-landing-div">
+                <p>{description}</p>
+            </li>
+        )));
+
+    return (
+        <HomeLayout>
+            <div className="landing-class">
+                <Row type="flex" align="middle" className="section-one">
+                    <Col span={12}>
+                        <Title className="home-page-text">{LANDING_TITLE}</Title>
+                        <Title className="home-page-text" type="secondary" level={4}>
+                            {LANDING_DESCRIPTION}
+                        </Title>
+                    </Col>
+                    <Col span={12}>
+                        <img
+                            src={screen}
+                            alt="illustration"
+                            className="home-page-text screen-image"
+                        />
+                    </Col>
+                </Row>
+                <Row type="flex" align="middle" className="section-two">
+                    <Col span={12}>
+                        <LandingCarousel className="screen-image" />
+                    </Col>
+                    <Col span={12}>
+                        <Title>{EXPLAINERS_TITLE}</Title>
+                        {halfLandingItems(HALF_LANDING_ITEMS)}
+                        <Button className="half-landing-button" type="primary">
+                            <NavLink to="/signup">
+                                <Title level={2}>{SIGNUP_NOW}</Title>
+                            </NavLink>
+                        </Button>
+                    </Col>
+                </Row>
+                <Divider />
+                <Row type="flex" align="middle" className="section-three">
+                    <Col span={12}>
+                        <Title className="home-page-text">{HALF_LANDING_TITLE}</Title>
+                        <ul>
+                            {explainerItems(EXPLAINER_ITEMS)}
+                        </ul>
+                    </Col>
+                    <Col span={12}>
+                        <img
+                            src={solution}
+                            alt="illustration"
+                            className="home-page-text screen-image"
+                        />
+                    </Col>
+                </Row>
+            </div>
+        </HomeLayout>
+    );
+};
 export default Home;
