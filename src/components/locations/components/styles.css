@@ -7,13 +7,6 @@
     border-radius: 4px;
 }
 
-.card_background {
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
 .avatar-uploader>.ant-upload {
     width: 128px;
     height: 128px;
