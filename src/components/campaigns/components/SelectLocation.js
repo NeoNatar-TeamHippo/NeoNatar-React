@@ -155,12 +155,14 @@ const SelectLocation = () => {
     };
     const rendersavedLocations = () => savedLocations.map(savedLocation => (
         <Option key={savedLocation.savedLocationId} value={savedLocation.locations}>
-            <div className="d-flex justify-content-between">
-                <Typography.Text>{savedLocation.title}</Typography.Text>
-                <Typography.Text className="ml-2" type="secondary">
-                    {savedLocation.locations ? savedLocation.locations.length : 0}
-                </Typography.Text>
-            </div>
+            {savedLocation.locations && savedLocation.locations.length !== 0 ? (
+                <div className="d-flex justify-content-between">
+                    <Typography.Text>{savedLocation.title}</Typography.Text>
+                    <Typography.Text className="ml-2" type="secondary">
+                        {savedLocation.locations ? savedLocation.locations.length : 0}
+                    </Typography.Text>
+                </div>
+            ) : ''}
         </Option>
     ));
     const hasSelected = selectedRowKeys.length > 0;
@@ -254,7 +256,7 @@ const SelectLocation = () => {
                                 </div>
                             )}
                     </div>
-                    <div className="my-1 d-flex justify-content-between">
+                    <div className="my-2 d-flex justify-content-between">
                         <Button onClick={() => dispatch(prev())}>
                             {PREVIOUS}
                         </Button>
