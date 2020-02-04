@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Tooltip, Button, Table, Modal } from 'antd';
+import { Tooltip, Button, Divider, Table, Modal } from 'antd';
 
 import ViewCommercial from './ViewCommercial';
+
 import { TABLE_VALUES } from '../constants';
 import { getCommercial, removeCommercial } from '../actions';
 
@@ -11,8 +12,15 @@ const CommercialTable = () => {
     const dispatch = useDispatch();
     const { commercials, isCommercialsLoading } = useSelector(state => state.commercials);
     useEffect(() => {
-        dispatch(getCommercial());
+        if (commercials.length === 0) {
+            dispatch(getCommercial());
+        }
     }, [commercials.length, dispatch]);
+
+    const [commercialData, setCommercialData] = useState(commercials);
+    useEffect(() => {
+        setCommercialData(commercials);
+    }, [commercials]);
 
     const showDeleteConfirm = id => {
         Modal.confirm({
@@ -41,6 +49,7 @@ const CommercialTable = () => {
                             icon="eye"
                         />
                     </Tooltip>
+                    <Divider type="vertical" />
                     <Tooltip placement="top" title="Delete Video">
                         <Button
                             onClick={() => { showDeleteConfirm(record.id); }}
@@ -54,6 +63,7 @@ const CommercialTable = () => {
             title: 'Action',
         },
     ];
+
     return (
         <div>
             <ViewCommercial
@@ -65,7 +75,7 @@ const CommercialTable = () => {
             <Table
                 loading={isCommercialsLoading}
                 columns={columns}
-                dataSource={commercials}
+                dataSource={commercialData}
                 rowKey={record => record.id}
                 size="middle"
                 scroll={{ y: 350 }}

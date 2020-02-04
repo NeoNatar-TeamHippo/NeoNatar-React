@@ -4,7 +4,9 @@ import { withRouter } from 'react-router-dom';
 import {
     Icon, Card, Carousel, Row, Col, Button, Typography, Tag, Descriptions, Spin
 } from 'antd';
+
 import { PERWEEK, LOCAL_GOVERNMENT, ADDRESS, STATE, NAIRA } from '../constants';
+
 import { renderRateFormat } from '../../utils/functions';
 
 const LocationById = ({ match, history }) => {
@@ -31,7 +33,7 @@ const LocationById = ({ match, history }) => {
             </span>
         </Typography.Text>
     );
-    const renderImages = locImages => locImages.map((element, i) => (
+    const renderImages = locImages => locImages.map(element => (
         <img
             key={element}
             alt={element}
@@ -44,6 +46,7 @@ const LocationById = ({ match, history }) => {
     ));
     const renderTag = text => {
         const { color } = renderRateFormat(text);
+
         return (
             <Tag color={color}>
                 {text}
@@ -53,6 +56,7 @@ const LocationById = ({ match, history }) => {
     const renderDescription = (Locaddress, Locstate, Loclga) => {
         const column = 2;
         const userObj = [{ key: Locaddress }, { key: Loclga }, { key: Locstate }];
+
         return userObj.map((element, i) => {
             let label = '';
             if (i === 0) {
@@ -62,6 +66,7 @@ const LocationById = ({ match, history }) => {
             } else {
                 label = LOCAL_GOVERNMENT;
             }
+
             return (
                 <Descriptions key={element.key} size="small" column={column}>
                     <Descriptions.Item label={label}>{element.key}</Descriptions.Item>
@@ -69,6 +74,7 @@ const LocationById = ({ match, history }) => {
             );
         });
     };
+
     return (
         <div className="card_background">
             <Row className="d-sm-flex justify-content-sm-center">
@@ -111,4 +117,5 @@ const LocationById = ({ match, history }) => {
         </div>
     );
 };
+
 export default withRouter(LocationById);

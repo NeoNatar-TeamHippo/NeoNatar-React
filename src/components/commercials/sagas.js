@@ -1,34 +1,14 @@
-import { takeEvery, put, call, take, fork, select } from 'redux-saga/effects';
-import { eventChannel as EventChannel } from 'redux-saga';
+import { takeEvery, put, call } from 'redux-saga/effects';
+
 import * as TYPES from './actionTypes';
 import { deleteCommercialRequest, setCommercial, loadingCommercial, setVisible } from './actions';
 import {
     postCommercialService, deleteCommercialById, getCommercialService
 } from './services';
+
 import { openNotification } from '../utils/functions';
 import { next, setVideoDetails, setCommercialId, setDuration } from '../campaigns/actions';
-// import { firebaseCommercials } from '../utils/firebase';
 
-// function* startListener() {
-//     const { user: { userId } } = select(state => state.user);
-//     console.log(userId);
-//     const channel = new EventChannel(emitter => {
-//         firebaseCommercials.onSnapshot(snapshot => {
-//             emitter({ data: snapshot.docs || [] });
-//         });
-//         return () => {
-//             firebaseCommercials.off();
-//         };
-//     });
-
-//     while (true) {
-//         const { data } = yield take(channel);
-//         const commercial = data.map(doc => Object.assign({}, doc.data(), { id: doc.id }));
-//         const newcommercial = commercial.filter(comm => comm.createdBy === userId);
-//         // yield put(setCommercial(newcommercial));
-//         console.log(newcommercial);
-//     }
-// }
 function* requestAllCommercials() {
     try {
         yield put(loadingCommercial());
@@ -68,6 +48,7 @@ function* postNewCommercial({ data, resetFields }) {
         console.error(error);
     }
 }
+
 function* deleteCommercialByIdRequest(id) {
     try {
         yield put(loadingCommercial());
@@ -92,8 +73,8 @@ function* getCommercialEffect({ payload }) {
 function* deleteCommercialEffect({ payload }) {
     yield call(deleteCommercialByIdRequest, payload);
 }
+
 export default function* actionWatcher() {
-    // yield fork(startListener);
     yield takeEvery(TYPES.POST_COMMERCIALS, postCommercialEffect);
     yield takeEvery(TYPES.GET_COMMERCIALS, getCommercialEffect);
     yield takeEvery(TYPES.REMOVE_COMMERCIALS, deleteCommercialEffect);

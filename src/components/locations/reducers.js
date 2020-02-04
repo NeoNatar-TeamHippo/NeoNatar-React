@@ -4,6 +4,7 @@ const initialState = {
     locationLoading: false,
     locations: [],
 };
+
 export default (state = initialState, { type, payload }) => {
     switch (type) {
         case TYPES.LOADING_LOCATION:

@@ -2,13 +2,9 @@ import React from 'react';
 import {
     Row, Col, Form, Button, Modal, Select
 } from 'antd';
+
 import {
-    TITLE,
-    CANCEL,
-    SUBMIT,
-    PLACEHOLDER,
-    OPTIONKEY,
-    VERTICAL
+    TITLE, CANCEL, SUBMIT, PLACEHOLDER, OPTIONKEY, VERTICAL
 } from '../constants';
 
 const { Option } = Select;

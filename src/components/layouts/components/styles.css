@@ -1,7 +1,6 @@
 .content {
     min-height: 80vh;
     background-color: #fff;
-    padding: 0 2%;
 }
 
 header.ant-layout-header {
@@ -17,7 +16,7 @@ aside.ant-layout-sider {
 }
 
 section.ant-layout.ant-layout-has-sider {
-    margin-top: 75px !important;
+    margin-top: 75px;
 }
 
 .center_form {
@@ -58,11 +57,7 @@ section.ant-layout.ant-layout-has-sider {
 }
 
 header.ant-layout-header {
-    padding: 0 20px;
-}
-
-section.ant-layout.ant-layout-has-sider {
-    margin-top: 100px;
+    padding: 0 2%;
 }
 
 aside.ant-layout-sider {

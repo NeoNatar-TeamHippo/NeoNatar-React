@@ -1,5 +1,6 @@
 import { takeEvery, call, put, take, fork } from 'redux-saga/effects';
 import { eventChannel as EventChannel } from 'redux-saga';
+
 import * as TYPES from './actionType';
 import {
     approvingCampaign,
@@ -14,22 +15,16 @@ import {
 import {
     campaignById, approveCampaigns, disapproveCampaigns, createCampaigns
 } from './services';
+
 import { firebaseCampaigns } from '../utils/firebase';
 
 function* getAllCampaignsListener(payload) {
     const { isAdmin, userId } = payload;
     yield put(loadingCampaigns());
     const channel = new EventChannel(emiter => {
-        if (!isAdmin) {
-            firebaseCampaigns.where('createdBy', '==', userId)
-                .orderBy('createdAt', 'desc').onSnapshot(snapshot => {
-                    emiter({ data: snapshot.docs || [] });
-                });
-        } else {
-            firebaseCampaigns.onSnapshot(snapshot => {
-                emiter({ data: snapshot.docs || [] });
-            });
-        }
+        firebaseCampaigns.onSnapshot(snapshot => {
+            emiter({ data: snapshot.docs || [] });
+        });
         return () => {
             firebaseCampaigns.off();
         };
@@ -40,8 +35,12 @@ function* getAllCampaignsListener(payload) {
             ...element.data(),
             campaignId: element.id,
         }));
-        console.log(newData);
-        yield put(setCampaign(newData));
+        let userCampaign;
+        if (isAdmin) userCampaign = newData;
+        if (!isAdmin) {
+            userCampaign = newData.filter(campaign => campaign.createdBy === userId);
+        }
+        yield put(setCampaign(userCampaign));
     }
 }
 function* postNewCampaignWithData(data) {

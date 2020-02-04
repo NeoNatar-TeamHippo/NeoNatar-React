@@ -1,6 +1,7 @@
 import { takeEvery, call, put, take, fork } from 'redux-saga/effects';
 import { eventChannel as EventChannel } from 'redux-saga';
 import moment from 'moment';
+
 import * as TYPES from './actionType';
 import {
     setTicket,
@@ -12,11 +13,7 @@ import {
     loadingTickets,
     resolvingTicket
 } from './actions';
-import {
-    postTicket,
-    postTicketMessages,
-    markTicketAsResolved
-} from './services';
+import { postTicket, postTicketMessages, markTicketAsResolved } from './services';
 
 import { firebaseTickets } from '../utils/firebase';
 
@@ -45,6 +42,7 @@ function* startTicketListener(payload) {
         }));
         const ticketData = newData.map(ticket => {
             const { createdAt, customerName, avatar } = ticket;
+
             return ({
                 customerDetail: { avatar, customerName },
                 date: (new Date(createdAt)).toDateString(),

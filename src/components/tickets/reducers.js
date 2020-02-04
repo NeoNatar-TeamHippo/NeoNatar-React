@@ -7,6 +7,7 @@ const initialState = {
     ticketsById: { messages: [] },
     ticketsLoading: false,
 };
+
 export default (state = initialState, { type, payload }) => {
     switch (type) {
         case TYPES.LOADING_TICKETS:

@@ -2,13 +2,6 @@
     background: #fff;
 }
 
-.card_background {
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
 .steps-content {
     min-height: 50vh;
 }

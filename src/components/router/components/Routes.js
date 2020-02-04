@@ -24,6 +24,7 @@ const { Home } = home.components;
 
 const Routes = () => {
     const { authenticated } = useSelector(state => state.signIn);
+
     return (
         <ConnectedRouter history={history}>
             <ScrollToTop>

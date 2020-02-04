@@ -5,6 +5,7 @@ const initialState = {
     errors: {},
     loading: false,
 };
+
 export default (state = initialState, { type, payload }) => {
     switch (type) {
         case TYPES.SET_AUTHENTICATED:

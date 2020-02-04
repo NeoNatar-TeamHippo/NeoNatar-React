@@ -12,8 +12,10 @@ export const getCommercialService = async () => {
     };
     const response = await fetch(COMMERCIALS_URL, parameters);
     const resData = await response.json();
+
     return resData;
 };
+
 export const postCommercialService = async data => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
@@ -26,8 +28,10 @@ export const postCommercialService = async data => {
     };
     const response = await fetch(COMMERCIALS_URL, parameters);
     const resData = await response.json();
+
     return resData;
 };
+
 export const deleteCommercialById = async id => {
     const token = localStorage.getItem('FBToken');
     const parameters = {
@@ -39,5 +43,6 @@ export const deleteCommercialById = async id => {
     };
     const response = await fetch(`${COMMERCIALS_URL}/${id}`, parameters);
     const resData = await response.json();
+
     return resData;
 };

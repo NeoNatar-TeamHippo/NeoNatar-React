@@ -8,8 +8,10 @@ const Locations = () => {
     useEffect(() => {
         dispatch(getLocations());
     }, [dispatch]);
+
     return (
         <LocationTable />
     );
 };
+
 export default Locations;

@@ -13,6 +13,7 @@ export const GET_SAVED_LOCATIONS = 'GET_SAVED_LOCATIONS';
  * @type {String}
  */
 export const LOADING_SAVED_LOCATION = 'LOADING_SAVED_LOCATION';
+
 /**
  * Fired by the {@link actions.setSavedLocation }
  * action creator.
@@ -28,6 +29,7 @@ export const SET_SAVED_LOCATION = 'SET_SAVED_LOCATION';
  * @type {String}
  */
 export const DELETE_SAVED_LOCATION = 'DELETE_SAVED_LOCATION';
+
 /**
  * Fired by the {@link actions.newSavedLocation }
  * action creator.
@@ -42,6 +44,7 @@ export const NEW_SAVED_LOCATION = 'NEW_SAVED_LOCATION';
  * @type {String}
  */
 export const SAVED_LOCATION_RESULT = 'SAVED_LOCATION_RESULT';
+
 /**
  * Fired by the {@link actions.deleteLocationResult }
  * action creator.
@@ -49,6 +52,7 @@ export const SAVED_LOCATION_RESULT = 'SAVED_LOCATION_RESULT';
  * @type {String}
  */
 export const DELETE_LOCATION_RESULT = 'DELETE_LOCATION_RESULT';
+
 /**
  * Fired by the {@link actions.addLocation }
  * action creator.
@@ -56,6 +60,7 @@ export const DELETE_LOCATION_RESULT = 'DELETE_LOCATION_RESULT';
  * @type {String}
  */
 export const ADD_SAVED_LOCATION = 'ADD_SAVED_LOCATION';
+
 /**
  * Fired by the {@link actions.locationOperation }
  * action creator.
@@ -63,6 +68,7 @@ export const ADD_SAVED_LOCATION = 'ADD_SAVED_LOCATION';
  * @type {String}
  */
 export const LOCATION_OPERATION = 'LOCATION_OPERATION';
+
 /**
  * Fired by the {@link actions.submitForm }
  * action creator.
@@ -70,6 +76,7 @@ export const LOCATION_OPERATION = 'LOCATION_OPERATION';
  * @type {String}
  */
 export const SUBMITTING_FORM = 'SUBMITTING_FORM';
+
 /**
  * Fired by the {@link actions.submitedForm }
  * action creator.

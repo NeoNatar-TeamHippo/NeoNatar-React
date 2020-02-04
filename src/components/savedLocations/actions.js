@@ -9,6 +9,7 @@ import * as TYPES from './actionType';
 export const loadingSavedLocation = () => ({
     type: TYPES.LOADING_SAVED_LOCATION,
 });
+
 /**
  * Triggers request to set SAVED LOCATION
  *
@@ -41,6 +42,7 @@ export const deleteSavedLocationByID = payload => ({
     payload,
     type: TYPES.DELETE_SAVED_LOCATION,
 });
+
 /**
  * Triggers request to add a new saved list
  *
@@ -61,6 +63,7 @@ export const savedLocationResult = payload => ({
     payload,
     type: TYPES.SAVED_LOCATION_RESULT,
 });
+
 /**
  * Triggers request to delete a saved list
  *
@@ -71,6 +74,7 @@ export const deleteLocationResult = payload => ({
     payload,
     type: TYPES.DELETE_LOCATION_RESULT,
 });
+
 /**
  * Triggers request to add a new location list
  *
@@ -81,6 +85,7 @@ export const addLocation = payload => ({
     payload,
     type: TYPES.ADD_SAVED_LOCATION,
 });
+
 /**
  * Triggers request to remove location list
  *
@@ -91,6 +96,7 @@ export const locationOperation = payload => ({
     payload,
     type: TYPES.LOCATION_OPERATION,
 });
+
 /**
  * Triggers request to remove location list
  *
@@ -101,6 +107,7 @@ export const submittingForm = payload => ({
     payload,
     type: TYPES.SUBMITTING_FORM,
 });
+
 /**
  * Triggers request to remove location list
  *

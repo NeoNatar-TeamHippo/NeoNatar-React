@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Button } from 'antd';
-
 import { useSelector, useDispatch } from 'react-redux';
+
 import CommercialForm from './CommercialForm';
 import Table from './Table';
 
@@ -35,4 +35,5 @@ const Commercials = () => {
         </>
     );
 };
+
 export default Commercials;

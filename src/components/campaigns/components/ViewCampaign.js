@@ -7,10 +7,12 @@ import {
 import moment from 'moment';
 import download from 'downloadjs';
 
-import { getCampaignById, approveCampaign, disapproveCampaign } from '../actions';
-import { statusColor } from '../../utils/functions';
 import LocationModal from './LocationModal';
 import DisapprovalModal from './DisapprovalModal';
+
+import { getCampaignById, approveCampaign, disapproveCampaign } from '../actions';
+
+import { statusColor } from '../../utils/functions';
 import {
     LOCATIONS,
     APPROVECAMPAIGN,
@@ -73,6 +75,7 @@ const ViewCampaignWithModal = ({ match, form }) => {
         } else {
             cond = true;
         }
+
         return cond;
     };
     const disapprovedHidden = () => {
@@ -82,6 +85,7 @@ const ViewCampaignWithModal = ({ match, form }) => {
         } else {
             cond = true;
         }
+
         return cond;
     };
     const hidden = () => {
@@ -91,6 +95,7 @@ const ViewCampaignWithModal = ({ match, form }) => {
         } else {
             cond = true;
         }
+
         return cond;
     };
     const downloadHidden = () => {
@@ -100,6 +105,7 @@ const ViewCampaignWithModal = ({ match, form }) => {
         } else {
             cond = true;
         }
+
         return cond;
     };
     const approve = () => {
@@ -138,10 +144,12 @@ const ViewCampaignWithModal = ({ match, form }) => {
         setVisible(false);
     };
 
+    const campaignDuration = `${duration} days`;
     const locationsTag = locations => {
         const selectedLocations = locations.sort();
         if (selectedLocations.length > 3) {
             const locationsShort = selectedLocations.slice(0, 3);
+
             return (
                 <div>
                     {locationsShort.map(location => (
@@ -167,6 +175,7 @@ const ViewCampaignWithModal = ({ match, form }) => {
                 </div>
             );
         }
+
         return (
             <div>
                 {selectedLocations.map(location => (
@@ -238,20 +247,6 @@ const ViewCampaignWithModal = ({ match, form }) => {
                                 </>
 
                             )}
-                            extra={(
-                                <Typography.Text
-                                    className="total_text"
-                                    style={{
-                                        fontSize: '24px', fontWeight: 'bolder',
-                                    }}
-                                    strong
-                                >
-                                    <span className="mr-1">
-                                        {ReactHtmlParser(NAIRASIGN)}
-                                    </span>
-                                    {amount}
-                                </Typography.Text>
-                            )}
                             className="w-100"
                             cover={(
                                 <video
@@ -266,6 +261,7 @@ const ViewCampaignWithModal = ({ match, form }) => {
                                             : commercialUrl}
                                         type="video/mp4"
                                     />
+                                    <track src="campaigns" kind="captions" />
                                 </video>
                             )}
                             actions={[
@@ -321,7 +317,7 @@ const ViewCampaignWithModal = ({ match, form }) => {
                             </Row>
                             <Row>
                                 <Col span={5}>{DURATION}</Col>
-                                <Col span={18} offset={1}>{`${duration} days`}</Col>
+                                <Col span={18} offset={1}>{campaignDuration}</Col>
                             </Row>
                             <div hidden={disapprovedHidden()}>
                                 <Row>

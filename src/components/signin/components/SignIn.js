@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Row, Col, Typography, Button } from 'antd';
+
 import SignInForm from './Form';
+
 import { SIGN_UP, ACCOUNT_TEXT, SIGN_IN } from '../constants';
+
 import layouts from '../../layouts';
 
 const { HomeLayout } = layouts.components;
@@ -32,4 +35,5 @@ const SignIn = () => (
         </div>
     </HomeLayout>
 );
+
 export default SignIn;
