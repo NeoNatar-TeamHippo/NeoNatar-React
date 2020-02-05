@@ -26,7 +26,7 @@ const DashboardLayout = props => {
             </Header>
             <Layout>
                 <Sider
-                    breakpoint="sm"
+                    breakpoint="md"
                     collapsible
                     collapsed={collapsed}
                     onCollapse={onCollapse}
