@@ -229,12 +229,6 @@ const ViewCampaignWithModal = ({ match, form }) => {
                                         </span>
                                         {amount}
                                     </Typography.Text>
-                                    <Tag
-                                        color={statusColor(status)}
-                                        className="ml-3"
-                                    >
-                                        {campaignByIdLoading ? '' : status.toUpperCase()}
-                                    </Tag>
                                 </>
 
                             )}
