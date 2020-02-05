@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Avatar, Button, Tag, Table, Row, Col, Menu, Tooltip } from 'antd';
+import { Avatar, Button, Tag, Table, Row, Col, Menu, Tooltip, Typography } from 'antd';
 
 import CreateTickets from './CreateTickets';
 
@@ -59,9 +59,9 @@ const Tickets = ({ history }) => {
             dataIndex: 'customerDetail',
             key: 'customerDetail',
             render: customerDetail => (
-                <div className="customer-profile">
+                <div>
                     <Avatar src={customerDetail.avatar} />
-                    <p style={{ marginLeft: '25px' }}>{customerDetail.customerName}</p>
+                    <Typography.Text className="ml-3">{customerDetail.customerName}</Typography.Text>
                 </div>
             ),
             title: 'Customer Profile',
