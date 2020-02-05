@@ -10,11 +10,13 @@ import { NAIRASIGN } from '../../campaigns/constants';
 const TransactionsTable = () => {
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(requestTransactions());
-    }, [dispatch]);
-
     const { transactions, isTransactionsLoading } = useSelector(state => state.transactions);
+
+    useEffect(() => {
+        if (transactions.length === 0) {
+            dispatch(requestTransactions());
+        }
+    }, [dispatch, transactions.length]);
 
     const columns = [
         {
