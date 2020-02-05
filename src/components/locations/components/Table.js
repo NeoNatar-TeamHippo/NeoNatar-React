@@ -255,6 +255,9 @@ const LocationTable = ({ history }) => {
         <>
             <div className="d-flex justify-content-end">
                 <div hidden={isAdmin}>
+                    <span className="mr-3">
+                        {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
+                    </span>
                     <Dropdown disabled={noSavedLoc || !hasSelected} overlay={menu2}>
                         <Button
                             className="my-2"
@@ -266,9 +269,6 @@ const LocationTable = ({ history }) => {
                             <Icon type="down" />
                         </Button>
                     </Dropdown>
-                    <span className="ml-3">
-                        {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
-                    </span>
                 </div>
                 <Button
                     className="my-2"

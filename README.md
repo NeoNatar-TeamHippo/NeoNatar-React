@@ -1,78 +1,121 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-## How to start the server
+# NeoNatar Frontend
 
-```bash
-# Run this line if it's the first time you try to build
-npm i
+NeoNatar is an advertisement management platform where advertisers can create a campaign and after proper validation its been sent to pipul tv to be displayed across our locations selected.
 
-```
-## Link to firebase
+## Table of Contents
 
-[neonatar](https://neonatar.firebaseapp.com/).
+- [Technologies](#technologies)
+- [Features](#features)
+- [API Endpoints](#api-endpoints)
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
+  - [Testing](#testing)
+  - [Development](#development) -[Acknowledgement](#acknowledgement)
 
-## Available Scripts
+## Technologies
 
-In the project directory, you can run:
+- [NodeJS](https://nodejs.org/) - Runtime Environment
+- [ExpressJs](https://expressjs.com/) - Web Application Framework
+- [NPM](https://www.npmjs.com/) - Dependency Manager
+- [Firebase](https://firebase.google.com//) - Firebase helps mobile and web app teams succeed
+- [Postman](https://www.postman.com/) - Api testing anf documentation
 
-### `yarn start`
+### Trello
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Project is currently being built with the Project Management Tool, Trello.
+You can find the template at [https://trello.com/b/h1ttxJgm/team-hippo-board](https://trello.com/b/h1ttxJgm/team-hippo-board)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Firebase and Serverless
 
-### `yarn test`
+The entire application was done with firebase to utilize the power of a serverless architecture provided out of the box. [Project Firebase Url](https://neonatar.firebaseapp.com/)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Documentation
 
-### `yarn build`
+Documentation was done with Postman, tapping it its new feature of quick documentation alongside testing apis. [Api Documentation](https://www.getpostman.com/collections/6b16b11fdc18e341e593)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Requirements
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- Node.js v8.x or higher
+- npm
+- A Complete Firebase account set up.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Supporting Packages
 
-### `yarn eject`
+#### Linter(s)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- [ESLint](https://eslint.org/) - Linter Tool to adhere to standards using eslint:recommended and eslint:promise plugin.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Features
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Users
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- User can sign up and sign in.
+- User can change profile picture and update profile.
+- User can view profile and logout.
+- User can create a campaign and view all campaigns created by him.
+- User can view, delete or update a single campaign.
+- User can create a commercial and view all commercials created by him.
+- User can view, delete or update a single campaign.
+- User can view all locations or single location.
+- User can get notifications from new locations, commercials and campaigns created and can mark as read.
+- User can create a saved location list, update, delete, view list.
+- User can add or remove locations from the saved list.
+- User can create tickets, retrieve all and single tickets created by them.
+- User can view all transactions created automatically after a successful campaign is being created.
 
-## Learn More
+### Admin
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- User(admin) can create a staff member.
+- User(admin) can view all staffs created.
+- User(admin) can view a single staff created
+- User(admin) can activate and deactivate a staff
+- User(admin) can approve and disapprove a campaign
+- User(admin) can view all campaigns and commercials.
+- User(admin) can create, update or delete a location.
+- User(admin) can mark a ticket as resolved.
+- User(admin) can mark a transaction as invalid
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## API Endpoints
 
-### Code Splitting
+For all endpoints documentation please visit [Api Documentation](https://www.getpostman.com/collections/6b16b11fdc18e341e593).
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Getting Started
 
-### Analyzing the Bundle Size
+### Installation
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+- git clone
+  [NeoNatar-Backend-Service](https://github.com/NeoNatar-TeamHippo/NeoNatar-Backend-Service.git)
+- Run - `cd functions` to navigate to the functions folder
+- Run - `npm install` to install packages
+- Run - `npm run serve` to start the project locally.
+- Run npm start to start the server for production
+- Navigate to [localhost:8080](http://localhost:8080/) in browser to access the
+  application
 
-### Making a Progressive Web App
+**NOTE:**
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+- Create a `.env` file configuration following the `.sample.env`.
+- An internet connection is needed
 
-### Advanced Configuration
+### Testing
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+#### Prerequisites
 
-### Deployment
+- [Postman](https://getpostman.com/) - API Toolchain
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+#### Testing with Postman
 
-### `yarn build` fails to minify
+- After installing as shown above
+- Navigate to [localhost:5000](http://localhost:5000/) in
+  [Postman](https://getpostman.com/) to access the application
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Development
+
+You can use `control c` to stop the server.
+
+## Acknowledgement
+
+- [Busboy](https://www.busboy.com/) - Handle file upload
+- [Cloudinary](https://www.cloudinary.com/) - Image and video storage
+- [Http-Status-Code](https://www.npmjs.com/package/http-status-codes) - Utilize appriopriate http codes
+- [Nodemailer](https://www.npmjs.com/package/Nodemailers) - Email messaging service.

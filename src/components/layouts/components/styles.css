@@ -23,10 +23,6 @@ section.ant-layout.ant-layout-has-sider {
     margin: auto;
 }
 
-.side-menu-item {
-    position: fixed;
-}
-
 .side-menu-item .ant-menu-inline {
     border-right: 0;
 }
@@ -58,14 +54,6 @@ section.ant-layout.ant-layout-has-sider {
 
 header.ant-layout-header {
     padding: 0 2%;
-}
-
-aside.ant-layout-sider {
-    position: fixed;
-}
-
-.ant-layout-content {
-    margin-left: 190px;
 }
 
 li.ant-menu-item.header-item:hover {

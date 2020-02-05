@@ -46,14 +46,12 @@ const ViewTicket = ({ match, form }) => {
             </Tooltip>
         </span>,
     ];
-    const listClass = param => `d-flex justify-content-${!param ? 'end pl-4' : 'start'}`;
-
     const CommentList = ({ commentValue }) => (
         <List
             dataSource={commentValue}
             itemLayout="horizontal"
             renderItem={item => (
-                <div className={listClass}>
+                <div className={`d-flex justify-content-${!item.isAdmin ? 'end pl-4' : 'start'}`}>
                     <Comment actions={!item.isAdmin ? actions : ''} {...item} />
                 </div>
             )}
