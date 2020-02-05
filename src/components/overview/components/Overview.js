@@ -13,26 +13,36 @@ const { Title } = Typography;
 const Overview = () => {
     const { overviewLocationNumber,
         overviewPendingCampignNumber,
-        overviewApprovedCampignNumber } = useSelector(state => state.overview);
+        overviewApprovedCampignNumber, overviewLoading } = useSelector(state => state.overview);
     const { savedLocations } = useSelector(state => state.savedLocation);
     const { user: { isAdmin } } = useSelector(state => state.user);
+    const checkSavedOrLocations = () => {
+        if (!isAdmin) {
+            return savedLocations.length;
+        }
+        if (!overviewLoading) {
+            return overviewLocationNumber;
+        }
+        return 0;
+    };
     const CARDS = [
         {
-            counts: overviewApprovedCampignNumber,
+            counts: !overviewLoading ? overviewApprovedCampignNumber : 0,
             link: '/dashboard/campaigns',
             type: 'Approved Campaigns',
         },
         {
-            counts: overviewPendingCampignNumber,
+            counts: !overviewLoading ? overviewPendingCampignNumber : 0,
             link: '/dashboard/campaigns',
             type: 'Pending Campaigns',
         },
         {
-            counts: !isAdmin ? savedLocations.length : overviewLocationNumber,
+            counts: checkSavedOrLocations(),
             link: !isAdmin ? '/dashboard/savedLocations' : '/dashboard/locations',
             type: !isAdmin ? 'Saved Locations' : 'Locations',
         },
     ];
+
     const renderCards = () => (CARDS.map(({ counts, link, type }) => (
         <Col key={type} sm={24} md={8}>
             <NavLink to={link}>

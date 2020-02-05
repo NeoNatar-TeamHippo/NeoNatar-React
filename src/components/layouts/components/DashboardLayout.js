@@ -34,7 +34,7 @@ const DashboardLayout = props => {
                 >
                     <SideMenu />
                 </Sider>
-                <Content className="content">
+                <Content className="content px-4">
                     {children}
                 </Content>
             </Layout>
