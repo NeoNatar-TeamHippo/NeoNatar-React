@@ -8,7 +8,7 @@ import Tasks from './Tasks';
 
 import TransactionsTable from '../../transactions/components/Table';
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 const Overview = () => {
     const { overviewLocationNumber,
@@ -39,26 +39,26 @@ const Overview = () => {
         {
             counts: checkSavedOrLocations(),
             link: !isAdmin ? '/dashboard/savedLocations' : '/dashboard/locations',
-            type: !isAdmin ? 'Saved Locations' : 'Locations',
+            type: !isAdmin ? 'Saved Locations' : 'Available Locations',
         },
     ];
 
     const renderCards = () => (CARDS.map(({ counts, link, type }) => (
         <Col key={type} sm={24} md={8}>
-            <NavLink to={link}>
-                <Card hoverable className="dashboard-card">
+            <Card hoverable className="dashboard-card">
+                <NavLink to={link}>
                     <span>
-                        <Title className="text_title" type="secondary" level={4}>
+                        <Text className="text_title" type="secondary" level={4}>
                             {type}
-                        </Title>
+                        </Text>
                     </span>
                     <span>
                         <Title className="text_title" level={1}>
                             {counts}
                         </Title>
                     </span>
-                </Card>
-            </NavLink>
+                </NavLink>
+            </Card>
         </Col>
     )));
 
@@ -68,8 +68,6 @@ const Overview = () => {
         </div>) : (
                 <>
                     <Row
-                        type="flex"
-                        justify="space-between"
                         gutter={[{ lg: 32, md: 24, sm: 16, xs: 8 }, 20]}
                         className="mb-4"
                     >

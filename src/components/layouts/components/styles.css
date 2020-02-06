@@ -74,7 +74,7 @@ li.ant-menu-item.header-item:hover {
     vertical-align: inherit;
 }
 
-@media(max-width: 424px) {
+@media(max-width: 425px) {
     .display-name {
         display: none;
     }
@@ -106,6 +106,6 @@ li.ant-menu-item.header-item:hover {
     }
 
     .adjust_sidebar {
-        margin-left: 20px;
+        margin-left: 80px;
     }
 }

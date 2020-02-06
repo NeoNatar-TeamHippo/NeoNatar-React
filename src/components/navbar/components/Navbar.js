@@ -28,7 +28,7 @@ const Navbar = () => {
 
                 </Tooltip>
             </Item>
-            <Divider type={VERTICAL} />
+            <Divider className="display-name" type={VERTICAL} />
             <Typography.Text className="display-name" strong>
                 {!navLoading ? fullName.toUpperCase() : 'User'}
             </Typography.Text>

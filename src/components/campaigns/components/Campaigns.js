@@ -11,6 +11,7 @@ import { statusColor } from '../../utils/functions';
 const menuItems = [ALL, PENDING, APPROVE, DISAPPROVED];
 
 const Campaigns = ({ history }) => {
+    console.log(id, 'matching the value to be rendered');
     const dispatch = useDispatch();
     const { user: { isAdmin, userId } } = useSelector(state => state.user);
 
