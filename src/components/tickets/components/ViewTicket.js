@@ -45,23 +45,13 @@ const ViewTicket = ({ match, form }) => {
         author = customerName;
         ticketAvatar = avatar;
     }
-    const actions = [
-        <span key="delete_message">
-            <Tooltip title="delete message">
-                <Icon
-                    type="delete"
-                    className="text-danger"
-                />
-            </Tooltip>
-        </span>,
-    ];
     const CommentList = ({ commentValue }) => (
         <List
             dataSource={commentValue}
             itemLayout="horizontal"
             renderItem={item => (
                 <div className={`d-flex justify-content-${!item.isAdmin ? 'end pl-4' : 'start'}`}>
-                    <Comment actions={!item.isAdmin ? actions : ''} {...item} />
+                    <Comment {...item} />
                 </div>
             )}
         />
