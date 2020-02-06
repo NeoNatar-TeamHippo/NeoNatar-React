@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { Typography, Card, Col, Row } from 'antd';
+import { Typography, Card, Col, Row, Spin } from 'antd';
 
 import UnresolvedTickets from './UnresolvedTickets';
 import Tasks from './Tasks';
@@ -15,7 +15,7 @@ const Overview = () => {
         overviewPendingCampignNumber,
         overviewApprovedCampignNumber, overviewLoading } = useSelector(state => state.overview);
     const { savedLocations } = useSelector(state => state.savedLocation);
-    const { user: { isAdmin } } = useSelector(state => state.user);
+    const { user: { isAdmin }, navLoading } = useSelector(state => state.user);
     const checkSavedOrLocations = () => {
         if (!isAdmin) {
             return savedLocations.length;
@@ -47,43 +47,47 @@ const Overview = () => {
         <Col key={type} sm={24} md={8}>
             <NavLink to={link}>
                 <Card hoverable className="dashboard-card">
-                    <div>
+                    <span>
                         <Title className="text_title" type="secondary" level={4}>
                             {type}
                         </Title>
-                    </div>
-                    <div>
+                    </span>
+                    <span>
                         <Title className="text_title" level={1}>
                             {counts}
                         </Title>
-                    </div>
+                    </span>
                 </Card>
             </NavLink>
         </Col>
     )));
 
     return (
-        <div className="container">
-            <Row
-                type="flex"
-                justify="space-between"
-                gutter={[{ lg: 32, md: 24, sm: 16, xs: 8 }, 20]}
-                className="mb-4"
-            >
-                {renderCards()}
-            </Row>
-            {!isAdmin ? (<TransactionsTable />)
-                : (
-                    <Row gutter={[{ lg: 32, md: 24, sm: 16, xs: 8 }, 20]}>
-                        <Col sm={24} lg={12}>
-                            <UnresolvedTickets />
-                        </Col>
-                        <Col sm={24} lg={12}>
-                            <Tasks />
-                        </Col>
+        navLoading ? (<div className='center_loader'>
+            <Spin size='large'></Spin>
+        </div>) : (
+                <>
+                    <Row
+                        type="flex"
+                        justify="space-between"
+                        gutter={[{ lg: 32, md: 24, sm: 16, xs: 8 }, 20]}
+                        className="mb-4"
+                    >
+                        {renderCards()}
                     </Row>
-                )}
-        </div>
+                    {!isAdmin ? (<TransactionsTable />)
+                        : (
+                            <Row gutter={[{ lg: 32, md: 24, sm: 16, xs: 8 }, 20]}>
+                                <Col sm={24} lg={12}>
+                                    <UnresolvedTickets />
+                                </Col>
+                                <Col sm={24} lg={12}>
+                                    <Tasks />
+                                </Col>
+                            </Row>
+                        )}
+                </>
+            )
     );
 };
 

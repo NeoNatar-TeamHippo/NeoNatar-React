@@ -35,7 +35,7 @@ export const ADMIN_SIDE_MENU_ITEMS = [
     { iconType: 'play-square', label: 'Videos', link: '/dashboard/commercials' },
     { iconType: 'sound', label: 'Campaigns', link: '/dashboard/campaigns' },
     { iconType: 'credit-card', label: 'Tickets', link: '/dashboard/tickets' },
-    { iconType: 'team', label: 'Users' },
+    // { iconType: 'team', label: 'Staffs' },
 ];
 
 /** @constant */

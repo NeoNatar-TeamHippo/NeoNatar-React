@@ -59,7 +59,7 @@ export const IS_RESOLVED = 'resolved';
 export const ADDCOMMENT = 'Add Comment';
 
 /** @constant */
-export const MARKED_AS_RESOLVED = 'Marked As Resolved';
+export const MARKED_AS_RESOLVED = 'Resolved';
 
 /** @constant */
 export const FORMITEMLAYOUT = {

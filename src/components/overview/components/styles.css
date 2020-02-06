@@ -24,3 +24,11 @@
 .ant-list-split .ant-list-item {
     border-bottom: 0;
 }
+
+.center_loader {
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
