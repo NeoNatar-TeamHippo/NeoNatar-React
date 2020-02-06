@@ -33,7 +33,7 @@ export const ADMIN_SIDE_MENU_ITEMS = [
     { iconType: 'dashboard', label: 'Overview', link: '/dashboard' },
     { iconType: 'environment', label: 'Locations', link: '/dashboard/locations' },
     { iconType: 'play-square', label: 'Videos', link: '/dashboard/commercials' },
-    { iconType: 'sound', label: 'Campaigns', link: '/dashboard/campaigns' },
+    { iconType: 'sound', label: 'Campaigns', link: '/dashboard/campaigns/status/All' },
     { iconType: 'credit-card', label: 'Tickets', link: '/dashboard/tickets' },
     // { iconType: 'team', label: 'Staffs' },
 ];
@@ -45,6 +45,6 @@ export const CLIENT_SIDE_MENU_ITEMS = [
     { iconType: 'play-square', label: 'Videos', link: '/dashboard/commercials' },
     { iconType: 'environment', label: 'Locations', link: '/dashboard/locations' },
     { iconType: 'pushpin', label: 'Saved Locations', link: '/dashboard/savedLocations' },
-    { iconType: 'sound', label: 'Campaigns', link: '/dashboard/campaigns' },
+    { iconType: 'sound', label: 'Campaigns', link: '/dashboard/campaigns/status/All' },
     { iconType: 'credit-card', label: 'Tickets', link: '/dashboard/tickets' },
 ];

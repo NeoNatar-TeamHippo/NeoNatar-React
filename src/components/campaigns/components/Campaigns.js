@@ -10,8 +10,8 @@ import { statusColor } from '../../utils/functions';
 
 const menuItems = [ALL, PENDING, APPROVE, DISAPPROVED];
 
-const Campaigns = ({ history }) => {
-    console.log(id, 'matching the value to be rendered');
+const Campaigns = ({ history, match }) => {
+    console.log(match.params.id, 'check d id');
     const dispatch = useDispatch();
     const { user: { isAdmin, userId } } = useSelector(state => state.user);
 
@@ -140,11 +140,11 @@ const Campaigns = ({ history }) => {
             <Menu
                 mode={HORIZONTAL}
                 onClick={handleChangeTab}
-                defaultSelectedKeys={[ALL]}
+                defaultSelectedKeys={[match.params.id]}
                 style={{ marginBottom: 5 }}
             >
                 {
-                    menuItems.map(key => (
+                    menuItems.map((key, i) => (
                         <Menu.Item key={key}>
                             {key}
                         </Menu.Item>

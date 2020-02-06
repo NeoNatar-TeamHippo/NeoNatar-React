@@ -26,10 +26,11 @@ const Dashboard = props => {
     const { path } = props.match;
     const getPathWay = pathRoute => `${path}/${pathRoute}`;
     const getNestedPath = (pathRoute, child) => `${path}/${pathRoute}/${child}`;
+    const getDeepPath = (pathRoute, parent, child) => `${path}/${pathRoute}/${parent}/${child}`;
     const { authenticated } = useSelector(state => state.signIn);
     const routes = [
         { component: Overview, path },
-        { component: Campaigns, path: getPathWay('campaigns') },
+        { component: Campaigns, path: getDeepPath('campaigns', 'status', ':id') },
         { component: ViewCampaign, path: getNestedPath('campaigns', ':id') },
         { component: NewCampaigns, path: getPathWay('new-campaigns') },
         { component: SavedLocations, path: getPathWay('savedLocations') },

@@ -28,12 +28,12 @@ const Overview = () => {
     const CARDS = [
         {
             counts: !overviewLoading ? overviewApprovedCampignNumber : 0,
-            link: '/dashboard/campaigns',
+            link: '/dashboard/campaigns/status/Approved',
             type: 'Approved Campaigns',
         },
         {
             counts: !overviewLoading ? overviewPendingCampignNumber : 0,
-            link: '/dashboard/campaigns',
+            link: '/dashboard/campaigns/status/Pending',
             type: 'Pending Campaigns',
         },
         {
