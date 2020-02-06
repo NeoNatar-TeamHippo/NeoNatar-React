@@ -6,7 +6,7 @@ import {
 import moment from 'moment';
 
 import { getTicketsById, postTicketMessage, resolveTicket, updateTicketMessage } from '../actions';
-import { ADDCOMMENT, MARKED_AS_RESOLVED, IS_RESOLVED } from '../constants';
+import { ADDCOMMENT, MARKED_AS_RESOLVED, IS_RESOLVED, ADMIN, ADMIN_IMAGE } from '../constants';
 
 const { TextArea } = Input;
 
@@ -36,6 +36,15 @@ const ViewTicket = ({ match, form }) => {
     }, [messages]);
 
     const { getFieldDecorator, resetFields, validateFields } = form;
+    let author;
+    let ticketAvatar;
+    if (userIsAdmin) {
+        author = ADMIN;
+        ticketAvatar = ADMIN_IMAGE;
+    } else {
+        author = customerName;
+        ticketAvatar = avatar;
+    }
     const actions = [
         <span key="delete_message">
             <Tooltip title="delete message">
@@ -65,16 +74,16 @@ const ViewTicket = ({ match, form }) => {
                 setTimeout(() => {
                     setsubmitting(false);
                     dispatch(updateTicketMessage({
-                        author: customerName,
-                        avatar,
+                        author,
+                        avatar: ticketAvatar,
                         content: values.body,
                         datetime: moment().fromNow(),
                         id: ticketId,
                         isAdmin: userIsAdmin,
                     }));
                     dispatch(postTicketMessage({
-                        author: customerName,
-                        avatar,
+                        author,
+                        avatar: ticketAvatar,
                         content: values.body,
                         datetime: moment().fromNow(),
                         id: ticketId,
@@ -107,8 +116,8 @@ const ViewTicket = ({ match, form }) => {
                         hidden={status === IS_RESOLVED}
                         avatar={(
                             <Avatar
-                                src={avatar}
-                                alt={customerName}
+                                src={ticketAvatar}
+                                alt={author}
                             />
                         )}
                         content={(
