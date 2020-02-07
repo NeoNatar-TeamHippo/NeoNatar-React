@@ -1,40 +1,39 @@
 import React from 'react';
 import { Typography } from 'antd';
+import onlinePlay from '../../../images/svgs/undraw_content_vbqo.svg';
+import personalfinance from '../../../images/svgs/undraw_personal_finance_tqcd.svg';
 
 const ImageShowcase = () => (
     <section className="showcase">
         <div className="container-fluid p-0">
             <div className="row no-gutters">
 
-                <div className="col-lg-6 order-lg-2 text-white showcase-img" />
+                <div className="col-lg-6 order-lg-2 text-white showcase-img">
+                    <div className="p-4">
+                        <img src={onlinePlay} alt="online play" width="100%" />
+                    </div>
+                </div>
                 <div className="col-lg-6 order-lg-1 my-auto showcase-text">
                     <Typography.Title level={2}>
-                        Fully Responsive Design
+                        Content meets Ads
                     </Typography.Title>
-                    <Typography.Text className="lead mb-0" type="secondary">
-                        When you use a theme created by Start Bootstrap, you know that the theme will look great on any device, whether it's a phone, tablet, or desktop the page will behave responsively!
+                    <Typography.Text className="lead mb-0">
+                        We show content along side, to ensure people stay glued to your Ads
                     </Typography.Text>
                 </div>
             </div>
             <div className="row no-gutters">
-                <div className="col-lg-6 text-white showcase-img" />
+                <div className="col-lg-6 text-white showcase-img">
+                    <div className="p-4">
+                        <img src={personalfinance} alt="addcontent play" width="80%" />
+                    </div>
+                </div>
                 <div className="col-lg-6 my-auto showcase-text">
                     <Typography.Title level={2}>
-                        Updated For Bootstrap 4
+                        Low Cost Benefits
                     </Typography.Title>
-                    <Typography.Text className="lead mb-0" type="secondary">
-                        Bootstrap 4 is leading the way in mobile responsive web development! All of the themes on Start Bootstrap are now using Bootstrap 4!
-                    </Typography.Text>
-                </div>
-            </div>
-            <div className="row no-gutters">
-                <div className="col-lg-6 order-lg-2 text-white showcase-img" />
-                <div className="col-lg-6 order-lg-1 my-auto showcase-text">
-                    <Typography.Title level={2}>
-                        Easy to Use &amp; Customize
-                    </Typography.Title>
-                    <Typography.Text className="lead mb-0" type="secondary">
-                        Landing Page is just HTML and CSS with a splash of SCSS for users who demand some deeper customization options. Out of the box, just add your content and images, and your new landing page will be ready to go!
+                    <Typography.Text className="lead mb-0">
+                        You can advertise for as low as 1 location for 1 day, if that is what you can afford.
                     </Typography.Text>
                 </div>
             </div>

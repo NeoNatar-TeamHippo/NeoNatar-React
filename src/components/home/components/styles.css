@@ -15,7 +15,7 @@ h6 {
 header.masthead {
     position: relative;
     background-color: #343a40;
-    /* background: url(../img/bg-masthead.jpg) no-repeat center center; */
+    background: url(../../../images/landingpage.jpg) no-repeat center center;
     background-size: cover;
     padding-top: 8rem;
     padding-bottom: 8rem
@@ -28,7 +28,7 @@ header.masthead .overlay {
     width: 100%;
     top: 0;
     left: 0;
-    opacity: .3
+    opacity: .1
 }
 
 header.masthead h1 {
@@ -71,11 +71,14 @@ header.masthead h1 {
 }
 
 .features-icons .features-icons-item .features-icons-icon {
-    height: 7rem
+    height: 7rem;
+    color: #C41D7F;
 }
 
 .features-icons .features-icons-item .features-icons-icon i {
-    font-size: 4.5rem
+    font-size: 4.5rem;
+
+
 }
 
 .features-icons .features-icons-item:hover .features-icons-icon i {
@@ -93,13 +96,13 @@ header.masthead h1 {
 
 .testimonials .testimonial-item img {
     max-width: 12rem;
-    box-shadow: 0 5px 5px 0 #adb5bd
+    box-shadow: 0 5px 5px 0 #adb5bd;
 }
 
 .call-to-action {
     position: relative;
     background-color: #343a40;
-    /* background: url(../img/bg-masthead.jpg) no-repeat center center; */
+    background: url(../../../images/carddesign.jpg) no-repeat center center;
     background-size: cover;
     padding-top: 7rem;
     padding-bottom: 7rem
@@ -112,10 +115,14 @@ header.masthead h1 {
     width: 100%;
     top: 0;
     left: 0;
-    opacity: .3
+    opacity: .1
 }
 
 footer.footer {
     padding-top: 4rem;
     padding-bottom: 4rem
+}
+
+.content-meet {
+    background-image: url('../../../images/landingpage.jpg');
 }
