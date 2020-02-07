@@ -43,12 +43,16 @@ function* deleteLocation(id) {
         console.log('Something went wrong please try again');
     }
 }
-function* createNewLocation(data) {
+function* createNewLocation({ data, resetFields, openNotification, setvisible }) {
     try {
         yield put(submittingForm());
         const res = yield call(newSavedLocation, data);
         if (res.status === 'success') {
             yield put(submitedForm());
+            yield call(resetFields);
+            yield call(openNotification,
+                'Add locations to your list', 'New List Created', 'success');
+            yield call(setvisible, false);
         } else {
             console.log('error getting data');
         }
