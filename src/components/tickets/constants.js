@@ -5,6 +5,12 @@ export const NEWTICKET = 'New Tickets';
 export const ALL = 'All';
 
 /** @constant */
+export const ADMIN = 'Neonatar Admin';
+
+/** @constant */
+export const ADMIN_IMAGE = 'https://firebasestorage.googleapis.com/v0/b/neonatar.appspot.com/o/admin%20image-min.png?alt=media&token=24df0845-14f2-4970-af99-5ddce3b5b492';
+
+/** @constant */
 export const PENDING = 'Pending';
 
 /** @constant */

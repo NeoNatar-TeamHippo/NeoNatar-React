@@ -6,7 +6,7 @@ import {
 import moment from 'moment';
 
 import { getTicketsById, postTicketMessage, resolveTicket, updateTicketMessage } from '../actions';
-import { ADDCOMMENT, MARKED_AS_RESOLVED, IS_RESOLVED } from '../constants';
+import { ADDCOMMENT, MARKED_AS_RESOLVED, IS_RESOLVED, ADMIN, ADMIN_IMAGE } from '../constants';
 
 const { TextArea } = Input;
 
@@ -36,23 +36,22 @@ const ViewTicket = ({ match, form }) => {
     }, [messages]);
 
     const { getFieldDecorator, resetFields, validateFields } = form;
-    const actions = [
-        <span key="delete_message">
-            <Tooltip title="delete message">
-                <Icon
-                    type="delete"
-                    className="text-danger"
-                />
-            </Tooltip>
-        </span>,
-    ];
+    let author;
+    let ticketAvatar;
+    if (userIsAdmin) {
+        author = ADMIN;
+        ticketAvatar = ADMIN_IMAGE;
+    } else {
+        author = customerName;
+        ticketAvatar = avatar;
+    }
     const CommentList = ({ commentValue }) => (
         <List
             dataSource={commentValue}
             itemLayout="horizontal"
             renderItem={item => (
                 <div className={`d-flex justify-content-${!item.isAdmin ? 'end pl-4' : 'start'}`}>
-                    <Comment actions={!item.isAdmin ? actions : ''} {...item} />
+                    <Comment {...item} />
                 </div>
             )}
         />
@@ -65,16 +64,16 @@ const ViewTicket = ({ match, form }) => {
                 setTimeout(() => {
                     setsubmitting(false);
                     dispatch(updateTicketMessage({
-                        author: customerName,
-                        avatar,
+                        author,
+                        avatar: ticketAvatar,
                         content: values.body,
                         datetime: moment().fromNow(),
                         id: ticketId,
                         isAdmin: userIsAdmin,
                     }));
                     dispatch(postTicketMessage({
-                        author: customerName,
-                        avatar,
+                        author,
+                        avatar: ticketAvatar,
                         content: values.body,
                         datetime: moment().fromNow(),
                         id: ticketId,
@@ -107,8 +106,8 @@ const ViewTicket = ({ match, form }) => {
                         hidden={status === IS_RESOLVED}
                         avatar={(
                             <Avatar
-                                src={avatar}
-                                alt={customerName}
+                                src={ticketAvatar}
+                                alt={author}
                             />
                         )}
                         content={(
