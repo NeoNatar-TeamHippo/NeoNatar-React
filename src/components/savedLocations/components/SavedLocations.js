@@ -37,9 +37,6 @@ const SavedLocations = ({ form }) => {
                     setvisible,
                 };
                 dispatch(newSavedLocation(payload));
-                // resetFields();
-                // setvisible(false);
-                // openNotification('Add locations to your list', 'New List Created', 'success');
             }
         });
     };
