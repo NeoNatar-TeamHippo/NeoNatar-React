@@ -127,13 +127,13 @@ const ViewTicket = ({ match, form }) => {
                                     />)}
                                 </Form.Item>
                                 <Form.Item>
-                                    <div className='d-flex justify-content-between'>
+                                    <div className="d-flex justify-content-between">
                                         <Button
-                                            type='primary'
+                                            type="primary"
                                             style={{
-                                                color: 'green',
                                                 backgroundColor: 'white',
                                                 borderColor: 'green',
+                                                color: 'green',
                                             }}
                                             onClick={markAsResolved}
                                             hidden={!userIsAdmin}
@@ -148,7 +148,6 @@ const ViewTicket = ({ match, form }) => {
                                         >
                                             {ADDCOMMENT}
                                         </Button>
-
 
                                     </div>
                                 </Form.Item>

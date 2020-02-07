@@ -1,5 +1,5 @@
 /** @constant */
-export const FOOTER_TEXT = 'NEONATAR ©2020, Built with ❤ from California';
+export const FOOTER_TEXT = 'NEONATAR © 2020, All Rights Reserved.';
 
 /** @constant */
 export const INLINE = 'inline';
