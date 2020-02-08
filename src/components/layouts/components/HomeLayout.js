@@ -7,7 +7,7 @@ import FooterComponent from './Footer';
 
 import Logo from '../../../images/neoNatar Logo.svg';
 
-const { Footer, Header } = Layout;
+const { Footer, Content, Header } = Layout;
 
 const HomeLayout = props => {
     const { children } = props;
@@ -19,7 +19,7 @@ const HomeLayout = props => {
                 </NavLink>
                 <NavHeader />
             </Header>
-            <div className="content">{children}</div>
+            <Content className="content">{children}</Content>
             <Footer className="text-center">
                 <FooterComponent />
             </Footer>

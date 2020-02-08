@@ -82,7 +82,8 @@ header.masthead h1 {
 }
 
 .features-icons .features-icons-item:hover .features-icons-icon i {
-    font-size: 5rem
+    font-size: 5rem;
+    color: rgb(209, 55, 145);
 }
 
 .testimonials {
@@ -116,11 +117,6 @@ header.masthead h1 {
     top: 0;
     left: 0;
     opacity: .1
-}
-
-footer.footer {
-    padding-top: 4rem;
-    padding-bottom: 4rem
 }
 
 .content-meet {
