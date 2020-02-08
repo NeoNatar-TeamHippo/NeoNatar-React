@@ -30,4 +30,9 @@ export const LOADING_NAVBAR = 'LOADING_NAVBAR';
  * @type {String}
  */
 export const LOADING_USER = 'LOADING_USER';
+export const ALL_NOTIFICATIONS = 'ALL_NOTIFICATIONS';
+export const GET_NOTIFICATIONS = 'GET_NOTIFICATIONS';
+export const MARK_AS_READ = 'MARK_AS_READ';
+export const CALL_MARK_READ = 'CALL_MARK_READ';
+export const CLEAR_NOTIFICATION = 'CLEAR_NOTIFICATION';
 
