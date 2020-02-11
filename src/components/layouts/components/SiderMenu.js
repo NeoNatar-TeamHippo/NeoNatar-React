@@ -48,6 +48,9 @@ const SideMenu = () => {
             selectedKeys={[current]}
             defaultSelectedKeys={['/dashboard']}
             onClick={e => setCurrent(e.key)}
+            style={{
+                height: '100%'
+            }}
         >
             {
                 menuItems.map(({ iconType, label, link }) => (

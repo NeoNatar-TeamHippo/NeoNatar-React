@@ -2,11 +2,10 @@ import * as TYPES from './actionType';
 
 const initialState = {
     authenticated: false,
-    errors: {},
     loading: false,
 };
 
-export default (state = initialState, { type, payload }) => {
+export default (state = initialState, { type }) => {
     switch (type) {
         case TYPES.SET_AUTHENTICATED:
             return { ...state, authenticated: true, loading: false };
@@ -15,10 +14,8 @@ export default (state = initialState, { type, payload }) => {
             return { ...state, authenticated: false, error: {}, loading: false };
         case TYPES.LOADING_UI:
             return { ...state, loading: true };
-        case TYPES.SET_ERRORS:
-            return { ...state, errors: payload, loading: false };
         case TYPES.CLEAR_ERRORS:
-            return { ...state, errors: {}, loading: false };
+            return { ...state, loading: false };
         case TYPES.AUTH_TRUE:
             return { ...state, authenticated: true };
         default:

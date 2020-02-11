@@ -30,10 +30,13 @@ const SavedLocations = ({ form }) => {
                     description,
                     title,
                 };
-                dispatch(newSavedLocation(formValues));
-                resetFields();
-                setvisible(false);
-                openNotification('Add locations to your list', 'New List Created', 'success');
+                const payload = {
+                    data: formValues,
+                    openNotification,
+                    resetFields,
+                    setvisible,
+                };
+                dispatch(newSavedLocation(payload));
             }
         });
     };

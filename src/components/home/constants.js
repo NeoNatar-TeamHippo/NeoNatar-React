@@ -7,14 +7,15 @@ import campaign from '../../images/svgs/undraw_order_confirmed_1m3v.svg';
 export const SIGNIN = 'Sign In';
 /** @constant */
 export const SIGNUP_NOW = 'Signup now';
+export const LEARN_HOW = 'Learn how...';
 /** @constant */
 export const SIGNUP = 'Sign Up';
 /** @constant */
 export const CARD_SUBTITLE = 'Please choose an action below';
 /** @constant */
-export const LANDING_TITLE = 'Put your content and ads in front of Restaurant traffic';
+export const LANDING_TITLE = 'Do you want more patronage in your business ? ';
 /** @constant */
-export const EXPLAINERS_TITLE = 'Get your business out';
+export const EXPLAINERS_TITLE = 'Put up adverts in our boards and notice the difference';
 /** @constant */
 export const TESTIMONIALS = 'TESTIMONIALS';
 /** @constant */

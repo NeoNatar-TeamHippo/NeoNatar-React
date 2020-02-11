@@ -20,3 +20,4 @@ export const TRANSACTIONS = 'Transactions';
 const baseUrl = 'https://europe-west1-neonatar.cloudfunctions.net/api';
 /** @constant */
 export const USER_PROFILE = `${baseUrl}/v1/auth`;
+export const NOTIFICATION_URL = `${baseUrl}/v1/notifications`;

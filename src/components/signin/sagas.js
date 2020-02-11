@@ -2,7 +2,7 @@ import { takeEvery, call, put } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 
 import * as TYPES from './actionType';
-import { setErrors, loadingUI, setAuthenticated, clearErrors } from './actions';
+import { loadingUI, setAuthenticated, clearErrors } from './actions';
 import { signInService } from './services';
 
 import { loadingUser } from '../navbar/actions';
@@ -20,18 +20,16 @@ function* userSignIn(userData) {
             yield put(loadingUser());
             yield put(push('/dashboard'));
         } else {
+            yield put(clearErrors());
             yield put(openMessage(res.message, 5, 'error'));
-            yield put(setErrors({ message: res.message }));
         }
     } catch (error) {
         switch (error.status) {
             case 500:
+                yield put(clearErrors());
                 yield put(openMessage('Server error please try again', 5, 'error'));
-                yield put(setErrors({ message: 'Server error please try again' }));
                 break;
             default:
-                yield put(openMessage('Something went wrong please try again', 5, 'error'));
-                yield put(setErrors({ message: 'Something went wrong please try again' }));
                 break;
         }
     }

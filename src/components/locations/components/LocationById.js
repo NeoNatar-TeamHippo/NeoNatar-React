@@ -48,9 +48,15 @@ const LocationById = ({ match, history }) => {
         const { color } = renderRateFormat(text);
 
         return (
-            <Tag color={color}>
-                {text}
-            </Tag>
+            <span>
+                <Typography.Text strong className='mr-1'>
+                    Average Visitors:
+                </Typography.Text>
+                <Tag color={color}>
+                    {text}
+                </Tag>
+            </span>
+
         );
     };
     const renderDescription = (Locaddress, Locstate, Loclga) => {
@@ -99,9 +105,9 @@ const LocationById = ({ match, history }) => {
                     >
                         <div className="d-flex justify-content-between">
                             <div>
-                                <Typography.Title level={4}>
+                                <Typography.Title level={4} strong>
                                     {name}
-                                </Typography.Title>
+                                </Typography.Title >
                             </div>
                             <div>
                                 {renderTag(trafficRate)}

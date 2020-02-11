@@ -79,7 +79,7 @@ const ScheduleCampaign = ({ history }) => {
             message.success('Payment successful, Thanks for working with us!!!');
             setTimeout(() => {
                 dispatch(resetFormState());
-                history.push('/dashboard/campaigns');
+                history.push('/dashboard/campaigns/status/All');
             }, 5000);
         } else {
             message.error('An error occurred please try again');

@@ -7,19 +7,19 @@ import FooterComponent from './Footer';
 
 import Logo from '../../../images/neoNatar Logo.svg';
 
-const { Footer, Header } = Layout;
+const { Footer, Content, Header } = Layout;
 
 const HomeLayout = props => {
     const { children } = props;
     return (
         <Layout>
             <Header className="header-menu">
-                <NavLink to="/dashboard" className="left-menu">
+                <NavLink to="/" className="left-menu">
                     <img src={Logo} width="100%" height="30px" alt="NeoNatar Logo" />
                 </NavLink>
                 <NavHeader />
             </Header>
-            <div className="content">{children}</div>
+            <Content className="content">{children}</Content>
             <Footer className="text-center">
                 <FooterComponent />
             </Footer>

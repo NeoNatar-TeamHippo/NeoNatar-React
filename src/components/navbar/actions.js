@@ -9,6 +9,24 @@ import * as TYPES from './actionType';
 export const loadingNavBar = () => ({
     type: TYPES.LOADING_NAVBAR,
 });
+export const allNotifications = payload => ({
+    payload,
+    type: TYPES.ALL_NOTIFICATIONS,
+});
+export const markAsRead = payload => ({
+    payload,
+    type: TYPES.MARK_AS_READ,
+});
+export const getNotification = () => ({
+    type: TYPES.GET_NOTIFICATIONS,
+});
+export const callMarkRead = payload => ({
+    payload,
+    type: TYPES.CALL_MARK_READ,
+});
+export const clearNotifications = () => ({
+    type: TYPES.CLEAR_NOTIFICATION,
+});
 
 /**
  * Triggers request to load UI

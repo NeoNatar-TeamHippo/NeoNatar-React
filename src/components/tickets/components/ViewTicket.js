@@ -126,28 +126,29 @@ const ViewTicket = ({ match, form }) => {
                                     />)}
                                 </Form.Item>
                                 <Form.Item>
-                                    <Row type="flex" justify="end">
-                                        <Col span={8}>
-                                            <Button
-                                                htmlType="submit"
-                                                loading={submitting}
-                                                onClick={handleSubmit}
-                                                type="primary"
-                                            >
-                                                {ADDCOMMENT}
-                                            </Button>
-                                        </Col>
-                                        <Col span={5} offset={11}>
-                                            <Button
-                                                type="primary"
-                                                icon="check"
-                                                onClick={markAsResolved}
-                                                hidden={!userIsAdmin}
-                                            >
-                                                {MARKED_AS_RESOLVED}
-                                            </Button>
-                                        </Col>
-                                    </Row>
+                                    <div className="d-flex justify-content-between">
+                                        <Button
+                                            type="primary"
+                                            style={{
+                                                backgroundColor: 'white',
+                                                borderColor: 'green',
+                                                color: 'green',
+                                            }}
+                                            onClick={markAsResolved}
+                                            hidden={!userIsAdmin}
+                                        >
+                                            {MARKED_AS_RESOLVED}
+                                        </Button>
+                                        <Button
+                                            htmlType="submit"
+                                            loading={submitting}
+                                            onClick={handleSubmit}
+                                            type="primary"
+                                        >
+                                            {ADDCOMMENT}
+                                        </Button>
+
+                                    </div>
                                 </Form.Item>
                             </Form>
                         )}

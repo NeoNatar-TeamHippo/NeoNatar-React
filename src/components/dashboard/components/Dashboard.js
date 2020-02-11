@@ -10,6 +10,9 @@ import commercials from '../../commercials';
 import savedLocations from '../../savedLocations';
 import transactions from '../../transactions';
 
+import PrivateRoute from '../../router/components/PrivateRoutes';
+import { useSelector } from 'react-redux';
+
 const { Overview } = overview.components;
 const { Campaigns, ViewCampaign, NewCampaigns } = campaigns.components;
 const { Commercials } = commercials.components;
@@ -23,9 +26,11 @@ const Dashboard = props => {
     const { path } = props.match;
     const getPathWay = pathRoute => `${path}/${pathRoute}`;
     const getNestedPath = (pathRoute, child) => `${path}/${pathRoute}/${child}`;
+    const getDeepPath = (pathRoute, parent, child) => `${path}/${pathRoute}/${parent}/${child}`;
+    const { authenticated } = useSelector(state => state.signIn);
     const routes = [
         { component: Overview, path },
-        { component: Campaigns, path: getPathWay('campaigns') },
+        { component: Campaigns, path: getDeepPath('campaigns', 'status', ':id') },
         { component: ViewCampaign, path: getNestedPath('campaigns', ':id') },
         { component: NewCampaigns, path: getPathWay('new-campaigns') },
         { component: SavedLocations, path: getPathWay('savedLocations') },
@@ -42,7 +47,7 @@ const Dashboard = props => {
         const { path: routePath, component } = route;
 
         return (
-            <Route key={routePath} path={routePath} exact strict component={component} />
+            <PrivateRoute authenticated={authenticated} key={routePath} path={routePath} exact strict component={component} />
         );
     });
 

@@ -1,5 +1,5 @@
 /** @constant */
-export const FOOTER_TEXT = 'NEONATAR ©2020, Built with ❤ from California';
+export const FOOTER_TEXT = 'NEONATAR © 2020, All Rights Reserved.';
 
 /** @constant */
 export const INLINE = 'inline';
@@ -33,9 +33,9 @@ export const ADMIN_SIDE_MENU_ITEMS = [
     { iconType: 'dashboard', label: 'Overview', link: '/dashboard' },
     { iconType: 'environment', label: 'Locations', link: '/dashboard/locations' },
     { iconType: 'play-square', label: 'Videos', link: '/dashboard/commercials' },
-    { iconType: 'sound', label: 'Campaigns', link: '/dashboard/campaigns' },
+    { iconType: 'sound', label: 'Campaigns', link: '/dashboard/campaigns/status/All' },
     { iconType: 'credit-card', label: 'Tickets', link: '/dashboard/tickets' },
-    { iconType: 'team', label: 'Users' },
+    // { iconType: 'team', label: 'Staffs' },
 ];
 
 /** @constant */
@@ -45,6 +45,6 @@ export const CLIENT_SIDE_MENU_ITEMS = [
     { iconType: 'play-square', label: 'Videos', link: '/dashboard/commercials' },
     { iconType: 'environment', label: 'Locations', link: '/dashboard/locations' },
     { iconType: 'pushpin', label: 'Saved Locations', link: '/dashboard/savedLocations' },
-    { iconType: 'sound', label: 'Campaigns', link: '/dashboard/campaigns' },
+    { iconType: 'sound', label: 'Campaigns', link: '/dashboard/campaigns/status/All' },
     { iconType: 'credit-card', label: 'Tickets', link: '/dashboard/tickets' },
 ];

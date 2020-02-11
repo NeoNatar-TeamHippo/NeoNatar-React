@@ -1,10 +1,10 @@
-import React from 'react';
-import { Avatar, Divider, Icon, Menu, Button, Typography, Badge, Tooltip } from 'antd';
+import React, { useEffect } from 'react';
+import { Avatar, Divider, Icon, Menu, Button, Typography, Badge, Popover, List } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import { ICONS, VERTICAL, LOGOUT_TEXT, SETTINGS, TRANSACTIONS } from '../constants';
-import { logoutUser } from '../actions';
+import { logoutUser, getNotification, callMarkRead } from '../actions';
 
 import UserLogo from '../../../images/user.svg';
 
@@ -13,22 +13,65 @@ const { SubMenu, Item } = Menu;
 
 const Navbar = () => {
     const dispatch = useDispatch();
-    const { user, navLoading } = useSelector(state => state.user);
+    useEffect(() => {
+        dispatch(getNotification());
+    }, [dispatch]);
+    const { user, navLoading, notifications } = useSelector(state => state.user);
     const fullName = `${user.firstName} ${user.lastName}`;
-
+    const renderIcon = type => {
+        let iconType;
+        if (type === 'commercials') {
+            iconType = 'play-square';
+        }
+        if (type === 'users') {
+            iconType = 'user';
+        }
+        if (type === 'campaign') {
+            iconType = 'sound';
+        }
+        if (type === 'locations') {
+            iconType = 'environment';
+        }
+        return (<Icon className="ml-3" type={iconType} />);
+    };
+    const markAsRead = () => {
+        const id = notifications.map(notifi => notifi.id);
+        const data = {
+            id,
+        };
+        dispatch(callMarkRead(data));
+    };
     return (
         <Menu className="right-nav" mode="horizontal">
             <Item key="notification">
-                <Tooltip title="Under construction">
-                    <Button type="link" disabled>
-                        <Badge count={5} dot>
-                            <Icon type={BELL} />
-                        </Badge>
-                    </Button>
-
-                </Tooltip>
+                <div onMouseLeave={notifications.length !== 0 ? markAsRead : null}>
+                    <Popover
+                        content={notifications.length !== 0 ? (
+                            <List
+                                size="small"
+                                dataSource={notifications}
+                                itemLayout="horizontal"
+                                renderItem={({ message, type }) => (
+                                    <List.Item
+                                        extra={renderIcon(type)}
+                                    >
+                                        <List.Item.Meta
+                                            description={message}
+                                        />
+                                    </List.Item>
+                                )}
+                            />
+                        ) : (<Typography.Text type="danger">No New Notifications</Typography.Text>)}
+                    >
+                        <Button type="link">
+                            <Badge count={notifications.length} dot>
+                                <Icon type={BELL} />
+                            </Badge>
+                        </Button>
+                    </Popover>
+                </div>
             </Item>
-            <Divider type={VERTICAL} />
+            <Divider className="display-name" type={VERTICAL} />
             <Typography.Text className="display-name" strong>
                 {!navLoading ? fullName.toUpperCase() : 'User'}
             </Typography.Text>

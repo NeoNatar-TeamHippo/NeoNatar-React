@@ -13,10 +13,11 @@ const ViewCommercial = props => {
                     <Modal
                         key={id}
                         visible={selectedModal === id}
-                        closable={false}
+                        closable
                         onCancel={onCancel}
                         title={title}
                         onOk={onOk}
+                        footer={null}
                     >
                         <Card
                             cover={(
@@ -24,7 +25,7 @@ const ViewCommercial = props => {
                                     <source src={url} />
                                     <track src="name" kind="captions" />
                                 </video>
-                                )}
+                            )}
                         >
                             <Meta description={description} />
                         </Card>

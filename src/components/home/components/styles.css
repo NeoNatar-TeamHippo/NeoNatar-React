@@ -1,88 +1,122 @@
-.image-container{
-    margin-left: 50px;
-    width: 20%;
+body {
+    font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif
 }
 
-.ant-btn-primary.half-landing-button {
-    height: auto;
-}
-.half-landing-button{
-    float: right;
-    margin-right: 50px;
-}
-.section-one{
-    background-color: #FDF0F7;
-    height: 500px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700
 }
 
-.section-four{
-    background-color: #c41d7f;
-    height: 400px;
-    color: #FDF0F7;
+header.masthead {
+    position: relative;
+    background-color: #343a40;
+    background: url(../../../images/landingpage.jpg) no-repeat center center;
+    background-size: cover;
+    padding-top: 8rem;
+    padding-bottom: 8rem
 }
 
-.testimonial-divider {
-    height: 40px;
-}
-.testimonial-id {
-    display: flex;
-    margin-left: 50px;
-    margin-top: 100px;
-}
-.testimonial-text{
-    margin-right: 50px;
-    margin-top: 100px;
-}
-.section-four h1.ant-typography {
-    margin-top: 50px;
-    color: #FDF0F7;
-    text-align: center;
+header.masthead .overlay {
+    position: absolute;
+    background-color: #212529;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: .1
 }
 
-.section-four h2.ant-typography, .section-four h3.ant-typography {
-    color: #FDF0F7;
-    text-align: center;
+header.masthead h1 {
+    font-size: 2rem
 }
 
-.half-landing-button h2.ant-typography {
-    color: #FDF0F7;
-}
-
-.section-two, .section-three{
-    height: 500px;
-}
-
-.home-page-text {
-    margin-left: 20px;
-}
-
-.half-landing-text, .half-landing-div {
-    margin-left: 5px;
-}
-
-.half-landing-div {
-    margin-bottom: 5px;
-}
-.home-page-section {
-    margin-left: 20px;
-    margin-right: 100px;
-}
-
-.landing-class {
-    margin-top: 70px;
-}
-
-.screen-image{
-    height: 400px;
-}
-
-.card-carousel {
-    height: 350px;
-    margin-top: 20px;
-}
-
-@media(max-width: 767px) {
-    .hide-image-container {
-        display: none;
+@media (min-width:768px) {
+    header.masthead {
+        padding-top: 12rem;
+        padding-bottom: 12rem
     }
+
+    header.masthead h1 {
+        font-size: 3rem
+    }
+}
+
+.showcase .showcase-text {
+    padding: 3rem
+}
+
+.showcase .showcase-img {
+    min-height: 30rem;
+    background-size: cover
+}
+
+@media (min-width:768px) {
+    .showcase .showcase-text {
+        padding: 7rem
+    }
+}
+
+.features-icons {
+    padding-top: 7rem;
+    padding-bottom: 7rem
+}
+
+.features-icons .features-icons-item {
+    max-width: 20rem
+}
+
+.features-icons .features-icons-item .features-icons-icon {
+    height: 7rem;
+    color: #C41D7F;
+}
+
+.features-icons .features-icons-item .features-icons-icon i {
+    font-size: 4.5rem;
+}
+
+.features-icons .features-icons-item:hover .features-icons-icon i {
+    font-size: 5rem;
+    color: rgb(209, 55, 145);
+}
+
+.testimonials {
+    padding-top: 7rem;
+    padding-bottom: 7rem
+}
+
+.testimonials .testimonial-item {
+    max-width: 18rem
+}
+
+.testimonials .testimonial-item img {
+    max-width: 12rem;
+    box-shadow: 0 5px 5px 0 #adb5bd;
+}
+
+.call-to-action {
+    position: relative;
+    background-color: #343a40;
+    background: url(../../../images/carddesign.jpg) no-repeat center center;
+    background-size: cover;
+    padding-top: 7rem;
+    padding-bottom: 7rem
+}
+
+.call-to-action .overlay {
+    position: absolute;
+    background-color: #212529;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: .1
+}
+
+.content-meet {
+    background-image: url('../../../images/landingpage.jpg');
 }
