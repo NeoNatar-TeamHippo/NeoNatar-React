@@ -25,6 +25,8 @@ export const LANDING_DESCRIPTION = 'We are expanding into secure indoor location
 /** @constant */
 export const DUMMY_DESCRIPTION = 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur';
 /** @constant */
+export const READY = 'Ready to get more customers? Get started now!';
+/** @constant */
 export const IMAGES = [
     {
         image: solution,
