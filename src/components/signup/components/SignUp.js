@@ -12,7 +12,7 @@ const { HomeLayout } = layouts.components;
 const { Title, Text } = Typography;
 const SignUp = () => (
     <HomeLayout>
-        <div className="card_background signup_card">
+        <div className="card_background">
             <Row type="flex" justify="center" align="middle">
                 <Col xs={18} md={12} lg={8}>
                     <Card className="center_card">

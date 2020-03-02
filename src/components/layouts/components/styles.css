@@ -81,10 +81,6 @@ li.ant-menu-item.header-item:hover {
 }
 
 @media(min-width: 424px) {
-    .uncollapsed_sidebar {
-        margin-left: 200px;
-    }
-
     .adjust_sidebar {
         margin-left: 60px;
     }
