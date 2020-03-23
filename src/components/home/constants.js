@@ -13,9 +13,9 @@ export const SIGNUP = 'Sign Up';
 /** @constant */
 export const CARD_SUBTITLE = 'Please choose an action below';
 /** @constant */
-export const LANDING_TITLE = 'Do you want more patronage in your business ? ';
+export const LANDING_TITLE = 'EFFECTIVE DIGITAL DISPLAY FOR CREATORS AND ADVERTISERS';
 /** @constant */
-export const EXPLAINERS_TITLE = 'Put up adverts in our boards and notice the difference';
+export const EXPLAINERS_TITLE = 'Promote your video content and ads on smart Twin TVs, installed at Restaurants and other public indoor locations';
 /** @constant */
 export const TESTIMONIALS = 'TESTIMONIALS';
 /** @constant */

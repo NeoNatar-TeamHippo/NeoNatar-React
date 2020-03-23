@@ -6,7 +6,7 @@ export const PRICE = 'Price: ';
 /** @constant */
 export const TRAFFIC_RATE = 'Traffic: ';
 /** @constant */
-export const DESCRIPTION_CREATE = 'Click to create a new saved list';
+export const DESCRIPTION_CREATE = 'Create a group of custom locations';
 /** @constant */
 export const CREATE_NOW = 'New List';
 /** @constant */
