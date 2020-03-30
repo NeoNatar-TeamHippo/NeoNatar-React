@@ -1,4 +1,4 @@
 import Commercials from './Commercials';
-import './styles.css';
+import './styles.scss';
 
 export { Commercials };

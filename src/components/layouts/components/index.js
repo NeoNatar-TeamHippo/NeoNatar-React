@@ -1,4 +1,4 @@
-import './styles.css';
+import './styles.scss';
 import HomeLayout from './HomeLayout';
 import DashboardLayout from './DashboardLayout';
 

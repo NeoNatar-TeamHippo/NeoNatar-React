@@ -1,4 +1,4 @@
 import Home from './Home';
-import './styles.css';
+import './styles.scss';
 
 export { Home };

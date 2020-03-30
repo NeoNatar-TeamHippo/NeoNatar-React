@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import jwtDecode from 'jwt-decode';
 import { Provider } from 'react-redux';
 
-import './index.css';
+import './index.scss';
 import router from './components/router';
 import reduxStore from './components/redux/store';
 import { authTrue, setUnAuthenticated } from './components/signin/actions';
