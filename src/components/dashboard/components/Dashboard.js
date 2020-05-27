@@ -1,5 +1,6 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import overview from '../../overview';
 import campaigns from '../../campaigns';
@@ -11,7 +12,6 @@ import savedLocations from '../../savedLocations';
 import transactions from '../../transactions';
 
 import PrivateRoute from '../../router/components/PrivateRoutes';
-import { useSelector } from 'react-redux';
 
 const { Overview } = overview.components;
 const { Campaigns, ViewCampaign, NewCampaigns } = campaigns.components;
@@ -47,7 +47,14 @@ const Dashboard = props => {
         const { path: routePath, component } = route;
 
         return (
-            <PrivateRoute authenticated={authenticated} key={routePath} path={routePath} exact strict component={component} />
+            <PrivateRoute
+                authenticated={authenticated}
+                key={routePath}
+                path={routePath}
+                exact
+                strict
+                component={component}
+            />
         );
     });
 

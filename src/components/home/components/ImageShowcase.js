@@ -2,6 +2,11 @@ import React from 'react';
 import { Typography } from 'antd';
 import onlinePlay from '../../../images/svgs/undraw_content_vbqo.svg';
 import personalfinance from '../../../images/svgs/undraw_personal_finance_tqcd.svg';
+import {
+    WHATSAPP_MARKETING,
+    WHATSAPP_MARKETING_DESCRIPTION,
+    WIDE_REACH, WIDE_REACH_DESCRIPTION
+} from '../constants';
 
 const ImageShowcase = () => (
     <section className="showcase">
@@ -14,11 +19,11 @@ const ImageShowcase = () => (
                     </div>
                 </div>
                 <div className="col-lg-6 order-lg-1 my-auto showcase-text">
-                    <Typography.Title level={2}>
-                        Content meets Ads
+                    <Typography.Title level={3}>
+                        {WHATSAPP_MARKETING}
                     </Typography.Title>
                     <Typography.Text className="lead mb-0">
-                        We show content along side, to ensure people stay glued to your Ads
+                        {WHATSAPP_MARKETING_DESCRIPTION}
                     </Typography.Text>
                 </div>
             </div>
@@ -29,11 +34,11 @@ const ImageShowcase = () => (
                     </div>
                 </div>
                 <div className="col-lg-6 my-auto showcase-text">
-                    <Typography.Title level={2}>
-                        Low Cost Benefits
+                    <Typography.Title level={3}>
+                        {WIDE_REACH}
                     </Typography.Title>
                     <Typography.Text className="lead mb-0">
-                        You can advertise for as low as 1 location for 1 day, if that is what you can afford.
+                        {WIDE_REACH_DESCRIPTION}
                     </Typography.Text>
                 </div>
             </div>

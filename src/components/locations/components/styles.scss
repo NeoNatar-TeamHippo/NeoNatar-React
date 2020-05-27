@@ -1,0 +1,58 @@
+.ant-layout {
+    background: #fff;
+}
+
+.page_header {
+    border: 1px solid rgb(235, 237, 240);
+    border-radius: 4px;
+}
+
+.avatar-uploader>.ant-upload {
+    width: 128px;
+    height: 128px;
+}
+
+.img {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    height: 300px;
+}
+
+.ant-table {
+    display: block;
+  
+    @media screen and (max-width: 600px) {
+      &-thead {
+        display: none;
+      }
+  
+      &-thead>tr,
+      &-tbody>tr {
+  
+        th,
+        td {
+          &:first-of-type {
+            padding-top: 1rem;
+          }
+  
+          &:last-of-type {
+            padding-bottom: 1rem;
+          }
+        }
+  
+        >th,
+        >td {
+          display: block;
+          width: auto !important;
+          border: none;
+          padding: 0 1rem;
+          font-size: 1.1rem;
+  
+          &:last-child {
+            border-bottom: 1px solid #eee;
+          }
+        }
+      }
+    }
+}

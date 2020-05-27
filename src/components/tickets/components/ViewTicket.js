@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-    Row, Col, Avatar, Tooltip, Comment, Form, Button, List, Input, Typography, Icon
+    Row, Col, Avatar, Comment, Form, Button, List, Input, Typography
 } from 'antd';
 import moment from 'moment';
 

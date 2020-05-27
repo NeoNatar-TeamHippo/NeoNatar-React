@@ -1,4 +1,4 @@
 import Overview from './Overview';
-import './styles.css';
+import './styles.scss';
 
 export { Overview };

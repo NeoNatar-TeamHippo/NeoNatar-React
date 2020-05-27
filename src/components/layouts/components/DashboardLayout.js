@@ -15,13 +15,13 @@ const DashboardLayout = props => {
     const [collapsed, setCollapsed] = useState(false);
     const onCollapse = collapsedValue => {
         if (collapsedValue) {
-            document.getElementById('adjust_sidebar').classList.add('adjust_sidebar')
-        }
-        else {
-            document.getElementById('adjust_sidebar').classList.remove('adjust_sidebar')
+            document.getElementById('adjust_sidebar').classList.add('adjust_sidebar');
+        } else {
+            document.getElementById('adjust_sidebar').classList.remove('adjust_sidebar');
         }
         setCollapsed(collapsedValue);
     };
+
     return (
         <Layout>
             <Header className="header-menu">
@@ -38,15 +38,15 @@ const DashboardLayout = props => {
                     onCollapse={onCollapse}
                     className="side-menu-item"
                     style={{
-                        overflow: 'auto',
                         height: '100vh',
-                        position: 'fixed',
                         left: 0,
+                        overflow: 'auto',
+                        position: 'fixed',
                     }}
                 >
                     <SideMenu />
                 </Sider>
-                <Content id='adjust_sidebar' className="content uncollapsed_sidebar px-4">
+                <Content id="adjust_sidebar" className="content uncollapsed_sidebar px-4">
                     {children}
                 </Content>
             </Layout>

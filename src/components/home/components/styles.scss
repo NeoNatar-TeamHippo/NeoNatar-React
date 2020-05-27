@@ -11,14 +11,23 @@ h6 {
     font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 700
 }
-
+h2.landing-title, h4.landing-title{
+    color: #fff;
+}
+.ant-btn-background-ghost.ant-btn-primary.button-class {
+    border-radius: 20px;
+}
 header.masthead {
     position: relative;
     background-color: #343a40;
-    background: url(../../../images/landingpage.jpg) no-repeat center center;
+    background: url(../../../images/New-bg.png) no-repeat center center;
     background-size: cover;
     padding-top: 8rem;
-    padding-bottom: 8rem
+    padding-bottom: 8rem;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 header.masthead .overlay {

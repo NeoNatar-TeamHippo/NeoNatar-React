@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, Button } from 'antd';
-import { SIGNUP } from '../constants';
+import { SIGNUP, READY } from '../constants';
 
 const GettingStarted = () => (
     <section className="call-to-action text-white text-center">
@@ -12,7 +12,7 @@ const GettingStarted = () => (
                         className="mb-4"
                         level={2}
                     >
-                        Ready to get more customers ? Get started now!!!
+                        {READY}
                     </Typography.Title>
                 </div>
                 <div className="col-md-10 col-lg-8 col-xl-7 d-flex justify-content-center">

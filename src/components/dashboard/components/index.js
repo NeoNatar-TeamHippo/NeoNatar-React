@@ -1,4 +1,4 @@
 import Dashboard from './Dashboard';
-import './styles.css';
+import './styles.scss';
 
 export { Dashboard };
