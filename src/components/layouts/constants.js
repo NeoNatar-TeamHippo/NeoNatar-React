@@ -1,5 +1,5 @@
 /** @constant */
-export const FOOTER_TEXT = 'NEONATAR © 2020, All Rights Reserved.';
+export const FOOTER_TEXT = 'DNTV © 2020, All Rights Reserved.';
 
 /** @constant */
 export const INLINE = 'inline';
@@ -27,6 +27,21 @@ export const SETTINGS = 'Settings';
 
 /** @constant */
 export const TRANSACTIONS = 'Transactions';
+
+/** @constant */
+export const ABOUT = 'About';
+
+/** @constant */
+export const CONTACT = 'Contact';
+
+/** @constant */
+export const TERMS = ' Terms of Use';
+
+/** @constant */
+export const PRIVACY = 'Privacy Policy';
+
+/** @constant */
+export const TV_PLATFORM = 'A tv sharing platform for every budget';
 
 /** @constant */
 export const ADMIN_SIDE_MENU_ITEMS = [
