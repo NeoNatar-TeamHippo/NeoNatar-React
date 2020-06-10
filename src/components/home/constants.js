@@ -31,7 +31,7 @@ export const CARD_SUBTITLE = 'Please choose an action below';
 export const LANDING_TITLE = 'EFFECTIVE DIGITAL DISPLAY FOR CREATORS AND ADVERTISERS';
 
 /** @constant */
-export const EXPLAINERS_TITLE = 'Promote your video content and ads on smart Twin TVs, installed at Restaurants and other public indoor locations';
+export const EXPLAINERS_TITLE = 'Promote your content and ads on WhatsApp TVs and Restaurant TVs';
 
 /** @constant */
 export const TESTIMONIALS = 'TESTIMONIALS';
