@@ -1,14 +1,12 @@
+import { Layout, Typography } from 'antd';
 import React, { useState } from 'react';
-import { Layout } from 'antd';
 import { NavLink, withRouter } from 'react-router-dom';
-
-import SideMenu from './SiderMenu';
-
 import navbar from '../../navbar';
-import Logo from '../../../images/neoNatar Logo.svg';
+import SideMenu from './SiderMenu';
 
 const { Content, Header, Sider } = Layout;
 const { Navbar } = navbar.components;
+const { Title } = Typography;
 
 const DashboardLayout = props => {
     const { children } = props;
@@ -26,7 +24,7 @@ const DashboardLayout = props => {
         <Layout>
             <Header className="header-menu">
                 <NavLink to="/" className="left-menu">
-                    <img src={Logo} width="100%" height="30px" alt="NeoNatar Logo" />
+                    <Title>DNTV</Title>
                 </NavLink>
                 <Navbar />
             </Header>
