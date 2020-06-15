@@ -78,7 +78,7 @@ const CommercialTable = () => {
                 dataSource={commercialData}
                 rowKey={record => record.id}
                 size="middle"
-                scroll={{ y: 350 }}
+                scroll={{ x: 2000, y: 350 }}
             />
         </div>
     );

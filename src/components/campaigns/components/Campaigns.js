@@ -157,7 +157,7 @@ const Campaigns = ({ history, match }) => {
                 columns={columns}
                 rowKey={record => record.id}
                 size="middle"
-                scroll={{ y: 400 }}
+                scroll={{ x: 2000, y: 400 }}
             />
         </>
     );

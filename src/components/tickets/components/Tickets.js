@@ -163,7 +163,7 @@ const Tickets = ({ history }) => {
                 dataSource={ticketData}
                 rowKey={record => record.ticketId}
                 size="middle"
-                scroll={{ y: 350 }}
+                scroll={{ x: 2000, y: 350 }}
             />
         </>
     );

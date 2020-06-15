@@ -29,6 +29,7 @@ const Commercials = () => {
                 title="Upload Video"
                 onCancel={handleCancel}
                 footer={null}
+                scroll={{ x: 2000 }}
             >
                 <CommercialForm />
             </Modal>

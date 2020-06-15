@@ -20,7 +20,10 @@ h4.landing-title {
 .ant-btn-background-ghost.ant-btn-primary.button-class {
   border-radius: 20px;
   color: #fff;
-  border-color: #fff;
+}
+
+.ant-btn-background-ghost.ant-btn-primary.button-class:hover {
+  color: #c41d7f;
 }
 
 header.masthead {
