@@ -250,7 +250,7 @@ const SelectLocation = () => {
                         dataSource={locations}
                         rowKey={record => record.locationId}
                         size="middle"
-                        scroll={{ y: 250 }}
+                        scroll={{ x: 2000, y: 250 }}
                     />
                     <div className="d-flex justify-content-end">
                         {!hasSelected ? (
